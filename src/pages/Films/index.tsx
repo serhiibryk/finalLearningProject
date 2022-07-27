@@ -5,6 +5,7 @@ import { Card } from "antd";
 import { filmsService } from "../../services/films";
 
 import useStyles from "./style";
+import { imgFilmsList } from "../../utils";
 
 const { Meta } = Card;
 
@@ -29,6 +30,7 @@ const TeamsFilms = () => {
   const [filmsList, setFilmsList] = useState<Films[]>([]);
 
   const classes = useStyles();
+
   const push = useNavigate();
   const fetchFilms = async () => {
     filmsService.getFilms().then((res) => {
@@ -47,12 +49,19 @@ const TeamsFilms = () => {
 
   return (
     <div className={classes.filmsContainer}>
-      {filmsList.map((film) => {
+      {filmsList.map((film, index) => {
         return (
           <Card
             className={classes.card}
             hoverable
-            onClick={() => push(`/film/${film.episode_id}`)}
+            cover={
+              <img
+                className={classes.img}
+                key={imgFilmsList[index].imgLink}
+                src={imgFilmsList[index].imgLink}
+              />
+            }
+            onClick={() => push(`/film/${film.url.split("/")[5]}`)}
           >
             <Meta title={film.title} />
           </Card>

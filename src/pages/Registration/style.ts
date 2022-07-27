@@ -6,7 +6,9 @@ const useStyles = createUseStyles({
     display: "block",
   },
   registerContainer: {
-    height: "calc(100vh - 64px)",
+    height: "calc(100vh - 134px)",
+    display: "flex",
+    justifyContent: "center",
   },
 });
 

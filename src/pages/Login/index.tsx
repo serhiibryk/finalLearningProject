@@ -30,6 +30,7 @@ const Login: React.FC = () => {
           rules={[{ required: true, message: "Please input your Login!" }]}
         >
           <Input
+            className={classes.input}
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Login"
           />
@@ -39,6 +40,7 @@ const Login: React.FC = () => {
           rules={[{ required: true, message: "Please input your Password!" }]}
         >
           <Input
+            className={classes.input}
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"

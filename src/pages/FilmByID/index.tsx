@@ -34,11 +34,11 @@ const FilmByID = () => {
 
   const fetchFilmsByID = async (id: number) => {
     filmsService.getFilmByID(id).then((resByID) => {
-      console.log(resByID);
+      // console.log(resByID);
       setFilmsList(resByID.data);
     });
   };
-  console.log(filmsList);
+  // console.log(filmsList);
 
   useEffect(() => {
     const id = location.pathname.split("/")[2]; //Destructurization

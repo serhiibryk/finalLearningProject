@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
   },
   meta: {},
   mainContainer: {
-    minHeight: "calc(100vh - 64px)",
+    minHeight: "calc(100vh - 134px)",
     display: "flex",
     flexWrap: "wrap",
     minWidth: "800px",

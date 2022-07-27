@@ -12,6 +12,10 @@ const useStyles = createUseStyles({
     display: "flex",
     flexWrap: "wrap",
   },
+  img: {
+    width: "300px",
+    height: "185px",
+  },
 });
 
 export default useStyles;

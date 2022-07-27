@@ -4,7 +4,7 @@ import { Card } from "antd";
 import useStyles from "./style";
 import { commonService } from "../../services/common";
 import { useLocation, useNavigate } from "react-router-dom";
-import { imgList } from "../../utils";
+import { imgMainList } from "../../utils";
 
 const { Meta } = Card;
 
@@ -26,10 +26,11 @@ const Main = () => {
     starships: "",
     vehicles: "",
   });
+  // console.log(commonList);
 
   // console.log(useLocation());
 
-  const history = useNavigate();
+  const push = useNavigate();
 
   const classes = useStyles();
 
@@ -46,6 +47,12 @@ const Main = () => {
     fetchCommon();
   }, []);
 
+  if (commonList.films === "") {
+    return <div>Loading...</div>;
+  }
+
+  // console.log(Object.keys(commonList));
+
   return (
     <div
       className={classes.mainContainer}
@@ -58,11 +65,11 @@ const Main = () => {
           cover={
             <img
               className={classes.img}
-              key={imgList[index].imgLink}
-              src={imgList[index].imgLink}
+              key={imgMainList[index].imgLink}
+              src={imgMainList[index].imgLink}
             />
           }
-          onClick={() => history(imgList[index].imgPath)}
+          onClick={() => push(`/${item[0]}`)}
         >
           <Meta className={classes.meta} title={item[0]} />
         </Card>

@@ -35,12 +35,12 @@ const SpeccyByID = () => {
 
   const fetchSpeccyByID = async (id: number) => {
     speciesService.getSpeccyByID(id).then((resByID) => {
-      console.log(resByID);
+      // console.log(resByID);
       setSpeciesList(resByID.data);
     });
   };
 
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     const id = location.pathname.split("/")[2]; //Destructurization

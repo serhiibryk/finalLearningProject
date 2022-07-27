@@ -36,11 +36,11 @@ const PeopleByID = () => {
 
   const fetchPeopleByID = async (id: number) => {
     peopleService.getPeopleByID(id).then((resByID) => {
-      console.log(resByID);
+      // console.log(resByID);
       setPeopleList(resByID.data);
     });
   };
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     const id = location.pathname.split("/")[2]; //Destructurization

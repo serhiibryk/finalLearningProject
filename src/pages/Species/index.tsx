@@ -43,7 +43,7 @@ const TeamsSpecies = () => {
   // const location = useLocation();
   const fetchSpecies = async (size: number, page: number) => {
     speciesService.getSpecies().then((res) => {
-      console.log(res);
+      // console.log(res);
       setSpeciesList(res.data.results);
       // setPageData({
       //   size: res.data.info.results,

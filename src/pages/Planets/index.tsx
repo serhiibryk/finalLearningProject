@@ -44,7 +44,7 @@ const TeamsPlanets = () => {
 
   const fetchPlanets = async (size: number, page: number) => {
     planetsService.getPlanets().then((res) => {
-      console.log(res);
+      // console.log(res);
       setPlanetsList(res.data.results);
       // setPageData({
       //   size: res.data.info.results,

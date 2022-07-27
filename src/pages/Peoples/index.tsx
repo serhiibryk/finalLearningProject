@@ -35,7 +35,7 @@ const TeamsPeoples = () => {
 
   const fetchUsers = async () => {
     peopleService.getPeople().then((res) => {
-      console.log(res);
+      // console.log(res);
       setPeoplesList(res.data.results);
     });
   };
