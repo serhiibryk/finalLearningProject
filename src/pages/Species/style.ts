@@ -3,13 +3,21 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   card: {
     marginTop: "15px",
-    margin: "15px",
-    width: "300px",
+    width: "33%",
+    minWidth: "140px",
   },
-  speciesContainer: {
-    minHeight: "calc(100vh - 64px)",
+  root: {
+    minHeight: "calc(100vh - 134px)",
     display: "flex",
     flexWrap: "wrap",
+    "& .ant-card-cover": {
+      display: "flex",
+      width: "100%",
+      height: "250px",
+    },
+  },
+  img: {
+    objectFit: "cover",
   },
 });
 

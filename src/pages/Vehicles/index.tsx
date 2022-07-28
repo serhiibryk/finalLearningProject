@@ -4,33 +4,9 @@ import { Card } from "antd";
 import useStyles from "./style";
 import { vehiclesService } from "../../services/vehicles";
 import { useNavigate } from "react-router-dom";
+import { imgVehiclesList } from "../../utils";
 
 const { Meta } = Card;
-
-interface Vehicles {
-  cargo_capacity: string;
-  consumables: string;
-  cost_in_credits: string;
-  created: string;
-  crew: string;
-  edited: string;
-  films: string[];
-  length: string;
-  manufacturer: string;
-  max_atmosphering_speed: string;
-  model: string;
-  name: string;
-  passengers: string;
-  pilots: [];
-  url: string;
-  vehicle_class: string;
-}
-
-interface PageData {
-  size: number;
-  page: number;
-  pagesTotal: number;
-}
 
 const TeamsVehicles = () => {
   const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
@@ -61,12 +37,19 @@ const TeamsVehicles = () => {
   }
 
   return (
-    <div className={classes.vehiclesContainer}>
-      {vehiclesList.map((vehicle) => {
+    <div className={classes.root}>
+      {vehiclesList.map((vehicle, index) => {
         return (
           <Card
             className={classes.card}
             hoverable
+            cover={
+              <img
+                className={classes.img}
+                key={imgVehiclesList[index].imgLink}
+                src={imgVehiclesList[index].imgLink}
+              />
+            }
             onClick={() => push(`/vehicles/${vehicle.url.split("/")[5]}`)}
           >
             <Meta title={vehicle.name} />

@@ -7,7 +7,7 @@ const useStyles = createUseStyles({
     width: "100%",
   },
   starshipByIDContainer: {
-    minHeight: "calc(100vh - 64px)",
+    minHeight: "calc(100vh - 134px)",
     display: "flex",
     flexWrap: "wrap",
   },

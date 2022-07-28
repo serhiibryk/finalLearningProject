@@ -8,15 +8,6 @@ import { imgMainList } from "../../utils";
 
 const { Meta } = Card;
 
-interface Common {
-  films: string;
-  people: string;
-  planets: string;
-  species: string;
-  starships: string;
-  vehicles: string;
-}
-
 const Main = () => {
   const [commonList, setCommonList] = useState<Common>({
     films: "",
@@ -26,9 +17,6 @@ const Main = () => {
     starships: "",
     vehicles: "",
   });
-  // console.log(commonList);
-
-  // console.log(useLocation());
 
   const push = useNavigate();
 
@@ -36,12 +24,9 @@ const Main = () => {
 
   const fetchCommon = async () => {
     commonService.getCommon().then((res) => {
-      // console.log(res);
       setCommonList(res.data);
     });
   };
-
-  // console.log(commonList);
 
   useEffect(() => {
     fetchCommon();
@@ -51,11 +36,9 @@ const Main = () => {
     return <div>Loading...</div>;
   }
 
-  // console.log(Object.keys(commonList));
-
   return (
     <div
-      className={classes.mainContainer}
+      className={classes.root}
       style={{ display: "flex", flexDirection: "row" }}
     >
       {Object.entries(commonList).map((item, index) => (

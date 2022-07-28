@@ -94,4 +94,215 @@ export const imgFilmsList = [
   },
 ];
 
+export const imgPeopleList = [
+  {
+    imgLink:
+      "https://img3.goodfon.com/wallpaper/nbig/b/6b/star-wars-luke-skywalker-846.jpg",
+  },
+  {
+    imgLink: "https://images3.alphacoders.com/641/641532.jpg",
+  },
+  {
+    imgLink: "https://cdn.wallpapersafari.com/77/81/U6TILx.jpg",
+  },
+  {
+    imgLink: "https://wallpapercave.com/wp/wp10759738.jpg",
+  },
+  {
+    imgLink: "https://images.alphacoders.com/584/584836.jpg",
+  },
+  {
+    imgLink:
+      "https://lumiere-a.akamaihd.net/v1/images/owen-lars-bio-5_dd84f781.jpeg?region=0%2C0%2C1280%2C720",
+  },
+  {
+    imgLink:
+      "https://static1.srcdn.com/wordpress/wp-content/uploads/2021/08/Uncle-Own-Aunt-Beru-Facts-Restaurant.jpg?q=50&fit=crop&w=963&h=481&dpr=1.5",
+  },
+  {
+    imgLink:
+      "https://lumiere-a.akamaihd.net/v1/images/r5-d4_main_image_7d5f078e.jpeg?region=374%2C0%2C1186%2C666&width=960",
+  },
+  {
+    imgLink:
+      "https://www.therpf.com/forums/attachments/star-wars4-movie-screencaps-com-13175-jpg.817490/",
+  },
+  {
+    imgLink:
+      "https://img2.goodfon.com/wallpaper/nbig/e/61/star-wars-obi-wan-kenobi-ben-6754.jpg",
+  },
+];
+
+export const imgPlanetsList = [
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+  {
+    imgLink:
+      "https://www.pixelstalk.net/wp-content/uploads/2016/05/Death-Star-Backgrounds.jpg",
+  },
+];
+
+export const imgSpeciesList = [
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+  {
+    imgLink:
+      "https://c4.wallpaperflare.com/wallpaper/865/687/666/star-wars-yoda-jedi-wallpaper-preview.jpg",
+  },
+];
+
+export const imgStarshipsList = [
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/3f/f8/61/3ff861e68286843a327b349be9c66f67--starship-enterprise-star-trek.jpg",
+  },
+];
+
+export const imgVehiclesList = [
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+  {
+    imgLink:
+      "https://i.pinimg.com/736x/98/02/b9/9802b9000f433c5081559165f37a09f0.jpg",
+  },
+];
+
 //localStorage

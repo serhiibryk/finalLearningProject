@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
     width: "100%",
   },
   filmByIDContainer: {
-    minHeight: "calc(100vh - 64px)",
+    minHeight: "calc(100vh - 134px)",
     display: "flex",
     flexWrap: "wrap",
   },
