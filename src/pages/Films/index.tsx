@@ -9,23 +9,6 @@ import { imgFilmsList } from "../../utils";
 
 const { Meta } = Card;
 
-interface Films {
-  characters: string[];
-  created: string;
-  director: string;
-  edited: string;
-  episode_id: number;
-  opening_crawl: string;
-  planets: string[];
-  producer: string;
-  release_date: string;
-  species: string[];
-  starships: string[];
-  title: string;
-  url: string;
-  vehicles: string[];
-}
-
 const TeamsFilms = () => {
   const [filmsList, setFilmsList] = useState<Films[]>([]);
 
@@ -34,11 +17,10 @@ const TeamsFilms = () => {
   const push = useNavigate();
   const fetchFilms = async () => {
     filmsService.getFilms().then((res) => {
-      // console.log(res);
       setFilmsList(res.data.results);
     });
   };
-  // console.log(filmsList);
+
   useEffect(() => {
     fetchFilms();
   }, []);
@@ -48,7 +30,7 @@ const TeamsFilms = () => {
   }
 
   return (
-    <div className={classes.filmsContainer}>
+    <div className={classes.root}>
       {filmsList.map((film, index) => {
         return (
           <Card

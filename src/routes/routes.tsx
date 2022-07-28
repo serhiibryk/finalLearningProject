@@ -4,7 +4,7 @@ import TeamsFilms from "../pages/Films";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
 import PeopleByID from "../pages/PeopleByID";
-import TeamsPeoples from "../pages/Peoples";
+import TeamsPeoples from "../pages/People";
 import PlanetByID from "../pages/PlanetByID";
 import TeamsPlanets from "../pages/Planets";
 import Registration from "../pages/Registration";

@@ -4,31 +4,9 @@ import { Card } from "antd";
 import useStyles from "./style";
 import { planetsService } from "../../services/planets";
 import { useLocation, useNavigate } from "react-router-dom";
+import { imgPlanetsList } from "../../utils";
 
 const { Meta } = Card;
-
-interface Planets {
-  climate: string;
-  created: string;
-  diameter: string;
-  edited: string;
-  films: string[];
-  gravity: string;
-  name: string;
-  orbital_period: string;
-  population: string;
-  residents: string[];
-  rotation_period: string;
-  surface_water: string;
-  terrain: string;
-  url: string;
-}
-
-interface PageData {
-  size: number;
-  page: number;
-  pagesTotal: number;
-}
 
 const TeamsPlanets = () => {
   const [planetsList, setPlanetsList] = useState<Planets[]>([]);
@@ -40,17 +18,10 @@ const TeamsPlanets = () => {
 
   const classes = useStyles();
   const push = useNavigate();
-  // const location = useLocation();
 
   const fetchPlanets = async (size: number, page: number) => {
     planetsService.getPlanets().then((res) => {
-      // console.log(res);
       setPlanetsList(res.data.results);
-      // setPageData({
-      //   size: res.data.info.results,
-      //   page: res.data.info.page,
-      //   pagesTotal: 100, // imagine that it`s value from BE
-      // });
     });
   };
   useEffect(() => {
@@ -62,12 +33,19 @@ const TeamsPlanets = () => {
   }
 
   return (
-    <div className={classes.planetsContainer}>
-      {planetsList.map((planet) => {
+    <div className={classes.root}>
+      {planetsList.map((planet, index) => {
         return (
           <Card
             className={classes.card}
             hoverable
+            cover={
+              <img
+                className={classes.img}
+                key={imgPlanetsList[index].imgLink}
+                src={imgPlanetsList[index].imgLink}
+              />
+            }
             onClick={() => push(`/planets/${planet.url.split("/")[5]}`)}
           >
             <Meta title={planet.name} />

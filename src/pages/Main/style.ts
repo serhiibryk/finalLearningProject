@@ -2,18 +2,24 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   img: {
-    width: "385px",
-    height: "210px",
+    objectFit: "cover",
   },
   card: {
-    margin: "15px 30px 15px 30px",
+    marginTop: "15px",
+    width: "33%",
+    height: "10%",
+    minWidth: "140px",
   },
   meta: {},
-  mainContainer: {
+  root: {
     minHeight: "calc(100vh - 134px)",
     display: "flex",
     flexWrap: "wrap",
-    minWidth: "800px",
+    "& .ant-card-cover": {
+      display: "flex",
+      width: "100%",
+      height: "250px",
+    },
   },
 });
 
