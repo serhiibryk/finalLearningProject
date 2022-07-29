@@ -4,10 +4,11 @@ const useStyles = createUseStyles({
   card: {
     marginTop: "15px",
     width: "33%",
+    minHeight: "70px",
     minWidth: "140px",
   },
-  root: {
-    minHeight: "calc(100vh - 134px)",
+
+  content: {
     display: "flex",
     flexWrap: "wrap",
     "& .ant-card-cover": {
@@ -16,8 +17,24 @@ const useStyles = createUseStyles({
       height: "250px",
     },
   },
+
+  root: {},
+
   img: {
     objectFit: "cover",
+  },
+
+  spiner: {
+    marginTop: "100px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  pagination: {
+    display: "flex",
+    justifyContent: "space-around",
+    marginTop: "15px",
   },
 });
 

@@ -1,4 +1,4 @@
-import { Card, Divider, Tag } from "antd";
+import { Card, Divider, Space, Spin, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -109,8 +109,11 @@ const FilmByID = () => {
     starshipsList === null ||
     vehiclesList === null
   )
-    return <div>Loading...</div>;
-  console.log(planetsList);
+    return (
+      <Space size="middle" className={classes.spiner}>
+        <Spin size="large" />
+      </Space>
+    );
 
   return (
     <div className={classes.filmByIDContainer}>
@@ -126,7 +129,7 @@ const FilmByID = () => {
         <Divider orientation="left">Episode_id:</Divider>
         <Meta title={filmsList.episode_id} />
         <Divider orientation="left">Opening_crawl:</Divider>
-        <p>{filmsList.opening_crawl}</p>
+        <p className={classes.textP}>{filmsList.opening_crawl}</p>
         <Divider orientation="left">Planets:</Divider>
         <div>
           {planetsList.map((planet) => (

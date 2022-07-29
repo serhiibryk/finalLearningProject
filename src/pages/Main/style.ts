@@ -21,6 +21,12 @@ const useStyles = createUseStyles({
       height: "250px",
     },
   },
+  spiner: {
+    marginTop: "100px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default useStyles;

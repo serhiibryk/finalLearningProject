@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "antd";
+import { Card, Pagination, Space, Spin } from "antd";
 
 import useStyles from "./style";
 import { planetsService } from "../../services/planets";
@@ -11,47 +11,70 @@ const { Meta } = Card;
 const TeamsPlanets = () => {
   const [planetsList, setPlanetsList] = useState<Planets[]>([]);
   const [pageData, setPageData] = useState<PageData>({
-    size: 100,
-    page: 1,
-    pagesTotal: 0,
+    nextId: 1,
   });
 
   const classes = useStyles();
   const push = useNavigate();
 
-  const fetchPlanets = async (size: number, page: number) => {
-    planetsService.getPlanets().then((res) => {
+  const fetchPlanets = async (nextId: number) => {
+    planetsService.getPlanets(nextId).then((res) => {
       setPlanetsList(res.data.results);
+      const paramsNext = new URL(res.data.next).searchParams;
+      const next = paramsNext.get("page");
+      setPageData({ nextId: Number(next) });
     });
   };
   useEffect(() => {
-    fetchPlanets(pageData.size, pageData.page);
+    fetchPlanets(pageData.nextId);
   }, []);
 
+  const handleChange = (id: number) => {
+    fetchPlanets(id);
+  };
+
   if (planetsList.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <Space size="middle" className={classes.spiner}>
+        <Spin size="large" />
+      </Space>
+    );
   }
 
   return (
     <div className={classes.root}>
-      {planetsList.map((planet, index) => {
-        return (
-          <Card
-            className={classes.card}
-            hoverable
-            cover={
-              <img
-                className={classes.img}
-                key={imgPlanetsList[index].imgLink}
-                src={imgPlanetsList[index].imgLink}
-              />
-            }
-            onClick={() => push(`/planets/${planet.url.split("/")[5]}`)}
-          >
-            <Meta title={planet.name} />
-          </Card>
-        );
-      })}
+      <div className={classes.pagination}>
+        {!!planetsList.length && (
+          <div>
+            <Pagination
+              showSizeChanger={false}
+              defaultCurrent={1}
+              total={60}
+              onChange={handleChange}
+            />
+          </div>
+        )}
+      </div>
+      <div className={classes.content}>
+        {planetsList.map((planet, index) => {
+          return (
+            <Card
+              className={classes.card}
+              hoverable
+              cover={
+                <img
+                  className={classes.img}
+                  key={imgPlanetsList[index].imgLink}
+                  src={imgPlanetsList[index].imgLink}
+                />
+              }
+              onClick={() => push(`/planets/${planet.url.split("/")[5]}`)}
+            >
+              <Meta title={planet.name} />
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 };

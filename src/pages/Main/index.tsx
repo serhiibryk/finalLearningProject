@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "antd";
+import { Card, Space, Spin } from "antd";
 
-import useStyles from "./style";
 import { commonService } from "../../services/common";
 import { useLocation, useNavigate } from "react-router-dom";
 import { imgMainList } from "../../utils";
+
+import useStyles from "./style";
 
 const { Meta } = Card;
 
@@ -33,7 +34,11 @@ const Main = () => {
   }, []);
 
   if (commonList.films === "") {
-    return <div>Loading...</div>;
+    return (
+      <Space size="middle" className={classes.spiner}>
+        <Spin size="large" />
+      </Space>
+    );
   }
 
   return (

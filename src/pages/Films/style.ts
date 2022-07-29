@@ -20,6 +20,12 @@ const useStyles = createUseStyles({
   img: {
     objectFit: "cover",
   },
+  spiner: {
+    marginTop: "100px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default useStyles;

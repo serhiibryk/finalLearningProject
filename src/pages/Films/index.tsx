@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import { Card, Space, Spin } from "antd";
 
 import { filmsService } from "../../services/films";
 
@@ -26,7 +26,11 @@ const TeamsFilms = () => {
   }, []);
 
   if (filmsList.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <Space size="middle" className={classes.spiner}>
+        <Spin size="large" />
+      </Space>
+    );
   }
 
   return (

@@ -1,4 +1,4 @@
-import { Card, Divider, Tag } from "antd";
+import { Card, Divider, Space, Spin, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { filmsService } from "../../services/films";
@@ -112,7 +112,11 @@ const PeopleByID = () => {
     starshipsList === null ||
     vehiclesList === null
   )
-    return <div>Loading...</div>;
+    return (
+      <Space size="middle" className={classes.spiner}>
+        <Spin size="large" />
+      </Space>
+    );
 
   return (
     <div className={classes.peopleByIDContainer}>

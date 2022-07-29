@@ -8,9 +8,7 @@ declare interface Common {
 }
 
 declare interface PageData {
-  size: number;
-  page: number;
-  pagesTotal: number;
+  nextId: number;
 }
 
 declare interface Species {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "antd";
+import { Card, Pagination, Space, Spin } from "antd";
 
 import useStyles from "./style";
 import { vehiclesService } from "../../services/vehicles";
@@ -11,51 +11,71 @@ const { Meta } = Card;
 const TeamsVehicles = () => {
   const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
   const [pageData, setPageData] = useState<PageData>({
-    size: 100,
-    page: 1,
-    pagesTotal: 0,
+    nextId: 1,
   });
+
   const classes = useStyles();
   const push = useNavigate();
-  const fetchVehicles = async (size: number, page: number) => {
-    vehiclesService.getVehicles().then((res) => {
-      // console.log(res);
+  const fetchVehicles = async (nextId: number) => {
+    vehiclesService.getVehicles(nextId).then((res) => {
       setVehiclesList(res.data.results);
-      // setPageData({
-      //   size: res.data.info.results,
-      //   page: res.data.info.page,
-      //   pagesTotal: 100, // imagine that it`s value from BE
-      // });
+      const paramsNext = new URL(res.data.next).searchParams;
+      const next = paramsNext.get("page");
+      // const paramsPrev = new URL(res.data.previous).searchParams;
+      // const prev = paramsNext.get("page");
+      setPageData({ nextId: Number(next) });
     });
   };
   useEffect(() => {
-    fetchVehicles(pageData.size, pageData.page);
+    fetchVehicles(pageData.nextId);
   }, []);
 
+  const handleChange = (id: number) => {
+    fetchVehicles(id);
+  };
+
   if (vehiclesList.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <Space size="middle" className={classes.spiner}>
+        <Spin size="large" />
+      </Space>
+    );
   }
 
   return (
     <div className={classes.root}>
-      {vehiclesList.map((vehicle, index) => {
-        return (
-          <Card
-            className={classes.card}
-            hoverable
-            cover={
-              <img
-                className={classes.img}
-                key={imgVehiclesList[index].imgLink}
-                src={imgVehiclesList[index].imgLink}
-              />
-            }
-            onClick={() => push(`/vehicles/${vehicle.url.split("/")[5]}`)}
-          >
-            <Meta title={vehicle.name} />
-          </Card>
-        );
-      })}
+      <div className={classes.pagination}>
+        {!!vehiclesList.length && (
+          <div className={classes.content}>
+            <Pagination
+              showSizeChanger={false}
+              defaultCurrent={1}
+              total={37}
+              onChange={handleChange}
+            />
+          </div>
+        )}
+      </div>
+      <div className={classes.content}>
+        {vehiclesList.map((vehicle, index) => {
+          return (
+            <Card
+              className={classes.card}
+              hoverable
+              cover={
+                <img
+                  className={classes.img}
+                  key={imgVehiclesList[index].imgLink}
+                  src={imgVehiclesList[index].imgLink}
+                />
+              }
+              onClick={() => push(`/vehicles/${vehicle.url.split("/")[5]}`)}
+            >
+              <Meta title={vehicle.name} />
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 };
