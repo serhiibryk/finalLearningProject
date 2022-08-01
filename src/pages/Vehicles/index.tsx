@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Pagination, Space, Spin } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Card } from "antd";
+
+import Spiner from "../../components/spiner";
+import PaginationCategory from "../../components/pagination";
+import { vehiclesService } from "../../services/vehicles";
+import { imgVehiclesList } from "../../utils";
 
 import useStyles from "./style";
-import { vehiclesService } from "../../services/vehicles";
-import { useNavigate } from "react-router-dom";
-import { imgVehiclesList } from "../../utils";
 
 const { Meta } = Card;
 
@@ -13,16 +16,17 @@ const TeamsVehicles = () => {
   const [pageData, setPageData] = useState<PageData>({
     nextId: 1,
   });
+  const [isLoading, setLoading] = useState(false);
 
   const classes = useStyles();
   const push = useNavigate();
   const fetchVehicles = async (nextId: number) => {
+    setLoading(true);
     vehiclesService.getVehicles(nextId).then((res) => {
       setVehiclesList(res.data.results);
+      setLoading(false);
       const paramsNext = new URL(res.data.next).searchParams;
       const next = paramsNext.get("page");
-      // const paramsPrev = new URL(res.data.previous).searchParams;
-      // const prev = paramsNext.get("page");
       setPageData({ nextId: Number(next) });
     });
   };
@@ -34,26 +38,19 @@ const TeamsVehicles = () => {
     fetchVehicles(id);
   };
 
-  if (vehiclesList.length === 0) {
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+  if (vehiclesList.length === 0 || isLoading) {
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {!!vehiclesList.length && (
-          <div className={classes.content}>
-            <Pagination
-              showSizeChanger={false}
-              defaultCurrent={1}
-              total={37}
-              onChange={handleChange}
-            />
-          </div>
+        {vehiclesList.length && (
+          <PaginationCategory
+            defaultCurrent={1}
+            total={37}
+            onChange={handleChange}
+          />
         )}
       </div>
       <div className={classes.content}>
@@ -67,6 +64,7 @@ const TeamsVehicles = () => {
                   className={classes.img}
                   key={imgVehiclesList[index].imgLink}
                   src={imgVehiclesList[index].imgLink}
+                  alt="Vehicle wallpaper"
                 />
               }
               onClick={() => push(`/vehicles/${vehicle.url.split("/")[5]}`)}

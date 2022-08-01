@@ -13,15 +13,14 @@ const Header = () => {
   const classes = useStyles();
   const location = useLocation();
 
-  // console.log(
-  //   !!routerList.find((item) => {
-  //     console.log("item", item);
-
-  //     return item.key === location.pathname;
-  //   })
-  // );
-
   const push = useNavigate();
+
+  const activeList = routerList.map((item) => {
+    if (location.pathname === "/" && item.key === "/") return item.key;
+    if (item.key !== "/" && location.pathname.includes(item.key))
+      return item.key;
+    return "";
+  });
 
   return (
     <div className={classes.root}>
@@ -32,16 +31,14 @@ const Header = () => {
               className={classes.imgLogo}
               src="https://cdn.beahero.gg/2019/06/star-wars-logo_k6qf-620x349.jpg"
               onClick={() => push("/")}
+              alt="Logo"
             />
           </div>
           <Menu
-            className={classNames({
-              show: !!routerList.find((item) => item.key === location.pathname),
-            })}
             theme="dark"
             mode="horizontal"
             defaultSelectedKeys={["/"]}
-            selectedKeys={[location.pathname]}
+            selectedKeys={activeList}
             items={routerList}
             onClick={(path) => nav(path.key)}
           />

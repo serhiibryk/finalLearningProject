@@ -1,14 +1,14 @@
-import { Card, Divider, Space, Spin, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Card, Divider, Tag } from "antd";
+
+import CardRow from "../../components/cardRow";
+import Spiner from "../../components/spiner";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
-
 import { planetsService } from "../../services/planets";
 
 import useStyles from "./style";
-
-const { Meta } = Card;
 
 const PlanetByID = () => {
   const [planetsList, setPlanetsList] = useState<Planets | null>(null);
@@ -65,49 +65,34 @@ const PlanetByID = () => {
   }, [planetsList]);
 
   if (planetsList === null || filmsList === null || peopleList === null)
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+    return <Spiner classes={classes.spiner} />;
 
   return (
     <div className={classes.planetByIDContainer}>
       <Card className={classes.card} hoverable>
-        <Divider orientation="left">Name of palnet: </Divider>
-        <Meta title={planetsList.name} />
-        <Divider orientation="left">Climate of planet: </Divider>
-        <Meta title={planetsList.climate} />
-        <Divider orientation="left">Created: </Divider>
-        <Meta title={planetsList.created} />
-        <Divider orientation="left">Diameter: </Divider>
-        <Meta title={planetsList.diameter} />
-        <Divider orientation="left">Edited:</Divider>
-        <Meta title={planetsList.edited} />
+        <CardRow title={planetsList.name} lable="Name of palnet:" />
+        <CardRow title={planetsList.climate} lable="Climate of planet:" />
+        <CardRow title={planetsList.created} lable="Created:" />
+        <CardRow title={planetsList.diameter} lable="Diameter:" />
+        <CardRow title={planetsList.edited} lable="Edited:" />
+        <CardRow title={planetsList.gravity} lable="Gravity:" />
+        <CardRow title={planetsList.orbital_period} lable="Orbital period:" />
+        <CardRow title={planetsList.population} lable="Population:" />
+        <CardRow title={planetsList.rotation_period} lable="Rotation period:" />
+        <CardRow title={planetsList.surface_water} lable="Surface water:" />
+        <CardRow title={planetsList.terrain} lable="Terrain:" />
         <Divider orientation="left">Films:</Divider>
         <div>
           {filmsList.map((film) => (
             <Tag color="geekblue">{film.title}</Tag>
           ))}
         </div>
-        <Divider orientation="left">Gravity:</Divider>
-        <Meta title={planetsList.gravity} />
-        <Divider orientation="left">Orbital period:</Divider>
-        <Meta title={planetsList.orbital_period} />
-        <Divider orientation="left">Population:</Divider>
-        <Meta title={planetsList.population} />
-        <Divider orientation="left">Rotation period:</Divider>
-        <Meta title={planetsList.rotation_period} />
         <Divider orientation="left">Residents:</Divider>
         <div>
           {peopleList.map((people) => (
             <Tag color="geekblue">{people.name}</Tag>
           ))}
         </div>
-        <Divider orientation="left">Surface water:</Divider>
-        <Meta title={planetsList.surface_water} />
-        <Divider orientation="left">Terrain:</Divider>
-        <Meta title={planetsList.terrain} />
       </Card>
     </div>
   );

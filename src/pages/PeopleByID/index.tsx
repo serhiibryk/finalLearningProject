@@ -1,8 +1,10 @@
-import { Card, Divider, Space, Spin, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { filmsService } from "../../services/films";
+import { Card, Divider, Tag } from "antd";
 
+import CardRow from "../../components/cardRow";
+import Spiner from "../../components/spiner";
+import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { planetsService } from "../../services/planets";
 import { speciesService } from "../../services/species";
@@ -10,8 +12,6 @@ import { starshipsService } from "../../services/starships";
 import { vehiclesService } from "../../services/vehicles";
 
 import useStyles from "./style";
-
-const { Meta } = Card;
 
 const PeopleByID = () => {
   const [peoplesList, setPeopleList] = useState<People | null>(null);
@@ -105,50 +105,35 @@ const PeopleByID = () => {
   }, [peoplesList]);
 
   if (
-    peoplesList === null ||
-    filmsList === null ||
-    planetsList === null ||
-    speciesList === null ||
-    starshipsList === null ||
-    vehiclesList === null
+    !peoplesList ||
+    !filmsList ||
+    !planetsList ||
+    !speciesList ||
+    !starshipsList ||
+    !vehiclesList
   )
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+    return <Spiner classes={classes.spiner} />;
 
   return (
     <div className={classes.peopleByIDContainer}>
       <Card className={classes.card} hoverable>
-        <Divider orientation="left">Name of people:</Divider>
-        <Meta title={peoplesList.name} />
-        <Divider orientation="left">Birth-year of people:</Divider>
-        <Meta title={peoplesList.birth_year} />
-        <Divider orientation="left">Gender:</Divider>
-        <Meta title={peoplesList.gender} />
+        <CardRow title={peoplesList.name} lable="Name of people:" />
+        <CardRow title={peoplesList.birth_year} lable="Birth-year of people:" />
+        <CardRow title={peoplesList.gender} lable="Gender:" />
+        <CardRow title={peoplesList.created} lable="Created:" />
+        <CardRow title={peoplesList.edited} lable="Edited:" />
+        <CardRow title={peoplesList.eye_color} lable="Eye color:" />
+        <CardRow title={peoplesList.hair_color} lable="Hair_color:" />
+        <CardRow title={peoplesList.height} lable="Height:" />
+        <CardRow title={planetsList.name} lable="Homeworld:" />
+        <CardRow title={peoplesList.mass} lable="Mass:" />
+        <CardRow title={peoplesList.skin_color} lable="Skin_color:" />
         <Divider orientation="left">Films:</Divider>
         <div>
           {filmsList.map((film) => (
             <Tag color="geekblue">{film.title}</Tag>
           ))}
         </div>
-        <Divider orientation="left">Created:</Divider>
-        <Meta title={peoplesList.created} />
-        <Divider orientation="left">Edited:</Divider>
-        <Meta title={peoplesList.edited} />
-        <Divider orientation="left">Eye color:</Divider>
-        <Meta title={peoplesList.eye_color} />
-        <Divider orientation="left">Hair_color:</Divider>
-        <Meta title={peoplesList.hair_color} />
-        <Divider orientation="left">Height:</Divider>
-        <Meta title={peoplesList.height} />
-        <Divider orientation="left">Homeworld:</Divider>
-        <Meta title={planetsList.name} />
-        <Divider orientation="left">Mass:</Divider>
-        <Meta title={peoplesList.mass} />
-        <Divider orientation="left">Skin_color:</Divider>
-        <Meta title={peoplesList.skin_color} />
         <Divider orientation="left">Species:</Divider>
         <div>
           {speciesList.map((speccy) => (

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Pagination, Space, Spin } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Card } from "antd";
+
+import Spiner from "../../components/spiner";
+import PaginationCategory from "../../components/pagination";
+import { planetsService } from "../../services/planets";
+import { imgPlanetsList } from "../../utils";
 
 import useStyles from "./style";
-import { planetsService } from "../../services/planets";
-import { useLocation, useNavigate } from "react-router-dom";
-import { imgPlanetsList } from "../../utils";
 
 const { Meta } = Card;
 
@@ -13,13 +16,16 @@ const TeamsPlanets = () => {
   const [pageData, setPageData] = useState<PageData>({
     nextId: 1,
   });
+  const [isLoading, setLoading] = useState(false);
 
   const classes = useStyles();
   const push = useNavigate();
 
   const fetchPlanets = async (nextId: number) => {
+    setLoading(true);
     planetsService.getPlanets(nextId).then((res) => {
       setPlanetsList(res.data.results);
+      setLoading(false);
       const paramsNext = new URL(res.data.next).searchParams;
       const next = paramsNext.get("page");
       setPageData({ nextId: Number(next) });
@@ -33,26 +39,19 @@ const TeamsPlanets = () => {
     fetchPlanets(id);
   };
 
-  if (planetsList.length === 0) {
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+  if (planetsList.length === 0 || isLoading) {
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {!!planetsList.length && (
-          <div>
-            <Pagination
-              showSizeChanger={false}
-              defaultCurrent={1}
-              total={60}
-              onChange={handleChange}
-            />
-          </div>
+        {planetsList.length && (
+          <PaginationCategory
+            defaultCurrent={1}
+            total={60}
+            onChange={handleChange}
+          />
         )}
       </div>
       <div className={classes.content}>
@@ -66,6 +65,7 @@ const TeamsPlanets = () => {
                   className={classes.img}
                   key={imgPlanetsList[index].imgLink}
                   src={imgPlanetsList[index].imgLink}
+                  alt="Planet wallpaper"
                 />
               }
               onClick={() => push(`/planets/${planet.url.split("/")[5]}`)}

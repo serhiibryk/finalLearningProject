@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Pagination, Space, Spin } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Card } from "antd";
+
+import Spiner from "../../components/spiner";
+import PaginationCategory from "../../components/pagination";
+import { speciesService } from "../../services/species";
+import { imgSpeciesList } from "../../utils";
 
 import useStyles from "./style";
-import { speciesService } from "../../services/species";
-import { useLocation, useNavigate } from "react-router-dom";
-import { imgSpeciesList } from "../../utils";
-import { nextTick } from "process";
 
 const { Meta } = Card;
 
@@ -14,20 +16,22 @@ const TeamsSpecies = () => {
   const [pageData, setPageData] = useState<PageData>({
     nextId: 1,
   });
+  const [isLoading, setLoading] = useState(false);
 
   const classes = useStyles();
   const push = useNavigate();
 
   const fetchSpecies = async (nextId: number) => {
+    setLoading(true);
     speciesService.getSpecies(nextId).then((res) => {
       setSpeciesList(res.data.results);
+      setLoading(false);
       const paramsNext = new URL(res.data.next).searchParams;
       const next = paramsNext.get("page");
-      // const paramsPrev = new URL(res.data.previous).searchParams;
-      // const prev = paramsNext.get("page");
       setPageData({ nextId: Number(next) });
     });
   };
+
   useEffect(() => {
     fetchSpecies(pageData.nextId);
   }, []);
@@ -36,26 +40,19 @@ const TeamsSpecies = () => {
     fetchSpecies(id);
   };
 
-  if (speciesList.length === 0) {
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+  if (speciesList.length === 0 || isLoading) {
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {!!speciesList.length && (
-          <div>
-            <Pagination
-              showSizeChanger={false}
-              defaultCurrent={1}
-              total={37}
-              onChange={handleChange}
-            />
-          </div>
+        {speciesList.length && (
+          <PaginationCategory
+            defaultCurrent={1}
+            total={37}
+            onChange={handleChange}
+          />
         )}
       </div>
       <div className={classes.content}>
@@ -69,6 +66,7 @@ const TeamsSpecies = () => {
                   className={classes.img}
                   key={imgSpeciesList[index].imgLink}
                   src={imgSpeciesList[index].imgLink}
+                  alt="Speccy wallpaper"
                 />
               }
               onClick={() => push(`/species/${speccy.url.split("/")[5]}`)}

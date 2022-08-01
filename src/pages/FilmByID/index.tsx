@@ -1,7 +1,9 @@
-import { Card, Divider, Space, Spin, Tag } from "antd";
 import React, { useEffect, useState } from "react";
+import { Card, Divider, Tag } from "antd";
 import { useLocation } from "react-router-dom";
 
+import CardRow from "../../components/cardRow";
+import Spiner from "../../components/spiner";
 import { filmsService } from "../../services/films";
 import { planetsService } from "../../services/planets";
 import { speciesService } from "../../services/species";
@@ -9,8 +11,6 @@ import { starshipsService } from "../../services/starships";
 import { vehiclesService } from "../../services/vehicles";
 
 import useStyles from "./style";
-
-const { Meta } = Card;
 
 const FilmByID = () => {
   const [filmsList, setFilmsList] = useState<Films | null>(null);
@@ -28,17 +28,14 @@ const FilmByID = () => {
     });
   };
 
+  const location111 = useLocation();
+  console.log(location111.pathname);
+
   useEffect(() => {
     const id = location.pathname.split("/")[2];
 
     fetchFilmsByID(Number(id));
   }, []);
-
-  const getPlanetByID = async (id: number) => {
-    planetsService.getPlanetByID(id).then((resByID) => {
-      setPlanetsList(resByID.data);
-    });
-  };
 
   useEffect(() => {
     if (filmsList) {
@@ -109,54 +106,48 @@ const FilmByID = () => {
     starshipsList === null ||
     vehiclesList === null
   )
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
-
+    return <Spiner classes={classes.spiner} />;
+  // {
+  //   classes.filmByIDContainer;
+  // }
   return (
-    <div className={classes.filmByIDContainer}>
-      <Card className={classes.card} hoverable>
-        <Divider orientation="left">Title of the film:</Divider>
-        <Meta title={filmsList.title} />
-        <Divider orientation="left">Director:</Divider>
-        <Meta title={filmsList.director} />
-        <Divider orientation="left">Producer:</Divider>
-        <Meta title={filmsList.producer} />
-        <Divider orientation="left">Edited:</Divider>
-        <Meta title={filmsList.edited} />
-        <Divider orientation="left">Episode_id:</Divider>
-        <Meta title={filmsList.episode_id} />
-        <Divider orientation="left">Opening_crawl:</Divider>
-        <p className={classes.textP}>{filmsList.opening_crawl}</p>
-        <Divider orientation="left">Planets:</Divider>
-        <div>
-          {planetsList.map((planet) => (
-            <Tag color="geekblue">{planet.name}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Release_date:</Divider>
-        <Meta title={filmsList.release_date} />
-        <Divider orientation="left">Species:</Divider>
-        <div>
-          {speciesList.map((speccy) => (
-            <Tag color="geekblue">{speccy.name}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Starships:</Divider>
-        <div>
-          {starshipsList.map((starship) => (
-            <Tag color="geekblue">{starship.name}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Vehicles: </Divider>
-        <div>
-          {vehiclesList.map((vehicle) => (
-            <Tag color="geekblue">{vehicle.name}</Tag>
-          ))}
-        </div>
-      </Card>
+    <div className={classes.root}>
+      <div className={classes.filmByIDContainer}>
+        <Card className={classes.card} hoverable>
+          <CardRow title={filmsList.title} lable="Title of the film:" />
+          <CardRow title={filmsList.director} lable="Director:" />
+          <CardRow title={filmsList.producer} lable="Producer:" />
+          <CardRow title={filmsList.edited} lable="Edited:" />
+          <CardRow title={filmsList.episode_id} lable="Episode_id:" />
+          <CardRow title={filmsList.release_date} lable="Release_date:" />
+          <Divider orientation="left">Opening_crawl:</Divider>
+          <p className={classes.textP}>{filmsList.opening_crawl}</p>
+          <Divider orientation="left">Planets:</Divider>
+          <div>
+            {planetsList.map((planet) => (
+              <Tag color="geekblue">{planet.name}</Tag>
+            ))}
+          </div>
+          <Divider orientation="left">Species:</Divider>
+          <div>
+            {speciesList.map((speccy) => (
+              <Tag color="geekblue">{speccy.name}</Tag>
+            ))}
+          </div>
+          <Divider orientation="left">Starships:</Divider>
+          <div>
+            {starshipsList.map((starship) => (
+              <Tag color="geekblue">{starship.name}</Tag>
+            ))}
+          </div>
+          <Divider orientation="left">Vehicles: </Divider>
+          <div>
+            {vehiclesList.map((vehicle) => (
+              <Tag color="geekblue">{vehicle.name}</Tag>
+            ))}
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };

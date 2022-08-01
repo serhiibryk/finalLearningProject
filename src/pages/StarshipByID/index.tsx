@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Card, Divider, Space, Spin, Tag } from "antd";
 import { useLocation } from "react-router-dom";
+import { Card, Divider, Tag } from "antd";
 
+import Spiner from "../../components/spiner";
+import CardRow from "../../components/cardRow";
 import { starshipsService } from "../../services/starships";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 
 import useStyles from "./style";
-
-const { Meta } = Card;
 
 const StarshipByID = () => {
   const [starshipsList, setStarshipsList] = useState<Starships | null>(null);
@@ -64,57 +64,48 @@ const StarshipByID = () => {
   }, [starshipsList]);
 
   if (starshipsList === null || filmsList === null || peopleList === null)
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+    return <Spiner classes={classes.spiner} />;
 
   return (
     <div className={classes.starshipByIDContainer}>
       <Card className={classes.card} hoverable>
-        <Divider orientation="left">Name of starship:</Divider>
-        <Meta title={starshipsList.name} />
-        <Divider orientation="left">MGLT:</Divider>
-        <Meta title={starshipsList.MGLT} />
-        <Divider orientation="left">Cargo_capacity:</Divider>
-        <Meta title={starshipsList.cargo_capacity} />
-        <Divider orientation="left">Consumables:</Divider>
-        <Meta title={starshipsList.consumables} />
-        <Divider orientation="left">Cost in credits: </Divider>
-        <Meta title={starshipsList.cost_in_credits} />
-        <Divider orientation="left">Created:</Divider>
-        <Meta title={starshipsList.created} />
-        <Divider orientation="left">Crew:</Divider>
-        <Meta title={starshipsList.crew} />
-        <Divider orientation="left">Edited:</Divider>
-        <Meta title={starshipsList.edited} />
+        <CardRow title={starshipsList.name} lable="Name of starship:" />
+        <CardRow title={starshipsList.MGLT} lable="MGLT:" />
+        <CardRow title={starshipsList.cargo_capacity} lable="Cargo_capacity:" />
+        <CardRow title={starshipsList.consumables} lable="Consumables:" />
+        <CardRow
+          title={starshipsList.cost_in_credits}
+          lable="Cost in credits:"
+        />
+        <CardRow title={starshipsList.created} lable="Created:" />
+        <CardRow title={starshipsList.crew} lable="Crew:" />
+        <CardRow title={starshipsList.edited} lable="Edited:" />
+        <CardRow
+          title={starshipsList.hyperdrive_rating}
+          lable="Hyperdrive rating:"
+        />
+        <CardRow title={starshipsList.length} lable="Length:" />
+        <CardRow title={starshipsList.manufacturer} lable="Manufacturer:" />
+        <CardRow
+          title={starshipsList.max_atmosphering_speed}
+          lable="Max atmosphering speed:"
+        />
+        <CardRow title={starshipsList.model} lable="Model:" />
+        <CardRow title={starshipsList.passengers} lable="Passengers:" />
+        <CardRow title={starshipsList.starship_class} lable="Starship class:" />
+        <Divider orientation="left"></Divider>
         <Divider orientation="left">Films:</Divider>
         <div>
           {filmsList.map((film) => (
             <Tag color="geekblue">{film.title}</Tag>
           ))}
         </div>
-        <Divider orientation="left">Hyperdrive rating:</Divider>
-        <Meta title={starshipsList.hyperdrive_rating} />
-        <Divider orientation="left">Length:</Divider>
-        <Meta title={starshipsList.length} />
-        <Divider orientation="left">Manufacturer:</Divider>
-        <Meta title={starshipsList.manufacturer} />
-        <Divider orientation="left">Max atmosphering speed:</Divider>
-        <Meta title={starshipsList.max_atmosphering_speed} />
-        <Divider orientation="left">Model:</Divider>
-        <Meta title={starshipsList.model} />
-        <Divider orientation="left">Passengers:</Divider>
-        <Meta title={starshipsList.passengers} />
         <Divider orientation="left">Pilots:</Divider>
         <div>
           {peopleList.map((people) => (
             <Tag color="geekblue">{people.name}</Tag>
           ))}
         </div>
-        <Divider orientation="left">Starship class:</Divider>
-        <Meta title={starshipsList.starship_class} />
       </Card>
     </div>
   );

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Pagination, Space, Spin } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Card } from "antd";
+
+import Spiner from "../../components/spiner";
+import PaginationCategory from "../../components/pagination";
+import { starshipsService } from "../../services/starships";
+import { imgStarshipsList } from "../../utils";
 
 import useStyles from "./style";
-import { starshipsService } from "../../services/starships";
-import { useLocation, useNavigate } from "react-router-dom";
-import { imgStarshipsList } from "../../utils";
 
 const { Meta } = Card;
 
@@ -13,17 +16,18 @@ const TeamsStarships = () => {
   const [pageData, setPageData] = useState<PageData>({
     nextId: 1,
   });
+  const [isLoading, setLoading] = useState(false);
 
   const classes = useStyles();
   const push = useNavigate();
 
   const fetchStarships = async (nextId: number) => {
+    setLoading(true);
     starshipsService.getStarships(nextId).then((res) => {
       setStarshipsList(res.data.results);
+      setLoading(false);
       const paramsNext = new URL(res.data.next).searchParams;
       const next = paramsNext.get("page");
-      // const paramsPrev = new URL(res.data.previous).searchParams;
-      // const prev = paramsNext.get("page");
       setPageData({ nextId: Number(next) });
     });
   };
@@ -35,26 +39,19 @@ const TeamsStarships = () => {
     fetchStarships(id);
   };
 
-  if (starshipsList.length === 0) {
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+  if (starshipsList.length === 0 || isLoading) {
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {!!starshipsList.length && (
-          <div>
-            <Pagination
-              showSizeChanger={false}
-              defaultCurrent={1}
-              total={36}
-              onChange={handleChange}
-            />
-          </div>
+        {starshipsList.length && (
+          <PaginationCategory
+            defaultCurrent={1}
+            total={36}
+            onChange={handleChange}
+          />
         )}
       </div>
       <div className={classes.content}>
@@ -68,6 +65,7 @@ const TeamsStarships = () => {
                   className={classes.img}
                   key={imgStarshipsList[index].imgLink}
                   src={imgStarshipsList[index].imgLink}
+                  alt="Starship wallpaper"
                 />
               }
               onClick={() => push(`/starships/${starship.url.split("/")[5]}`)}

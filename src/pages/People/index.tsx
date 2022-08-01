@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Pagination, Space, Spin } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Card } from "antd";
+
+import Spiner from "../../components/spiner";
+import PaginationCategory from "../../components/pagination";
+import { peopleService } from "../../services/people";
+import { imgPeopleList } from "../../utils";
 
 import useStyles from "./style";
-import { peopleService } from "../../services/people";
-import { useLocation, useNavigate } from "react-router-dom";
-import { imgPeopleList } from "../../utils";
 
 const { Meta } = Card;
 
@@ -13,14 +16,16 @@ const TeamsPeoples = () => {
   const [pageData, setPageData] = useState<PageData>({
     nextId: 1,
   });
+  const [isLoading, setLoading] = useState(false);
 
   const classes = useStyles();
   const push = useNavigate();
-  const location = useLocation();
 
   const fetchPeople = async (nextId: number) => {
+    setLoading(true);
     peopleService.getPeople(nextId).then((res) => {
       setPeoplesList(res.data.results);
+      setLoading(false);
       const params = new URL(res.data.next).searchParams;
       const next = params.get("page");
       setPageData({ nextId: Number(next) });
@@ -35,26 +40,19 @@ const TeamsPeoples = () => {
     fetchPeople(id);
   };
 
-  if (peoplesList.length === 0) {
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+  if (peoplesList.length === 0 || isLoading) {
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {!!peoplesList.length && (
-          <div>
-            <Pagination
-              showSizeChanger={false}
-              defaultCurrent={1}
-              total={82}
-              onChange={handleChange}
-            />
-          </div>
+        {peoplesList.length && (
+          <PaginationCategory
+            defaultCurrent={1}
+            total={82}
+            onChange={handleChange}
+          />
         )}
       </div>
       <div className={classes.content}>
@@ -68,6 +66,7 @@ const TeamsPeoples = () => {
                   className={classes.img}
                   key={imgPeopleList[index].imgLink}
                   src={imgPeopleList[index].imgLink}
+                  alt="People wallpaper"
                 />
               }
               onClick={() => push(`/people/${people.url.split("/")[5]}`)}
@@ -82,6 +81,3 @@ const TeamsPeoples = () => {
 };
 
 export default TeamsPeoples;
-function useHistory(): jest.It {
-  throw new Error("Function not implemented.");
-}

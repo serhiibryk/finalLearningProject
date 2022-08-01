@@ -121,3 +121,23 @@ declare interface Vehicles {
   url: string;
   vehicle_class: string;
 }
+
+declare interface IPagination {
+  defaultCurrent: number;
+  total: number;
+  onChange: (id: number) => void;
+  // change: (id: number) => void;
+}
+
+declare interface ICardRow {
+  lable: string;
+  title: any;
+}
+
+declare interface ISpiner {
+  classes: string;
+}
+
+declare interface ICurrentPage {
+  id: number;
+}

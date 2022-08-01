@@ -5,6 +5,7 @@ const useStyles = createUseStyles({
     marginTop: "15px",
     margin: "15px",
     width: "100%",
+
     "& .ant-card-meta-title": {
       padding: "0 0 0 40px",
       fontStyle: "italic",

@@ -16,9 +16,8 @@ import VehicleByID from "../pages/VehicleByID";
 import TeamsVehicles from "../pages/Vehicles";
 
 export interface IRoutes {
-  path?: string;
-  component?: ReactNode;
-  label?: string;
+  path: string;
+  component: ReactNode;
 }
 
 export const routes: IRoutes[] = [

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Space, Spin } from "antd";
+import { Card } from "antd";
 
+import Spiner from "../../components/spiner";
+import { imgFilmsList } from "../../utils";
 import { filmsService } from "../../services/films";
 
 import useStyles from "./style";
-import { imgFilmsList } from "../../utils";
 
 const { Meta } = Card;
 
@@ -13,8 +14,8 @@ const TeamsFilms = () => {
   const [filmsList, setFilmsList] = useState<Films[]>([]);
 
   const classes = useStyles();
-
   const push = useNavigate();
+
   const fetchFilms = async () => {
     filmsService.getFilms().then((res) => {
       setFilmsList(res.data.results);
@@ -26,11 +27,7 @@ const TeamsFilms = () => {
   }, []);
 
   if (filmsList.length === 0) {
-    return (
-      <Space size="middle" className={classes.spiner}>
-        <Spin size="large" />
-      </Space>
-    );
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
@@ -45,6 +42,7 @@ const TeamsFilms = () => {
                 className={classes.img}
                 key={imgFilmsList[index].imgLink}
                 src={imgFilmsList[index].imgLink}
+                alt="film wallpaper"
               />
             }
             onClick={() => push(`/film/${film.url.split("/")[5]}`)}
