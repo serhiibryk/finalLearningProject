@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Card, Divider, Tag } from "antd";
+import { Card } from "antd";
 
 import CardRow from "../../components/cardRow";
 import Spiner from "../../components/spiner";
+import MapFieldsByID from "../../components/mapFieldsByID";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { planetsService } from "../../services/planets";
@@ -128,30 +129,14 @@ const PeopleByID = () => {
         <CardRow title={planetsList.name} lable="Homeworld:" />
         <CardRow title={peoplesList.mass} lable="Mass:" />
         <CardRow title={peoplesList.skin_color} lable="Skin_color:" />
-        <Divider orientation="left">Films:</Divider>
-        <div>
-          {filmsList.map((film) => (
-            <Tag color="geekblue">{film.title}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Species:</Divider>
-        <div>
-          {speciesList.map((speccy) => (
-            <Tag color="geekblue">{speccy.name}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Starships:</Divider>
-        <div>
-          {starshipsList.map((starship) => (
-            <Tag color="geekblue">{starship.name}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Vehicles:</Divider>
-        <div>
-          {vehiclesList.map((vehicle) => (
-            <Tag color="geekblue">{vehicle.name}</Tag>
-          ))}
-        </div>
+        <MapFieldsByID list={filmsList} title={"title"} lable={"Films"} />
+        <MapFieldsByID list={speciesList} title={"name"} lable={"Species"} />
+        <MapFieldsByID
+          list={starshipsList}
+          title={"name"}
+          lable={"Starships"}
+        />
+        <MapFieldsByID list={vehiclesList} title={"name"} lable={"Vehicles"} />
       </Card>
     </div>
   );

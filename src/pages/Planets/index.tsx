@@ -13,10 +13,9 @@ const { Meta } = Card;
 
 const TeamsPlanets = () => {
   const [planetsList, setPlanetsList] = useState<Planets[]>([]);
-  const [pageData, setPageData] = useState<PageData>({
-    nextId: 1,
-  });
+  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
+  const [maxCount, setMaxCount] = useState(0);
 
   const classes = useStyles();
   const push = useNavigate();
@@ -25,18 +24,18 @@ const TeamsPlanets = () => {
     setLoading(true);
     planetsService.getPlanets(nextId).then((res) => {
       setPlanetsList(res.data.results);
+      setMaxCount(res.data.count);
       setLoading(false);
-      const paramsNext = new URL(res.data.next).searchParams;
-      const next = paramsNext.get("page");
-      setPageData({ nextId: Number(next) });
     });
   };
+
   useEffect(() => {
-    fetchPlanets(pageData.nextId);
+    fetchPlanets(pageData);
   }, []);
 
-  const handleChange = (id: number) => {
-    fetchPlanets(id);
+  const handleChange = (page: number) => {
+    fetchPlanets(page);
+    setPageData(page);
   };
 
   if (planetsList.length === 0 || isLoading) {
@@ -49,7 +48,8 @@ const TeamsPlanets = () => {
         {planetsList.length && (
           <PaginationCategory
             defaultCurrent={1}
-            total={60}
+            total={maxCount}
+            current={pageData}
             onChange={handleChange}
           />
         )}

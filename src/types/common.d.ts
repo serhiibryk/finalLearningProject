@@ -125,8 +125,8 @@ declare interface Vehicles {
 declare interface IPagination {
   defaultCurrent: number;
   total: number;
+  current?: number;
   onChange: (id: number) => void;
-  // change: (id: number) => void;
 }
 
 declare interface ICardRow {
@@ -138,6 +138,8 @@ declare interface ISpiner {
   classes: string;
 }
 
-declare interface ICurrentPage {
-  id: number;
+declare interface IMapFields {
+  list: any[];
+  title: string;
+  lable: string;
 }

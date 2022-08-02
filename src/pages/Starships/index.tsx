@@ -13,10 +13,9 @@ const { Meta } = Card;
 
 const TeamsStarships = () => {
   const [starshipsList, setStarshipsList] = useState<Starships[]>([]);
-  const [pageData, setPageData] = useState<PageData>({
-    nextId: 1,
-  });
+  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
+  const [maxCount, setMaxCount] = useState(0);
 
   const classes = useStyles();
   const push = useNavigate();
@@ -25,18 +24,17 @@ const TeamsStarships = () => {
     setLoading(true);
     starshipsService.getStarships(nextId).then((res) => {
       setStarshipsList(res.data.results);
+      setMaxCount(res.data.count);
       setLoading(false);
-      const paramsNext = new URL(res.data.next).searchParams;
-      const next = paramsNext.get("page");
-      setPageData({ nextId: Number(next) });
     });
   };
   useEffect(() => {
-    fetchStarships(pageData.nextId);
+    fetchStarships(pageData);
   }, []);
 
-  const handleChange = (id: number) => {
-    fetchStarships(id);
+  const handleChange = (page: number) => {
+    fetchStarships(page);
+    setPageData(page);
   };
 
   if (starshipsList.length === 0 || isLoading) {
@@ -49,7 +47,8 @@ const TeamsStarships = () => {
         {starshipsList.length && (
           <PaginationCategory
             defaultCurrent={1}
-            total={36}
+            current={pageData}
+            total={maxCount}
             onChange={handleChange}
           />
         )}

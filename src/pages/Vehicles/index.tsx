@@ -13,10 +13,9 @@ const { Meta } = Card;
 
 const TeamsVehicles = () => {
   const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
-  const [pageData, setPageData] = useState<PageData>({
-    nextId: 1,
-  });
+  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
+  const [maxCount, setMaxCount] = useState(0);
 
   const classes = useStyles();
   const push = useNavigate();
@@ -24,18 +23,18 @@ const TeamsVehicles = () => {
     setLoading(true);
     vehiclesService.getVehicles(nextId).then((res) => {
       setVehiclesList(res.data.results);
+      setMaxCount(res.data.count);
       setLoading(false);
-      const paramsNext = new URL(res.data.next).searchParams;
-      const next = paramsNext.get("page");
-      setPageData({ nextId: Number(next) });
     });
   };
+
   useEffect(() => {
-    fetchVehicles(pageData.nextId);
+    fetchVehicles(pageData);
   }, []);
 
-  const handleChange = (id: number) => {
-    fetchVehicles(id);
+  const handleChange = (page: number) => {
+    fetchVehicles(page);
+    setPageData(page);
   };
 
   if (vehiclesList.length === 0 || isLoading) {
@@ -48,7 +47,8 @@ const TeamsVehicles = () => {
         {vehiclesList.length && (
           <PaginationCategory
             defaultCurrent={1}
-            total={37}
+            current={pageData}
+            total={maxCount}
             onChange={handleChange}
           />
         )}

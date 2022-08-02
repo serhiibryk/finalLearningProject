@@ -13,10 +13,9 @@ const { Meta } = Card;
 
 const TeamsSpecies = () => {
   const [speciesList, setSpeciesList] = useState<Species[]>([]);
-  const [pageData, setPageData] = useState<PageData>({
-    nextId: 1,
-  });
+  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
+  const [maxCount, setMaxCount] = useState(0);
 
   const classes = useStyles();
   const push = useNavigate();
@@ -25,19 +24,18 @@ const TeamsSpecies = () => {
     setLoading(true);
     speciesService.getSpecies(nextId).then((res) => {
       setSpeciesList(res.data.results);
+      setMaxCount(res.data.count);
       setLoading(false);
-      const paramsNext = new URL(res.data.next).searchParams;
-      const next = paramsNext.get("page");
-      setPageData({ nextId: Number(next) });
     });
   };
 
   useEffect(() => {
-    fetchSpecies(pageData.nextId);
+    fetchSpecies(pageData);
   }, []);
 
-  const handleChange = (id: number) => {
-    fetchSpecies(id);
+  const handleChange = (page: number) => {
+    fetchSpecies(page);
+    setPageData(page);
   };
 
   if (speciesList.length === 0 || isLoading) {
@@ -50,7 +48,8 @@ const TeamsSpecies = () => {
         {speciesList.length && (
           <PaginationCategory
             defaultCurrent={1}
-            total={37}
+            total={maxCount}
+            current={pageData}
             onChange={handleChange}
           />
         )}

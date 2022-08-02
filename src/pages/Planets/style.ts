@@ -7,6 +7,7 @@ const useStyles = createUseStyles({
     minHeight: "70px",
     minWidth: "140px",
     margin: "10px 5px 5px 5px",
+
     "@media (max-width: 975px)": {
       width: "48%",
     },

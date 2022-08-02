@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Card, Divider, Tag } from "antd";
+import { Card } from "antd";
 
 import Spiner from "../../components/spiner";
 import CardRow from "../../components/cardRow";
+import MapFieldsByID from "../../components/mapFieldsByID";
 import { starshipsService } from "../../services/starships";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
@@ -93,19 +94,8 @@ const StarshipByID = () => {
         <CardRow title={starshipsList.model} lable="Model:" />
         <CardRow title={starshipsList.passengers} lable="Passengers:" />
         <CardRow title={starshipsList.starship_class} lable="Starship class:" />
-        <Divider orientation="left"></Divider>
-        <Divider orientation="left">Films:</Divider>
-        <div>
-          {filmsList.map((film) => (
-            <Tag color="geekblue">{film.title}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Pilots:</Divider>
-        <div>
-          {peopleList.map((people) => (
-            <Tag color="geekblue">{people.name}</Tag>
-          ))}
-        </div>
+        <MapFieldsByID list={filmsList} title={"title"} lable={"Films"} />
+        <MapFieldsByID list={peopleList} title={"name"} lable={"Pilots"} />
       </Card>
     </div>
   );

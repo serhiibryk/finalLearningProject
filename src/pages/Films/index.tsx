@@ -32,25 +32,27 @@ const TeamsFilms = () => {
 
   return (
     <div className={classes.root}>
-      {filmsList.map((film, index) => {
-        return (
-          <Card
-            className={classes.card}
-            hoverable
-            cover={
-              <img
-                className={classes.img}
-                key={imgFilmsList[index].imgLink}
-                src={imgFilmsList[index].imgLink}
-                alt="film wallpaper"
-              />
-            }
-            onClick={() => push(`/film/${film.url.split("/")[5]}`)}
-          >
-            <Meta title={film.title} />
-          </Card>
-        );
-      })}
+      <div className={classes.content}>
+        {filmsList.map((film, index) => {
+          return (
+            <Card
+              className={classes.card}
+              hoverable
+              cover={
+                <img
+                  className={classes.img}
+                  key={imgFilmsList[index].imgLink}
+                  src={imgFilmsList[index].imgLink}
+                  alt="film wallpaper"
+                />
+              }
+              onClick={() => push(`/film/${film.url.split("/")[5]}`)}
+            >
+              <Meta title={film.title} />
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 };

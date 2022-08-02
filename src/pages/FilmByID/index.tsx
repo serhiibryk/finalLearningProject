@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Divider, Tag } from "antd";
+import { Card, Divider } from "antd";
 import { useLocation } from "react-router-dom";
 
 import CardRow from "../../components/cardRow";
@@ -11,6 +11,7 @@ import { starshipsService } from "../../services/starships";
 import { vehiclesService } from "../../services/vehicles";
 
 import useStyles from "./style";
+import MapFieldsByID from "../../components/mapFieldsByID";
 
 const FilmByID = () => {
   const [filmsList, setFilmsList] = useState<Films | null>(null);
@@ -107,9 +108,7 @@ const FilmByID = () => {
     vehiclesList === null
   )
     return <Spiner classes={classes.spiner} />;
-  // {
-  //   classes.filmByIDContainer;
-  // }
+
   return (
     <div className={classes.root}>
       <div className={classes.filmByIDContainer}>
@@ -122,30 +121,18 @@ const FilmByID = () => {
           <CardRow title={filmsList.release_date} lable="Release_date:" />
           <Divider orientation="left">Opening_crawl:</Divider>
           <p className={classes.textP}>{filmsList.opening_crawl}</p>
-          <Divider orientation="left">Planets:</Divider>
-          <div>
-            {planetsList.map((planet) => (
-              <Tag color="geekblue">{planet.name}</Tag>
-            ))}
-          </div>
-          <Divider orientation="left">Species:</Divider>
-          <div>
-            {speciesList.map((speccy) => (
-              <Tag color="geekblue">{speccy.name}</Tag>
-            ))}
-          </div>
-          <Divider orientation="left">Starships:</Divider>
-          <div>
-            {starshipsList.map((starship) => (
-              <Tag color="geekblue">{starship.name}</Tag>
-            ))}
-          </div>
-          <Divider orientation="left">Vehicles: </Divider>
-          <div>
-            {vehiclesList.map((vehicle) => (
-              <Tag color="geekblue">{vehicle.name}</Tag>
-            ))}
-          </div>
+          <MapFieldsByID list={planetsList} title={"name"} lable={"Planets"} />
+          <MapFieldsByID list={speciesList} title={"name"} lable={"Species"} />
+          <MapFieldsByID
+            list={vehiclesList}
+            title={"name"}
+            lable={"Vehicles"}
+          />
+          <MapFieldsByID
+            list={starshipsList}
+            title={"name"}
+            lable={"Starships"}
+          />
         </Card>
       </div>
     </div>

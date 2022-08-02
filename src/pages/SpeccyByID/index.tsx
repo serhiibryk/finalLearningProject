@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Card, Divider, Tag } from "antd";
+import { Card } from "antd";
 
 import CardRow from "../../components/cardRow";
 import Spiner from "../../components/spiner";
+import MapFieldsByID from "../../components/mapFieldsByID";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { planetsService } from "../../services/planets";
@@ -100,18 +101,8 @@ const SpeccyByID = () => {
             <CardRow title={planetsList.name} lable="Homeworld:" />
           </>
         )}
-        <Divider orientation="left">Films:</Divider>
-        <div>
-          {filmsList.map((film) => (
-            <Tag color="geekblue">{film.title}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">People:</Divider>
-        <div>
-          {peopleList.map((people) => (
-            <Tag color="geekblue">{people.name}</Tag>
-          ))}
-        </div>
+        <MapFieldsByID list={filmsList} title={"title"} lable={"Films"} />
+        <MapFieldsByID list={peopleList} title={"name"} lable={"People"} />
       </Card>
     </div>
   );

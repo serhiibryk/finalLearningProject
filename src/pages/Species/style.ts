@@ -7,6 +7,13 @@ const useStyles = createUseStyles({
     width: "32%",
     minHeight: "70px",
     minWidth: "140px",
+
+    "@media (max-width: 975px)": {
+      width: "48%",
+    },
+    "@media (max-width: 499px)": {
+      width: "100%",
+    },
   },
 
   content: {
@@ -20,18 +27,15 @@ const useStyles = createUseStyles({
       height: "250px",
     },
   },
-
   img: {
     objectFit: "cover",
   },
-
   spiner: {
     marginTop: "100px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
-
   pagination: {
     display: "flex",
     justifyContent: "space-around",

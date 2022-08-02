@@ -13,10 +13,9 @@ const { Meta } = Card;
 
 const TeamsPeoples = () => {
   const [peoplesList, setPeoplesList] = useState<People[]>([]);
-  const [pageData, setPageData] = useState<PageData>({
-    nextId: 1,
-  });
+  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
+  const [maxCount, setMaxCount] = useState(0);
 
   const classes = useStyles();
   const push = useNavigate();
@@ -25,19 +24,18 @@ const TeamsPeoples = () => {
     setLoading(true);
     peopleService.getPeople(nextId).then((res) => {
       setPeoplesList(res.data.results);
+      setMaxCount(res.data.count);
       setLoading(false);
-      const params = new URL(res.data.next).searchParams;
-      const next = params.get("page");
-      setPageData({ nextId: Number(next) });
     });
   };
 
   useEffect(() => {
-    fetchPeople(pageData.nextId);
+    fetchPeople(pageData);
   }, []);
 
-  const handleChange = (id: number) => {
-    fetchPeople(id);
+  const handleChange = (page: number) => {
+    fetchPeople(page);
+    setPageData(page);
   };
 
   if (peoplesList.length === 0 || isLoading) {
@@ -50,7 +48,8 @@ const TeamsPeoples = () => {
         {peoplesList.length && (
           <PaginationCategory
             defaultCurrent={1}
-            total={82}
+            current={pageData}
+            total={maxCount}
             onChange={handleChange}
           />
         )}

@@ -1,25 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Pagination } from "antd";
 
 const PaginationCategory: React.FunctionComponent<IPagination> = ({
   defaultCurrent,
   total,
-  // change,
+  current,
   onChange,
 }) => {
-  // const [currentPage, setCurrentPage] = useState<ICurrentPage>({ id: 1 });
-
-  // const change = (id: number) => {
-
-  //   setCurrentPage(id);
-  // console.log(total);
-  // console.log(defaultCurrent);
-
   return (
     <Pagination
       showSizeChanger={false}
       defaultCurrent={defaultCurrent}
-      // current={change}
+      current={current}
       total={total}
       onChange={onChange}
     />

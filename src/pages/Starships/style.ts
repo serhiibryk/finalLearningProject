@@ -3,10 +3,17 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   root: {},
   card: {
-    margin: "10px 5px 5px 5px",
     width: "32%",
     minHeight: "70px",
     minWidth: "140px",
+    margin: "10px 5px 5px 5px",
+
+    "@media (max-width: 975px)": {
+      width: "48%",
+    },
+    "@media (max-width: 499px)": {
+      width: "100%",
+    },
   },
   content: {
     display: "flex",
