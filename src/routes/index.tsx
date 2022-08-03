@@ -1,20 +1,27 @@
 import React from "react";
-import { Routes, Route as RouterDOM } from "react-router-dom";
-import { IRoutes, routes } from "./routes";
+import { Route as RouterDOM, Routes } from "react-router-dom";
+
+import PrivatRoute from "./PrivatRoute";
+import { routes } from "./routes";
 
 const Route = () => {
   return (
-    <div>
-      <Routes>
-        {routes.map((item: IRoutes) => (
-          <RouterDOM
-            path={item.path}
-            element={item.component}
-            key={item.path}
-          />
-        ))}
-      </Routes>
-    </div>
+    <Routes>
+      {routes.map((item) => {
+        const { component, privat, path } = item;
+
+        if (privat)
+          return (
+            <RouterDOM
+              key={path}
+              path={path}
+              element={<PrivatRoute auth={false} children={component} />}
+            />
+          );
+
+        return <RouterDOM key={path} path={path} element={component} />;
+      })}
+    </Routes>
   );
 };
 

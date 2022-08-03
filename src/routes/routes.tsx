@@ -18,22 +18,23 @@ import TeamsVehicles from "../pages/Vehicles";
 export interface IRoutes {
   path: string;
   component: ReactNode;
+  privat: boolean;
 }
 
 export const routes: IRoutes[] = [
-  { path: "/login", component: <Login /> },
-  { path: "/registration", component: <Registration /> },
-  { path: "/", component: <Main /> },
-  { path: "/people", component: <TeamsPeoples /> },
-  { path: "/people/:id", component: <PeopleByID /> },
-  { path: "/films", component: <TeamsFilms /> },
-  { path: "/film/:id", component: <FilmByID /> },
-  { path: "/planets", component: <TeamsPlanets /> },
-  { path: "/planets/:id", component: <PlanetByID /> },
-  { path: "/species", component: <TeamsSpecies /> },
-  { path: "/species/:id", component: <SpeccyByID /> },
-  { path: "/starships", component: <TeamsStarships /> },
-  { path: "/starships/:id", component: <StarshipByID /> },
-  { path: "/vehicles", component: <TeamsVehicles /> },
-  { path: "/vehicles/:id", component: <VehicleByID /> },
+  { path: "/login", component: <Login />, privat: false },
+  { path: "/registration", component: <Registration />, privat: false },
+  { path: "/", component: <Main />, privat: true },
+  { path: "/people", component: <TeamsPeoples />, privat: true },
+  { path: "/people/:id", component: <PeopleByID />, privat: true },
+  { path: "/films", component: <TeamsFilms />, privat: true },
+  { path: "/film/:id", component: <FilmByID />, privat: true },
+  { path: "/planets", component: <TeamsPlanets />, privat: true },
+  { path: "/planets/:id", component: <PlanetByID />, privat: true },
+  { path: "/species", component: <TeamsSpecies />, privat: true },
+  { path: "/species/:id", component: <SpeccyByID />, privat: true },
+  { path: "/starships", component: <TeamsStarships />, privat: true },
+  { path: "/starships/:id", component: <StarshipByID />, privat: true },
+  { path: "/vehicles", component: <TeamsVehicles />, privat: true },
+  { path: "/vehicles/:id", component: <VehicleByID />, privat: true },
 ];

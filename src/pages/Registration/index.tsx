@@ -5,6 +5,8 @@ import useStyles from "./style";
 
 const { Option } = Select;
 
+localStorage.setItem("mail", "brykseryi@gmail.com");
+
 const residences = [
   {
     value: "zhejiang",
