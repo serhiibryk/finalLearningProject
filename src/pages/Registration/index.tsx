@@ -1,5 +1,6 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../store";
 
 import useStyles from "./style";
@@ -34,12 +35,33 @@ const Registration: React.FC = () => {
   const [formAntd] = Form.useForm();
 
   const context = useContext(StoreContext);
+  const push = useNavigate();
+
+  const openNotification = () => {
+    notification.open({
+      message: "Error suka",
+      description:
+        "Such a login already exists in the system. Enter another login",
+      onClick: () => {},
+    });
+  };
 
   const onFinish = (values: any) => {
     const res = [...context.user];
-    res.push(values);
-    localStorage.setItem("userData", JSON.stringify(res));
-    context.setUser(res);
+    const check = JSON.parse(localStorage.getItem("userData") || "");
+
+    const checkEmail = check.find((same: any) => same.email === values.email);
+
+    if (checkEmail) {
+      openNotification();
+    } else {
+      res.push(values);
+
+      localStorage.setItem("userData", JSON.stringify(res));
+
+      context.setUser(res);
+      push("/login");
+    }
   };
 
   // const prefixSelector = (

@@ -1,5 +1,3 @@
-import { ReactElement } from "react";
-
 declare interface Common {
   films: string;
   people: string;

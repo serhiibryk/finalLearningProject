@@ -30,7 +30,7 @@ const TeamsStarships = () => {
   };
   useEffect(() => {
     fetchStarships(pageData);
-  }, []);
+  }, [pageData]);
 
   const handleChange = (page: number) => {
     fetchStarships(page);

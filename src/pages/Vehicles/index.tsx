@@ -30,7 +30,7 @@ const TeamsVehicles = () => {
 
   useEffect(() => {
     fetchVehicles(pageData);
-  }, []);
+  }, [pageData]);
 
   const handleChange = (page: number) => {
     fetchVehicles(page);

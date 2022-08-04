@@ -31,7 +31,7 @@ const TeamsPeoples = () => {
 
   useEffect(() => {
     fetchPeople(pageData);
-  }, []);
+  }, [pageData]);
 
   const handleChange = (page: number) => {
     fetchPeople(page);

@@ -31,7 +31,7 @@ const TeamsSpecies = () => {
 
   useEffect(() => {
     fetchSpecies(pageData);
-  }, []);
+  }, [pageData]);
 
   const handleChange = (page: number) => {
     fetchSpecies(page);

@@ -31,7 +31,7 @@ const TeamsPlanets = () => {
 
   useEffect(() => {
     fetchPlanets(pageData);
-  }, []);
+  }, [pageData]);
 
   const handleChange = (page: number) => {
     fetchPlanets(page);

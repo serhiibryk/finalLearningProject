@@ -1,11 +1,23 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useStyles from "./style";
 
 const Login: React.FC = () => {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const submitUserData = () => {
+
+  //   const user = {
+  //     email: email,
+  //     password: password,
+  //   };
+  //   localStorage.setItem("users", JSON.stringify(user));
+  // };
+
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
   };
@@ -18,7 +30,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={classes.loginContainer}>
+    <div className={classes.root}>
       <Form
         className={classes.LoginForm}
         name="normal_login"
@@ -33,6 +45,9 @@ const Login: React.FC = () => {
             className={classes.input}
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Login"
+            // onChange={(e) => {
+            //   setEmail(e.target.value);
+            // }}
           />
         </Form.Item>
         <Form.Item
@@ -44,6 +59,9 @@ const Login: React.FC = () => {
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
+            // onChange={(e) => {
+            //   setEmail(e.target.value);
+            // }}
           />
         </Form.Item>
         <Form.Item>
@@ -61,6 +79,7 @@ const Login: React.FC = () => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            // onClick={submitUserData}
           >
             Log in
           </Button>
