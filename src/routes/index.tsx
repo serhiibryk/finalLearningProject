@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Route as RouterDOM, Routes } from "react-router-dom";
-import { StoreContext } from "../store";
 
+import { StoreContext } from "../store";
 import PrivatRoute from "./PrivatRoute";
 import { routes } from "./routes";
 

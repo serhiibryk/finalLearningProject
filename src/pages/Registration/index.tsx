@@ -1,11 +1,10 @@
-import { Button, Form, Input, notification } from "antd";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, notification } from "antd";
+
 import { StoreContext } from "../../store";
 
 import useStyles from "./style";
-
-// const { Option } = Select;
 
 const formItemLayout = {
   labelCol: {
@@ -37,28 +36,26 @@ const Registration: React.FC = () => {
   const context = useContext(StoreContext);
   const push = useNavigate();
 
-  const openNotification = () => {
+  const openNotification = (message: string, description: string) => {
     notification.open({
-      message: "Error suka",
-      description:
-        "Such a login already exists in the system. Enter another login",
-      onClick: () => {},
+      message,
+      description,
     });
   };
 
   const onFinish = (values: any) => {
     const res = [...context.user];
-    const check = JSON.parse(localStorage.getItem("userData") || "");
-
-    const checkEmail = check.find((same: any) => same.email === values.email);
+    const checkEmail = res.find((same: any) => same.email === values.email);
 
     if (checkEmail) {
-      openNotification();
+      openNotification(
+        "Error",
+        "Such a login already exists in the system. Enter, please, another login."
+      );
     } else {
       res.push(values);
 
       localStorage.setItem("userData", JSON.stringify(res));
-
       context.setUser(res);
       push("/login");
     }

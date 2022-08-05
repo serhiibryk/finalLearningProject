@@ -1,14 +1,17 @@
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input, notification } from "antd";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, notification } from "antd";
+
+import { localStoreService } from "../../utils";
 import { StoreContext } from "../../store";
 
 import useStyles from "./style";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 const Login: React.FC = () => {
   const classes = useStyles();
   const push = useNavigate();
+
   const context = useContext(StoreContext);
 
   const openNotification = (message: string, description: string) => {
@@ -19,17 +22,14 @@ const Login: React.FC = () => {
   };
 
   const onFinish = (values: any) => {
-    // console.log("Received values of form: ", values);
-    const check = JSON.parse(localStorage.getItem("userData") || "");
-    // console.log(check);
-    const checkEmail = check.find((same: any) => same.email === values.email);
-    // console.log(checkEmail && checkEmail.password === values.password);
-    // console.log(localStorage);
+    const usersList = context.user;
+    const checkEmail = usersList.find(
+      (same: any) => same.email === values.email
+    );
     if (checkEmail && checkEmail.password === values.password) {
-      // context.setAuth(true);
-      localStorage.setItem("isLogged", "true");
-
+      localStoreService.set("isLogged", "true");
       push("/");
+      context.setAuth(true);
     } else {
       openNotification("Error!", "Incorrect login or password.");
     }

@@ -305,11 +305,12 @@ export const imgVehiclesList = [
   },
 ];
 
-export const localServiceGet = () => {
-  const parse = JSON.parse(localStorage.getItem("userData") || "");
-  return parse;
-};
-
-export const localServiceSet = ({ res }: any) => {
-  localStorage.setItem("userData", JSON.stringify(res));
+export const localStoreService = {
+  get: (key: string, initValue: string = "false") => {
+    const res = JSON.parse(localStorage.getItem(key) || initValue);
+    return res;
+  },
+  set: (key: string, data: any) => {
+    localStorage.setItem(key, JSON.stringify(data));
+  },
 };

@@ -1,5 +1,6 @@
 import React, { createContext, FC, ReactNode, useState } from "react";
-import { localServiceGet } from "../utils";
+
+import { localStoreService } from "../utils";
 
 export const StoreContext = createContext<any>(null);
 
@@ -8,11 +9,8 @@ interface IProps {
 }
 
 const StoreContextProvider: FC<IProps> = ({ children }: any) => {
-  const [auth, setAuth] = useState(false);
-
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("userData") || "")
-  );
+  const [auth, setAuth] = useState(localStoreService.get("isLogged"));
+  const [user, setUser] = useState(localStoreService.get("userData", "[]"));
 
   return (
     <StoreContext.Provider value={{ auth, setAuth, user, setUser }}>
