@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, notification } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../store";
@@ -19,23 +19,21 @@ const Login: React.FC = () => {
   };
 
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
     const check = JSON.parse(localStorage.getItem("userData") || "");
-    console.log(check);
-
+    // console.log(check);
     const checkEmail = check.find((same: any) => same.email === values.email);
-    console.log(checkEmail && checkEmail.password === values.password);
-    console.log(localStorage);
-
+    // console.log(checkEmail && checkEmail.password === values.password);
+    // console.log(localStorage);
     if (checkEmail && checkEmail.password === values.password) {
-      context.setAuth(true);
+      // context.setAuth(true);
+      localStorage.setItem("isLogged", "true");
+
       push("/");
     } else {
-      openNotification("ss", "dd");
+      openNotification("Error!", "Incorrect login or password.");
     }
   };
-
-  // brykseryi@gmail.com
   return (
     <div className={classes.root}>
       <Form
@@ -74,16 +72,6 @@ const Login: React.FC = () => {
             placeholder="Password"
           />
         </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
-        </Form.Item>
-
         <Form.Item>
           <Button
             type="primary"
