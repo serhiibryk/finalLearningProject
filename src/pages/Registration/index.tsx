@@ -146,7 +146,7 @@ const Registration: React.FC = () => {
 
         <Form.Item
           name="confirm"
-          label="Confirm Password"
+          label="Confirm Password:"
           dependencies={["password"]}
           hasFeedback
           rules={[

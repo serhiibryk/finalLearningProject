@@ -1,53 +1,66 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
-import React, { useState } from "react";
+import { Button, Checkbox, Form, Input, notification } from "antd";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../../store";
 
 import useStyles from "./style";
 
 const Login: React.FC = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const classes = useStyles();
+  const push = useNavigate();
+  const context = useContext(StoreContext);
 
-  // const submitUserData = () => {
-
-  //   const user = {
-  //     email: email,
-  //     password: password,
-  //   };
-  //   localStorage.setItem("users", JSON.stringify(user));
-  // };
+  const openNotification = (message: string, description: string) => {
+    notification.open({
+      message,
+      description,
+    });
+  };
 
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
+    const check = JSON.parse(localStorage.getItem("userData") || "");
+    console.log(check);
+
+    const checkEmail = check.find((same: any) => same.email === values.email);
+    console.log(checkEmail && checkEmail.password === values.password);
+    console.log(localStorage);
+
+    if (checkEmail && checkEmail.password === values.password) {
+      context.setAuth(true);
+      push("/");
+    } else {
+      openNotification("ss", "dd");
+    }
   };
 
-  // const onFinishFailed = (errorInfo: any) => {
-  //   console.log("Failed:", errorInfo);
-  // };
-
-  const classes = useStyles();
-  const navigate = useNavigate();
-
+  // brykseryi@gmail.com
   return (
     <div className={classes.root}>
       <Form
         className={classes.LoginForm}
-        name="normal_login"
+        name="normal_email"
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
         <Form.Item
-          name="username"
-          rules={[{ required: true, message: "Please input your Login!" }]}
+          name="email"
+          rules={[
+            {
+              type: "email",
+              message: "The input is not valid E-mail!",
+            },
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
         >
           <Input
             className={classes.input}
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Login"
-            // onChange={(e) => {
-            //   setEmail(e.target.value);
-            // }}
+            placeholder="Email"
           />
         </Form.Item>
         <Form.Item
@@ -59,9 +72,6 @@ const Login: React.FC = () => {
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
-            // onChange={(e) => {
-            //   setEmail(e.target.value);
-            // }}
           />
         </Form.Item>
         <Form.Item>
@@ -79,11 +89,10 @@ const Login: React.FC = () => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            // onClick={submitUserData}
           >
             Log in
           </Button>
-          Or <a onClick={() => navigate("/registration")}>register now!</a>
+          Or <a onClick={() => push("/registration")}>register now!</a>
         </Form.Item>
       </Form>
     </div>

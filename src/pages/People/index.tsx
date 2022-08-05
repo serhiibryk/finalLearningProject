@@ -26,6 +26,7 @@ const TeamsPeoples = () => {
       setPeoplesList(res.data.results);
       setMaxCount(res.data.count);
       setLoading(false);
+      console.log(res.data.results);
     });
   };
 
