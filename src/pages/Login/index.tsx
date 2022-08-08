@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, notification } from "antd";
 
-import { localStoreService } from "../../utils";
+import { localStoregeRemove, localStoreService } from "../../utils";
 import { StoreContext } from "../../store";
 
 import useStyles from "./style";
@@ -21,6 +21,11 @@ const Login: React.FC = () => {
     });
   };
 
+  useEffect(() => {
+    context.setAuth(false);
+    localStoregeRemove("isLogged");
+  }, []);
+
   const onFinish = (values: any) => {
     const usersList = context.user;
     const checkEmail = usersList.find(
@@ -28,8 +33,8 @@ const Login: React.FC = () => {
     );
     if (checkEmail && checkEmail.password === values.password) {
       localStoreService.set("isLogged", "true");
-      push("/");
       context.setAuth(true);
+      push("/");
     } else {
       openNotification("Error!", "Incorrect login or password.");
     }
@@ -79,8 +84,8 @@ const Login: React.FC = () => {
             className="login-form-button"
           >
             Log in
-          </Button>
-          Or <a onClick={() => push("/registration")}>register now!</a>
+          </Button>{" "}
+          Or <a onClick={() => push("/registration")}>Register now!</a>
         </Form.Item>
       </Form>
     </div>

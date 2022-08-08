@@ -1,19 +1,20 @@
 import { Layout, Menu } from "antd";
+import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import classNames from "classnames";
 
+import { StoreContext } from "../../store";
 import { routerList } from "../../utils";
 
 import useStyles from "./style";
+import classNames from "classnames";
 
 const { Header: HeaderAnt } = Layout;
 
 const Header = () => {
-  const nav = useNavigate();
+  const push = useNavigate();
   const classes = useStyles();
   const location = useLocation();
-
-  const push = useNavigate();
+  const { auth } = useContext(StoreContext);
 
   const activeList = routerList.map((item) => {
     if (location.pathname === "/" && item.key === "/") return item.key;
@@ -21,6 +22,8 @@ const Header = () => {
       return item.key;
     return "";
   });
+
+  console.log(auth);
 
   return (
     <div className={classes.root}>
@@ -37,11 +40,21 @@ const Header = () => {
           <Menu
             theme="dark"
             mode="horizontal"
+            className={classNames({ [classes.changedLog]: auth === false })}
             defaultSelectedKeys={["/"]}
             selectedKeys={activeList}
-            items={routerList}
-            onClick={(path) => nav(path.key)}
-          />
+            onClick={(path) => push(path.key)}
+          >
+            {routerList.map((item) => {
+              if (auth === true && item.key === "/login") {
+                return <Menu.Item key="/login">Log out</Menu.Item>;
+              }
+              if (item.privat === true && auth === false) {
+                return null;
+              }
+              return <Menu.Item key={item.key}>{item.label}</Menu.Item>;
+            })}
+          </Menu>
         </div>
       </HeaderAnt>
     </div>
