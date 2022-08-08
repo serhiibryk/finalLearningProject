@@ -2,34 +2,42 @@ export const routerList = [
   {
     key: "/",
     label: "Main",
+    privat: true,
   },
   {
     key: "/people",
     label: "People",
+    privat: true,
   },
   {
     key: "/films",
     label: "Films",
+    privat: true,
   },
   {
     key: "/planets",
     label: "Planets",
+    privat: true,
   },
   {
     key: "/species",
     label: "Species",
+    privat: true,
   },
   {
     key: "/starships",
     label: "Starships",
+    privat: true,
   },
   {
     key: "/vehicles",
     label: "Vehicles",
+    privat: true,
   },
   {
     key: "/login",
-    label: "Login",
+    label: "Log in",
+    privat: false,
   },
 ];
 
@@ -305,4 +313,16 @@ export const imgVehiclesList = [
   },
 ];
 
-//localStorage
+export const localStoreService = {
+  get: (key: string, initValue: string = "false") => {
+    const res = JSON.parse(localStorage.getItem(key) || initValue);
+    return res;
+  },
+  set: (key: string, data: any) => {
+    localStorage.setItem(key, JSON.stringify(data));
+  },
+};
+
+export const localStoregeRemove = (item: string) => {
+  localStorage.removeItem(item);
+};

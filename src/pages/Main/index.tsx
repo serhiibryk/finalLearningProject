@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 
-import useStyles from "./style";
+import Spiner from "../../components/spiner";
 import { commonService } from "../../services/common";
-import { useLocation, useNavigate } from "react-router-dom";
 import { imgMainList } from "../../utils";
+
+import useStyles from "./style";
 
 const { Meta } = Card;
 
@@ -19,7 +21,6 @@ const Main = () => {
   });
 
   const push = useNavigate();
-
   const classes = useStyles();
 
   const fetchCommon = async () => {
@@ -33,14 +34,11 @@ const Main = () => {
   }, []);
 
   if (commonList.films === "") {
-    return <div>Loading...</div>;
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
-    <div
-      className={classes.root}
-      style={{ display: "flex", flexDirection: "row" }}
-    >
+    <div className={classes.root}>
       {Object.entries(commonList).map((item, index) => (
         <Card
           hoverable
@@ -50,11 +48,12 @@ const Main = () => {
               className={classes.img}
               key={imgMainList[index].imgLink}
               src={imgMainList[index].imgLink}
+              alt="Category wallpaper"
             />
           }
           onClick={() => push(`/${item[0]}`)}
         >
-          <Meta className={classes.meta} title={item[0]} />
+          <Meta title={item[0].toUpperCase()} />
         </Card>
       ))}
     </div>

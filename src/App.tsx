@@ -12,15 +12,10 @@ const { Content } = Layout;
 
 function App() {
   return (
-    <Layout className="layout">
+    <Layout>
       <BrowserRouter>
         <Header />
-        <Content
-          style={{
-            minHeight: "calc(100vh - 134px)",
-            padding: "0 50px",
-          }}
-        >
+        <Content className="content">
           <Route />
         </Content>
         <Footer />

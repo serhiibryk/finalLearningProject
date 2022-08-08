@@ -1,8 +1,8 @@
 import { api } from ".";
 
 class PeopleService {
-  async getPeople(): Promise<any> {
-    const res = await api.get(`people`);
+  async getPeople(id: number): Promise<any> {
+    const res = await api.get(`people/?page=${id}`);
     return res;
   }
   async getPeopleByID(id: number): Promise<any> {

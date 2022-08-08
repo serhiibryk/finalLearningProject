@@ -8,9 +8,7 @@ declare interface Common {
 }
 
 declare interface PageData {
-  size: number;
-  page: number;
-  pagesTotal: number;
+  nextId: number;
 }
 
 declare interface Species {
@@ -122,4 +120,26 @@ declare interface Vehicles {
   pilots: string[];
   url: string;
   vehicle_class: string;
+}
+
+declare interface IPagination {
+  defaultCurrent: number;
+  total: number;
+  current?: number;
+  onChange: (id: number) => void;
+}
+
+declare interface ICardRow {
+  lable: string;
+  title: any;
+}
+
+declare interface ISpiner {
+  classes: string;
+}
+
+declare interface IMapFields {
+  list: any[];
+  title: string;
+  lable: string;
 }

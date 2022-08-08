@@ -1,20 +1,30 @@
-import React from "react";
-import { Routes, Route as RouterDOM } from "react-router-dom";
-import { IRoutes, routes } from "./routes";
+import React, { useContext } from "react";
+import { Route as RouterDOM, Routes } from "react-router-dom";
+
+import { StoreContext } from "../store";
+import PrivatRoute from "./PrivatRoute";
+import { routes } from "./routes";
 
 const Route = () => {
+  const context = useContext(StoreContext);
+
   return (
-    <div>
-      <Routes>
-        {routes.map((item: IRoutes) => (
-          <RouterDOM
-            path={item.path}
-            element={item.component}
-            key={item.path}
-          />
-        ))}
-      </Routes>
-    </div>
+    <Routes>
+      {routes.map((item) => {
+        const { component, privat, path } = item;
+
+        if (privat)
+          return (
+            <RouterDOM
+              key={path}
+              path={path}
+              element={<PrivatRoute auth={context.auth} children={component} />}
+            />
+          );
+
+        return <RouterDOM key={path} path={path} element={component} />;
+      })}
+    </Routes>
   );
 };
 

@@ -1,55 +1,80 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 
-import useStyles from "./style";
+import Spiner from "../../components/spiner";
+import PaginationCategory from "../../components/pagination";
 import { speciesService } from "../../services/species";
-import { useLocation, useNavigate } from "react-router-dom";
 import { imgSpeciesList } from "../../utils";
+
+import useStyles from "./style";
 
 const { Meta } = Card;
 
 const TeamsSpecies = () => {
   const [speciesList, setSpeciesList] = useState<Species[]>([]);
-  const [pageData, setPageData] = useState<PageData>({
-    size: 100,
-    page: 1,
-    pagesTotal: 0,
-  });
+  const [pageData, setPageData] = useState(1);
+  const [isLoading, setLoading] = useState(false);
+  const [maxCount, setMaxCount] = useState(0);
+
   const classes = useStyles();
   const push = useNavigate();
 
-  const fetchSpecies = async (size: number, page: number) => {
-    speciesService.getSpecies().then((res) => {
+  const fetchSpecies = async (nextId: number) => {
+    setLoading(true);
+    speciesService.getSpecies(nextId).then((res) => {
       setSpeciesList(res.data.results);
+      setMaxCount(res.data.count);
+      setLoading(false);
     });
   };
-  useEffect(() => {
-    fetchSpecies(pageData.size, pageData.page);
-  }, []);
 
-  if (speciesList.length === 0) {
-    return <div>Loading...</div>;
+  useEffect(() => {
+    fetchSpecies(pageData);
+  }, [pageData]);
+
+  const handleChange = (page: number) => {
+    fetchSpecies(page);
+    setPageData(page);
+  };
+
+  if (speciesList.length === 0 || isLoading) {
+    return <Spiner classes={classes.spiner} />;
   }
+
   return (
     <div className={classes.root}>
-      {speciesList.map((speccy, index) => {
-        return (
-          <Card
-            className={classes.card}
-            hoverable
-            cover={
-              <img
-                className={classes.img}
-                key={imgSpeciesList[index].imgLink}
-                src={imgSpeciesList[index].imgLink}
-              />
-            }
-            onClick={() => push(`/species/${speccy.url.split("/")[5]}`)}
-          >
-            <Meta title={speccy.name} />
-          </Card>
-        );
-      })}
+      <div className={classes.pagination}>
+        {speciesList.length && (
+          <PaginationCategory
+            defaultCurrent={1}
+            total={maxCount}
+            current={pageData}
+            onChange={handleChange}
+          />
+        )}
+      </div>
+      <div className={classes.content}>
+        {speciesList.map((speccy, index) => {
+          return (
+            <Card
+              className={classes.card}
+              hoverable
+              cover={
+                <img
+                  className={classes.img}
+                  key={imgSpeciesList[index].imgLink}
+                  src={imgSpeciesList[index].imgLink}
+                  alt="Speccy wallpaper"
+                />
+              }
+              onClick={() => push(`/species/${speccy.url.split("/")[5]}`)}
+            >
+              <Meta title={speccy.name} />
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 };

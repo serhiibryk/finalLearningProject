@@ -1,44 +1,10 @@
-import { Button, Form, Input, Select } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, notification } from "antd";
+
+import { StoreContext } from "../../store";
 
 import useStyles from "./style";
-
-const { Option } = Select;
-
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
 
 const formItemLayout = {
   labelCol: {
@@ -65,30 +31,53 @@ const tailFormItemLayout = {
 
 const Registration: React.FC = () => {
   const classes = useStyles();
+  const [formAntd] = Form.useForm();
 
-  const [form] = Form.useForm();
+  const context = useContext(StoreContext);
+  const push = useNavigate();
 
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const openNotification = (message: string, description: string) => {
+    notification.open({
+      message,
+      description,
+    });
   };
 
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
+  const onFinish = (values: any) => {
+    const res = [...context.user];
+    const checkEmail = res.find((same: any) => same.email === values.email);
 
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
-      </Select>
-    </Form.Item>
-  );
+    if (checkEmail) {
+      openNotification(
+        "Error",
+        "Such a login already exists in the system. Enter, please, another login."
+      );
+    } else {
+      res.push(values);
+
+      localStorage.setItem("userData", JSON.stringify(res));
+      context.setUser(res);
+      push("/login");
+    }
+  };
+
+  // const prefixSelector = (
+  //   <Form.Item name="prefix" noStyle>
+  //     <Select style={{ width: 70 }}>
+  //       <Option value="86">+86</Option>
+  //       <Option value="87">+87</Option>
+  //     </Select>
+  //   </Form.Item>
+  // );
+
+  // const suffixSelector = (
+  //   <Form.Item name="suffix" noStyle>
+  //     <Select style={{ width: 70 }}>
+  //       <Option value="USD">$</Option>
+  //       <Option value="CNY">¥</Option>
+  //     </Select>
+  //   </Form.Item>
+  // );
 
   const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
 
@@ -112,7 +101,7 @@ const Registration: React.FC = () => {
       <Form
         {...formItemLayout}
         className={classes.registerForm}
-        form={form}
+        form={formAntd}
         name="register"
         onFinish={onFinish}
         initialValues={{
@@ -135,7 +124,7 @@ const Registration: React.FC = () => {
             },
           ]}
         >
-          <Input />
+          <Input value="email" />
         </Form.Item>
 
         <Form.Item
@@ -154,7 +143,7 @@ const Registration: React.FC = () => {
 
         <Form.Item
           name="confirm"
-          label="Confirm Password"
+          label="Confirm Password:"
           dependencies={["password"]}
           hasFeedback
           rules={[

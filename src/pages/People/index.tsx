@@ -1,54 +1,80 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 
-import useStyles from "./style";
+import Spiner from "../../components/spiner";
+import PaginationCategory from "../../components/pagination";
 import { peopleService } from "../../services/people";
-import { useLocation, useNavigate } from "react-router-dom";
 import { imgPeopleList } from "../../utils";
+
+import useStyles from "./style";
 
 const { Meta } = Card;
 
 const TeamsPeoples = () => {
   const [peoplesList, setPeoplesList] = useState<People[]>([]);
+  const [pageData, setPageData] = useState(1);
+  const [isLoading, setLoading] = useState(false);
+  const [maxCount, setMaxCount] = useState(0);
 
   const classes = useStyles();
   const push = useNavigate();
-  const location = useLocation();
 
-  const fetchUsers = async () => {
-    peopleService.getPeople().then((res) => {
+  const fetchPeople = async (nextId: number) => {
+    setLoading(true);
+    peopleService.getPeople(nextId).then((res) => {
       setPeoplesList(res.data.results);
+      setMaxCount(res.data.count);
+      setLoading(false);
     });
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchPeople(pageData);
+  }, [pageData]);
 
-  if (peoplesList.length === 0) {
-    return <div>Loading...</div>;
+  const handleChange = (page: number) => {
+    fetchPeople(page);
+    setPageData(page);
+  };
+
+  if (peoplesList.length === 0 || isLoading) {
+    return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
-      {peoplesList.map((people, index) => {
-        return (
-          <Card
-            className={classes.card}
-            hoverable
-            cover={
-              <img
-                className={classes.img}
-                key={imgPeopleList[index].imgLink}
-                src={imgPeopleList[index].imgLink}
-              />
-            }
-            onClick={() => push(`/people/${people.url.split("/")[5]}`)}
-          >
-            <Meta title={people.name} />
-          </Card>
-        );
-      })}
+      <div className={classes.pagination}>
+        {peoplesList.length && (
+          <PaginationCategory
+            defaultCurrent={1}
+            current={pageData}
+            total={maxCount}
+            onChange={handleChange}
+          />
+        )}
+      </div>
+      <div className={classes.content}>
+        {peoplesList.map((people, index) => {
+          return (
+            <Card
+              className={classes.card}
+              hoverable
+              cover={
+                <img
+                  className={classes.img}
+                  key={imgPeopleList[index].imgLink}
+                  src={imgPeopleList[index].imgLink}
+                  alt="People wallpaper"
+                />
+              }
+              onClick={() => push(`/people/${people.url.split("/")[5]}`)}
+            >
+              <Meta title={people.name} />
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 };

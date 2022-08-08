@@ -1,8 +1,8 @@
 import { api } from ".";
 
 class VehiclesService {
-  async getVehicles(): Promise<any> {
-    const res = await api.get(`vehicles`);
+  async getVehicles(id: number): Promise<any> {
+    const res = await api.get(`vehicles/?page=${id}`);
     return res;
   }
   async getVehicleByID(id: number): Promise<any> {

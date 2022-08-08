@@ -1,15 +1,16 @@
-import { Card, Divider, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Card } from "antd";
+
+import CardRow from "../../components/cardRow";
+import Spiner from "../../components/spiner";
+import MapFieldsByID from "../../components/mapFieldsByID";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { planetsService } from "../../services/planets";
-
 import { speciesService } from "../../services/species";
 
 import useStyles from "./style";
-
-const { Meta } = Card;
 
 const SpeccyByID = () => {
   const [speciesList, setSpeciesList] = useState<Species | null>(null);
@@ -75,58 +76,33 @@ const SpeccyByID = () => {
     }
   }, [speciesList]);
 
-  console.log("filmList", filmsList);
-  console.log("planetList", planetsList);
-  console.log("planetList", speciesList);
-
   if (speciesList === null || filmsList === null || peopleList === null)
-    return <div>Loading...</div>;
+    return <Spiner classes={classes.spiner} />;
 
   return (
     <div className={classes.speccyByIDContainer}>
       <Card className={classes.card} hoverable>
-        <Divider orientation="left">Name:</Divider>
-        <Meta title={speciesList.name} />
-        <Divider orientation="left">Classification: </Divider>
-        <Meta title={speciesList.classification} />
-        <Divider orientation="left">Average height:</Divider>
-        <Meta title={speciesList.average_height} />
-        <Divider orientation="left">Average lifespan:</Divider>
-        <Meta title={speciesList.average_lifespan} />
-        <Divider orientation="left">Classification:</Divider>
-        <Meta title={speciesList.classification} />
-        <Divider orientation="left">Created:</Divider>
-        <Meta title={speciesList.created} />
-        <Divider orientation="left">Designation:</Divider>
-        <Meta title={speciesList.designation} />
-        <Divider orientation="left">Edited:</Divider>
-        <Meta title={speciesList.edited} />
-        <Divider orientation="left">Eye colors:</Divider>
-        <Meta title={speciesList.eye_colors} />
-        <Divider orientation="left">Films:</Divider>
-        <div>
-          {filmsList.map((film) => (
-            <Tag color="geekblue">{film.title}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Hair colors:</Divider>
-        <Meta title={speciesList.hair_colors} />
+        <CardRow title={speciesList.name} lable="Name:" />
+        <CardRow title={speciesList.classification} lable="Classification:" />
+        <CardRow title={speciesList.average_height} lable="Average height:" />
+        <CardRow
+          title={speciesList.average_lifespan}
+          lable="Average lifespan:"
+        />
+        <CardRow title={speciesList.classification} lable="Classification:" />
+        <CardRow title={speciesList.created} lable="Created:" />
+        <CardRow title={speciesList.designation} lable="Designation:" />
+        <CardRow title={speciesList.edited} lable="Edited:" />
+        <CardRow title={speciesList.eye_colors} lable="Eye colors:" />
+        <CardRow title={speciesList.hair_colors} lable="Hair colors:" />
+        <CardRow title={speciesList.language} lable="Language:" />
         {planetsList?.name && (
           <>
-            <Divider orientation="left">Homeworld:</Divider>
-            <Meta title={planetsList.name} />
+            <CardRow title={planetsList.name} lable="Homeworld:" />
           </>
         )}
-        <Divider orientation="left">Language:</Divider>
-        <Meta title={speciesList.language} />
-        <Divider orientation="left">People:</Divider>
-        <div>
-          {peopleList.map((people) => (
-            <Tag color="geekblue">{people.name}</Tag>
-          ))}
-        </div>
-        <Divider orientation="left">Skin colors:</Divider>
-        <Meta title={speciesList.skin_colors} />
+        <MapFieldsByID list={filmsList} title={"title"} lable={"Films"} />
+        <MapFieldsByID list={peopleList} title={"name"} lable={"People"} />
       </Card>
     </div>
   );

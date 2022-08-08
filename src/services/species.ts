@@ -1,8 +1,8 @@
 import { api } from ".";
 
 class SpeciesService {
-  async getSpecies(): Promise<any> {
-    const res = await api.get(`species`);
+  async getSpecies(id: number): Promise<any> {
+    const res = await api.get(`species/?page=${id}`);
     return res;
   }
   async getSpeccyByID(id: number): Promise<any> {

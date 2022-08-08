@@ -1,8 +1,8 @@
 import { api } from ".";
 
 class PlanetsService {
-  async getPlanets(): Promise<any> {
-    const res = await api.get(`planets`);
+  async getPlanets(id: number): Promise<any> {
+    const res = await api.get(`planets/?page=${id}`);
     return res;
   }
   async getPlanetByID(id: number): Promise<any> {

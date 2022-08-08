@@ -1,38 +1,69 @@
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, notification } from "antd";
+
+import { localStoregeRemove, localStoreService } from "../../utils";
+import { StoreContext } from "../../store";
 
 import useStyles from "./style";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 const Login: React.FC = () => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const classes = useStyles();
+  const push = useNavigate();
+
+  const context = useContext(StoreContext);
+
+  const openNotification = (message: string, description: string) => {
+    notification.open({
+      message,
+      description,
+    });
   };
 
-  // const onFinishFailed = (errorInfo: any) => {
-  //   console.log("Failed:", errorInfo);
-  // };
+  useEffect(() => {
+    context.setAuth(false);
+    localStoregeRemove("isLogged");
+  }, []);
 
-  const classes = useStyles();
-  const navigate = useNavigate();
-
+  const onFinish = (values: any) => {
+    const usersList = context.user;
+    const checkEmail = usersList.find(
+      (same: any) => same.email === values.email
+    );
+    if (checkEmail && checkEmail.password === values.password) {
+      localStoreService.set("isLogged", "true");
+      context.setAuth(true);
+      push("/");
+    } else {
+      openNotification("Error!", "Incorrect login or password.");
+    }
+  };
   return (
-    <div className={classes.loginContainer}>
+    <div className={classes.root}>
       <Form
         className={classes.LoginForm}
-        name="normal_login"
+        name="normal_email"
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
         <Form.Item
-          name="username"
-          rules={[{ required: true, message: "Please input your Login!" }]}
+          name="email"
+          rules={[
+            {
+              type: "email",
+              message: "The input is not valid E-mail!",
+            },
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
         >
           <Input
             className={classes.input}
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Login"
+            placeholder="Email"
           />
         </Form.Item>
         <Form.Item
@@ -47,24 +78,14 @@ const Login: React.FC = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
-        </Form.Item>
-
-        <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
           >
             Log in
-          </Button>
-          Or <a onClick={() => navigate("/registration")}>register now!</a>
+          </Button>{" "}
+          Or <a onClick={() => push("/registration")}>Register now!</a>
         </Form.Item>
       </Form>
     </div>
