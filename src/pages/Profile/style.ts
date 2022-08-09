@@ -9,6 +9,7 @@ const useStyles = createUseStyles({
     marginTop: "15px",
     margin: "15px",
     width: "100%",
+    maxWidth: "98%",
     "& .ant-card-meta-title": {
       padding: "0 0 0 40px",
       fontStyle: "italic",
@@ -20,8 +21,19 @@ const useStyles = createUseStyles({
     fontStyle: "italic",
     fontSize: "23px",
     fontWeight: "lighter",
+    whiteSpace: "nowrap",
+    overflowX: "hidden",
+    textOverflow: "ellipsis",
   },
-  spiner: {},
+  spiner: {
+    marginTop: "100px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    width: "400px",
+  },
 });
 
 export default useStyles;
