@@ -23,8 +23,6 @@ const Header = () => {
     return "";
   });
 
-  console.log(auth);
-
   return (
     <div className={classes.root}>
       <HeaderAnt>

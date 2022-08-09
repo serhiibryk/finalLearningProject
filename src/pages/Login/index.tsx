@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, notification } from "antd";
 
 import { localStoregeRemove, localStoreService } from "../../utils";
 import { StoreContext } from "../../store";
+import { jwtService } from "../../services/jwt";
 
 import useStyles from "./style";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
@@ -13,6 +14,10 @@ const Login: React.FC = () => {
   const push = useNavigate();
 
   const context = useContext(StoreContext);
+
+  const createJwt = async (user: any) => {
+    jwtService.getJwt(user).then((res) => localStoreService.set("user", res));
+  };
 
   const openNotification = (message: string, description: string) => {
     notification.open({
@@ -28,12 +33,16 @@ const Login: React.FC = () => {
 
   const onFinish = (values: any) => {
     const usersList = context.user;
-    const checkEmail = usersList.find(
+
+    const checkUser = usersList.find(
       (same: any) => same.email === values.email
     );
-    if (checkEmail && checkEmail.password === values.password) {
-      localStoreService.set("isLogged", "true");
+    if (checkUser && checkUser.password === values.password) {
+      localStoreService.set("isLogged", true);
+      // localStoreService.set("user", checkUser);
+
       context.setAuth(true);
+      createJwt(checkUser);
       push("/");
     } else {
       openNotification("Error!", "Incorrect login or password.");

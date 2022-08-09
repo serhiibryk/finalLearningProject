@@ -35,6 +35,11 @@ export const routerList = [
     privat: true,
   },
   {
+    key: "/profile",
+    label: "Profile",
+    privat: true,
+  },
+  {
     key: "/login",
     label: "Log in",
     privat: false,
@@ -316,6 +321,7 @@ export const imgVehiclesList = [
 export const localStoreService = {
   get: (key: string, initValue: string = "false") => {
     const res = JSON.parse(localStorage.getItem(key) || initValue);
+
     return res;
   },
   set: (key: string, data: any) => {

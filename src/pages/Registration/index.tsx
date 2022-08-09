@@ -5,6 +5,7 @@ import { Button, Form, Input, notification } from "antd";
 import { StoreContext } from "../../store";
 
 import useStyles from "./style";
+import { localStoreService } from "../../utils";
 
 const formItemLayout = {
   labelCol: {
@@ -55,7 +56,7 @@ const Registration: React.FC = () => {
     } else {
       res.push(values);
 
-      localStorage.setItem("userData", JSON.stringify(res));
+      localStoreService.set("userData", res);
       context.setUser(res);
       push("/login");
     }
