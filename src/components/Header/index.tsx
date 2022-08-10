@@ -1,14 +1,11 @@
 import { Layout, Menu } from "antd";
 import { useContext } from "react";
-import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { StoreContext } from "../../store";
 import { StoreContext } from "../../store";
 import { routerList } from "../../utils";
 
 import useStyles from "./style";
-import classNames from "classnames";
 import classNames from "classnames";
 
 const { Header: HeaderAnt } = Layout;
@@ -17,7 +14,6 @@ const Header = () => {
   const push = useNavigate();
   const classes = useStyles();
   const location = useLocation();
-  const { auth } = useContext(StoreContext);
   const { auth } = useContext(StoreContext);
 
   const activeList = routerList.map((item) => {
@@ -36,7 +32,6 @@ const Header = () => {
               className={classes.imgLogo}
               src="https://cdn.beahero.gg/2019/06/star-wars-logo_k6qf-620x349.jpg"
               onClick={() => push("/")}
-              alt="Logo"
               alt="Logo"
             />
           </div>
