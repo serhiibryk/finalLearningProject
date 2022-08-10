@@ -14,6 +14,7 @@ import StarshipByID from "../pages/StarshipByID";
 import TeamsStarships from "../pages/Starships";
 import VehicleByID from "../pages/VehicleByID";
 import TeamsVehicles from "../pages/Vehicles";
+import Profile from "../pages/Profile";
 
 export interface IRoutes {
   path: string;
@@ -37,4 +38,5 @@ export const routes: IRoutes[] = [
   { path: "/starships/:id", component: <StarshipByID />, privat: true },
   { path: "/vehicles", component: <TeamsVehicles />, privat: true },
   { path: "/vehicles/:id", component: <VehicleByID />, privat: true },
+  { path: "/profile", component: <Profile />, privat: true },
 ];

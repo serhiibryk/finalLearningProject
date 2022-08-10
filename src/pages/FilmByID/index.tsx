@@ -30,7 +30,6 @@ const FilmByID = () => {
   };
 
   const location111 = useLocation();
-  console.log(location111.pathname);
 
   useEffect(() => {
     const id = location.pathname.split("/")[2];

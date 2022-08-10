@@ -4,6 +4,7 @@ import { Button, Form, Input, notification } from "antd";
 
 import { localStoregeRemove, localStoreService } from "../../utils";
 import { StoreContext } from "../../store";
+import { jwtService } from "../../services/jwt";
 
 import useStyles from "./style";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
@@ -28,12 +29,14 @@ const Login: React.FC = () => {
 
   const onFinish = (values: any) => {
     const usersList = context.user;
-    const checkEmail = usersList.find(
+
+    const checkUser = usersList.find(
       (same: any) => same.email === values.email
     );
-    if (checkEmail && checkEmail.password === values.password) {
-      localStoreService.set("isLogged", "true");
-      context.setAuth(true);
+    if (checkUser && checkUser.password === values.password) {
+      const createJwt = jwtService.getJwt(checkUser);
+      localStoreService.set("user", createJwt);
+      context.setAuth(createJwt);
       push("/");
     } else {
       openNotification("Error!", "Incorrect login or password.");

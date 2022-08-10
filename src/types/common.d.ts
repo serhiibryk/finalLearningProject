@@ -143,3 +143,17 @@ declare interface IMapFields {
   title: string;
   lable: string;
 }
+
+declare interface DecodedData {
+  iss: string;
+  iat: number;
+  exp: number;
+  aud: string;
+  sub: string;
+  nickname: string;
+  email: string;
+  address: string;
+  phone: string;
+  firstName: string;
+  lastName: string;
+}

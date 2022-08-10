@@ -5,6 +5,7 @@ import { Button, Form, Input, notification } from "antd";
 import { StoreContext } from "../../store";
 
 import useStyles from "./style";
+import { localStoreService } from "../../utils";
 
 const formItemLayout = {
   labelCol: {
@@ -55,29 +56,29 @@ const Registration: React.FC = () => {
     } else {
       res.push(values);
 
-      localStorage.setItem("userData", JSON.stringify(res));
+      localStoreService.set("userData", res);
       context.setUser(res);
       push("/login");
     }
   };
 
-  // const prefixSelector = (
-  //   <Form.Item name="prefix" noStyle>
-  //     <Select style={{ width: 70 }}>
-  //       <Option value="86">+86</Option>
-  //       <Option value="87">+87</Option>
-  //     </Select>
-  //   </Form.Item>
-  // );
+  // // const prefixSelector = (
+  // //   <Form.Item name="prefix" noStyle>
+  // //     <Select style={{ width: 70 }}>
+  // //       <Option value="86">+86</Option>
+  // //       <Option value="87">+87</Option>
+  // //     </Select>
+  // //   </Form.Item>
+  // // );
 
-  // const suffixSelector = (
-  //   <Form.Item name="suffix" noStyle>
-  //     <Select style={{ width: 70 }}>
-  //       <Option value="USD">$</Option>
-  //       <Option value="CNY">¥</Option>
-  //     </Select>
-  //   </Form.Item>
-  // );
+  // // const suffixSelector = (
+  // //   <Form.Item name="suffix" noStyle>
+  // //     <Select style={{ width: 70 }}>
+  // //       <Option value="USD">$</Option>
+  // //       <Option value="CNY">¥</Option>
+  // //     </Select>
+  // //   </Form.Item>
+  // // );
 
   const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
 
@@ -143,7 +144,7 @@ const Registration: React.FC = () => {
 
         <Form.Item
           name="confirm"
-          label="Confirm Password:"
+          label="Confirm Password::"
           dependencies={["password"]}
           hasFeedback
           rules={[
