@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useJwt } from "react-jwt";
-import { Card } from "antd";
+import { Card, Skeleton } from "antd";
 
 import { localStoreService } from "../../utils";
-import Spiner from "../../components/spiner";
 
 import useStyles from "./style";
 
@@ -20,32 +19,35 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    setDecoded(decodedData.decodedToken as DecodedData);
+    setTimeout(() => {
+      setDecoded(decodedData.decodedToken as DecodedData);
+    }, 1000);
   }, [decodedData]);
-
-  if (decoded === null) {
-    return <Spiner classes={classes.spiner} />;
-  }
-
   return (
     <div className={classes.root}>
       <Card className={classes.card} hoverable>
-        <p>Token:</p>
-        <p className={classes.textP}>{returnToken()}</p>
-        <p>Decode:</p>
-        <ul>
-          <li>{decoded?.firstName}</li>
-          <li>{decoded?.lastName}</li>
-          <li>{decoded?.nickname}</li>
-          <li>{decoded?.phone}</li>
-          <li>{decoded?.address}</li>
-          <li>{decoded?.email}</li>
-          <li>{decoded?.aud}</li>
-          <li>{decoded?.iss}</li>
-          <li>{decoded?.exp}</li>
-          <li>{decoded?.iat}</li>
-          <li>{decoded?.sub}</li>
-        </ul>
+        {decoded ? (
+          <div>
+            <p>Token:</p>
+            <p className={classes.textP}>{returnToken()}</p>
+            <p>Decode:</p>
+            <ul>
+              <li>{decoded?.firstName}</li>
+              <li>{decoded?.lastName}</li>
+              <li>{decoded?.nickname}</li>
+              <li>{decoded?.phone}</li>
+              <li>{decoded?.address}</li>
+              <li>{decoded?.email}</li>
+              <li>{decoded?.aud}</li>
+              <li>{decoded?.iss}</li>
+              <li>{decoded?.exp}</li>
+              <li>{decoded?.iat}</li>
+              <li>{decoded?.sub}</li>
+            </ul>
+          </div>
+        ) : (
+          <Skeleton active />
+        )}
       </Card>
     </div>
   );
