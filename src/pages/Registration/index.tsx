@@ -36,6 +36,10 @@ const Registration: React.FC = () => {
 
   const context = useContext(StoreContext);
   const push = useNavigate();
+  const [formAntd] = Form.useForm();
+
+  const context = useContext(StoreContext);
+  const push = useNavigate();
 
   const openNotification = (message: string, description: string) => {
     notification.open({
@@ -62,23 +66,23 @@ const Registration: React.FC = () => {
     }
   };
 
-  // const prefixSelector = (
-  //   <Form.Item name="prefix" noStyle>
-  //     <Select style={{ width: 70 }}>
-  //       <Option value="86">+86</Option>
-  //       <Option value="87">+87</Option>
-  //     </Select>
-  //   </Form.Item>
-  // );
+  // // const prefixSelector = (
+  // //   <Form.Item name="prefix" noStyle>
+  // //     <Select style={{ width: 70 }}>
+  // //       <Option value="86">+86</Option>
+  // //       <Option value="87">+87</Option>
+  // //     </Select>
+  // //   </Form.Item>
+  // // );
 
-  // const suffixSelector = (
-  //   <Form.Item name="suffix" noStyle>
-  //     <Select style={{ width: 70 }}>
-  //       <Option value="USD">$</Option>
-  //       <Option value="CNY">¥</Option>
-  //     </Select>
-  //   </Form.Item>
-  // );
+  // // const suffixSelector = (
+  // //   <Form.Item name="suffix" noStyle>
+  // //     <Select style={{ width: 70 }}>
+  // //       <Option value="USD">$</Option>
+  // //       <Option value="CNY">¥</Option>
+  // //     </Select>
+  // //   </Form.Item>
+  // // );
 
   const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
 
@@ -102,7 +106,7 @@ const Registration: React.FC = () => {
       <Form
         {...formItemLayout}
         className={classes.registerForm}
-        form={formAntd}
+        form={formAntdAntd}
         name="register"
         onFinish={onFinish}
         initialValues={{
@@ -125,7 +129,7 @@ const Registration: React.FC = () => {
             },
           ]}
         >
-          <Input value="email" />
+          <Input value="email" value="email" />
         </Form.Item>
 
         <Form.Item
@@ -144,7 +148,7 @@ const Registration: React.FC = () => {
 
         <Form.Item
           name="confirm"
-          label="Confirm Password:"
+          label="Confirm Password::"
           dependencies={["password"]}
           hasFeedback
           rules={[

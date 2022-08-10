@@ -8,6 +8,7 @@ import { jwtService } from "../../services/jwt";
 
 import useStyles from "./style";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 const Login: React.FC = () => {
   const classes = useStyles();
@@ -23,8 +24,8 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
-    context.setAuth(null);
-    localStoregeRemove("user");
+    context.setAuth(false);
+    localStoregeRemove("isLogged");
   }, []);
 
   const onFinish = (values: any) => {
