@@ -36,10 +36,6 @@ const Registration: React.FC = () => {
 
   const context = useContext(StoreContext);
   const push = useNavigate();
-  const [formAntd] = Form.useForm();
-
-  const context = useContext(StoreContext);
-  const push = useNavigate();
 
   const openNotification = (message: string, description: string) => {
     notification.open({
@@ -106,7 +102,7 @@ const Registration: React.FC = () => {
       <Form
         {...formItemLayout}
         className={classes.registerForm}
-        form={formAntdAntd}
+        form={formAntd}
         name="register"
         onFinish={onFinish}
         initialValues={{
@@ -129,7 +125,7 @@ const Registration: React.FC = () => {
             },
           ]}
         >
-          <Input value="email" value="email" />
+          <Input value="email" />
         </Form.Item>
 
         <Form.Item
