@@ -38,16 +38,16 @@ const Header = () => {
           <Menu
             theme="dark"
             mode="horizontal"
-            className={classNames({ [classes.changedLog]: auth === false })}
+            className={classNames({ [classes.changedLog]: !auth })}
             defaultSelectedKeys={["/"]}
             selectedKeys={activeList}
             onClick={(path) => push(path.key)}
           >
             {routerList.map((item) => {
-              if (auth === true && item.key === "/login") {
+              if (auth && item.key === "/login") {
                 return <Menu.Item key="/login">Log out</Menu.Item>;
               }
-              if (item.privat === true && auth === false) {
+              if (item.privat === true && !auth) {
                 return null;
               }
               return <Menu.Item key={item.key}>{item.label}</Menu.Item>;

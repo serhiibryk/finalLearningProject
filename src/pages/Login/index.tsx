@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, notification } from "antd";
 
@@ -15,10 +15,6 @@ const Login: React.FC = () => {
 
   const context = useContext(StoreContext);
 
-  const createJwt = async (user: any) => {
-    jwtService.getJwt(user).then((res) => localStoreService.set("user", res));
-  };
-
   const openNotification = (message: string, description: string) => {
     notification.open({
       message,
@@ -27,7 +23,7 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
-    context.setAuth(false);
+    context.setAuth(null);
     localStoregeRemove("user");
   }, []);
 
@@ -38,12 +34,9 @@ const Login: React.FC = () => {
       (same: any) => same.email === values.email
     );
     if (checkUser && checkUser.password === values.password) {
-      createJwt(checkUser);
-
-      localStoreService.set("user", true);
-      // localStoreService.set("user", checkUser);
-
-      context.setAuth(true);
+      const createJwt = jwtService.getJwt(checkUser);
+      localStoreService.set("user", createJwt);
+      context.setAuth(createJwt);
       push("/");
     } else {
       openNotification("Error!", "Incorrect login or password.");
