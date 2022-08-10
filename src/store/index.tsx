@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const StoreContextProvider: FC<IProps> = ({ children }: any) => {
-  const [auth, setAuth] = useState(localStoreService.get("isLogged"));
+  const [auth, setAuth] = useState(localStoreService.get("user"));
   const [user, setUser] = useState(localStoreService.get("userData", "[]"));
 
   return (

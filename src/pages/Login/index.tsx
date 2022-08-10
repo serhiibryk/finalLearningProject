@@ -28,7 +28,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     context.setAuth(false);
-    localStoregeRemove("isLogged");
+    localStoregeRemove("user");
   }, []);
 
   const onFinish = (values: any) => {
@@ -38,11 +38,12 @@ const Login: React.FC = () => {
       (same: any) => same.email === values.email
     );
     if (checkUser && checkUser.password === values.password) {
-      localStoreService.set("isLogged", true);
+      createJwt(checkUser);
+
+      localStoreService.set("user", true);
       // localStoreService.set("user", checkUser);
 
       context.setAuth(true);
-      createJwt(checkUser);
       push("/");
     } else {
       openNotification("Error!", "Incorrect login or password.");
