@@ -1,12 +1,10 @@
 import { Layout, Menu } from "antd";
-import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-import { StoreContext } from "../../store";
 import { routerList } from "../../utils";
 
 import useStyles from "./style";
 import classNames from "classnames";
+import { useAppSelector } from "../../store/hooks/redux";
 
 const { Header: HeaderAnt } = Layout;
 
@@ -14,7 +12,7 @@ const Header = () => {
   const push = useNavigate();
   const classes = useStyles();
   const location = useLocation();
-  const { auth } = useContext(StoreContext);
+  const { user } = useAppSelector((state: any) => state.user);
 
   const activeList = routerList.map((item) => {
     if (location.pathname === "/" && item.key === "/") return item.key;
@@ -38,16 +36,16 @@ const Header = () => {
           <Menu
             theme="dark"
             mode="horizontal"
-            className={classNames({ [classes.changedLog]: !auth })}
+            className={classNames({ [classes.changedLog]: !user })}
             defaultSelectedKeys={["/"]}
             selectedKeys={activeList}
             onClick={(path) => push(path.key)}
           >
             {routerList.map((item) => {
-              if (auth && item.key === "/login") {
+              if (user && item.key === "/login") {
                 return <Menu.Item key="/login">Log out</Menu.Item>;
               }
-              if (item.privat === true && !auth) {
+              if (item.privat === true && !user) {
                 return null;
               }
               return <Menu.Item key={item.key}>{item.label}</Menu.Item>;

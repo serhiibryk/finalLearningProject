@@ -1,29 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { localStoreService } from "../../utils";
 
-type IState = {
-  userData: any;
-};
+interface UserList {
+  data: User[];
+}
 
-export const initialState: IState = {
-  userData: localStoreService.get("userData", "[]"),
+interface User {
+  confirm: string;
+  email: string;
+  nickname: string;
+  password: string;
+}
+
+export const initialState: UserList = {
+  data: localStoreService.get("userData", "[]"),
 };
 
 export const userDataSlice = createSlice({
   name: "userData",
   initialState: initialState,
   reducers: {
-    get: (state: IState, action: PayloadAction<any>) => {
+    set: (state: any, action: PayloadAction<any>) => {
       state.userData = action.payload;
     },
-    set: (state: IState, action: PayloadAction<any>) => {
-      state.userData = action.payload;
-    },
-    remove: (state: IState, action: PayloadAction<any>) => {
+    remove: (state: any, action: PayloadAction<any>) => {
       state.userData = action.payload;
     },
   },
 });
 
-export const userReducer = userDataSlice.actions;
+export const userDataReducer = userDataSlice.actions;
 export default userDataSlice.reducer;

@@ -8,12 +8,13 @@ import Header from "./components/Header";
 
 import "./App.css";
 import Route from "./routes";
+import { setupStore } from "./store";
 
 const { Content } = Layout;
 
 function App() {
   return (
-    <Provider store={store}>
+    <Provider store={setupStore()}>
       <Layout>
         <BrowserRouter>
           <Header />

@@ -2,21 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { localStoreService } from "../../utils";
 
 type IState = {
-  user: { token: string };
+  token: string;
 };
 
-export const initialState: IState = {
-  user: localStoreService.get("user"),
-};
+export const initialState: IState = { token: localStoreService.get("user") };
 
 export const userSlice = createSlice({
   name: "user",
   initialState: initialState,
   reducers: {
-    setUser: (state: IState, action: PayloadAction<any>) => {
+    setUser: (state: any, action: PayloadAction<any>) => {
       state.user = action.payload;
     },
-    removeUser: (state: IState, action: PayloadAction<any>) => {
+    removeUser: (state: any, action: PayloadAction<any>) => {
       state.user = action.payload;
     },
   },
