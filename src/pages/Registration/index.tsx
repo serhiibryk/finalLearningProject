@@ -62,24 +62,6 @@ const Registration: React.FC = () => {
     }
   };
 
-  // // const prefixSelector = (
-  // //   <Form.Item name="prefix" noStyle>
-  // //     <Select style={{ width: 70 }}>
-  // //       <Option value="86">+86</Option>
-  // //       <Option value="87">+87</Option>
-  // //     </Select>
-  // //   </Form.Item>
-  // // );
-
-  // // const suffixSelector = (
-  // //   <Form.Item name="suffix" noStyle>
-  // //     <Select style={{ width: 70 }}>
-  // //       <Option value="USD">$</Option>
-  // //       <Option value="CNY">¥</Option>
-  // //     </Select>
-  // //   </Form.Item>
-  // // );
-
   const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
 
   const onWebsiteChange = (value: string) => {
@@ -91,12 +73,6 @@ const Registration: React.FC = () => {
       );
     }
   };
-
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
-
   return (
     <div className={classes.registerContainer}>
       <Form

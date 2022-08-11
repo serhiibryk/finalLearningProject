@@ -1,22 +1,44 @@
-import React, { createContext, FC, ReactNode, useState } from "react";
+// import React, { createContext, FC, ReactNode, useState } from "react";
+// // import { configureStore } from "@reduxjs/toolkit";
 
-import { localStoreService } from "../utils";
+// import { localStoreService } from "../utils";
 
-export const StoreContext = createContext<any>(null);
+// export const StoreContext = createContext<any>(null);
 
-interface IProps {
-  children: ReactNode;
-}
+// interface IProps {
+//   children: ReactNode;
+// }
 
-const StoreContextProvider: FC<IProps> = ({ children }: any) => {
-  const [auth, setAuth] = useState(localStoreService.get("user"));
-  const [user, setUser] = useState(localStoreService.get("userData", "[]"));
+// const StoreContextProvider: FC<IProps> = ({ children }: any) => {
+//   const [auth, setAuth] = useState(localStoreService.get("user"));
+//   const [user, setUser] = useState(localStoreService.get("userData", "[]"));
 
-  return (
-    <StoreContext.Provider value={{ auth, setAuth, user, setUser }}>
-      {children}
-    </StoreContext.Provider>
-  );
+//   return (
+//     <StoreContext.Provider value={{ auth, setAuth, user, setUser }}>
+//       {children}
+//     </StoreContext.Provider>
+//   );
+// };
+
+// export default StoreContextProvider;
+
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import user from "./user/reducer";
+import userData from "./user/reducer";
+
+const rootReducer = combineReducers({ user, userData });
+
+export const store = configureStore({
+  reducer: rootReducer,
+});
+
+export const setupStore = () => {
+  return configureStore({
+    reducer: rootReducer,
+    devTools: true,
+  });
 };
 
-export default StoreContextProvider;
+export type AppStore = ReturnType<typeof setupStore>;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = AppStore["dispatch"];
