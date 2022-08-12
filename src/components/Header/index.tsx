@@ -12,7 +12,7 @@ const Header = () => {
   const push = useNavigate();
   const classes = useStyles();
   const location = useLocation();
-  const { user } = useAppSelector((state: any) => state.user);
+  const { token } = useAppSelector((state: any) => state.user);
 
   const activeList = routerList.map((item) => {
     if (location.pathname === "/" && item.key === "/") return item.key;
@@ -36,16 +36,16 @@ const Header = () => {
           <Menu
             theme="dark"
             mode="horizontal"
-            className={classNames({ [classes.changedLog]: !user })}
+            className={classNames({ [classes.changedLog]: !token })}
             defaultSelectedKeys={["/"]}
             selectedKeys={activeList}
             onClick={(path) => push(path.key)}
           >
             {routerList.map((item) => {
-              if (user && item.key === "/login") {
+              if (token && item.key === "/login") {
                 return <Menu.Item key="/login">Log out</Menu.Item>;
               }
-              if (item.privat === true && !user) {
+              if (item.privat === true && !token) {
                 return null;
               }
               return <Menu.Item key={item.key}>{item.label}</Menu.Item>;

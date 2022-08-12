@@ -4,9 +4,9 @@ import { Button, Form, Input, notification } from "antd";
 
 import { localStoreService } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { userDataReducer } from "../../store/userData/reducer";
 
 import useStyles from "./style";
+import { userDataReducer } from "../../store/userData/reducer";
 
 const formItemLayout = {
   labelCol: {
@@ -45,7 +45,6 @@ const Registration: React.FC = () => {
       description,
     });
   };
-  console.log(data);
 
   const onFinish = (values: any) => {
     const res = [...data];
@@ -59,25 +58,11 @@ const Registration: React.FC = () => {
       );
     } else {
       res.push(values);
-
       localStoreService.set("userData", res);
-      // context.setUser(res);
       dispatch(userDataReducer.set(res));
       push("/login");
     }
   };
-
-  // const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
-
-  // const onWebsiteChange = (value: string) => {
-  //   if (!value) {
-  //     setAutoCompleteResult([]);
-  //   } else {
-  //     setAutoCompleteResult(
-  //       [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-  //     );
-  //   }
-  // };
   return (
     <div className={classes.registerContainer}>
       <Form

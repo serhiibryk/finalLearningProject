@@ -6,7 +6,7 @@ import PrivatRoute from "./PrivatRoute";
 import { routes } from "./routes";
 
 const Route = () => {
-  const { user } = useAppSelector((state: any) => state.user);
+  const { user } = useAppSelector((state: any) => state);
 
   return (
     <Routes>

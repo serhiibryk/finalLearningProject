@@ -325,10 +325,12 @@ export const localStoreService = {
     return res;
   },
   set: (key: string, data: any) => {
-    localStorage.setItem(key, JSON.stringify(data));
+    const res = localStorage.setItem(key, JSON.stringify(data));
+    console.log("init", data);
+    return res;
   },
-};
-
-export const localStoregeRemove = (item: string) => {
-  localStorage.removeItem(item);
+  remove: (item: string) => {
+    const res = localStorage.removeItem(item);
+    return res;
+  },
 };

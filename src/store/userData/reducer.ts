@@ -21,11 +21,11 @@ export const userDataSlice = createSlice({
   initialState: initialState,
   reducers: {
     set: (state: any, action: PayloadAction<any>) => {
-      state.userData = action.payload;
+      state.data = action.payload;
     },
-    remove: (state: any, action: PayloadAction<any>) => {
-      state.userData = action.payload;
-    },
+    // remove: (state: any, action: PayloadAction<any>) => {
+    //   state.userdata = action.payload;
+    // },
   },
 });
 
