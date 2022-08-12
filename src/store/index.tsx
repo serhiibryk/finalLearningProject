@@ -3,13 +3,13 @@
 
 // import { localStoreService } from "../utils";
 
-// export const StoreContext = createContext<any>(null);
+// export const StoreContext = createContext<--->(null);
 
 // interface IProps {
 //   children: ReactNode;
 // }
 
-// const StoreContextProvider: FC<IProps> = ({ children }: any) => {
+// const StoreContextProvider: FC<IProps> = ({ children }: ---) => {
 //   const [auth, setAuth] = useState(localStoreService.get("user"));
 //   const [user, setUser] = useState(localStoreService.get("userData", "[]"));
 

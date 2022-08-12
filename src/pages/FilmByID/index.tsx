@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Card, Divider } from "antd";
 import { useLocation } from "react-router-dom";
 
-import CardRow from "../../components/cardRow";
-import Spiner from "../../components/spiner";
+import CardRow from "../../components/CardRow";
+import Spiner from "../../components/Spiner";
 import { filmsService } from "../../services/films";
 import { planetsService } from "../../services/planets";
 import { speciesService } from "../../services/species";
@@ -11,7 +11,7 @@ import { starshipsService } from "../../services/starships";
 import { vehiclesService } from "../../services/vehicles";
 
 import useStyles from "./style";
-import MapFieldsByID from "../../components/mapFieldsByID";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 
 const FilmByID = () => {
   const [filmsList, setFilmsList] = useState<Films | null>(null);

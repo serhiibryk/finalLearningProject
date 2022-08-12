@@ -4,14 +4,12 @@ import { Divider, Card } from "antd";
 const { Meta } = Card;
 
 const CardRow: React.FunctionComponent<ICardRow> = ({ lable, title }) => {
-  return (
-    title.length && (
-      <>
-        <Divider orientation="left">{lable}</Divider>
-        <Meta title={title} />
-      </>
-    )
-  );
+  return String(title).length ? (
+    <>
+      <Divider orientation="left">{lable}</Divider>
+      <Meta title={title} />
+    </>
+  ) : null;
 };
 
 export default CardRow;

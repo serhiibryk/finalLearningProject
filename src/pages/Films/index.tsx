@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 
-import Spiner from "../../components/spiner";
+import Spiner from "../../components/Spiner";
 import { imgFilmsList } from "../../utils";
 import { filmsService } from "../../services/films";
 

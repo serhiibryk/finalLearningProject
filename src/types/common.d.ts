@@ -131,7 +131,7 @@ declare interface IPagination {
 
 declare interface ICardRow {
   lable: string;
-  title: any;
+  title: string | number;
 }
 
 declare interface ISpiner {

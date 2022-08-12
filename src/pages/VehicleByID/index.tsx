@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card } from "antd";
 
-import Spiner from "../../components/spiner";
-import CardRow from "../../components/cardRow";
-import MapFieldsByID from "../../components/mapFieldsByID";
+import Spiner from "../../components/Spiner";
+import CardRow from "../../components/CardRow";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { vehiclesService } from "../../services/vehicles";
