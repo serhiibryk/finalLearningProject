@@ -24,8 +24,8 @@ const FilmByID = () => {
   const classes = useStyles();
 
   const fetchFilmsByID = async (id: number) => {
-    filmsService.getFilmByID(id).then((resByID) => {
-      setFilmsList(resByID.data);
+    filmsService.getFilmByID(id).then((data) => {
+      setFilmsList(data);
     });
   };
 
@@ -48,7 +48,7 @@ const FilmByID = () => {
             async (id) =>
               await planetsService
                 .getPlanetByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -62,7 +62,7 @@ const FilmByID = () => {
             async (id) =>
               await vehiclesService
                 .getVehicleByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -76,7 +76,7 @@ const FilmByID = () => {
             async (id) =>
               await speciesService
                 .getSpeccyByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -90,7 +90,7 @@ const FilmByID = () => {
             async (id) =>
               await starshipsService
                 .getStarshipByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 

@@ -24,8 +24,8 @@ const Main = () => {
   const classes = useStyles();
 
   const fetchCommon = async () => {
-    commonService.getCommon().then((res) => {
-      setCommonList(res.data);
+    commonService.getCommon().then((data) => {
+      setCommonList(data);
     });
   };
 

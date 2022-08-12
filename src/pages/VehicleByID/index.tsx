@@ -20,8 +20,8 @@ const StarshipByID = () => {
   const location = useLocation();
 
   const fetchVehicleByID = async (id: number) => {
-    vehiclesService.getVehicleByID(id).then((resByID) => {
-      setVehiclesList(resByID.data);
+    vehiclesService.getVehicleByID(id).then((data) => {
+      setVehiclesList(data);
     });
   };
 
@@ -39,9 +39,7 @@ const StarshipByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -53,9 +51,7 @@ const StarshipByID = () => {
         const people = await Promise.all(
           idsPeople.map(
             async (id) =>
-              await peopleService
-                .getPeopleByID(Number(id))
-                .then((resByID) => resByID.data)
+              await peopleService.getPeopleByID(Number(id)).then((data) => data)
           )
         );
 

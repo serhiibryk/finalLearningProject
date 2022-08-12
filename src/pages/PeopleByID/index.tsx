@@ -27,8 +27,8 @@ const PeopleByID = () => {
   const classes = useStyles();
 
   const fetchPeopleByID = async (id: number) => {
-    peopleService.getPeopleByID(id).then((resByID) => {
-      setPeopleList(resByID.data);
+    peopleService.getPeopleByID(id).then((data) => {
+      setPeopleList(data);
     });
   };
 
@@ -45,9 +45,7 @@ const PeopleByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -56,7 +54,7 @@ const PeopleByID = () => {
         const idsPlanets = peoplesList.homeworld.split("/")[5];
         const planets = await planetsService
           .getPlanetByID(Number(idsPlanets))
-          .then((resByID) => resByID.data);
+          .then((data) => data);
 
         setPlanetsList(planets);
 
@@ -68,7 +66,7 @@ const PeopleByID = () => {
             async (id) =>
               await speciesService
                 .getSpeccyByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -82,7 +80,7 @@ const PeopleByID = () => {
             async (id) =>
               await starshipsService
                 .getStarshipByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -96,7 +94,7 @@ const PeopleByID = () => {
             async (id) =>
               await vehiclesService
                 .getVehicleByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 

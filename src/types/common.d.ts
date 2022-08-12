@@ -157,3 +157,10 @@ declare interface DecodedData {
   firstName: string;
   lastName: string;
 }
+
+declare interface DataFromAPI<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T;
+}

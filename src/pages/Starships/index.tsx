@@ -22,9 +22,9 @@ const TeamsStarships = () => {
 
   const fetchStarships = async (nextId: number) => {
     setLoading(true);
-    starshipsService.getStarships(nextId).then((res) => {
-      setStarshipsList(res.data.results);
-      setMaxCount(res.data.count);
+    starshipsService.getStarships(nextId).then((data) => {
+      setStarshipsList(data.results);
+      setMaxCount(data.count);
       setLoading(false);
     });
   };

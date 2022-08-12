@@ -22,9 +22,9 @@ const TeamsPeoples = () => {
 
   const fetchPeople = async (nextId: number) => {
     setLoading(true);
-    peopleService.getPeople(nextId).then((res) => {
-      setPeoplesList(res.data.results);
-      setMaxCount(res.data.count);
+    peopleService.getPeople(nextId).then((data) => {
+      setPeoplesList(data.results);
+      setMaxCount(data.count);
       setLoading(false);
     });
   };

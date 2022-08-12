@@ -20,8 +20,8 @@ const PlanetByID = () => {
   const classes = useStyles();
 
   const fetchPlanetByID = async (id: number) => {
-    planetsService.getPlanetByID(id).then((resByID) => {
-      setPlanetsList(resByID.data);
+    planetsService.getPlanetByID(id).then((data) => {
+      setPlanetsList(data);
     });
   };
 
@@ -40,9 +40,7 @@ const PlanetByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -54,9 +52,7 @@ const PlanetByID = () => {
         const people = await Promise.all(
           idsPeople.map(
             async (id) =>
-              await peopleService
-                .getPeopleByID(Number(id))
-                .then((resByID) => resByID.data)
+              await peopleService.getPeopleByID(Number(id)).then((data) => data)
           )
         );
 

@@ -22,9 +22,9 @@ const TeamsPlanets = () => {
 
   const fetchPlanets = async (nextId: number) => {
     setLoading(true);
-    planetsService.getPlanets(nextId).then((res) => {
-      setPlanetsList(res.data.results);
-      setMaxCount(res.data.count);
+    planetsService.getPlanets(nextId).then((data) => {
+      setPlanetsList(data.results);
+      setMaxCount(data.count);
       setLoading(false);
     });
   };

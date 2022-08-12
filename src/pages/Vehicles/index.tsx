@@ -21,9 +21,9 @@ const TeamsVehicles = () => {
   const push = useNavigate();
   const fetchVehicles = async (nextId: number) => {
     setLoading(true);
-    vehiclesService.getVehicles(nextId).then((res) => {
-      setVehiclesList(res.data.results);
-      setMaxCount(res.data.count);
+    vehiclesService.getVehicles(nextId).then((data) => {
+      setVehiclesList(data.results);
+      setMaxCount(data.count);
       setLoading(false);
     });
   };

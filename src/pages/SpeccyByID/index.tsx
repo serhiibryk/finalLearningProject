@@ -22,8 +22,8 @@ const SpeccyByID = () => {
   const classes = useStyles();
 
   const fetchSpeccyByID = async (id: number) => {
-    speciesService.getSpeccyByID(id).then((resByID) => {
-      setSpeciesList(resByID.data);
+    speciesService.getSpeccyByID(id).then((data) => {
+      setSpeciesList(data);
     });
   };
 
@@ -42,9 +42,7 @@ const SpeccyByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -54,7 +52,7 @@ const SpeccyByID = () => {
         if (idsPlanets) {
           const planets = await planetsService
             .getPlanetByID(Number(idsPlanets))
-            .then((resByID) => resByID.data);
+            .then((data) => data);
 
           setPlanetsList(planets);
         }
@@ -65,9 +63,7 @@ const SpeccyByID = () => {
         const people = await Promise.all(
           idsPeople.map(
             async (id) =>
-              await peopleService
-                .getPeopleByID(Number(id))
-                .then((resByID) => resByID.data)
+              await peopleService.getPeopleByID(Number(id)).then((data) => data)
           )
         );
 

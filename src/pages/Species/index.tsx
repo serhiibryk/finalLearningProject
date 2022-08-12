@@ -22,9 +22,9 @@ const TeamsSpecies = () => {
 
   const fetchSpecies = async (nextId: number) => {
     setLoading(true);
-    speciesService.getSpecies(nextId).then((res) => {
-      setSpeciesList(res.data.results);
-      setMaxCount(res.data.count);
+    speciesService.getSpecies(nextId).then((data) => {
+      setSpeciesList(data.results);
+      setMaxCount(data.count);
       setLoading(false);
     });
   };

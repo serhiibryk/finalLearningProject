@@ -17,8 +17,8 @@ const TeamsFilms = () => {
   const push = useNavigate();
 
   const fetchFilms = async () => {
-    filmsService.getFilms().then((res) => {
-      setFilmsList(res.data.results);
+    filmsService.getFilms().then((data) => {
+      setFilmsList(data.results);
     });
   };
 
