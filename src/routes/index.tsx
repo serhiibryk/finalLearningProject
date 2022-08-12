@@ -6,7 +6,7 @@ import PrivatRoute from "./PrivatRoute";
 import { routes } from "./routes";
 
 const Route = () => {
-  const { user } = useAppSelector((state: any) => state);
+  const { token } = useAppSelector((state: any) => state.user);
 
   return (
     <Routes>
@@ -18,7 +18,7 @@ const Route = () => {
             <RouterDOM
               key={path}
               path={path}
-              element={<PrivatRoute auth={user} children={component} />}
+              element={<PrivatRoute auth={token} children={component} />}
             />
           );
 
