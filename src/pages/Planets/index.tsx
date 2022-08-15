@@ -36,15 +36,14 @@ const TeamsPlanets = () => {
 
   const fetchPlanets = createAsyncThunk(
     "planets/planets",
-    async (nextId: number, thunkApi) => {
+    async (nextPage: number, thunkApi) => {
       try {
-        setLoading(true);
-        const res = await planetsService.getPlanets(nextId);
-
-        // console.log(res);
+        const check = nextPage !== 1;
+        check && setLoading(true);
+        const res = await planetsService.getPlanets(nextPage);
         thunkApi.dispatch(planetsReducer.setPlanets(res.results));
         setMaxCount(res.count);
-        setLoading(false);
+        check && setLoading(false);
       } catch (e) {
         return thunkApi.rejectWithValue(e);
       }

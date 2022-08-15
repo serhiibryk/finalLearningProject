@@ -36,15 +36,16 @@ const TeamsSpecies = () => {
 
   const fetchSpecy = createAsyncThunk(
     "specy/specy",
-    async (nextId: number, thunkApi) => {
+    async (nextPage: number, thunkApi) => {
       try {
-        setLoading(true);
-        const res = await speciesService.getSpecies(nextId);
+        const check = nextPage !== 1;
+        check && setLoading(true);
+        const res = await speciesService.getSpecies(nextPage);
 
         // console.log(res);
         thunkApi.dispatch(specyReducer.setSpecies(res.results));
         setMaxCount(res.count);
-        setLoading(false);
+        check && setLoading(false);
       } catch (e) {
         return thunkApi.rejectWithValue(e);
       }

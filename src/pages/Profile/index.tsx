@@ -12,10 +12,10 @@ const Profile = () => {
   const [decoded, setDecoded] = useState<DecodedData | null>(null);
 
   const classes = useStyles();
-  const decodedData = useJwt(token.token);
+  const decodedData = useJwt(token);
 
   const returnToken = () => {
-    return token.token;
+    return token;
   };
 
   useEffect(() => {

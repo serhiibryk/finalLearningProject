@@ -38,15 +38,14 @@ const TeamsPeoples = () => {
 
   const fetchPeople = createAsyncThunk(
     "people/people",
-    async (nextId: number, thunkApi) => {
+    async (nextPage: number, thunkApi) => {
       try {
-        setLoading(true);
-        const res = await peopleService.getPeople(nextId);
-
-        console.log(res);
+        const check = nextPage !== 1;
+        check && setLoading(true);
+        const res = await peopleService.getPeople(nextPage);
         thunkApi.dispatch(peopleReducer.setPeople(res.results));
         setMaxCount(res.count);
-        setLoading(false);
+        check && setLoading(false);
       } catch (e) {
         return thunkApi.rejectWithValue(e);
       }
@@ -62,7 +61,7 @@ const TeamsPeoples = () => {
     setPageData(page);
   };
 
-  if (people.length === 0 || isLoading) {
+  if (!people.length || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
