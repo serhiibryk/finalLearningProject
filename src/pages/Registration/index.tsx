@@ -4,9 +4,9 @@ import { Button, Form, Input, notification } from "antd";
 
 import { localStoreService } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { userDataReducer } from "../../store/userData/reducer";
 
 import useStyles from "./style";
-import { userDataReducer } from "../../store/userData/reducer";
 
 const formItemLayout = {
   labelCol: {

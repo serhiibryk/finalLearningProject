@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
 import Spiner from "../../components/Spiner";
 import PaginationCategory from "../../components/Pagination";
 import { vehiclesService } from "../../services/vehicles";
 import { imgVehiclesList } from "../../utils";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { vehiclesReducer } from "../../store/vehicles/reducer";
 
 import useStyles from "./style";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { vehiclesReducer } from "../../store/vehicles/reducer";
 
 const { Meta } = Card;
 

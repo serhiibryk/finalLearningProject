@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
 import Spiner from "../../components/Spiner";
 import { imgFilmsList } from "../../utils";
 import { filmsService } from "../../services/films";
-
-import useStyles from "./style";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { filmsReducer } from "../../store/films/reducer";
+
+import useStyles from "./style";
 
 const { Meta } = Card;
 

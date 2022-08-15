@@ -23,6 +23,7 @@ const Profile = () => {
       setDecoded(decodedData.decodedToken as DecodedData);
     }, 1000);
   }, [decodedData]);
+
   return (
     <div className={classes.root}>
       <Card className={classes.card} hoverable>
