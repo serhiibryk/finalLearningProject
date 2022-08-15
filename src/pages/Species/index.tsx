@@ -8,11 +8,16 @@ import { speciesService } from "../../services/species";
 import { imgSpeciesList } from "../../utils";
 
 import useStyles from "./style";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { specyReducer } from "../../store/specy/reducer";
 
 const { Meta } = Card;
 
 const TeamsSpecies = () => {
-  const [speciesList, setSpeciesList] = useState<Species[]>([]);
+  const { specy } = useAppSelector((state: any) => state.specy);
+  const dispatch = useAppDispatch();
+  // const [speciesList, setSpeciesList] = useState<Species[]>([]);
   const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
@@ -20,32 +25,49 @@ const TeamsSpecies = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const fetchSpecies = async (nextId: number) => {
-    setLoading(true);
-    speciesService.getSpecies(nextId).then((data) => {
-      setSpeciesList(data.results);
-      setMaxCount(data.count);
-      setLoading(false);
-    });
-  };
+  // const fetchSpecies = async (nextId: number) => {
+  //   setLoading(true);
+  //   speciesService.getSpecies(nextId).then((data) => {
+  //     setSpeciesList(data.results);
+  //     setMaxCount(data.count);
+  //     setLoading(false);
+  //   });
+  // };
+
+  const fetchSpecy = createAsyncThunk(
+    "specy/specy",
+    async (nextId: number, thunkApi) => {
+      try {
+        setLoading(true);
+        const res = await speciesService.getSpecies(nextId);
+
+        // console.log(res);
+        thunkApi.dispatch(specyReducer.setSpecies(res.results));
+        setMaxCount(res.count);
+        setLoading(false);
+      } catch (e) {
+        return thunkApi.rejectWithValue(e);
+      }
+    }
+  );
 
   useEffect(() => {
-    fetchSpecies(pageData);
+    dispatch(fetchSpecy(pageData));
   }, [pageData]);
 
   const handleChange = (page: number) => {
-    fetchSpecies(page);
+    fetchSpecy(page);
     setPageData(page);
   };
 
-  if (speciesList.length === 0 || isLoading) {
+  if (specy.length === 0 || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {speciesList.length && (
+        {specy.length && (
           <PaginationCategory
             defaultCurrent={1}
             total={maxCount}
@@ -55,7 +77,7 @@ const TeamsSpecies = () => {
         )}
       </div>
       <div className={classes.content}>
-        {speciesList.map((speccy, index) => {
+        {specy.map((speccy: any, index: any) => {
           return (
             <Card
               className={classes.card}

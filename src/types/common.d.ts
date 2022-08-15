@@ -63,7 +63,7 @@ declare interface Planets {
   url: string;
 }
 
-declare interface Starships {
+declare interface Vehicles {
   MGLT: string;
   cargo_capacity: string;
   consumables: string;

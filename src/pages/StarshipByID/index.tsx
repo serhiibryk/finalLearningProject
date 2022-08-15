@@ -12,7 +12,7 @@ import { peopleService } from "../../services/people";
 import useStyles from "./style";
 
 const StarshipByID = () => {
-  const [starshipsList, setStarshipsList] = useState<Starships | null>(null);
+  const [starshipsList, setStarshipsList] = useState<Vehicles | null>(null);
   const [filmsList, setFilmsList] = useState<Films[] | null>(null);
   const [peopleList, setPeopleList] = useState<People[] | null>(null);
 

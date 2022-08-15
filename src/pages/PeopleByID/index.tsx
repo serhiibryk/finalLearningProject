@@ -19,7 +19,7 @@ const PeopleByID = () => {
   const [filmsList, setFilmsList] = useState<Films[] | null>(null);
   const [planetsList, setPlanetsList] = useState<Planets | null>(null);
   const [speciesList, setSpeciesList] = useState<Species[] | null>(null);
-  const [starshipsList, setStarshipsList] = useState<Starships[] | null>(null);
+  const [starshipsList, setStarshipsList] = useState<Vehicles[] | null>(null);
   const [vehiclesList, setVehiclesList] = useState<Vehicles[] | null>(null);
 
   const location = useLocation();

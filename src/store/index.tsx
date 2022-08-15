@@ -27,8 +27,21 @@ import user from "./user/reducer";
 import userData from "./userData/reducer";
 import films from "./films/reducer";
 import people from "./people/reducer";
+import planets from "./planets/reducer";
+import specy from "./specy/reducer";
+import starships from "./starships/reducer";
+import vehicles from "./vehicles/reducer";
 
-const rootReducer = combineReducers({ user, userData, films, people });
+const rootReducer = combineReducers({
+  user,
+  userData,
+  films,
+  people,
+  planets,
+  specy,
+  starships,
+  vehicles,
+});
 
 export const setupStore = () => {
   return configureStore({

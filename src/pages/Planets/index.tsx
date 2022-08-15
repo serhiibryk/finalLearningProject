@@ -8,11 +8,16 @@ import { planetsService } from "../../services/planets";
 import { imgPlanetsList } from "../../utils";
 
 import useStyles from "./style";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { planetsReducer } from "../../store/planets/reducer";
 
 const { Meta } = Card;
 
 const TeamsPlanets = () => {
-  const [planetsList, setPlanetsList] = useState<Planets[]>([]);
+  const { planets } = useAppSelector((state: any) => state.planets);
+  const dispatch = useAppDispatch();
+  // const [planetsList, setPlanetsList] = useState<Planets[]>([]);
   const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
@@ -20,17 +25,34 @@ const TeamsPlanets = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const fetchPlanets = async (nextId: number) => {
-    setLoading(true);
-    planetsService.getPlanets(nextId).then((data) => {
-      setPlanetsList(data.results);
-      setMaxCount(data.count);
-      setLoading(false);
-    });
-  };
+  // const fetchPlanets = async (nextId: number) => {
+  //   setLoading(true);
+  //   planetsService.getPlanets(nextId).then((data) => {
+  //     setPlanetsList(data.results);
+  //     setMaxCount(data.count);
+  //     setLoading(false);
+  //   });
+  // };
+
+  const fetchPlanets = createAsyncThunk(
+    "planets/planets",
+    async (nextId: number, thunkApi) => {
+      try {
+        setLoading(true);
+        const res = await planetsService.getPlanets(nextId);
+
+        // console.log(res);
+        thunkApi.dispatch(planetsReducer.setPlanets(res.results));
+        setMaxCount(res.count);
+        setLoading(false);
+      } catch (e) {
+        return thunkApi.rejectWithValue(e);
+      }
+    }
+  );
 
   useEffect(() => {
-    fetchPlanets(pageData);
+    dispatch(fetchPlanets(pageData));
   }, [pageData]);
 
   const handleChange = (page: number) => {
@@ -38,14 +60,14 @@ const TeamsPlanets = () => {
     setPageData(page);
   };
 
-  if (planetsList.length === 0 || isLoading) {
+  if (planets.length === 0 || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {planetsList.length && (
+        {planets.length && (
           <PaginationCategory
             defaultCurrent={1}
             total={maxCount}
@@ -55,7 +77,7 @@ const TeamsPlanets = () => {
         )}
       </div>
       <div className={classes.content}>
-        {planetsList.map((planet, index) => {
+        {planets.map((planet: any, index: any) => {
           return (
             <Card
               className={classes.card}

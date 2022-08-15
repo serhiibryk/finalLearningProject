@@ -8,28 +8,51 @@ import { vehiclesService } from "../../services/vehicles";
 import { imgVehiclesList } from "../../utils";
 
 import useStyles from "./style";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { vehiclesReducer } from "../../store/vehicles/reducer";
 
 const { Meta } = Card;
 
 const TeamsVehicles = () => {
-  const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
+  const { vehicles } = useAppSelector((state: any) => state.vehicles);
+  const dispatch = useAppDispatch();
+  // const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
   const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
   const classes = useStyles();
   const push = useNavigate();
-  const fetchVehicles = async (nextId: number) => {
-    setLoading(true);
-    vehiclesService.getVehicles(nextId).then((data) => {
-      setVehiclesList(data.results);
-      setMaxCount(data.count);
-      setLoading(false);
-    });
-  };
+
+  // const fetchVehicles = async (nextId: number) => {
+  //   setLoading(true);
+  //   vehiclesService.getVehicles(nextId).then((data) => {
+  //     setVehiclesList(data.results);
+  //     setMaxCount(data.count);
+  //     setLoading(false);
+  //   });
+  // };
+
+  const fetchVehicles = createAsyncThunk(
+    "vehicles/vehicles",
+    async (nextId: number, thunkApi) => {
+      try {
+        setLoading(true);
+        const res = await vehiclesService.getVehicles(nextId);
+
+        // console.log(res);
+        thunkApi.dispatch(vehiclesReducer.setVehicles(res.results));
+        setMaxCount(res.count);
+        setLoading(false);
+      } catch (e) {
+        return thunkApi.rejectWithValue(e);
+      }
+    }
+  );
 
   useEffect(() => {
-    fetchVehicles(pageData);
+    dispatch(fetchVehicles(pageData));
   }, [pageData]);
 
   const handleChange = (page: number) => {
@@ -37,14 +60,14 @@ const TeamsVehicles = () => {
     setPageData(page);
   };
 
-  if (vehiclesList.length === 0 || isLoading) {
+  if (vehicles.length === 0 || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {vehiclesList.length && (
+        {vehicles.length && (
           <PaginationCategory
             defaultCurrent={1}
             current={pageData}
@@ -54,7 +77,7 @@ const TeamsVehicles = () => {
         )}
       </div>
       <div className={classes.content}>
-        {vehiclesList.map((vehicle, index) => {
+        {vehicles.map((vehicle: any, index: any) => {
           return (
             <Card
               className={classes.card}
