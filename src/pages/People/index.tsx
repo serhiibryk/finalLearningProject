@@ -8,11 +8,16 @@ import { peopleService } from "../../services/people";
 import { imgPeopleList } from "../../utils";
 
 import useStyles from "./style";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { peopleReducer } from "../../store/people/reducer";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 
 const { Meta } = Card;
 
 const TeamsPeoples = () => {
-  const [peoplesList, setPeoplesList] = useState<People[]>([]);
+  const { people } = useAppSelector((state: any) => state.people);
+  const dispatch = useAppDispatch();
+  // const [people, setPeoplesList] = useState<People[]>([]);
   const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
@@ -22,17 +27,34 @@ const TeamsPeoples = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const fetchPeople = async (nextId: number) => {
-    setLoading(true);
-    peopleService.getPeople(nextId).then((data) => {
-      setPeoplesList(data.results);
-      setMaxCount(data.count);
-      setLoading(false);
-    });
-  };
+  // const fetchPeople = async (nextId: number) => {
+  //   setLoading(true);
+  //   peopleService.getPeople(nextId).then((data) => {
+  //     setPeoplesList(data.results);
+  //     setMaxCount(data.count);
+  //     setLoading(false);
+  //   });
+  // };
+
+  const fetchPeople = createAsyncThunk(
+    "people/people",
+    async (nextId: number, thunkApi) => {
+      try {
+        setLoading(true);
+        const res = await peopleService.getPeople(nextId);
+
+        console.log(res);
+        thunkApi.dispatch(peopleReducer.setPeople(res.results));
+        setMaxCount(res.count);
+        setLoading(false);
+      } catch (e) {
+        return thunkApi.rejectWithValue(e);
+      }
+    }
+  );
 
   useEffect(() => {
-    fetchPeople(pageData);
+    dispatch(fetchPeople(pageData));
   }, [pageData]);
 
   const handleChange = (page: number) => {
@@ -40,14 +62,14 @@ const TeamsPeoples = () => {
     setPageData(page);
   };
 
-  if (peoplesList.length === 0 || isLoading) {
+  if (people.length === 0 || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {peoplesList.length && (
+        {people.length && (
           <PaginationCategory
             defaultCurrent={1}
             current={pageData}
@@ -57,7 +79,7 @@ const TeamsPeoples = () => {
         )}
       </div>
       <div className={classes.content}>
-        {peoplesList.map((people, index) => {
+        {people.map((people: any, index: any) => {
           return (
             <Card
               className={classes.card}
