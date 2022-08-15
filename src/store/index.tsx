@@ -25,8 +25,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "./user/reducer";
 import userData from "./userData/reducer";
+import films from "./films/reducer";
 
-const rootReducer = combineReducers({ user, userData });
+const rootReducer = combineReducers({ user, userData, films });
 
 export const setupStore = () => {
   return configureStore({

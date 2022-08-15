@@ -17,6 +17,8 @@ const TeamsPeoples = () => {
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  // const { films } = useAppSelector((state: any) => state.films);
+
   const classes = useStyles();
   const push = useNavigate();
 
