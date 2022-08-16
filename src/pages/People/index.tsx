@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
@@ -22,6 +22,11 @@ const TeamsPeoples = () => {
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  const location = useLocation();
+  console.log(location);
+
+  const { page } = useAppSelector((state: any) => state.page);
+
   // const { films } = useAppSelector((state: any) => state.films);
 
   const classes = useStyles();
@@ -40,38 +45,43 @@ const TeamsPeoples = () => {
     "people/people",
     async (nextPage: number, thunkApi) => {
       try {
-        const check = nextPage !== 1;
-        check && setLoading(true);
+        setLoading(true);
         const res = await peopleService.getPeople(nextPage);
         thunkApi.dispatch(peopleReducer.setPeople(res.results));
         setMaxCount(res.count);
-        check && setLoading(false);
+        setLoading(false);
       } catch (e) {
         return thunkApi.rejectWithValue(e);
       }
     }
   );
 
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
+
   useEffect(() => {
-    dispatch(fetchPeople(pageData));
-  }, [pageData]);
+    dispatch(fetchPeople(currentPage));
+  }, [currentPage]);
 
   const handleChange = (page: number) => {
     fetchPeople(page);
     setPageData(page);
+
+    push(`/people?page=${page}`);
   };
 
   if (!people.length || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
-
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
         {people.length && (
           <PaginationCategory
-            defaultCurrent={1}
-            current={pageData}
+            defaultCurrent={currentPage}
+            current={currentPage}
             total={maxCount}
             onChange={handleChange}
           />

@@ -31,6 +31,7 @@ import planets from "./planets/reducer";
 import specy from "./specy/reducer";
 import starships from "./starships/reducer";
 import vehicles from "./vehicles/reducer";
+import page from "./pageAntd/reducer";
 
 const rootReducer = combineReducers({
   user,
@@ -41,6 +42,7 @@ const rootReducer = combineReducers({
   specy,
   starships,
   vehicles,
+  page,
 });
 
 export const setupStore = () => {

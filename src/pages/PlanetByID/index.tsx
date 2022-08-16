@@ -22,6 +22,7 @@ const PlanetByID = () => {
   const fetchPlanetByID = async (id: number) => {
     planetsService.getPlanetByID(id).then((data) => {
       setPlanetsList(data);
+      console.log(data);
     });
   };
 

@@ -29,11 +29,9 @@ const FilmByID = () => {
     });
   };
 
-  const location111 = useLocation();
-
   useEffect(() => {
     const id = location.pathname.split("/")[2];
-
+    console.log(id);
     fetchFilmsByID(Number(id));
   }, []);
 
