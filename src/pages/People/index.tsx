@@ -24,10 +24,7 @@ const TeamsPeoples = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const currentPage =
-    location.search.split("=")[1] === undefined
-      ? 1
-      : Number(location.search.split("=")[1]);
+  const currentPage = Number(location.search.split("=")[1] || 1);
 
   const fetchPeople = createAsyncThunk(
     "people/people",
@@ -56,6 +53,7 @@ const TeamsPeoples = () => {
   if (!people.length || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
+
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>

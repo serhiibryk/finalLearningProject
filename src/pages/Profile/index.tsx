@@ -33,17 +33,17 @@ const Profile = () => {
             <p className={classes.textP}>{returnToken()}</p>
             <p>Decode:</p>
             <ul>
-              <li>{decoded?.firstName}</li>
-              <li>{decoded?.lastName}</li>
-              <li>{decoded?.nickname}</li>
-              <li>{decoded?.phone}</li>
-              <li>{decoded?.address}</li>
-              <li>{decoded?.email}</li>
-              <li>{decoded?.aud}</li>
-              <li>{decoded?.iss}</li>
-              <li>{decoded?.exp}</li>
-              <li>{decoded?.iat}</li>
-              <li>{decoded?.sub}</li>
+              <li>{decoded.firstName}</li>
+              <li>{decoded.lastName}</li>
+              <li>{decoded.nickname}</li>
+              <li>{decoded.phone}</li>
+              <li>{decoded.address}</li>
+              <li>{decoded.email}</li>
+              <li>{decoded.aud}</li>
+              <li>{decoded.iss}</li>
+              <li>{decoded.exp}</li>
+              <li>{decoded.iat}</li>
+              <li>{decoded.sub}</li>
             </ul>
           </div>
         ) : (
