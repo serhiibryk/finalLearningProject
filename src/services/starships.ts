@@ -1,13 +1,13 @@
 import { api } from ".";
 
 class StarshipsService {
-  async getStarships(id: number): Promise<any> {
+  async getStarships(id: number): Promise<DataFromAPI<Vehicles[]>> {
     const res = await api.get(`starships/?page=${id}`);
-    return res;
+    return res.data;
   }
-  async getStarshipByID(id: number): Promise<any> {
+  async getStarshipByID(id: number): Promise<Vehicles> {
     const resByID = await api.get(`starships/${id}/`);
-    return resByID;
+    return resByID.data;
   }
 }
 

@@ -1,13 +1,13 @@
 import { api } from ".";
 
 class PlanetsService {
-  async getPlanets(id: number): Promise<any> {
+  async getPlanets(id: number): Promise<DataFromAPI<Planets[]>> {
     const res = await api.get(`planets/?page=${id}`);
-    return res;
+    return res.data;
   }
-  async getPlanetByID(id: number): Promise<any> {
+  async getPlanetByID(id: number): Promise<Planets> {
     const resByID = await api.get(`planets/${id}/`);
-    return resByID;
+    return resByID.data;
   }
 }
 

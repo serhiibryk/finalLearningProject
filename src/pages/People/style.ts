@@ -40,6 +40,16 @@ const useStyles = createUseStyles({
     justifyContent: "space-around",
     marginTop: "15px",
   },
+  search: {
+    display: "flex",
+    justifyContent: "space-around",
+    margin: "0 0 0 1.5em",
+    marginTop: "15px",
+  },
+  topPage: {
+    display: "flex",
+    flexDirection: "row",
+  },
 });
 
 export default useStyles;

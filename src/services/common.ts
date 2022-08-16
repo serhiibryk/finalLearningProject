@@ -1,9 +1,9 @@
 import { api } from ".";
 
 class CommonService {
-  async getCommon(): Promise<any> {
+  async getCommon(): Promise<Common> {
     const res = await api.get(`/`);
-    return res;
+    return res.data;
   }
 }
 

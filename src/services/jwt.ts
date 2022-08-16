@@ -1,5 +1,5 @@
 class JwtService {
-  getJwt(user: any) {
+  getJwt(user: string) {
     console.log(user);
     return {
       token:

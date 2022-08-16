@@ -63,7 +63,7 @@ declare interface Planets {
   url: string;
 }
 
-declare interface Starships {
+declare interface Vehicles {
   MGLT: string;
   cargo_capacity: string;
   consumables: string;
@@ -131,7 +131,7 @@ declare interface IPagination {
 
 declare interface ICardRow {
   lable: string;
-  title: any;
+  title: string | number;
 }
 
 declare interface ISpiner {
@@ -156,4 +156,11 @@ declare interface DecodedData {
   phone: string;
   firstName: string;
   lastName: string;
+}
+
+declare interface DataFromAPI<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T;
 }

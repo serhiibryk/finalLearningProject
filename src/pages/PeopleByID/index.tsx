@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card } from "antd";
 
-import CardRow from "../../components/cardRow";
-import Spiner from "../../components/spiner";
-import MapFieldsByID from "../../components/mapFieldsByID";
+import CardRow from "../../components/CardRow";
+import Spiner from "../../components/Spiner";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { planetsService } from "../../services/planets";
@@ -19,7 +19,7 @@ const PeopleByID = () => {
   const [filmsList, setFilmsList] = useState<Films[] | null>(null);
   const [planetsList, setPlanetsList] = useState<Planets | null>(null);
   const [speciesList, setSpeciesList] = useState<Species[] | null>(null);
-  const [starshipsList, setStarshipsList] = useState<Starships[] | null>(null);
+  const [starshipsList, setStarshipsList] = useState<Vehicles[] | null>(null);
   const [vehiclesList, setVehiclesList] = useState<Vehicles[] | null>(null);
 
   const location = useLocation();
@@ -27,8 +27,8 @@ const PeopleByID = () => {
   const classes = useStyles();
 
   const fetchPeopleByID = async (id: number) => {
-    peopleService.getPeopleByID(id).then((resByID) => {
-      setPeopleList(resByID.data);
+    peopleService.getPeopleByID(id).then((data) => {
+      setPeopleList(data);
     });
   };
 
@@ -45,9 +45,7 @@ const PeopleByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -56,7 +54,7 @@ const PeopleByID = () => {
         const idsPlanets = peoplesList.homeworld.split("/")[5];
         const planets = await planetsService
           .getPlanetByID(Number(idsPlanets))
-          .then((resByID) => resByID.data);
+          .then((data) => data);
 
         setPlanetsList(planets);
 
@@ -68,7 +66,7 @@ const PeopleByID = () => {
             async (id) =>
               await speciesService
                 .getSpeccyByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -82,7 +80,7 @@ const PeopleByID = () => {
             async (id) =>
               await starshipsService
                 .getStarshipByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -96,7 +94,7 @@ const PeopleByID = () => {
             async (id) =>
               await vehiclesService
                 .getVehicleByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 

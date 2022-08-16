@@ -1,61 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
-import Spiner from "../../components/spiner";
-import PaginationCategory from "../../components/pagination";
+import Spiner from "../../components/Spiner";
+import PaginationCategory from "../../components/Pagination";
 import { speciesService } from "../../services/species";
 import { imgSpeciesList } from "../../utils";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { specyReducer } from "../../store/specy/reducer";
 
 import useStyles from "./style";
 
 const { Meta } = Card;
 
 const TeamsSpecies = () => {
-  const [speciesList, setSpeciesList] = useState<Species[]>([]);
-  const [pageData, setPageData] = useState(1);
+  const { specy } = useAppSelector((state: any) => state.specy);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  const dispatch = useAppDispatch();
+  const location = useLocation();
   const classes = useStyles();
   const push = useNavigate();
 
-  const fetchSpecies = async (nextId: number) => {
-    setLoading(true);
-    speciesService.getSpecies(nextId).then((res) => {
-      setSpeciesList(res.data.results);
-      setMaxCount(res.data.count);
-      setLoading(false);
-    });
-  };
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
+
+  const fetchSpecy = createAsyncThunk(
+    "specy/specy",
+    async (nextPage: number, thunkApi) => {
+      try {
+        setLoading(true);
+        const res = await speciesService.getSpecies(nextPage);
+        thunkApi.dispatch(specyReducer.setSpecies(res.results));
+        setMaxCount(res.count);
+        setLoading(false);
+      } catch (e) {
+        return thunkApi.rejectWithValue(e);
+      }
+    }
+  );
 
   useEffect(() => {
-    fetchSpecies(pageData);
-  }, [pageData]);
+    dispatch(fetchSpecy(currentPage));
+  }, [currentPage]);
 
   const handleChange = (page: number) => {
-    fetchSpecies(page);
-    setPageData(page);
+    fetchSpecy(page);
+    push(`/species?page=${page}`);
   };
 
-  if (speciesList.length === 0 || isLoading) {
+  if (specy.length === 0 || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {speciesList.length && (
+        {specy.length && (
           <PaginationCategory
-            defaultCurrent={1}
+            defaultCurrent={currentPage}
             total={maxCount}
-            current={pageData}
+            current={currentPage}
             onChange={handleChange}
           />
         )}
       </div>
       <div className={classes.content}>
-        {speciesList.map((speccy, index) => {
+        {specy.map((speccy: any, index: any) => {
           return (
             <Card
               className={classes.card}

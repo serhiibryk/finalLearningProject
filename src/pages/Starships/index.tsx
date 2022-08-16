@@ -1,60 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
-import Spiner from "../../components/spiner";
-import PaginationCategory from "../../components/pagination";
+import Spiner from "../../components/Spiner";
+import PaginationCategory from "../../components/Pagination";
 import { starshipsService } from "../../services/starships";
 import { imgStarshipsList } from "../../utils";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { starshipsReducer } from "../../store/starships/reducer";
 
 import useStyles from "./style";
 
 const { Meta } = Card;
 
 const TeamsStarships = () => {
-  const [starshipsList, setStarshipsList] = useState<Starships[]>([]);
-  const [pageData, setPageData] = useState(1);
+  const { starships } = useAppSelector((state: any) => state.starships);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  const location = useLocation();
+  const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
 
-  const fetchStarships = async (nextId: number) => {
-    setLoading(true);
-    starshipsService.getStarships(nextId).then((res) => {
-      setStarshipsList(res.data.results);
-      setMaxCount(res.data.count);
-      setLoading(false);
-    });
-  };
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
+
+  const fetchStarships = createAsyncThunk(
+    "starships/starships",
+    async (nextPage: number, thunkApi) => {
+      try {
+        setLoading(true);
+        const res = await starshipsService.getStarships(nextPage);
+        thunkApi.dispatch(starshipsReducer.setStarships(res.results));
+        setMaxCount(res.count);
+        setLoading(false);
+      } catch (e) {
+        return thunkApi.rejectWithValue(e);
+      }
+    }
+  );
+
   useEffect(() => {
-    fetchStarships(pageData);
-  }, [pageData]);
+    dispatch(fetchStarships(currentPage));
+  }, [currentPage]);
 
   const handleChange = (page: number) => {
     fetchStarships(page);
-    setPageData(page);
+    push(`/starships?page=${page}`);
   };
 
-  if (starshipsList.length === 0 || isLoading) {
+  if (starships.length === 0 || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {starshipsList.length && (
+        {starships.length && (
           <PaginationCategory
-            defaultCurrent={1}
-            current={pageData}
+            defaultCurrent={currentPage}
+            current={currentPage}
             total={maxCount}
             onChange={handleChange}
           />
         )}
       </div>
       <div className={classes.content}>
-        {starshipsList.map((starship, index) => {
+        {starships.map((starship: any, index: any) => {
           return (
             <Card
               className={classes.card}

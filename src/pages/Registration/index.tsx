@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, notification } from "antd";
 
-import { StoreContext } from "../../store";
+import { localStoreService } from "../../utils";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { userDataReducer } from "../../store/userData/reducer";
 
 import useStyles from "./style";
-import { localStoreService } from "../../utils";
 
 const formItemLayout = {
   labelCol: {
@@ -34,7 +35,8 @@ const Registration: React.FC = () => {
   const classes = useStyles();
   const [formAntd] = Form.useForm();
 
-  const context = useContext(StoreContext);
+  const { data } = useAppSelector((state: any) => state.userData);
+  const dispatch = useAppDispatch();
   const push = useNavigate();
 
   const openNotification = (message: string, description: string) => {
@@ -45,7 +47,8 @@ const Registration: React.FC = () => {
   };
 
   const onFinish = (values: any) => {
-    const res = [...context.user];
+    const res = [...data];
+
     const checkEmail = res.find((same: any) => same.email === values.email);
 
     if (checkEmail) {
@@ -55,48 +58,11 @@ const Registration: React.FC = () => {
       );
     } else {
       res.push(values);
-
       localStoreService.set("userData", res);
-      context.setUser(res);
+      dispatch(userDataReducer.set(res));
       push("/login");
     }
   };
-
-  // // const prefixSelector = (
-  // //   <Form.Item name="prefix" noStyle>
-  // //     <Select style={{ width: 70 }}>
-  // //       <Option value="86">+86</Option>
-  // //       <Option value="87">+87</Option>
-  // //     </Select>
-  // //   </Form.Item>
-  // // );
-
-  // // const suffixSelector = (
-  // //   <Form.Item name="suffix" noStyle>
-  // //     <Select style={{ width: 70 }}>
-  // //       <Option value="USD">$</Option>
-  // //       <Option value="CNY">¥</Option>
-  // //     </Select>
-  // //   </Form.Item>
-  // // );
-
-  const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
-
-  const onWebsiteChange = (value: string) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-      );
-    }
-  };
-
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
-
   return (
     <div className={classes.registerContainer}>
       <Form

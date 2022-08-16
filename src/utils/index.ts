@@ -319,16 +319,18 @@ export const imgVehiclesList = [
 ];
 
 export const localStoreService = {
-  get: (key: string, initValue: string = "false") => {
+  get: (key: string, initValue: string = "null") => {
     const res = JSON.parse(localStorage.getItem(key) || initValue);
 
     return res;
   },
-  set: (key: string, data: any) => {
-    localStorage.setItem(key, JSON.stringify(data));
+  set: (key: string, data: string | string[]) => {
+    const res = localStorage.setItem(key, JSON.stringify(data));
+    console.log("init", data);
+    return res;
   },
-};
-
-export const localStoregeRemove = (item: string) => {
-  localStorage.removeItem(item);
+  remove: (item: string) => {
+    const res = localStorage.removeItem(item);
+    return res;
+  },
 };

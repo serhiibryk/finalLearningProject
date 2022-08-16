@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card } from "antd";
 
-import Spiner from "../../components/spiner";
-import CardRow from "../../components/cardRow";
-import MapFieldsByID from "../../components/mapFieldsByID";
+import Spiner from "../../components/Spiner";
+import CardRow from "../../components/CardRow";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { vehiclesService } from "../../services/vehicles";
@@ -20,8 +20,8 @@ const StarshipByID = () => {
   const location = useLocation();
 
   const fetchVehicleByID = async (id: number) => {
-    vehiclesService.getVehicleByID(id).then((resByID) => {
-      setVehiclesList(resByID.data);
+    vehiclesService.getVehicleByID(id).then((data) => {
+      setVehiclesList(data);
     });
   };
 
@@ -39,9 +39,7 @@ const StarshipByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -53,9 +51,7 @@ const StarshipByID = () => {
         const people = await Promise.all(
           idsPeople.map(
             async (id) =>
-              await peopleService
-                .getPeopleByID(Number(id))
-                .then((resByID) => resByID.data)
+              await peopleService.getPeopleByID(Number(id)).then((data) => data)
           )
         );
 

@@ -1,61 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
-import Spiner from "../../components/spiner";
-import PaginationCategory from "../../components/pagination";
+import Spiner from "../../components/Spiner";
+import PaginationCategory from "../../components/Pagination";
 import { planetsService } from "../../services/planets";
 import { imgPlanetsList } from "../../utils";
+import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { planetsReducer } from "../../store/planets/reducer";
 
 import useStyles from "./style";
 
 const { Meta } = Card;
 
 const TeamsPlanets = () => {
-  const [planetsList, setPlanetsList] = useState<Planets[]>([]);
-  const [pageData, setPageData] = useState(1);
+  const { planets } = useAppSelector((state: any) => state.planets);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
+  const location = useLocation();
 
-  const fetchPlanets = async (nextId: number) => {
-    setLoading(true);
-    planetsService.getPlanets(nextId).then((res) => {
-      setPlanetsList(res.data.results);
-      setMaxCount(res.data.count);
-      setLoading(false);
-    });
-  };
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
+
+  const fetchPlanets = createAsyncThunk(
+    "planets/planets",
+    async (nextPage: number, thunkApi) => {
+      try {
+        setLoading(true);
+        const res = await planetsService.getPlanets(nextPage);
+        thunkApi.dispatch(planetsReducer.setPlanets(res.results));
+        setMaxCount(res.count);
+        setLoading(false);
+      } catch (e) {
+        return thunkApi.rejectWithValue(e);
+      }
+    }
+  );
 
   useEffect(() => {
-    fetchPlanets(pageData);
-  }, [pageData]);
+    dispatch(fetchPlanets(currentPage));
+  }, [currentPage]);
 
   const handleChange = (page: number) => {
     fetchPlanets(page);
-    setPageData(page);
+    push(`/planets?page=${page}`);
   };
 
-  if (planetsList.length === 0 || isLoading) {
+  if (planets.length === 0 || isLoading) {
     return <Spiner classes={classes.spiner} />;
   }
 
   return (
     <div className={classes.root}>
       <div className={classes.pagination}>
-        {planetsList.length && (
+        {planets.length && (
           <PaginationCategory
-            defaultCurrent={1}
+            defaultCurrent={currentPage}
             total={maxCount}
-            current={pageData}
+            current={currentPage}
             onChange={handleChange}
           />
         )}
       </div>
       <div className={classes.content}>
-        {planetsList.map((planet, index) => {
+        {planets.map((planet: any, index: any) => {
           return (
             <Card
               className={classes.card}

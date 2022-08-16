@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Card, Divider } from "antd";
 import { useLocation } from "react-router-dom";
 
-import CardRow from "../../components/cardRow";
-import Spiner from "../../components/spiner";
+import CardRow from "../../components/CardRow";
+import Spiner from "../../components/Spiner";
 import { filmsService } from "../../services/films";
 import { planetsService } from "../../services/planets";
 import { speciesService } from "../../services/species";
@@ -11,29 +11,27 @@ import { starshipsService } from "../../services/starships";
 import { vehiclesService } from "../../services/vehicles";
 
 import useStyles from "./style";
-import MapFieldsByID from "../../components/mapFieldsByID";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 
 const FilmByID = () => {
   const [filmsList, setFilmsList] = useState<Films | null>(null);
   const [planetsList, setPlanetsList] = useState<Planets[] | null>(null);
   const [speciesList, setSpeciesList] = useState<Species[] | null>(null);
-  const [starshipsList, setStarshipsList] = useState<Starships[] | null>(null);
+  const [starshipsList, setStarshipsList] = useState<Vehicles[] | null>(null);
   const [vehiclesList, setVehiclesList] = useState<Vehicles[] | null>(null);
 
   const location = useLocation();
   const classes = useStyles();
 
   const fetchFilmsByID = async (id: number) => {
-    filmsService.getFilmByID(id).then((resByID) => {
-      setFilmsList(resByID.data);
+    filmsService.getFilmByID(id).then((data) => {
+      setFilmsList(data);
     });
   };
 
-  const location111 = useLocation();
-
   useEffect(() => {
     const id = location.pathname.split("/")[2];
-
+    console.log(id);
     fetchFilmsByID(Number(id));
   }, []);
 
@@ -48,7 +46,7 @@ const FilmByID = () => {
             async (id) =>
               await planetsService
                 .getPlanetByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -62,7 +60,7 @@ const FilmByID = () => {
             async (id) =>
               await vehiclesService
                 .getVehicleByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -76,7 +74,7 @@ const FilmByID = () => {
             async (id) =>
               await speciesService
                 .getSpeccyByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 
@@ -90,7 +88,7 @@ const FilmByID = () => {
             async (id) =>
               await starshipsService
                 .getStarshipByID(Number(id))
-                .then((resByID) => resByID.data)
+                .then((data) => data)
           )
         );
 

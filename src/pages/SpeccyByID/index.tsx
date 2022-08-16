@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card } from "antd";
 
-import CardRow from "../../components/cardRow";
-import Spiner from "../../components/spiner";
-import MapFieldsByID from "../../components/mapFieldsByID";
+import CardRow from "../../components/CardRow";
+import Spiner from "../../components/Spiner";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
 import { planetsService } from "../../services/planets";
@@ -22,8 +22,8 @@ const SpeccyByID = () => {
   const classes = useStyles();
 
   const fetchSpeccyByID = async (id: number) => {
-    speciesService.getSpeccyByID(id).then((resByID) => {
-      setSpeciesList(resByID.data);
+    speciesService.getSpeccyByID(id).then((data) => {
+      setSpeciesList(data);
     });
   };
 
@@ -42,9 +42,7 @@ const SpeccyByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -54,7 +52,7 @@ const SpeccyByID = () => {
         if (idsPlanets) {
           const planets = await planetsService
             .getPlanetByID(Number(idsPlanets))
-            .then((resByID) => resByID.data);
+            .then((data) => data);
 
           setPlanetsList(planets);
         }
@@ -65,9 +63,7 @@ const SpeccyByID = () => {
         const people = await Promise.all(
           idsPeople.map(
             async (id) =>
-              await peopleService
-                .getPeopleByID(Number(id))
-                .then((resByID) => resByID.data)
+              await peopleService.getPeopleByID(Number(id)).then((data) => data)
           )
         );
 

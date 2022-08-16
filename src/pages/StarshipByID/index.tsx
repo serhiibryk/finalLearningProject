@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card } from "antd";
 
-import Spiner from "../../components/spiner";
-import CardRow from "../../components/cardRow";
-import MapFieldsByID from "../../components/mapFieldsByID";
+import Spiner from "../../components/Spiner";
+import CardRow from "../../components/CardRow";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 import { starshipsService } from "../../services/starships";
 import { filmsService } from "../../services/films";
 import { peopleService } from "../../services/people";
@@ -12,7 +12,7 @@ import { peopleService } from "../../services/people";
 import useStyles from "./style";
 
 const StarshipByID = () => {
-  const [starshipsList, setStarshipsList] = useState<Starships | null>(null);
+  const [starshipsList, setStarshipsList] = useState<Vehicles | null>(null);
   const [filmsList, setFilmsList] = useState<Films[] | null>(null);
   const [peopleList, setPeopleList] = useState<People[] | null>(null);
 
@@ -20,8 +20,8 @@ const StarshipByID = () => {
   const location = useLocation();
 
   const fetchStarshipByID = async (id: number) => {
-    starshipsService.getStarshipByID(id).then((resByID) => {
-      setStarshipsList(resByID.data);
+    starshipsService.getStarshipByID(id).then((data) => {
+      setStarshipsList(data);
     });
   };
 
@@ -39,9 +39,7 @@ const StarshipByID = () => {
         const films = await Promise.all(
           idsFilms.map(
             async (id) =>
-              await filmsService
-                .getFilmByID(Number(id))
-                .then((resByID) => resByID.data)
+              await filmsService.getFilmByID(Number(id)).then((data) => data)
           )
         );
 
@@ -53,9 +51,7 @@ const StarshipByID = () => {
         const people = await Promise.all(
           idsPeople.map(
             async (id) =>
-              await peopleService
-                .getPeopleByID(Number(id))
-                .then((resByID) => resByID.data)
+              await peopleService.getPeopleByID(Number(id)).then((data) => data)
           )
         );
 
