@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
@@ -16,12 +16,13 @@ const { Meta } = Card;
 
 const TeamsVehicles = () => {
   const { vehicles } = useAppSelector((state: any) => state.vehicles);
-  const dispatch = useAppDispatch();
   // const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
-  const [pageData, setPageData] = useState(1);
+  // const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  const location = useLocation();
+  const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
 
@@ -33,6 +34,11 @@ const TeamsVehicles = () => {
   //     setLoading(false);
   //   });
   // };
+
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
 
   const fetchVehicles = createAsyncThunk(
     "vehicles/vehicles",
@@ -51,12 +57,13 @@ const TeamsVehicles = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchVehicles(pageData));
-  }, [pageData]);
+    dispatch(fetchVehicles(currentPage));
+  }, [currentPage]);
 
   const handleChange = (page: number) => {
     fetchVehicles(page);
-    setPageData(page);
+    // setPageData(page);
+    push(`/vehicles?page=${page}`);
   };
 
   if (vehicles.length === 0 || isLoading) {
@@ -68,8 +75,11 @@ const TeamsVehicles = () => {
       <div className={classes.pagination}>
         {vehicles.length && (
           <PaginationCategory
-            defaultCurrent={1}
-            current={pageData}
+            defaultCurrent={currentPage}
+            current={
+              // pageData
+              currentPage
+            }
             total={maxCount}
             onChange={handleChange}
           />

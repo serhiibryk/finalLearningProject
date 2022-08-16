@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
@@ -16,34 +16,28 @@ const { Meta } = Card;
 
 const TeamsPlanets = () => {
   const { planets } = useAppSelector((state: any) => state.planets);
-  const dispatch = useAppDispatch();
-  // const [planetsList, setPlanetsList] = useState<Planets[]>([]);
-  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
+  const location = useLocation();
 
-  // const fetchPlanets = async (nextId: number) => {
-  //   setLoading(true);
-  //   planetsService.getPlanets(nextId).then((data) => {
-  //     setPlanetsList(data.results);
-  //     setMaxCount(data.count);
-  //     setLoading(false);
-  //   });
-  // };
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
 
   const fetchPlanets = createAsyncThunk(
     "planets/planets",
     async (nextPage: number, thunkApi) => {
       try {
-        const check = nextPage !== 1;
-        check && setLoading(true);
+        setLoading(true);
         const res = await planetsService.getPlanets(nextPage);
         thunkApi.dispatch(planetsReducer.setPlanets(res.results));
         setMaxCount(res.count);
-        check && setLoading(false);
+        setLoading(false);
       } catch (e) {
         return thunkApi.rejectWithValue(e);
       }
@@ -51,12 +45,12 @@ const TeamsPlanets = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchPlanets(pageData));
-  }, [pageData]);
+    dispatch(fetchPlanets(currentPage));
+  }, [currentPage]);
 
   const handleChange = (page: number) => {
     fetchPlanets(page);
-    setPageData(page);
+    push(`/planets?page=${page}`);
   };
 
   if (planets.length === 0 || isLoading) {
@@ -68,9 +62,9 @@ const TeamsPlanets = () => {
       <div className={classes.pagination}>
         {planets.length && (
           <PaginationCategory
-            defaultCurrent={1}
+            defaultCurrent={currentPage}
             total={maxCount}
-            current={pageData}
+            current={currentPage}
             onChange={handleChange}
           />
         )}

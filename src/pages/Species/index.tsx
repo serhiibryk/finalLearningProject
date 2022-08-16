@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
@@ -16,36 +16,28 @@ const { Meta } = Card;
 
 const TeamsSpecies = () => {
   const { specy } = useAppSelector((state: any) => state.specy);
-  const dispatch = useAppDispatch();
-  // const [speciesList, setSpeciesList] = useState<Species[]>([]);
-  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
+  const dispatch = useAppDispatch();
+  const location = useLocation();
   const classes = useStyles();
   const push = useNavigate();
 
-  // const fetchSpecies = async (nextId: number) => {
-  //   setLoading(true);
-  //   speciesService.getSpecies(nextId).then((data) => {
-  //     setSpeciesList(data.results);
-  //     setMaxCount(data.count);
-  //     setLoading(false);
-  //   });
-  // };
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
 
   const fetchSpecy = createAsyncThunk(
     "specy/specy",
     async (nextPage: number, thunkApi) => {
       try {
-        const check = nextPage !== 1;
-        check && setLoading(true);
+        setLoading(true);
         const res = await speciesService.getSpecies(nextPage);
-
-        // console.log(res);
         thunkApi.dispatch(specyReducer.setSpecies(res.results));
         setMaxCount(res.count);
-        check && setLoading(false);
+        setLoading(false);
       } catch (e) {
         return thunkApi.rejectWithValue(e);
       }
@@ -53,12 +45,12 @@ const TeamsSpecies = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchSpecy(pageData));
-  }, [pageData]);
+    dispatch(fetchSpecy(currentPage));
+  }, [currentPage]);
 
   const handleChange = (page: number) => {
     fetchSpecy(page);
-    setPageData(page);
+    push(`/species?page=${page}`);
   };
 
   if (specy.length === 0 || isLoading) {
@@ -70,9 +62,9 @@ const TeamsSpecies = () => {
       <div className={classes.pagination}>
         {specy.length && (
           <PaginationCategory
-            defaultCurrent={1}
+            defaultCurrent={currentPage}
             total={maxCount}
-            current={pageData}
+            current={currentPage}
             onChange={handleChange}
           />
         )}

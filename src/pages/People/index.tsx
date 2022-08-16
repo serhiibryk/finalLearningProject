@@ -16,30 +16,18 @@ const { Meta } = Card;
 
 const TeamsPeoples = () => {
   const { people } = useAppSelector((state: any) => state.people);
-  const dispatch = useAppDispatch();
-  // const [people, setPeoplesList] = useState<People[]>([]);
-  const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
 
   const location = useLocation();
-  console.log(location);
-
-  const { page } = useAppSelector((state: any) => state.page);
-
-  // const { films } = useAppSelector((state: any) => state.films);
-
+  const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
 
-  // const fetchPeople = async (nextId: number) => {
-  //   setLoading(true);
-  //   peopleService.getPeople(nextId).then((data) => {
-  //     setPeoplesList(data.results);
-  //     setMaxCount(data.count);
-  //     setLoading(false);
-  //   });
-  // };
+  const currentPage =
+    location.search.split("=")[1] === undefined
+      ? 1
+      : Number(location.search.split("=")[1]);
 
   const fetchPeople = createAsyncThunk(
     "people/people",
@@ -56,19 +44,12 @@ const TeamsPeoples = () => {
     }
   );
 
-  const currentPage =
-    location.search.split("=")[1] === undefined
-      ? 1
-      : Number(location.search.split("=")[1]);
-
   useEffect(() => {
     dispatch(fetchPeople(currentPage));
   }, [currentPage]);
 
   const handleChange = (page: number) => {
     fetchPeople(page);
-    setPageData(page);
-
     push(`/people?page=${page}`);
   };
 
