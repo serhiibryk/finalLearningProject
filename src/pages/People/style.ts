@@ -41,14 +41,16 @@ const useStyles = createUseStyles({
     marginTop: "15px",
   },
   search: {
+    width: "350px",
     display: "flex",
     justifyContent: "space-around",
-    margin: "0 0 0 1.5em",
+    margin: "0 3em 0 1.5em",
     marginTop: "15px",
   },
-  topPage: {
+  topOfPage: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
   },
 });
 

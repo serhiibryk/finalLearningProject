@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { starshipsReducer } from "../../store/starships/reducer";
 
 import useStyles from "./style";
+import Search from "antd/lib/input/Search";
 
 const { Meta } = Card;
 
@@ -59,15 +60,25 @@ const TeamsStarships = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.pagination}>
-        {starships.length && (
-          <PaginationCategory
-            defaultCurrent={currentPage}
-            current={currentPage}
-            total={maxCount}
-            onChange={handleChange}
+      <div className={classes.topOfPage}>
+        <div>
+          <Search
+            className={classes.search}
+            placeholder="input name for search"
+            // onSearch={onSearch}
+            style={{ width: 350 }}
           />
-        )}
+        </div>
+        <div className={classes.pagination}>
+          {starships.length && (
+            <PaginationCategory
+              defaultCurrent={currentPage}
+              current={currentPage}
+              total={maxCount}
+              onChange={handleChange}
+            />
+          )}
+        </div>
       </div>
       <div className={classes.content}>
         {starships.map((starship: any, index: any) => {

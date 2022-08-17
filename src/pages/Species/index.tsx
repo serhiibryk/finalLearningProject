@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { specyReducer } from "../../store/specy/reducer";
 
 import useStyles from "./style";
+import Search from "antd/lib/input/Search";
 
 const { Meta } = Card;
 
@@ -59,15 +60,25 @@ const TeamsSpecies = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.pagination}>
-        {specy.length && (
-          <PaginationCategory
-            defaultCurrent={currentPage}
-            total={maxCount}
-            current={currentPage}
-            onChange={handleChange}
+      <div className={classes.topOfPage}>
+        <div>
+          <Search
+            className={classes.search}
+            placeholder="input name for search"
+            // onSearch={onSearch}
+            style={{ width: 350 }}
           />
-        )}
+        </div>
+        <div className={classes.pagination}>
+          {specy.length && (
+            <PaginationCategory
+              defaultCurrent={currentPage}
+              total={maxCount}
+              current={currentPage}
+              onChange={handleChange}
+            />
+          )}
+        </div>
       </div>
       <div className={classes.content}>
         {specy.map((speccy: any, index: any) => {

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { vehiclesReducer } from "../../store/vehicles/reducer";
 
 import useStyles from "./style";
+import Search from "antd/lib/input/Search";
 
 const { Meta } = Card;
 
@@ -72,18 +73,28 @@ const TeamsVehicles = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.pagination}>
-        {vehicles.length && (
-          <PaginationCategory
-            defaultCurrent={currentPage}
-            current={
-              // pageData
-              currentPage
-            }
-            total={maxCount}
-            onChange={handleChange}
+      <div className={classes.topOfPage}>
+        <div>
+          <Search
+            className={classes.search}
+            placeholder="input name for search"
+            // onSearch={onSearch}
+            style={{ width: 350 }}
           />
-        )}
+        </div>
+        <div className={classes.pagination}>
+          {vehicles.length && (
+            <PaginationCategory
+              defaultCurrent={currentPage}
+              current={
+                // pageData
+                currentPage
+              }
+              total={maxCount}
+              onChange={handleChange}
+            />
+          )}
+        </div>
       </div>
       <div className={classes.content}>
         {vehicles.map((vehicle: any, index: any) => {
