@@ -11,7 +11,7 @@ const PrivatRoute: FC<IPrivateRoute> = ({ children, auth }) => {
     return <Navigate to="/login" />;
   }
 
-  return children as ReactElement<any, any>;
+  return children as ReactElement<any>;
 };
 
 export default PrivatRoute;

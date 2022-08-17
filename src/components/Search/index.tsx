@@ -1,32 +1,23 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { debounce } from "lodash";
 import { Input } from "antd";
 
 import { useAppSelector } from "../../store/hooks/redux";
 
 import SearchOutlined from "@ant-design/icons/SearchOutlined";
-import { SetState } from "immer/dist/internal";
+import useStyles from "./style";
 
 interface ISearch {
   category: string;
   name: string;
-  searchState: any;
-  setSearchState: any;
+  setSearchState: React.Dispatch<React.SetStateAction<never[]>>;
 }
 
-const Search: FC<ISearch> = ({
-  category,
-  name,
-  searchState,
-  setSearchState,
-}) => {
+const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
   const stateRedux = useAppSelector((state: any) => state[category]);
+
   const stateCategory = stateRedux[category];
-
-  // const filtered = (stateCategory || []).filter((item: any) =>
-  //   item[title].toLowerCase().includes(value.toLowerCase())
-  // );
-
+  const classes = useStyles();
   const debouncedSearch = debounce((value) => {
     const filter = (stateCategory || []).filter((item: any) =>
       item[name].toLowerCase().includes(value.toLowerCase())
@@ -43,8 +34,9 @@ const Search: FC<ISearch> = ({
   }, [stateCategory]);
   return (
     <Input
+      className={classes.search}
       onChange={handleSearch}
-      placeholder="input name to search"
+      placeholder="input to search"
       prefix={<SearchOutlined />}
     />
   );

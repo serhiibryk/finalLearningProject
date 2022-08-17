@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Card, Input } from "antd";
-import { debounce } from "lodash";
+import { Card } from "antd";
 
 import Spiner from "../../components/Spiner";
 import PaginationCategory from "../../components/Pagination";
@@ -10,14 +9,14 @@ import { peopleService } from "../../services/people";
 import { imgPeopleList } from "../../utils";
 import { peopleReducer } from "../../store/people/reducer";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import Search from "../../components/Search";
 
 import useStyles from "./style";
-import SearchOutlined from "@ant-design/icons/SearchOutlined";
 
 const { Meta } = Card;
 
 const TeamsPeoples = () => {
-  const { people } = useAppSelector((state: any) => state.people);
+  const { people } = useAppSelector((state) => state.people);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
   const [namePeople, setNamePeople] = useState([]);
@@ -53,20 +52,20 @@ const TeamsPeoples = () => {
     push(`/people?page=${page}`);
   };
 
-  const debouncedSearch = debounce((value) => {
-    const filter = (people || []).filter((item: any) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setNamePeople(filter);
-  }, 1000);
+  // const debouncedSearch = debounce((value) => {
+  //   const filter = (people || []).filter((item: any) =>
+  //     item.name.toLowerCase().includes(value.toLowerCase())
+  //   );
+  //   setNamePeople(filter);
+  // }, 1000);
 
-  const handleSearch = (e: any) => {
-    debouncedSearch(e.target.value);
-  };
+  // const handleSearch = (e: any) => {
+  //   debouncedSearch(e.target.value);
+  // };
 
-  useEffect(() => {
-    setNamePeople(people);
-  }, [people]);
+  // useEffect(() => {
+  //   setNamePeople(people);
+  // }, [people]);
 
   if (!people.length || isLoading) {
     return <Spiner classes={classes.spiner} />;
@@ -76,11 +75,10 @@ const TeamsPeoples = () => {
     <div className={classes.root}>
       <div className={classes.topOfPage}>
         <div>
-          <Input
-            className={classes.search}
-            onChange={handleSearch}
-            placeholder="input name to search"
-            prefix={<SearchOutlined />}
+          <Search
+            category={"people"}
+            name={"name"}
+            setSearchState={setNamePeople}
           />
         </div>
         <div className={classes.pagination}>

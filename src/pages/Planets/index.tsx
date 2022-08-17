@@ -9,16 +9,17 @@ import { planetsService } from "../../services/planets";
 import { imgPlanetsList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { planetsReducer } from "../../store/planets/reducer";
+import Search from "../../components/Search";
 
 import useStyles from "./style";
-import Search from "antd/lib/input/Search";
 
 const { Meta } = Card;
 
 const TeamsPlanets = () => {
-  const { planets } = useAppSelector((state: any) => state.planets);
+  const { planets } = useAppSelector((state) => state.planets);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
+  const [namePlanets, setNamePlanets] = useState([]);
 
   const dispatch = useAppDispatch();
   const classes = useStyles();
@@ -63,10 +64,9 @@ const TeamsPlanets = () => {
       <div className={classes.topOfPage}>
         <div>
           <Search
-            className={classes.search}
-            placeholder="input name for search"
-            // onSearch={onSearch}
-            style={{ width: 350 }}
+            category={"planets"}
+            name={"name"}
+            setSearchState={setNamePlanets}
           />
         </div>
         <div className={classes.pagination}>
@@ -81,7 +81,7 @@ const TeamsPlanets = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {planets.map((planet: any, index: any) => {
+        {namePlanets.map((planet: any, index: any) => {
           return (
             <Card
               className={classes.card}

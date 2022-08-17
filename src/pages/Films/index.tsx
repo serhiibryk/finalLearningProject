@@ -15,7 +15,7 @@ const { Meta } = Card;
 
 const TeamsFilms = () => {
   // const [filmsList, setFilmsList] = useState<Films[]>([]);
-  const { films } = useAppSelector((state: any) => state.films);
+  const { films } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();

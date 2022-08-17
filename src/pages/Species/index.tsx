@@ -9,16 +9,17 @@ import { speciesService } from "../../services/species";
 import { imgSpeciesList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { specyReducer } from "../../store/specy/reducer";
+import Search from "../../components/Search";
 
 import useStyles from "./style";
-import Search from "antd/lib/input/Search";
 
 const { Meta } = Card;
 
 const TeamsSpecies = () => {
-  const { specy } = useAppSelector((state: any) => state.specy);
+  const { specy } = useAppSelector((state) => state.specy);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
+  const [nameSpecies, setNameSpecies] = useState([]);
 
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -63,10 +64,9 @@ const TeamsSpecies = () => {
       <div className={classes.topOfPage}>
         <div>
           <Search
-            className={classes.search}
-            placeholder="input name for search"
-            // onSearch={onSearch}
-            style={{ width: 350 }}
+            category={"specy"}
+            name={"name"}
+            setSearchState={setNameSpecies}
           />
         </div>
         <div className={classes.pagination}>
@@ -81,7 +81,7 @@ const TeamsSpecies = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {specy.map((speccy: any, index: any) => {
+        {nameSpecies.map((speccy: any, index: any) => {
           return (
             <Card
               className={classes.card}

@@ -13,7 +13,7 @@ const Header = () => {
   const push = useNavigate();
   const classes = useStyles();
   const location = useLocation();
-  const { token } = useAppSelector((state: any) => state.user);
+  const { token } = useAppSelector((state) => state.user);
 
   const activeList = routerList.map((item) => {
     if (location.pathname === "/" && item.key === "/") return item.key;

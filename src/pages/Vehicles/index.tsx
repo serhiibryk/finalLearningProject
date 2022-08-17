@@ -9,18 +9,19 @@ import { vehiclesService } from "../../services/vehicles";
 import { imgVehiclesList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { vehiclesReducer } from "../../store/vehicles/reducer";
+import Search from "../../components/Search";
 
 import useStyles from "./style";
-import Search from "antd/lib/input/Search";
 
 const { Meta } = Card;
 
 const TeamsVehicles = () => {
-  const { vehicles } = useAppSelector((state: any) => state.vehicles);
+  const { vehicles } = useAppSelector((state) => state.vehicles);
   // const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
   // const [pageData, setPageData] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
+  const [nameVehicles, setNameVehicles] = useState([]);
 
   const location = useLocation();
   const dispatch = useAppDispatch();
@@ -76,10 +77,9 @@ const TeamsVehicles = () => {
       <div className={classes.topOfPage}>
         <div>
           <Search
-            className={classes.search}
-            placeholder="input name for search"
-            // onSearch={onSearch}
-            style={{ width: 350 }}
+            category={"vehicles"}
+            name={"name"}
+            setSearchState={setNameVehicles}
           />
         </div>
         <div className={classes.pagination}>
@@ -97,7 +97,7 @@ const TeamsVehicles = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {vehicles.map((vehicle: any, index: any) => {
+        {nameVehicles.map((vehicle: any, index: any) => {
           return (
             <Card
               className={classes.card}

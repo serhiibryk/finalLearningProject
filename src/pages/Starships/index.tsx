@@ -9,16 +9,17 @@ import { starshipsService } from "../../services/starships";
 import { imgStarshipsList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { starshipsReducer } from "../../store/starships/reducer";
+import Search from "../../components/Search";
 
 import useStyles from "./style";
-import Search from "antd/lib/input/Search";
 
 const { Meta } = Card;
 
 const TeamsStarships = () => {
-  const { starships } = useAppSelector((state: any) => state.starships);
+  const { starships } = useAppSelector((state) => state.starships);
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
+  const [nameStarships, setNameStarships] = useState([]);
 
   const location = useLocation();
   const dispatch = useAppDispatch();
@@ -63,10 +64,9 @@ const TeamsStarships = () => {
       <div className={classes.topOfPage}>
         <div>
           <Search
-            className={classes.search}
-            placeholder="input name for search"
-            // onSearch={onSearch}
-            style={{ width: 350 }}
+            category={"starships"}
+            name={"name"}
+            setSearchState={setNameStarships}
           />
         </div>
         <div className={classes.pagination}>
@@ -81,7 +81,7 @@ const TeamsStarships = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {starships.map((starship: any, index: any) => {
+        {nameStarships.map((starship: any, index: any) => {
           return (
             <Card
               className={classes.card}
