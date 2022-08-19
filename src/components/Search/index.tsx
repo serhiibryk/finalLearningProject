@@ -17,8 +17,16 @@ const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
   const stateRedux = useAppSelector((state: any) => state[category]);
 
   const stateCategory = stateRedux[category];
+
   const classes = useStyles();
-  const debouncedSearch = debounce((value) => {
+  const debouncedSearchPagination = debounce((value) => {
+    const filter = (stateCategory || []).filter((item: any) =>
+      item[name].toLowerCase().includes(value.toLowerCase())
+    );
+    setSearchState(filter);
+  }, 1000);
+
+  const debouncedSearchScroll = debounce((value) => {
     const filter = (stateCategory || []).filter((item: any) =>
       item[name].toLowerCase().includes(value.toLowerCase())
     );
@@ -26,7 +34,7 @@ const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
   }, 1000);
 
   const handleSearch = (e: any) => {
-    debouncedSearch(e.target.value);
+    debouncedSearchPagination(e.target.value);
   };
 
   useEffect(() => {
