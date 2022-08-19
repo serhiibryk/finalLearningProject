@@ -6,26 +6,17 @@ const useStyles = createUseStyles({
     width: "32%",
     minHeight: "70px",
     minWidth: "140px",
-    margin: "10px 5px 5px 5px",
+    margin: "10px 5px 5px 6px",
 
-    "@media (max-width: 975px)": {
+    "@media (max-width: 980px)": {
       width: "48%",
     },
-    "@media (max-width: 499px)": {
-      width: "100%",
-    },
-  },
-  content: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
 
-    "& .ant-card-cover": {
-      display: "flex",
+    "@media (max-width: 549px)": {
       width: "100%",
-      height: "250px",
     },
   },
+
   img: {
     objectFit: "cover",
   },
@@ -50,6 +41,13 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+  },
+  contentScroll: {
+    "& .infinite-scroll-component": {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "flex-start",
+    },
   },
 });
 
