@@ -169,3 +169,18 @@ declare interface GetPeopleAction {
   people: People[];
   count: number;
 }
+
+declare interface GetSpecyAction {
+  specy: Species[];
+  count: number;
+}
+
+declare interface GetStarshipsAction {
+  starships: Starships[];
+  count: number;
+}
+
+declare interface GetVehiclesAction {
+  vehicles: Vehicles[];
+  count: number;
+}

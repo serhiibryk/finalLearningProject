@@ -12,13 +12,16 @@ import { starshipsReducer } from "../../store/starships/reducer";
 import Search from "../../components/Search";
 
 import useStyles from "./style";
+import { getStarships } from "../../store/starships/actions";
 
 const { Meta } = Card;
 
 const TeamsStarships = () => {
-  const { starships } = useAppSelector((state) => state.starships);
-  const [isLoading, setLoading] = useState(false);
-  const [maxCount, setMaxCount] = useState(0);
+  const { starships, count, isLoading, error } = useAppSelector(
+    (state) => state.starships
+  );
+  // const [isLoading, setLoading] = useState(false);
+  // const [maxCount, setMaxCount] = useState(0);
   const [nameStarships, setNameStarships] = useState([]);
 
   const location = useLocation();
@@ -26,37 +29,38 @@ const TeamsStarships = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const currentPage =
-    location.search.split("=")[1] === undefined
-      ? 1
-      : Number(location.search.split("=")[1]);
+  const currentPage = Number(location.search.split("=")[1] || 1);
 
-  const fetchStarships = createAsyncThunk(
-    "starships/starships",
-    async (nextPage: number, thunkApi) => {
-      try {
-        setLoading(true);
-        const res = await starshipsService.getStarships(nextPage);
-        thunkApi.dispatch(starshipsReducer.setStarships(res.results));
-        setMaxCount(res.count);
-        setLoading(false);
-      } catch (e) {
-        return thunkApi.rejectWithValue(e);
-      }
-    }
-  );
+  // const fetchStarships = createAsyncThunk(
+  //   "starships/starships",
+  //   async (nextPage: number, thunkApi) => {
+  //     try {
+  //       setLoading(true);
+  //       const res = await starshipsService.getStarships(nextPage);
+  //       thunkApi.dispatch(starshipsReducer.setStarships(res.results));
+  //       setMaxCount(res.count);
+  //       setLoading(false);
+  //     } catch (e) {
+  //       return thunkApi.rejectWithValue(e);
+  //     }
+  //   }
+  // );
 
   useEffect(() => {
-    dispatch(fetchStarships(currentPage));
+    dispatch(getStarships(currentPage));
   }, [currentPage]);
 
   const handleChange = (page: number) => {
-    fetchStarships(page);
+    // fetchStarships(page);
     push(`/starships?page=${page}`);
   };
 
-  if (starships.length === 0 || isLoading) {
+  if (isLoading) {
     return <Spiner classes={classes.spiner} />;
+  }
+
+  if (error) {
+    return <p>Something went wrong!</p>;
   }
 
   return (
@@ -70,11 +74,11 @@ const TeamsStarships = () => {
           />
         </div>
         <div className={classes.pagination}>
-          {starships.length && (
+          {starships && (
             <PaginationCategory
               defaultCurrent={currentPage}
               current={currentPage}
-              total={maxCount}
+              total={count}
               onChange={handleChange}
             />
           )}

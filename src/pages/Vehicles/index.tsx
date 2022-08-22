@@ -12,15 +12,18 @@ import { vehiclesReducer } from "../../store/vehicles/reducer";
 import Search from "../../components/Search";
 
 import useStyles from "./style";
+import { getVehicles } from "../../store/vehicles/actions";
 
 const { Meta } = Card;
 
 const TeamsVehicles = () => {
-  const { vehicles } = useAppSelector((state) => state.vehicles);
+  const { vehicles, count, isLoading, error } = useAppSelector(
+    (state) => state.vehicles
+  );
   // const [vehiclesList, setVehiclesList] = useState<Vehicles[]>([]);
   // const [pageData, setPageData] = useState(1);
-  const [isLoading, setLoading] = useState(false);
-  const [maxCount, setMaxCount] = useState(0);
+  // const [isLoading, setLoading] = useState(false);
+  // const [maxCount, setMaxCount] = useState(0);
   const [nameVehicles, setNameVehicles] = useState([]);
 
   const location = useLocation();
@@ -37,39 +40,40 @@ const TeamsVehicles = () => {
   //   });
   // };
 
-  const currentPage =
-    location.search.split("=")[1] === undefined
-      ? 1
-      : Number(location.search.split("=")[1]);
+  const currentPage = Number(location.search.split("=")[1] || 1);
 
-  const fetchVehicles = createAsyncThunk(
-    "vehicles/vehicles",
-    async (nextPage: number, thunkApi) => {
-      try {
-        const check = nextPage !== 1;
-        check && setLoading(true);
-        const res = await vehiclesService.getVehicles(nextPage);
-        thunkApi.dispatch(vehiclesReducer.setVehicles(res.results));
-        setMaxCount(res.count);
-        check && setLoading(false);
-      } catch (e) {
-        return thunkApi.rejectWithValue(e);
-      }
-    }
-  );
+  // const fetchVehicles = createAsyncThunk(
+  //   "vehicles/vehicles",
+  //   async (nextPage: number, thunkApi) => {
+  //     try {
+  //       const check = nextPage !== 1;
+  //       check && setLoading(true);
+  //       const res = await vehiclesService.getVehicles(nextPage);
+  //       thunkApi.dispatch(vehiclesReducer.setVehicles(res.results));
+  //       setMaxCount(res.count);
+  //       check && setLoading(false);
+  //     } catch (e) {
+  //       return thunkApi.rejectWithValue(e);
+  //     }
+  //   }
+  // );
 
   useEffect(() => {
-    dispatch(fetchVehicles(currentPage));
+    dispatch(getVehicles(currentPage));
   }, [currentPage]);
 
   const handleChange = (page: number) => {
-    fetchVehicles(page);
+    // fetchVehicles(page);
     // setPageData(page);
     push(`/vehicles?page=${page}`);
   };
 
-  if (vehicles.length === 0 || isLoading) {
+  if (isLoading) {
     return <Spiner classes={classes.spiner} />;
+  }
+
+  if (error) {
+    return <p>Something went wrong!</p>;
   }
 
   return (
@@ -83,14 +87,14 @@ const TeamsVehicles = () => {
           />
         </div>
         <div className={classes.pagination}>
-          {vehicles.length && (
+          {vehicles && (
             <PaginationCategory
               defaultCurrent={currentPage}
               current={
                 // pageData
                 currentPage
               }
-              total={maxCount}
+              total={count}
               onChange={handleChange}
             />
           )}
