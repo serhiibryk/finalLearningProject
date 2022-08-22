@@ -69,8 +69,6 @@ const TeamsPlanets = () => {
           infiniteScrollReducer.setForScroll(stateForScroll.concat(res.results))
         );
         setMaxCount(res.count);
-
-        // setSwitcher(stateForScroll);
       } catch (e) {
         return thunkApi.rejectWithValue(e);
       }

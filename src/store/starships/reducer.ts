@@ -10,7 +10,7 @@ export const initialState: IState = {
 
 export const starshipsSlice = createSlice({
   name: "starships",
-  initialState: initialState,
+  initialState,
   reducers: {
     setStarships: (state: any, action: PayloadAction<any>) => {
       state.starships = action.payload;

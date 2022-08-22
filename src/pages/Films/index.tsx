@@ -1,21 +1,19 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
 import Spiner from "../../components/Spiner";
 import { imgFilmsList } from "../../utils";
-import { filmsService } from "../../services/films";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { filmsReducer } from "../../store/films/reducer";
 
 import useStyles from "./style";
+import { getFilms } from "../../store/films/actions";
 
 const { Meta } = Card;
 
 const TeamsFilms = () => {
   // const [filmsList, setFilmsList] = useState<Films[]>([]);
-  const { films } = useAppSelector((state) => state.films);
+  const { films, isLoading, error } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
@@ -26,26 +24,34 @@ const TeamsFilms = () => {
   //   });
   // };
 
-  const fetchFilms = createAsyncThunk(
-    "films/films",
-    async (data: any, thunkApi) => {
-      try {
-        const res = await filmsService.getFilms();
+  // const fetchFilms = createAsyncThunk(
+  //   "films/films",
+  //   async (data: any, thunkApi) => {
+  //     try {
+  //       const res = await filmsService.getFilms();
 
-        console.log(res);
-        thunkApi.dispatch(filmsReducer.setFilms(res.results));
-      } catch (e) {
-        return thunkApi.rejectWithValue(e);
-      }
-    }
-  );
+  //       console.log(res);
+  //       thunkApi.dispatch(filmsReducer.setFilms(res.results));
+  //     } catch (e) {
+  //       return thunkApi.rejectWithValue(e);
+  //     }
+  //   }
+  // );
+
+  // useEffect(() => {
+  //   dispatch(fetchFilms({}));
+  // }, []);
 
   useEffect(() => {
-    dispatch(fetchFilms({}));
+    dispatch(getFilms());
   }, []);
 
-  if (films.length === 0) {
+  if (isLoading) {
     return <Spiner classes={classes.spiner} />;
+  }
+
+  if (error) {
+    return <p>Something went wrong!</p>;
   }
 
   return (

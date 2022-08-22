@@ -164,3 +164,8 @@ declare interface DataFromAPI<T> {
   previous: string | null;
   results: T;
 }
+
+declare interface GetPeopleAction {
+  people: People[];
+  count: number;
+}
