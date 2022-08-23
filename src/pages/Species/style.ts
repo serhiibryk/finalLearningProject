@@ -57,6 +57,12 @@ const useStyles = createUseStyles({
     flexDirection: "row",
     justifyContent: "center",
   },
+  text: {
+    marginTop: "0.45em",
+    fontStyle: "italic",
+    fontSize: "23px",
+    fontWeight: "lighter",
+  },
 });
 
 export default useStyles;

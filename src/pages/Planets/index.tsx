@@ -107,8 +107,15 @@ const TeamsPlanets = () => {
   return (
     <div className={classes.root}>
       <div className={classes.topOfPage}>
+        <span className={classes.text}>
+          You can switch between pagination/infinitescroll
+        </span>
         <div>
-          <Switch checked={checked} onChange={checkForScroll} />
+          <Switch
+            className={classes.switch}
+            checked={checked}
+            onChange={checkForScroll}
+          />
         </div>
         <div>
           <Search

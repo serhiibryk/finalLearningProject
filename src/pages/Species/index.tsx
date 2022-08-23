@@ -102,6 +102,9 @@ const TeamsSpecies = () => {
     <div className={classes.root}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={classes.topOfPage}>
+          <span className={classes.text}>
+            You can drag elements on this page
+          </span>
           <div>
             <Search
               category={"specy"}
@@ -109,6 +112,7 @@ const TeamsSpecies = () => {
               setSearchState={setNameSpecies}
             />
           </div>
+
           <div className={classes.pagination}>
             {specy && (
               <PaginationCategory

@@ -1,15 +1,19 @@
 import { Layout } from "antd";
+import { format } from "date-fns";
 
 const { Footer: FooterAnt } = Layout;
 
 const Footer = () => {
+  const a = format(new Date(), "yyyy-MM-dd");
   return (
     <FooterAnt
       style={{
         textAlign: "center",
       }}
     >
-      2022
+      <div>
+        <p> All rights reserved&#174; &mdash;&mdash; {a}</p>
+      </div>
     </FooterAnt>
   );
 };

@@ -32,15 +32,11 @@ const useStyles = createUseStyles({
     marginTop: "15px",
   },
   search: {
-    display: "flex",
-    justifyContent: "space-around",
-    margin: "0 3em 0 1.5em",
-    marginTop: "15px",
+    margin: "15px 0 0 10px",
   },
   topOfPage: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
   },
   contentScroll: {
     "& .infinite-scroll-component": {
@@ -48,6 +44,19 @@ const useStyles = createUseStyles({
       flexWrap: "wrap",
       justifyContent: "flex-start",
     },
+  },
+  switch: {
+    display: "block",
+    marginTop: "1.45em",
+    background: "black",
+    marginLeft: "40px",
+  },
+  text: {
+    marginTop: "0.45em",
+    fontStyle: "italic",
+    fontSize: "23px",
+    fontWeight: "lighter",
+    marginLeft: "10px",
   },
 });
 
