@@ -66,7 +66,7 @@ const TeamsVehicles = () => {
   };
 
   if (isLoading) {
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
   }
 
   if (error) {

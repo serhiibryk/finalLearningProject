@@ -134,10 +134,6 @@ declare interface ICardRow {
   title: string | number;
 }
 
-declare interface ISpiner {
-  classes: string;
-}
-
 declare interface IMapFields {
   list: any[];
   title: string;

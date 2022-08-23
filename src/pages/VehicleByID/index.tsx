@@ -61,7 +61,7 @@ const StarshipByID = () => {
   }, [vehiclesList]);
 
   if (vehiclesList === null || filmsList === null || peopleList === null)
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.vehicleByIDContainer}>

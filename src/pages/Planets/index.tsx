@@ -88,7 +88,7 @@ const TeamsPlanets = () => {
   };
 
   if (planets.length === 0 || isLoading) {
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
   }
 
   const hasMore = () => {

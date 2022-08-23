@@ -73,7 +73,7 @@ const SpeccyByID = () => {
   }, [speciesList]);
 
   if (speciesList === null || filmsList === null || peopleList === null)
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.speccyByIDContainer}>

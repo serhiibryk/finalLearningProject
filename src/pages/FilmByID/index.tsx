@@ -104,7 +104,7 @@ const FilmByID = () => {
     starshipsList === null ||
     vehiclesList === null
   )
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.root}>

@@ -111,7 +111,7 @@ const PeopleByID = () => {
     !starshipsList ||
     !vehiclesList
   )
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.peopleByIDContainer}>

@@ -63,7 +63,7 @@ const PlanetByID = () => {
   }, [planetsList]);
 
   if (planetsList === null || filmsList === null || peopleList === null)
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.planetByIDContainer}>

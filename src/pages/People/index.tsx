@@ -72,7 +72,7 @@ const TeamsPeoples = () => {
   // }, [people]);
 
   if (isLoading) {
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
   }
 
   if (error) {

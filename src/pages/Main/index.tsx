@@ -34,7 +34,7 @@ const Main = () => {
   }, []);
 
   if (commonList.films === "") {
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
   }
 
   return (
