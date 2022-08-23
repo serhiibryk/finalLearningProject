@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
 import Spiner from "../../components/Spiner";
 import PaginationCategory from "../../components/Pagination";
-import { starshipsService } from "../../services/starships";
 import { imgStarshipsList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { starshipsReducer } from "../../store/starships/reducer";
 import Search from "../../components/Search";
+import { getStarships } from "../../store/starships/actions";
 
 import useStyles from "./style";
-import { getStarships } from "../../store/starships/actions";
 
 const { Meta } = Card;
 

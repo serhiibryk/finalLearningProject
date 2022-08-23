@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Card, Switch } from "antd";
 
 import Spiner from "../../components/Spiner";
@@ -9,11 +10,10 @@ import { imgPlanetsList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import { planetsReducer } from "../../store/planets/reducer";
 import Search from "../../components/Search";
-
-import useStyles from "./style";
-import InfiniteScroll from "react-infinite-scroll-component";
 import PaginationCategory from "../../components/Pagination";
 import { infiniteScrollReducer } from "../../store/infiniteScroll/reducer";
+
+import useStyles from "./style";
 
 const { Meta } = Card;
 
@@ -25,7 +25,6 @@ const TeamsPlanets = () => {
   const [isLoading, setLoading] = useState(false);
   const [maxCount, setMaxCount] = useState(0);
   const [numberPage, setNumberPage] = useState(2);
-  // debugger;
   const [switcher, setSwitcher] = useState<any>([]);
   const [checked, setChecked] = useState(false);
 
@@ -100,15 +99,10 @@ const TeamsPlanets = () => {
     setChecked(check);
     if (!check) {
       setSwitcher(planets);
-      console.log("planets");
     } else {
       setSwitcher(stateForScroll);
-      console.log("infinty");
     }
   };
-
-  console.log(stateForScroll);
-  console.log(planets);
 
   return (
     <div className={classes.root}>

@@ -7,11 +7,31 @@ import PaginationCategory from "../../components/Pagination";
 import { imgSpeciesList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import Search from "../../components/Search";
+import { getSpecy } from "../../store/specy/actions";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 import useStyles from "./style";
-import { getSpecy } from "../../store/specy/actions";
 
 const { Meta } = Card;
+
+interface DraggableLocation {
+  droppableId: string;
+  index: number;
+}
+
+interface Combine {
+  draggableId: string;
+  droppableId: string;
+}
+
+interface DragResult {
+  reason: "DROP" | "CANCEL";
+  destination?: DraggableLocation;
+  source: DraggableLocation;
+  combine?: Combine;
+  mode: "FLUID" | "SNAP";
+  // draggableId: DraggableId;
+}
 
 const TeamsSpecies = () => {
   const { specy, count, isLoading, error } = useAppSelector(
@@ -19,7 +39,8 @@ const TeamsSpecies = () => {
   );
   // const [isLoading, setLoading] = useState(false);
   // const [maxCount, setMaxCount] = useState(0);
-  const [nameSpecies, setNameSpecies] = useState([]);
+  const [nameSpecies, setNameSpecies] = useState<any>([]);
+  // const [items, setItems] = useState(nameSpecies);
 
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -60,48 +81,91 @@ const TeamsSpecies = () => {
     return <p>Something went wrong!</p>;
   }
 
+  //dnd
+  const reorder = (list: any, startIndex: any, endIndex: any) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+  const onDragEnd = (result: any) => {
+    if (!result.destination) {
+      return;
+    }
+    setNameSpecies(
+      reorder(nameSpecies, result.source.index, result.destination.index)
+    );
+  };
+
   return (
     <div className={classes.root}>
-      <div className={classes.topOfPage}>
-        <div>
-          <Search
-            category={"specy"}
-            name={"name"}
-            setSearchState={setNameSpecies}
-          />
-        </div>
-        <div className={classes.pagination}>
-          {specy && (
-            <PaginationCategory
-              defaultCurrent={currentPage}
-              total={count}
-              current={currentPage}
-              onChange={handleChange}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className={classes.topOfPage}>
+          <div>
+            <Search
+              category={"specy"}
+              name={"name"}
+              setSearchState={setNameSpecies}
             />
-          )}
+          </div>
+          <div className={classes.pagination}>
+            {specy && (
+              <PaginationCategory
+                defaultCurrent={currentPage}
+                total={count}
+                current={currentPage}
+                onChange={handleChange}
+              />
+            )}
+          </div>
         </div>
-      </div>
-      <div className={classes.content}>
-        {nameSpecies.map((speccy: any, index: any) => {
-          return (
-            <Card
-              className={classes.card}
-              hoverable
-              cover={
-                <img
-                  className={classes.img}
-                  key={imgSpeciesList[index].imgLink}
-                  src={imgSpeciesList[index].imgLink}
-                  alt="Speccy wallpaper"
-                />
-              }
-              onClick={() => push(`/species/${speccy.url.split("/")[5]}`)}
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <div
+              className={classes.content}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
             >
-              <Meta title={speccy.name} />
-            </Card>
-          );
-        })}
-      </div>
+              {nameSpecies.map((speccy: any, index: any) => (
+                <Draggable
+                  key={index}
+                  draggableId={String(index + 1)}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      className={classes.items}
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <Card
+                        className={classes.card}
+                        hoverable
+                        cover={
+                          <img
+                            className={classes.img}
+                            key={imgSpeciesList[index].imgLink}
+                            src={imgSpeciesList[index].imgLink}
+                            alt="Speccy wallpaper"
+                          />
+                        }
+                        onClick={() =>
+                          push(`/species/${speccy.url.split("/")[5]}`)
+                        }
+                      >
+                        <Meta title={speccy.name} />
+                      </Card>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   );
 };
