@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 
@@ -13,7 +13,7 @@ import { getPeoples } from "../../store/people/actions";
 
 const { Meta } = Card;
 
-const TeamsPeoples = () => {
+const TeamsPeoples: FC = () => {
   const { people, count, isLoading, error } = useAppSelector(
     (state) => state.people
   );
@@ -45,11 +45,7 @@ const TeamsPeoples = () => {
 
   useEffect(() => {
     dispatch(getPeoples(currentPage));
-  }, [currentPage]);
-
-  // useEffect(() => {
-  //   dispatch(fetchPeople(currentPage));
-  // }, [currentPage]);
+  }, [dispatch, currentPage]);
 
   const handleChange = (page: number) => {
     // fetchPeople(page);
@@ -104,6 +100,7 @@ const TeamsPeoples = () => {
         {namePeople.map((people: any, index: any) => {
           return (
             <Card
+              key={index}
               className={classes.card}
               hoverable
               cover={

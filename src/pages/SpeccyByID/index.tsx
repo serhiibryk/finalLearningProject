@@ -31,7 +31,7 @@ const SpeccyByID = () => {
     const id = location.pathname.split("/")[2];
 
     fetchSpeccyByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (speciesList) {

@@ -57,7 +57,7 @@ const TeamsVehicles = () => {
 
   useEffect(() => {
     dispatch(getVehicles(currentPage));
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
 
   const handleChange = (page: number) => {
     // fetchVehicles(page);
@@ -101,6 +101,7 @@ const TeamsVehicles = () => {
         {nameVehicles.map((vehicle: any, index: any) => {
           return (
             <Card
+              key={index}
               className={classes.card}
               hoverable
               cover={

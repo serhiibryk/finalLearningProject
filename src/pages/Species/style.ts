@@ -55,13 +55,14 @@ const useStyles = createUseStyles({
   topOfPage: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   text: {
     marginTop: "0.45em",
     fontStyle: "italic",
     fontSize: "23px",
     fontWeight: "lighter",
+    marginLeft: "15px",
   },
 });
 

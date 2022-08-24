@@ -180,3 +180,8 @@ declare interface GetVehiclesAction {
   vehicles: Vehicles[];
   count: number;
 }
+
+declare interface GetPlanetsAction {
+  planets: Planets[];
+  count: number;
+}

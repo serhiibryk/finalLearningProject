@@ -8,10 +8,10 @@ const useStyles = createUseStyles({
     minWidth: "140px",
     margin: "10px 5px 5px 5px",
 
-    "@media (max-width: 975px)": {
+    "@media and screen (max-width: 975px)": {
       width: "48%",
     },
-    "@media (max-width: 499px)": {
+    "@media and screen (max-width: 499px)": {
       width: "100%",
     },
   },
@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
   topOfPage: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
 });
 

@@ -45,7 +45,7 @@ const TeamsStarships = () => {
 
   useEffect(() => {
     dispatch(getStarships(currentPage));
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
 
   const handleChange = (page: number) => {
     // fetchStarships(page);
@@ -85,6 +85,7 @@ const TeamsStarships = () => {
         {nameStarships.map((starship: any, index: any) => {
           return (
             <Card
+              key={index}
               className={classes.card}
               hoverable
               cover={

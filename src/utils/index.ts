@@ -326,7 +326,7 @@ export const localStoreService = {
   },
   set: (key: string, data: string | string[]) => {
     const res = localStorage.setItem(key, JSON.stringify(data));
-    console.log("init", data);
+    // console.log("init", data);
     return res;
   },
   remove: (item: string) => {

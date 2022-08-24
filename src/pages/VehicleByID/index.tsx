@@ -28,7 +28,7 @@ const StarshipByID = () => {
   useEffect(() => {
     const id = location.pathname.split("/")[2];
     fetchVehicleByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (vehiclesList) {

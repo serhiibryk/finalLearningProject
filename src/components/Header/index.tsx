@@ -6,6 +6,7 @@ import { useAppSelector } from "../../store/hooks/redux";
 
 import useStyles from "./style";
 import classNames from "classnames";
+import { useMemo } from "react";
 
 const { Header: HeaderAnt } = Layout;
 
@@ -15,12 +16,14 @@ const Header = () => {
   const location = useLocation();
   const { token } = useAppSelector((state) => state.user);
 
-  const activeList = routerList.map((item) => {
-    if (location.pathname === "/" && item.key === "/") return item.key;
-    if (item.key !== "/" && location.pathname.includes(item.key))
-      return item.key;
-    return "";
-  });
+  const activeList = useMemo(() => {
+    return routerList.map((item) => {
+      if (location.pathname === "/" && item.key === "/") return item.key;
+      if (item.key !== "/" && location.pathname.includes(item.key))
+        return item.key;
+      return "";
+    });
+  }, [location.pathname]);
 
   return (
     <div className={classes.root}>
@@ -38,20 +41,29 @@ const Header = () => {
             theme="dark"
             mode="horizontal"
             className={classNames({ [classes.changedLog]: !token })}
-            defaultSelectedKeys={["/"]}
             selectedKeys={activeList}
-            onClick={(path) => push(path.key)}
-          >
-            {routerList.map((item) => {
-              if (token && item.key === "/login") {
-                return <Menu.Item key="/login">Log out</Menu.Item>;
-              }
-              if (item.privat === true && !token) {
-                return null;
-              }
-              return <Menu.Item key={item.key}>{item.label}</Menu.Item>;
-            })}
-          </Menu>
+            onClick={(path) => {
+              // console.warn(path);
+              push(path.key);
+            }}
+            items={[
+              ...routerList.map((item) => {
+                if (token && item.key === "/login") {
+                  return {
+                    key: "/login",
+                    label: "Log out",
+                  };
+                }
+                if (item.privat === true && !token) {
+                  return null;
+                }
+                return {
+                  key: item.key,
+                  label: item.label,
+                };
+              }),
+            ]}
+          />
         </div>
       </HeaderAnt>
     </div>

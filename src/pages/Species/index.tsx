@@ -14,25 +14,6 @@ import useStyles from "./style";
 
 const { Meta } = Card;
 
-interface DraggableLocation {
-  droppableId: string;
-  index: number;
-}
-
-interface Combine {
-  draggableId: string;
-  droppableId: string;
-}
-
-interface DragResult {
-  reason: "DROP" | "CANCEL";
-  destination?: DraggableLocation;
-  source: DraggableLocation;
-  combine?: Combine;
-  mode: "FLUID" | "SNAP";
-  // draggableId: DraggableId;
-}
-
 const TeamsSpecies = () => {
   const { specy, count, isLoading, error } = useAppSelector(
     (state) => state.specy
@@ -66,7 +47,7 @@ const TeamsSpecies = () => {
 
   useEffect(() => {
     dispatch(getSpecy(currentPage));
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
 
   const handleChange = (page: number) => {
     // fetchSpecy(page);

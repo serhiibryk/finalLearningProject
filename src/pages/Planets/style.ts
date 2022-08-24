@@ -37,6 +37,7 @@ const useStyles = createUseStyles({
   topOfPage: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "flex-start",
   },
   contentScroll: {
     "& .infinite-scroll-component": {

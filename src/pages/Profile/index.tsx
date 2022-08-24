@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useJwt } from "react-jwt";
 import { Card, Skeleton } from "antd";
+import moment from "moment";
 
 import { localStoreService } from "../../utils";
 
@@ -45,6 +46,7 @@ const Profile = () => {
               <li>{decoded.iat}</li>
               <li>{decoded.sub}</li>
             </ul>
+            <p>{moment().format("MMMM Do YYYY, h:mm:ss a")}</p>
           </div>
         ) : (
           <Skeleton active />

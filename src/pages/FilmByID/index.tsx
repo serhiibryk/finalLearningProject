@@ -31,9 +31,8 @@ const FilmByID = () => {
 
   useEffect(() => {
     const id = location.pathname.split("/")[2];
-    console.log(id);
     fetchFilmsByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (filmsList) {

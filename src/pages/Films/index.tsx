@@ -44,7 +44,7 @@ const TeamsFilms = () => {
 
   useEffect(() => {
     dispatch(getFilms());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
     return <Spiner />;
@@ -60,6 +60,7 @@ const TeamsFilms = () => {
         {films.map((film: any, index: any) => {
           return (
             <Card
+              key={index}
               className={classes.card}
               hoverable
               cover={

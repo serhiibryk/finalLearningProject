@@ -41,6 +41,7 @@ const Main = () => {
     <div className={classes.root}>
       {Object.entries(commonList).map((item, index) => (
         <Card
+          key={index}
           hoverable
           className={classes.card}
           cover={

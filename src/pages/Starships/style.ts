@@ -49,7 +49,7 @@ const useStyles = createUseStyles({
   topOfPage: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
 });
 

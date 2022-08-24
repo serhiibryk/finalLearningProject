@@ -36,7 +36,7 @@ const PeopleByID = () => {
     const id = location.pathname.split("/")[2];
 
     fetchPeopleByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (peoplesList) {

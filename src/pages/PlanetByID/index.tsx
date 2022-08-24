@@ -22,7 +22,6 @@ const PlanetByID = () => {
   const fetchPlanetByID = async (id: number) => {
     planetsService.getPlanetByID(id).then((data) => {
       setPlanetsList(data);
-      console.log(data);
     });
   };
 
@@ -30,7 +29,7 @@ const PlanetByID = () => {
     const id = location.pathname.split("/")[2];
 
     fetchPlanetByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (planetsList) {

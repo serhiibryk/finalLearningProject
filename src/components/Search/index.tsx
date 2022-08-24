@@ -26,20 +26,14 @@ const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
     setSearchState(filter);
   }, 1000);
 
-  const debouncedSearchScroll = debounce((value) => {
-    const filter = (stateCategory || []).filter((item: any) =>
-      item[name].toLowerCase().includes(value.toLowerCase())
-    );
-    setSearchState(filter);
-  }, 1000);
-
   const handleSearch = (e: any) => {
     debouncedSearchPagination(e.target.value);
   };
 
   useEffect(() => {
     setSearchState(stateCategory);
-  }, [stateCategory]);
+  }, [stateCategory, setSearchState]);
+
   return (
     <Input
       className={classes.search}
