@@ -1,4 +1,4 @@
-import { Layout, Menu } from "antd";
+import { Dropdown, Layout, Menu, Space, Typography } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { routerList } from "../../utils";
@@ -6,7 +6,7 @@ import { useAppSelector } from "../../store/hooks/redux";
 
 import useStyles from "./style";
 import classNames from "classnames";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const { Header: HeaderAnt } = Layout;
 
@@ -24,6 +24,33 @@ const Header = () => {
       return "";
     });
   }, [location.pathname]);
+  const menu = (
+    <Menu
+      selectable
+      // defaultSelectedKeys={["3"]}
+      selectedKeys={activeList}
+      onClick={(path) => {
+        push(path.key);
+      }}
+      items={[
+        ...routerList.map((item) => {
+          if (token && item.key === "/login") {
+            return {
+              key: "/login",
+              label: "Log out",
+            };
+          }
+          if (item.privat === true && !token) {
+            return null;
+          }
+          return {
+            key: item.key,
+            label: item.label,
+          };
+        }),
+      ]}
+    />
+  );
 
   return (
     <div className={classes.root}>
@@ -37,13 +64,19 @@ const Header = () => {
               alt="Logo"
             />
           </div>
+          <Dropdown overlay={menu} className={classes.dropmenu}>
+            <Typography.Link>
+              <Space className={classes.menuDropText}>MENU</Space>
+            </Typography.Link>
+          </Dropdown>
           <Menu
             theme="dark"
-            mode="horizontal"
-            className={classNames({ [classes.changedLog]: !token })}
+            className={classNames(
+              { [classes.changedLog]: !token },
+              classes.menu
+            )}
             selectedKeys={activeList}
             onClick={(path) => {
-              // console.warn(path);
               push(path.key);
             }}
             items={[

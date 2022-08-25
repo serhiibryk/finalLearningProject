@@ -3,6 +3,7 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   root: {},
   card: {
+    // margin: "10px 5px 5px 5px",
     margin: "10px 0 0 18px",
     width: "100%",
     minHeight: "70px",
@@ -24,27 +25,27 @@ const useStyles = createUseStyles({
   },
   items: {
     width: "32%",
-
-    "@media (max-width: 999px)": {
+    // 999px
+    "@media (max-width: 750px)": {
       width: "48%",
     },
-    "@media (max-width: 535px)": {
+    // 535px
+    "@media (max-width: 499px)": {
       width: "99%",
     },
   },
   img: {
     objectFit: "cover",
   },
-  spiner: {
-    marginTop: "100px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   pagination: {
     display: "flex",
     justifyContent: "space-around",
     marginTop: "15px",
+
+    // "@media (max-width: 999px)": {
+    //   margin: "1em 0 0 1.5em",
+    //   justifyContent: "flex-start",
+    // },
   },
   search: {
     display: "flex",
@@ -56,6 +57,10 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
+
+    // "@media (max-width: 999px)": {
+    //   flexDirection: "column",
+    // },
   },
   text: {
     marginTop: "0.45em",

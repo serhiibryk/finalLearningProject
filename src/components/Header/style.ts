@@ -2,17 +2,45 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   root: {
+    "& .ant-menu": {
+      display: "flex",
+    },
+
+    "& .ant-menu-item": {
+      height: "87%",
+    },
     "& .ant-menu-item-selected": {
       backgroundColor: "black !important",
+      height: "87%",
     },
 
-    "& .ant-menu-dark.ant-menu-horizontal>.ant-menu-item:hover": {
+    "& .ant-menu-dark.ant-menu-vertical>.ant-menu-item:hover": {
       backgroundColor: "black !important",
     },
 
-    "& .ant-menu-dark.ant-menu-horizontal": {
+    "& .ant-menu-dark.ant-menu-vertical": {
       width: "100%",
     },
+  },
+
+  menu: {
+    "@media screen and (max-width: 935px)": {
+      display: "none !important",
+    },
+  },
+
+  dropmenu: {
+    display: "none",
+    backgroundColor: "black",
+    width: "64px",
+    "@media screen and (max-width: 935px)": {
+      display: "block",
+    },
+  },
+  menuDropText: {
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
   },
 
   changedLog: {

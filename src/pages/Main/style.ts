@@ -20,7 +20,16 @@ const useStyles = createUseStyles({
     width: "32%",
     minWidth: "140px",
     margin: "10px 5px 5px 5px",
+
+    "@media (max-width: 750px)": {
+      width: "48%",
+    },
+
+    "@media (max-width: 499px)": {
+      width: "100%",
+    },
   },
+
   spiner: {
     marginTop: "100px",
     display: "flex",

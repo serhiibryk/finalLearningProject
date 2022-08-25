@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Card, Switch } from "antd";
 
 import Spiner from "../../components/Spiner";
-import { planetsService } from "../../services/planets";
 import { imgPlanetsList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import Search from "../../components/Search";
 import PaginationCategory from "../../components/Pagination";
-import { infiniteScrollReducer } from "../../store/infiniteScroll/reducer";
+import { getNextPlanets, getPlanets } from "../../store/planets/actions";
 
 import useStyles from "./style";
-import { getPlanets } from "../../store/planets/actions";
 
 const { Meta } = Card;
 
@@ -24,8 +21,6 @@ const TeamsPlanets = () => {
   const { stateForScroll } = useAppSelector(
     (state: any) => state.stateForScroll
   );
-  // const [isLoading, setLoading] = useState(false);
-  // const [maxCount, setMaxCount] = useState(0);
   const [numberPage, setNumberPage] = useState(2);
   const [switcher, setSwitcher] = useState<any>([]);
   const [checked, setChecked] = useState(false);
@@ -40,16 +35,21 @@ const TeamsPlanets = () => {
       ? 1
       : Number(location.search.split("=")[1]);
 
-  // const fetchPlanets = createAsyncThunk(
-  //   "planets/planets",
-  //   async (nextPage: number, thunkApi) => {
+  useEffect(() => {
+    dispatch(getPlanets(currentPage));
+  }, [currentPage, dispatch]);
+
+  // const fetchNextPlanets = createAsyncThunk(
+  //   "planets/NextPlanets",
+
+  //   async (id: number, thunkApi) => {
   //     try {
-  //       setLoading(true);
-  //       const res = await planetsService.getPlanets(nextPage);
-  //       thunkApi.dispatch(planetsReducer.setPlanets(res.results));
-  //       setMaxCount(res.count);
-  //       setLoading(false);
-  //       setSwitcher(res.results);
+  //       const res = await planetsService.getPlanets(id);
+  //       thunkApi.dispatch(
+  //         infiniteScrollReducer.setForScroll(stateForScroll.concat(res.results))
+  //       );
+  //       dispatch(getPlanets(count)); ///
+  //       // setMaxCount(count);
   //     } catch (e) {
   //       return thunkApi.rejectWithValue(e);
   //     }
@@ -57,36 +57,14 @@ const TeamsPlanets = () => {
   // );
 
   useEffect(() => {
-    dispatch(getPlanets(currentPage));
-  }, [currentPage, dispatch]);
-
-  const fetchNextPlanets = createAsyncThunk(
-    "planets/NextPlanets",
-
-    async (id: number, thunkApi) => {
-      try {
-        const res = await planetsService.getPlanets(id);
-        thunkApi.dispatch(
-          infiniteScrollReducer.setForScroll(stateForScroll.concat(res.results))
-        );
-        dispatch(getPlanets(count)); ///
-        // setMaxCount(count);
-      } catch (e) {
-        return thunkApi.rejectWithValue(e);
-      }
-    }
-  );
-
-  useEffect(() => {
-    checked && dispatch(fetchNextPlanets(1));
-  }, []);
+    checked && dispatch(getNextPlanets(1));
+  }, [checked, dispatch]);
 
   useEffect(() => {
     setSwitcher(stateForScroll);
   }, [stateForScroll]);
 
   const handleChange = (page: number) => {
-    // fetchPlanets(page);
     push(`/planets?page=${page}`);
   };
 
@@ -115,7 +93,7 @@ const TeamsPlanets = () => {
     <div className={classes.root}>
       <div className={classes.topOfPage}>
         <span className={classes.text}>
-          You can switch between pagination/infinitescroll
+          You can switch between pagination and infinitescroll
         </span>
         <div>
           <Switch
@@ -148,7 +126,7 @@ const TeamsPlanets = () => {
         <InfiniteScroll
           dataLength={stateForScroll.length}
           next={() => {
-            dispatch(fetchNextPlanets(numberPage));
+            dispatch(getNextPlanets(numberPage));
             setNumberPage(numberPage + 1);
           }}
           hasMore={checked && hasMore()}
