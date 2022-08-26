@@ -15,9 +15,11 @@ const useStyles = createUseStyles({
       fontSize: "23px",
       fontWeight: "lighter",
     },
+    "@media (max-width: 450px)": {
+      width: "93%",
+    },
   },
   filmByIDContainer: {
-    minHeight: "calc(100vh - 134px)",
     display: "flex",
     flexWrap: "wrap",
   },

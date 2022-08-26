@@ -6,7 +6,7 @@ import { useAppSelector } from "../../store/hooks/redux";
 
 import useStyles from "./style";
 import classNames from "classnames";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
 
 const { Header: HeaderAnt } = Layout;
 
@@ -27,7 +27,6 @@ const Header = () => {
   const menu = (
     <Menu
       selectable
-      // defaultSelectedKeys={["3"]}
       selectedKeys={activeList}
       onClick={(path) => {
         push(path.key);
@@ -64,7 +63,12 @@ const Header = () => {
               alt="Logo"
             />
           </div>
-          <Dropdown overlay={menu} className={classes.dropmenu}>
+          <Dropdown
+            overlay={menu}
+            className={classes.dropmenu}
+            visible={true}
+            // autoFocus={true}
+          >
             <Typography.Link>
               <Space className={classes.menuDropText}>MENU</Space>
             </Typography.Link>

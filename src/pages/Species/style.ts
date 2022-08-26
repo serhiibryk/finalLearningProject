@@ -42,10 +42,10 @@ const useStyles = createUseStyles({
     justifyContent: "space-around",
     marginTop: "15px",
 
-    // "@media (max-width: 999px)": {
-    //   margin: "1em 0 0 1.5em",
-    //   justifyContent: "flex-start",
-    // },
+    "@media (max-width: 999px)": {
+      margin: "1em 0 0 1.5em",
+      justifyContent: "flex-start",
+    },
   },
   search: {
     display: "flex",
@@ -58,9 +58,9 @@ const useStyles = createUseStyles({
     flexDirection: "row",
     justifyContent: "flex-start",
 
-    // "@media (max-width: 999px)": {
-    //   flexDirection: "column",
-    // },
+    "@media (max-width: 999px)": {
+      flexDirection: "column",
+    },
   },
   text: {
     marginTop: "0.45em",

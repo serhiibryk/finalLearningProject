@@ -9,6 +9,10 @@ const useStyles = createUseStyles({
     minHeight: "calc(100vh - 134px)",
     padding: "5em",
     display: "block",
+
+    "&media screen and (max-width: 975px)": {
+      padding: "4em",
+    },
   },
   input: {
     width: "400px",
