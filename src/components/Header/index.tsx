@@ -66,8 +66,8 @@ const Header = () => {
           <Dropdown
             overlay={menu}
             className={classes.dropmenu}
-            visible={true}
-            // autoFocus={true}
+            // visible={true}
+            overlayClassName={classes.overlay}
           >
             <Typography.Link>
               <Space className={classes.menuDropText}>MENU</Space>

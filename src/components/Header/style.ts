@@ -5,9 +5,7 @@ const useStyles = createUseStyles({
     "& .ant-menu": {
       display: "flex",
     },
-
     "& .ant-menu-item": {
-      // display: "flex",
       height: "87%",
     },
     "& .ant-menu-item-selected": {
@@ -18,9 +16,6 @@ const useStyles = createUseStyles({
     "& .ant-menu-dark.ant-menu-vertical>.ant-menu-item:hover": {
       backgroundColor: "black !important",
     },
-    // "& .ant-menu .ant-menu-root .ant-menu-vertical .ant-menu-dark menu-0-2-2": {
-    //   width: "200px",
-    // },
   },
 
   menu: {
@@ -32,23 +27,29 @@ const useStyles = createUseStyles({
     },
   },
 
+  overlay: {
+    // width: "200px",
+
+    "& .ant-dropdown-menu": {
+      backgroundColor: "black",
+    },
+
+    "& .ant-dropdown-menu-item": {
+      width: "250px",
+      color: "grey",
+      // backgroundColor: "black",
+    },
+  },
+
   dropmenu: {
     display: "none",
     backgroundColor: "black",
-    width: "400px",
-    // "& .ant-dropdown-menu": {
-    //   width: "400px !important",
-    // },
+    width: "64px",
+    // marginLeft: "auto",
 
     "@media screen and (max-width: 935px)": {
       display: "block",
     },
-
-    // width: "200px !important",
-  },
-
-  "& .ant-dropdown-menu": {
-    backgroundColor: "black",
   },
 
   menuDropText: {
