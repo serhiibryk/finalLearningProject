@@ -1,4 +1,4 @@
-import { Dropdown, Layout, Menu, Space, Typography } from "antd";
+import { Button, Layout, Menu, Modal } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { routerList } from "../../utils";
@@ -6,7 +6,8 @@ import { useAppSelector } from "../../store/hooks/redux";
 
 import useStyles from "./style";
 import classNames from "classnames";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { MenuOutlined } from "@ant-design/icons";
 
 const { Header: HeaderAnt } = Layout;
 
@@ -16,6 +17,34 @@ const Header = () => {
   const location = useLocation();
   const { token } = useAppSelector((state) => state.user);
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleClickLogin = () => {
+    push("/login");
+    setIsModalVisible(false);
+  };
+
+  const handleClick = (item: string) => {
+    push(item);
+    setIsModalVisible(false);
+  };
+
   const activeList = useMemo(() => {
     return routerList.map((item) => {
       if (location.pathname === "/" && item.key === "/") return item.key;
@@ -24,32 +53,32 @@ const Header = () => {
       return "";
     });
   }, [location.pathname]);
-  const menu = (
-    <Menu
-      selectable
-      selectedKeys={activeList}
-      onClick={(path) => {
-        push(path.key);
-      }}
-      items={[
-        ...routerList.map((item) => {
-          if (token && item.key === "/login") {
-            return {
-              key: "/login",
-              label: "Log out",
-            };
-          }
-          if (item.privat === true && !token) {
-            return null;
-          }
-          return {
-            key: item.key,
-            label: item.label,
-          };
-        }),
-      ]}
-    />
-  );
+  // const menu = (
+  //   <Menu
+  //     selectable
+  //     selectedKeys={activeList}
+  //     onClick={(path) => {
+  //       push(path.key);
+  //     }}
+  //     items={[
+  //       ...routerList.map((item) => {
+  //         if (token && item.key === "/login") {
+  //           return {
+  //             key: "/login",
+  //             label: "Log out",
+  //           };
+  //         }
+  //         if (item.privat === true && !token) {
+  //           return null;
+  //         }
+  //         return {
+  //           key: item.key,
+  //           label: item.label,
+  //         };
+  //       }),
+  //     ]}
+  //   />
+  // );
 
   return (
     <div className={classes.root}>
@@ -63,7 +92,7 @@ const Header = () => {
               alt="Logo"
             />
           </div>
-          <Dropdown
+          {/* <Dropdown
             overlay={menu}
             className={classes.dropmenu}
             // visible={true}
@@ -72,7 +101,50 @@ const Header = () => {
             <Typography.Link>
               <Space className={classes.menuDropText}>MENU</Space>
             </Typography.Link>
-          </Dropdown>
+          </Dropdown> */}
+          <Button
+            className={classes.modalShowButton}
+            type="primary"
+            onClick={showModal}
+          >
+            <MenuOutlined />
+          </Button>
+          <Modal
+            afterClose={closeModal}
+            className={classes.modal}
+            // visible={true}
+            title="MENU"
+            footer={null}
+            visible={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            width={"100%"}
+            wrapClassName={classes.wrap}
+          >
+            <div>
+              {routerList.map((item) => {
+                if (token && item.key === "/login") {
+                  return (
+                    <p className={classes.modalText} onClick={handleClickLogin}>
+                      Log out
+                    </p>
+                  );
+                }
+
+                if (item.privat === true && !token) {
+                  return null;
+                }
+                return (
+                  <p
+                    className={classes.modalText}
+                    onClick={() => handleClick(item.key)}
+                  >
+                    {item.label}
+                  </p>
+                );
+              })}
+            </div>
+          </Modal>
           <Menu
             theme="dark"
             className={classNames(

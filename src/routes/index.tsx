@@ -9,34 +9,36 @@ const Route = () => {
   const { token } = useAppSelector((state: any) => state.user);
 
   return (
-    <Routes>
-      {routes.map((item) => {
-        const { component, privat, path } = item;
+    <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 75px" }}>
+      <Routes>
+        {routes.map((item) => {
+          const { component, privat, path } = item;
 
-        // if (privat)
-        //   return (
-        //     <RouterDOM
-        //       key={path}
-        //       path={path}
-        //       element={<PrivatRoute auth={token} children={component} />}
-        //     />
-        //   );
+          // if (privat)
+          //   return (
+          //     <RouterDOM
+          //       key={path}
+          //       path={path}
+          //       element={<PrivatRoute auth={token} children={component} />}
+          //     />
+          //   );
 
-        return (
-          <RouterDOM
-            key={path}
-            path={path}
-            element={
-              privat ? (
-                <PrivatRoute auth={token} children={component} />
-              ) : (
-                component
-              )
-            }
-          />
-        );
-      })}
-    </Routes>
+          return (
+            <RouterDOM
+              key={path}
+              path={path}
+              element={
+                privat ? (
+                  <PrivatRoute auth={token} children={component} />
+                ) : (
+                  component
+                )
+              }
+            />
+          );
+        })}
+      </Routes>
+    </div>
   );
 };
 

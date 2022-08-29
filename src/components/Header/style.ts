@@ -86,87 +86,62 @@ const useStyles = createUseStyles({
     position: "static",
     margin: "1em",
   },
+
+  modal: {
+    cursor: "pointer",
+    top: "0px",
+    maxWidth: "none",
+    paddingBottom: "none",
+    height: "100vh",
+
+    "&.ant-modal": {
+      top: "none",
+    },
+
+    // "& .ant-modal .modal-0-2-276": {
+    //   backgroundColor: "black",
+    // },
+
+    "& .ant-modal-content": {
+      height: "100vh",
+      backgroundColor: "black",
+    },
+
+    "& .ant-modal-header": {
+      backgroundColor: "black",
+    },
+
+    "& .ant-modal-title": {
+      display: "flex",
+      justifyContent: "center",
+      color: "white",
+    },
+
+    "& .ant-modal-close-x": {
+      color: "white",
+    },
+  },
+  modalText: {
+    display: "flex",
+    justifyContent: "center",
+    color: "white",
+  },
+
+  modalShowButton: {
+    cursor: "pointer",
+    display: "none",
+    backgroundColor: "black",
+    width: "64px",
+    height: "64px",
+    borderColor: "black",
+    marginLeft: "auto",
+    "@media screen and (max-width: 935px)": {
+      display: "block",
+    },
+  },
+  wrap: {
+    // backgroundColor: "black",
+  },
 });
 
 export default useStyles;
-// <ul
-//   class="ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light"
-//   role="menu"
-//   tabindex="0"
-//   data-menu-list="true"
-//   style="
-// "
-// >
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-selected ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Main</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/people"
-//   >
-//     <span class="ant-dropdown-menu-title-content">People</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/films"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Films</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/planets"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Planets</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/species"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Species</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/starships"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Starships</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/vehicles"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Vehicles</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/profile"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Profile</span>
-//   </li>
-//   <li
-//     class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
-//     role="menuitem"
-//     tabindex="-1"
-//     data-menu-id="rc-menu-uuid-84225-1-/login"
-//   >
-//     <span class="ant-dropdown-menu-title-content">Log out</span>
-//   </li>
-// </ul>;
