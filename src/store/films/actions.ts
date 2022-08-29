@@ -7,8 +7,10 @@ export const getFilms = createAsyncThunk(
     try {
       const { results } = await filmsService.getFilms();
       return results;
-    } catch (e: any) {
-      return thunkApi.rejectWithValue(e.code);
+    } catch (e) {
+      let message = "Unknown Error";
+      if (e instanceof Error) message = e.message;
+      return thunkApi.rejectWithValue(message);
     }
   }
 );

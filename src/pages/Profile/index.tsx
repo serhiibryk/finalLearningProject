@@ -15,10 +15,6 @@ const Profile = () => {
   const classes = useStyles();
   const decodedData = useJwt(token);
 
-  const returnToken = () => {
-    return token;
-  };
-
   useEffect(() => {
     setTimeout(() => {
       setDecoded(decodedData.decodedToken as DecodedData);
@@ -31,7 +27,7 @@ const Profile = () => {
         {decoded ? (
           <div>
             <p>Token:</p>
-            <p className={classes.textP}>{returnToken()}</p>
+            <p className={classes.textP}>{token}</p>
             <p>Decode:</p>
             <ul>
               <li>{decoded.firstName}</li>

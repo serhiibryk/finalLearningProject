@@ -6,7 +6,7 @@ const MapFieldsByID: React.FunctionComponent<IMapFields> = ({
   list,
   title,
 }) => {
-  return list.length ? (
+  return list ? (
     <>
       <Divider orientation="left">{lable}:</Divider>
       <div>

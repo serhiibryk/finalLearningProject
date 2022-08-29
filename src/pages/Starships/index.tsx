@@ -17,8 +17,7 @@ const TeamsStarships = () => {
   const { starships, count, isLoading, error } = useAppSelector(
     (state) => state.starships
   );
-  // const [isLoading, setLoading] = useState(false);
-  // const [maxCount, setMaxCount] = useState(0);
+
   const [nameStarships, setNameStarships] = useState([]);
 
   const location = useLocation();
@@ -28,27 +27,11 @@ const TeamsStarships = () => {
 
   const currentPage = Number(location.search.split("=")[1] || 1);
 
-  // const fetchStarships = createAsyncThunk(
-  //   "starships/starships",
-  //   async (nextPage: number, thunkApi) => {
-  //     try {
-  //       setLoading(true);
-  //       const res = await starshipsService.getStarships(nextPage);
-  //       thunkApi.dispatch(starshipsReducer.setStarships(res.results));
-  //       setMaxCount(res.count);
-  //       setLoading(false);
-  //     } catch (e) {
-  //       return thunkApi.rejectWithValue(e);
-  //     }
-  //   }
-  // );
-
   useEffect(() => {
     dispatch(getStarships(currentPage));
   }, [currentPage, dispatch]);
 
   const handleChange = (page: number) => {
-    // fetchStarships(page);
     push(`/starships?page=${page}`);
   };
 
@@ -82,7 +65,7 @@ const TeamsStarships = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {nameStarships.map((starship: any, index: any) => {
+        {nameStarships.map((starship: any, index: number) => {
           return (
             <Card
               key={index}

@@ -14,11 +14,12 @@ interface ISearch {
 }
 
 const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
-  const stateRedux = useAppSelector((state: any) => state[category]);
-
-  const stateCategory = stateRedux[category];
+  const stateCategory = useAppSelector((state: any) => state[category])[
+    category
+  ];
 
   const classes = useStyles();
+
   const debouncedSearchPagination = debounce((value) => {
     const filter = (stateCategory || []).filter((item: any) =>
       item[name].toLowerCase().includes(value.toLowerCase())

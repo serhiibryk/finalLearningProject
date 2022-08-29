@@ -14,15 +14,6 @@ const Route = () => {
         {routes.map((item) => {
           const { component, privat, path } = item;
 
-          // if (privat)
-          //   return (
-          //     <RouterDOM
-          //       key={path}
-          //       path={path}
-          //       element={<PrivatRoute auth={token} children={component} />}
-          //     />
-          //   );
-
           return (
             <RouterDOM
               key={path}

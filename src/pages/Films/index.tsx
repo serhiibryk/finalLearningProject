@@ -5,9 +5,9 @@ import { Card } from "antd";
 import Spiner from "../../components/Spiner";
 import { imgFilmsList } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
+import { getFilms } from "../../store/films/actions";
 
 import useStyles from "./style";
-import { getFilms } from "../../store/films/actions";
 
 const { Meta } = Card;
 

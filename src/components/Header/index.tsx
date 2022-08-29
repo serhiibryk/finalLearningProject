@@ -1,12 +1,12 @@
+import { useMemo, useState } from "react";
 import { Button, Layout, Menu, Modal } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
+import classNames from "classnames";
 
 import { routerList } from "../../utils";
 import { useAppSelector } from "../../store/hooks/redux";
 
 import useStyles from "./style";
-import classNames from "classnames";
-import { useMemo, useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";
 
 const { Header: HeaderAnt } = Layout;
@@ -19,30 +19,18 @@ const Header = () => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const closeModal = () => {
-    setIsModalVisible(false);
+  const handleChangeView = (value: boolean) => {
+    setIsModalVisible(value);
   };
 
   const handleClickLogin = () => {
     push("/login");
-    setIsModalVisible(false);
+    handleChangeView(false);
   };
 
   const handleClick = (item: string) => {
     push(item);
-    setIsModalVisible(false);
+    handleChangeView(false);
   };
 
   const activeList = useMemo(() => {
@@ -105,18 +93,17 @@ const Header = () => {
           <Button
             className={classes.modalShowButton}
             type="primary"
-            onClick={showModal}
+            onClick={() => handleChangeView(true)}
           >
             <MenuOutlined className={classes.menuOutlined} />
           </Button>
           <Modal
-            afterClose={closeModal}
+            afterClose={() => handleChangeView(false)}
             className={classes.modal}
             title="MENU"
             footer={null}
             visible={isModalVisible}
-            onOk={handleOk}
-            onCancel={handleCancel}
+            onCancel={() => handleChangeView(false)}
             width={"100%"}
             wrapClassName={classes.wrap}
           >

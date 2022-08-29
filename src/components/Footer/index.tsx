@@ -4,7 +4,8 @@ import { format } from "date-fns";
 const { Footer: FooterAnt } = Layout;
 
 const Footer = () => {
-  const a = format(new Date(), "yyyy-MM-dd");
+  const date = format(new Date(), "yyyy-MM-dd");
+
   return (
     <FooterAnt
       style={{
@@ -12,7 +13,7 @@ const Footer = () => {
       }}
     >
       <div>
-        <p> All rights reserved&#174; &mdash;&mdash; {a}</p>
+        <p> All rights reserved&#174; &mdash;&mdash; {date}</p>
       </div>
     </FooterAnt>
   );

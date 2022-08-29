@@ -28,44 +28,13 @@ const TeamsPeoples: FC = () => {
 
   const currentPage = Number(location.search.split("=")[1] || 1);
 
-  // const fetchPeople = createAsyncThunk(
-  //   "people/people",
-  //   async (nextPage: number, thunkApi) => {
-  //     try {
-  //       setLoading(true);
-  //       const res = await peopleService.getPeople(nextPage);
-  //       thunkApi.dispatch(peopleReducer.setPeople(res.results));
-  //       setMaxCount(res.count);
-  //       // setLoading(false);
-  //     } catch (e) {
-  //       return thunkApi.rejectWithValue(e);
-  //     }
-  //   }
-  // );
-
   useEffect(() => {
     dispatch(getPeoples(currentPage));
   }, [dispatch, currentPage]);
 
   const handleChange = (page: number) => {
-    // fetchPeople(page);
     push(`/people?page=${page}`);
   };
-
-  // const debouncedSearch = debounce((value) => {
-  //   const filter = (people || []).filter((item: any) =>
-  //     item.name.toLowerCase().includes(value.toLowerCase())
-  //   );
-  //   setNamePeople(filter);
-  // }, 1000);
-
-  // const handleSearch = (e: any) => {
-  //   debouncedSearch(e.target.value);
-  // };
-
-  // useEffect(() => {
-  //   setNamePeople(people);
-  // }, [people]);
 
   if (isLoading) {
     return <Spiner />;

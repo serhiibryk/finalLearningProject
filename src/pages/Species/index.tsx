@@ -18,10 +18,7 @@ const TeamsSpecies = () => {
   const { specy, count, isLoading, error } = useAppSelector(
     (state) => state.specy
   );
-  // const [isLoading, setLoading] = useState(false);
-  // const [maxCount, setMaxCount] = useState(0);
   const [nameSpecies, setNameSpecies] = useState<any>([]);
-  // const [items, setItems] = useState(nameSpecies);
 
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -30,27 +27,11 @@ const TeamsSpecies = () => {
 
   const currentPage = Number(location.search.split("=")[1] || 1);
 
-  // const fetchSpecy = createAsyncThunk(
-  //   "specy/specy",
-  //   async (nextPage: number, thunkApi) => {
-  //     try {
-  //       setLoading(true);
-  //       const res = await speciesService.getSpecies(nextPage);
-  //       thunkApi.dispatch(specyReducer.setSpecies(res.results));
-  //       setMaxCount(res.count);
-  //       setLoading(false);
-  //     } catch (e) {
-  //       return thunkApi.rejectWithValue(e);
-  //     }
-  //   }
-  // );
-
   useEffect(() => {
     dispatch(getSpecy(currentPage));
   }, [currentPage, dispatch]);
 
   const handleChange = (page: number) => {
-    // fetchSpecy(page);
     push(`/species?page=${page}`);
   };
 
@@ -70,6 +51,7 @@ const TeamsSpecies = () => {
 
     return result;
   };
+
   const onDragEnd = (result: any) => {
     if (!result.destination) {
       return;
@@ -106,7 +88,7 @@ const TeamsSpecies = () => {
           </div>
         </div>
         <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
+          {(provided) => (
             <div
               className={classes.content}
               {...provided.droppableProps}
@@ -118,7 +100,7 @@ const TeamsSpecies = () => {
                   draggableId={String(index + 1)}
                   index={index}
                 >
-                  {(provided, snapshot) => (
+                  {(provided) => (
                     <div
                       className={classes.items}
                       ref={provided.innerRef}

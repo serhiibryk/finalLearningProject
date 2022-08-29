@@ -9,9 +9,9 @@ import { planetsService } from "../../services/planets";
 import { speciesService } from "../../services/species";
 import { starshipsService } from "../../services/starships";
 import { vehiclesService } from "../../services/vehicles";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 
 import useStyles from "./style";
-import MapFieldsByID from "../../components/MapOfFieldsByID";
 
 const FilmByID = () => {
   const [filmsList, setFilmsList] = useState<Films | null>(null);

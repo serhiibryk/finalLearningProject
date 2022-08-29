@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Card, Switch } from "antd";
 
 import Spiner from "../../components/Spiner";
-import { imgPlanetsList } from "../../utils";
+import { imgPlanetsList, mainError } from "../../utils";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
 import Search from "../../components/Search";
 import PaginationCategory from "../../components/Pagination";
@@ -73,7 +73,7 @@ const TeamsPlanets = () => {
   }
 
   if (error) {
-    return <p>Something went wrong!</p>;
+    return <p>{mainError}</p>;
   }
 
   const hasMore = () => {
