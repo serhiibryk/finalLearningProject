@@ -26,11 +26,11 @@ const useStyles = createUseStyles({
   items: {
     width: "32%",
     // 999px
-    "@media (max-width: 750px)": {
+    "@media (max-width: 899px)": {
       width: "48%",
     },
     // 535px
-    "@media (max-width: 499px)": {
+    "@media (max-width: 649px)": {
       width: "99%",
     },
   },
@@ -42,7 +42,7 @@ const useStyles = createUseStyles({
     justifyContent: "space-around",
     marginTop: "15px",
 
-    "@media (max-width: 999px)": {
+    "@media (max-width: 1149px)": {
       margin: "1em 0 0 1.5em",
       justifyContent: "flex-start",
     },
@@ -58,7 +58,7 @@ const useStyles = createUseStyles({
     flexDirection: "row",
     justifyContent: "flex-start",
 
-    "@media (max-width: 999px)": {
+    "@media (max-width: 1149px)": {
       flexDirection: "column",
     },
   },

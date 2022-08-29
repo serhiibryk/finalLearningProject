@@ -8,10 +8,10 @@ const useStyles = createUseStyles({
     minWidth: "140px",
     margin: "10px 5px 5px 5px",
 
-    "@media (max-width: 750px)": {
+    "@media (max-width: 899px)": {
       width: "48%",
     },
-    "@media (max-width: 499px)": {
+    "@media (max-width: 649px)": {
       width: "100%",
     },
   },
@@ -34,7 +34,7 @@ const useStyles = createUseStyles({
     justifyContent: "space-around",
     marginTop: "15px",
 
-    "@media (max-width: 999px)": {
+    "@media (max-width: 899px)": {
       margin: "1em 0 0 1.5em",
       justifyContent: "flex-start",
     },
@@ -51,7 +51,7 @@ const useStyles = createUseStyles({
     flexDirection: "row",
     justifyContent: "flex-start",
 
-    "@media (max-width: 999px)": {
+    "@media (max-width: 899px)": {
       flexDirection: "column",
     },
   },

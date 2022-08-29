@@ -45,7 +45,6 @@ const useStyles = createUseStyles({
     display: "none",
     backgroundColor: "black",
     width: "64px",
-    // marginLeft: "auto",
 
     "@media screen and (max-width: 935px)": {
       display: "block",
@@ -91,16 +90,12 @@ const useStyles = createUseStyles({
     cursor: "pointer",
     top: "0px",
     maxWidth: "none",
-    paddingBottom: "none",
+    paddingBottom: "0px",
     height: "100vh",
 
     "&.ant-modal": {
       top: "none",
     },
-
-    // "& .ant-modal .modal-0-2-276": {
-    //   backgroundColor: "black",
-    // },
 
     "& .ant-modal-content": {
       height: "100vh",
@@ -121,6 +116,7 @@ const useStyles = createUseStyles({
       color: "white",
     },
   },
+
   modalText: {
     display: "flex",
     justifyContent: "center",
@@ -130,14 +126,18 @@ const useStyles = createUseStyles({
   modalShowButton: {
     cursor: "pointer",
     display: "none",
-    backgroundColor: "black",
+    backgroundColor: "transparent",
     width: "64px",
     height: "64px",
-    borderColor: "black",
+    borderColor: "transparent",
     marginLeft: "auto",
+    margin: "0 30px",
     "@media screen and (max-width: 935px)": {
       display: "block",
     },
+  },
+  menuOutlined: {
+    fontSize: "32px",
   },
   wrap: {
     // backgroundColor: "black",

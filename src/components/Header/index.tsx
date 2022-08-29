@@ -107,12 +107,11 @@ const Header = () => {
             type="primary"
             onClick={showModal}
           >
-            <MenuOutlined />
+            <MenuOutlined className={classes.menuOutlined} />
           </Button>
           <Modal
             afterClose={closeModal}
             className={classes.modal}
-            // visible={true}
             title="MENU"
             footer={null}
             visible={isModalVisible}
@@ -122,10 +121,14 @@ const Header = () => {
             wrapClassName={classes.wrap}
           >
             <div>
-              {routerList.map((item) => {
+              {routerList.map((item, index) => {
                 if (token && item.key === "/login") {
                   return (
-                    <p className={classes.modalText} onClick={handleClickLogin}>
+                    <p
+                      key={index}
+                      className={classes.modalText}
+                      onClick={handleClickLogin}
+                    >
                       Log out
                     </p>
                   );
@@ -136,6 +139,7 @@ const Header = () => {
                 }
                 return (
                   <p
+                    key={index}
                     className={classes.modalText}
                     onClick={() => handleClick(item.key)}
                   >

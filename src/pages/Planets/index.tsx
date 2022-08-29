@@ -92,35 +92,39 @@ const TeamsPlanets = () => {
   return (
     <div className={classes.root}>
       <div className={classes.topOfPage}>
-        <span className={classes.text}>
-          You can switch between pagination and infinitescroll
-        </span>
-        <div>
-          <Switch
-            className={classes.switch}
-            checked={checked}
-            onChange={checkForScroll}
-          />
-        </div>
-        <div>
-          <Search
-            category={"planets"}
-            name={"name"}
-            setSearchState={setSwitcher}
-          />
-        </div>
-        {checked === false ? (
-          <div className={classes.pagination}>
-            {planets.length && (
-              <PaginationCategory
-                defaultCurrent={currentPage}
-                total={count}
-                current={currentPage}
-                onChange={handleChange}
-              />
-            )}
+        <div className={classes.textAndSwitch}>
+          <span className={classes.text}>
+            You can switch between pagination and infinitescroll
+          </span>
+          <div>
+            <Switch
+              className={classes.switch}
+              checked={checked}
+              onChange={checkForScroll}
+            />
           </div>
-        ) : null}
+        </div>
+        <div className={classes.searchAndPagination}>
+          <div>
+            <Search
+              category={"planets"}
+              name={"name"}
+              setSearchState={setSwitcher}
+            />
+          </div>
+          {checked === false ? (
+            <div className={classes.pagination}>
+              {planets.length && (
+                <PaginationCategory
+                  defaultCurrent={currentPage}
+                  total={count}
+                  current={currentPage}
+                  onChange={handleChange}
+                />
+              )}
+            </div>
+          ) : null}
+        </div>
       </div>
       <div className={classes.contentScroll}>
         <InfiniteScroll

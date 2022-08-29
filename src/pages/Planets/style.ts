@@ -8,11 +8,11 @@ const useStyles = createUseStyles({
     minWidth: "140px",
     margin: "10px 5px 5px 5px",
 
-    "@media (max-width: 750px)": {
+    "@media (max-width: 899px)": {
       width: "48%",
     },
 
-    "@media (max-width: 499px)": {
+    "@media (max-width: 649px)": {
       width: "99%",
     },
   },
@@ -33,10 +33,26 @@ const useStyles = createUseStyles({
   search: {},
   topOfPage: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "flex-start",
 
     "@media (max-width: 1305px)": {
+      flexDirection: "column",
+    },
+  },
+  textAndSwitch: {
+    display: "flex",
+    flexDirection: "row",
+
+    "@media (max-width: 899px)": {
+      flexDirection: "column",
+    },
+  },
+  searchAndPagination: {
+    display: "flex",
+    flexDirection: "row",
+
+    "@media (max-width: 899px)": {
       flexDirection: "column",
     },
   },
@@ -48,12 +64,11 @@ const useStyles = createUseStyles({
     },
   },
   switch: {
-    marginLeft: "1.5em",
+    marginLeft: "4em",
     display: "block",
     marginTop: "1.45em",
     background: "black",
-
-    "@media (max-width: 1305px)": {
+    "@media (max-width: 899px)": {
       marginLeft: "1.5em",
     },
   },
