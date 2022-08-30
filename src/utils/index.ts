@@ -1,3 +1,8 @@
+// interface IRouterList {
+//   key: string,
+//       label: string,
+//       privat: boolean,
+// }
 export const routerList = [
   {
     key: "/",
@@ -45,6 +50,8 @@ export const routerList = [
     privat: false,
   },
 ];
+
+//   return routerList;
 
 export const imgMainList = [
   {

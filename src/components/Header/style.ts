@@ -4,13 +4,15 @@ const useStyles = createUseStyles({
   root: {
     "& .ant-menu": {
       display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
     "& .ant-menu-item": {
-      height: "87%",
+      // height: "100%",
     },
     "& .ant-menu-item-selected": {
       backgroundColor: "black !important",
-      height: "87%",
+      // height: "87%",
     },
 
     "& .ant-menu-dark.ant-menu-vertical>.ant-menu-item:hover": {
@@ -25,6 +27,23 @@ const useStyles = createUseStyles({
     "& .ant-menu-item:last-child": {
       marginLeft: "auto",
     },
+  },
+  buttons: {
+    marginLeft: "auto",
+    display: "flex",
+    justifyContent: "row",
+  },
+
+  buttonSwitch: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+    border: "none",
+    color: "white",
+    width: "64px",
+    height: "64px",
+    fontSize: "25px",
   },
 
   overlay: {
