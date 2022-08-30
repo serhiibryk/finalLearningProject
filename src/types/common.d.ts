@@ -134,10 +134,6 @@ declare interface ICardRow {
   title: string | number;
 }
 
-declare interface ISpiner {
-  classes: string;
-}
-
 declare interface IMapFields {
   list: any[];
   title: string;
@@ -163,4 +159,29 @@ declare interface DataFromAPI<T> {
   next: string | null;
   previous: string | null;
   results: T;
+}
+
+declare interface GetPeopleAction {
+  people: People[];
+  count: number;
+}
+
+declare interface GetSpecyAction {
+  specy: Species[];
+  count: number;
+}
+
+declare interface GetStarshipsAction {
+  starships: Starships[];
+  count: number;
+}
+
+declare interface GetVehiclesAction {
+  vehicles: Vehicles[];
+  count: number;
+}
+
+declare interface GetPlanetsAction {
+  planets: Planets[];
+  count: number;
 }

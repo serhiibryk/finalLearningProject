@@ -15,6 +15,9 @@ const useStyles = createUseStyles({
       fontSize: "23px",
       fontWeight: "lighter",
     },
+    "@media (max-width: 450px)": {
+      width: "93%",
+    },
   },
   peopleByIDContainer: {
     display: "flex",

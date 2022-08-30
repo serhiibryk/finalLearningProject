@@ -28,7 +28,7 @@ const StarshipByID = () => {
   useEffect(() => {
     const id = location.pathname.split("/")[2];
     fetchStarshipByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (starshipsList) {
@@ -61,7 +61,7 @@ const StarshipByID = () => {
   }, [starshipsList]);
 
   if (starshipsList === null || filmsList === null || peopleList === null)
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.starshipByIDContainer}>

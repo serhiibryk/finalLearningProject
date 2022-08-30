@@ -6,12 +6,14 @@ const MapFieldsByID: React.FunctionComponent<IMapFields> = ({
   list,
   title,
 }) => {
-  return list.length ? (
+  return list ? (
     <>
       <Divider orientation="left">{lable}:</Divider>
       <div>
-        {list.map((id) => (
-          <Tag color="geekblue">{id[title]}</Tag>
+        {list.map((id, index) => (
+          <Tag key={index} color="geekblue">
+            {id[title]}
+          </Tag>
         ))}
       </div>
     </>

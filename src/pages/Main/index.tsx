@@ -11,7 +11,7 @@ import useStyles from "./style";
 const { Meta } = Card;
 
 const Main = () => {
-  const [commonList, setCommonList] = useState<Common>({
+  const [mainList, setMainList] = useState<Common>({
     films: "",
     people: "",
     planets: "",
@@ -25,7 +25,7 @@ const Main = () => {
 
   const fetchCommon = async () => {
     commonService.getCommon().then((data) => {
-      setCommonList(data);
+      setMainList(data);
     });
   };
 
@@ -33,14 +33,15 @@ const Main = () => {
     fetchCommon();
   }, []);
 
-  if (commonList.films === "") {
-    return <Spiner classes={classes.spiner} />;
+  if (mainList.films === "") {
+    return <Spiner />;
   }
 
   return (
     <div className={classes.root}>
-      {Object.entries(commonList).map((item, index) => (
+      {Object.entries(mainList).map((item, index) => (
         <Card
+          key={index}
           hoverable
           className={classes.card}
           cover={

@@ -32,6 +32,7 @@ import specy from "./specy/reducer";
 import starships from "./starships/reducer";
 import vehicles from "./vehicles/reducer";
 import page from "./pageAntd/reducer";
+import stateForScroll from "./infiniteScroll/reducer";
 
 const rootReducer = combineReducers({
   user,
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   starships,
   vehicles,
   page,
+  stateForScroll,
 });
 
 export const setupStore = () => {

@@ -36,7 +36,7 @@ const PeopleByID = () => {
     const id = location.pathname.split("/")[2];
 
     fetchPeopleByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (peoplesList) {
@@ -111,7 +111,7 @@ const PeopleByID = () => {
     !starshipsList ||
     !vehiclesList
   )
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.peopleByIDContainer}>

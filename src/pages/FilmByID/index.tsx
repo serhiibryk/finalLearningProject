@@ -9,9 +9,9 @@ import { planetsService } from "../../services/planets";
 import { speciesService } from "../../services/species";
 import { starshipsService } from "../../services/starships";
 import { vehiclesService } from "../../services/vehicles";
+import MapFieldsByID from "../../components/MapOfFieldsByID";
 
 import useStyles from "./style";
-import MapFieldsByID from "../../components/MapOfFieldsByID";
 
 const FilmByID = () => {
   const [filmsList, setFilmsList] = useState<Films | null>(null);
@@ -31,9 +31,8 @@ const FilmByID = () => {
 
   useEffect(() => {
     const id = location.pathname.split("/")[2];
-    console.log(id);
     fetchFilmsByID(Number(id));
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (filmsList) {
@@ -104,7 +103,7 @@ const FilmByID = () => {
     starshipsList === null ||
     vehiclesList === null
   )
-    return <Spiner classes={classes.spiner} />;
+    return <Spiner />;
 
   return (
     <div className={classes.root}>

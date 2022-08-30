@@ -3,23 +3,19 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   root: {},
   card: {
-    margin: "10px 5px 5px 5px",
-    width: "32%",
+    // margin: "10px 5px 5px 5px",
+    margin: "10px 0 0 18px",
+    width: "100%",
     minHeight: "70px",
     minWidth: "140px",
-
-    "@media (max-width: 975px)": {
-      width: "48%",
-    },
-    "@media (max-width: 499px)": {
-      width: "100%",
-    },
   },
 
   content: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "felx-start",
+    columnGap: "10px",
+    rowGap: "5px",
 
     "& .ant-card-cover": {
       display: "flex",
@@ -27,19 +23,51 @@ const useStyles = createUseStyles({
       height: "250px",
     },
   },
+  items: {
+    width: "32%",
+    // 999px
+    "@media (max-width: 899px)": {
+      width: "48%",
+    },
+    // 535px
+    "@media (max-width: 649px)": {
+      width: "99%",
+    },
+  },
   img: {
     objectFit: "cover",
-  },
-  spiner: {
-    marginTop: "100px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   pagination: {
     display: "flex",
     justifyContent: "space-around",
     marginTop: "15px",
+
+    "@media (max-width: 1149px)": {
+      margin: "1em 0 0 1.5em",
+      justifyContent: "flex-start",
+    },
+  },
+  search: {
+    display: "flex",
+    justifyContent: "space-around",
+    margin: "0 3em 0 1.5em",
+    marginTop: "15px",
+  },
+  topOfPage: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+
+    "@media (max-width: 1149px)": {
+      flexDirection: "column",
+    },
+  },
+  text: {
+    marginTop: "0.45em",
+    fontStyle: "italic",
+    fontSize: "23px",
+    fontWeight: "lighter",
+    marginLeft: "15px",
   },
 });
 

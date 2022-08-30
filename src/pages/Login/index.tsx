@@ -26,7 +26,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     localStoreService.remove("user");
     dispatch(userReducer.setUser(null));
-  }, []);
+  }, [dispatch]);
 
   const onFinish = (values: any) => {
     const checkUser = data.find((same: any) => same.email === values.email);
@@ -85,7 +85,10 @@ const Login: React.FC = () => {
           >
             Log in
           </Button>{" "}
-          Or <a onClick={() => push("/registration")}>Register now!</a>
+          Or{" "}
+          <a href="/registration" onClick={() => push("/registration")}>
+            Register now!
+          </a>
         </Form.Item>
       </Form>
     </div>

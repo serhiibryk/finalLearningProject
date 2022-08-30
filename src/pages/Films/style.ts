@@ -8,10 +8,10 @@ const useStyles = createUseStyles({
     minWidth: "140px",
     margin: "10px 5px 5px 5px",
 
-    "@media (max-width: 975px)": {
+    "@media screen and (max-width: 899px)": {
       width: "48%",
     },
-    "@media (max-width: 499px)": {
+    "@media screen and (max-width: 649px)": {
       width: "100%",
     },
   },

@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
 import Spiner from "../../components/Spiner";
 import { imgFilmsList } from "../../utils";
-import { filmsService } from "../../services/films";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { filmsReducer } from "../../store/films/reducer";
+import { getFilms } from "../../store/films/actions";
 
 import useStyles from "./style";
 
@@ -15,7 +13,7 @@ const { Meta } = Card;
 
 const TeamsFilms = () => {
   // const [filmsList, setFilmsList] = useState<Films[]>([]);
-  const { films } = useAppSelector((state: any) => state.films);
+  const { films, isLoading, error } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
@@ -26,26 +24,34 @@ const TeamsFilms = () => {
   //   });
   // };
 
-  const fetchFilms = createAsyncThunk(
-    "films/films",
-    async (data: any, thunkApi) => {
-      try {
-        const res = await filmsService.getFilms();
+  // const fetchFilms = createAsyncThunk(
+  //   "films/films",
+  //   async (data: any, thunkApi) => {
+  //     try {
+  //       const res = await filmsService.getFilms();
 
-        console.log(res);
-        thunkApi.dispatch(filmsReducer.setFilms(res.results));
-      } catch (e) {
-        return thunkApi.rejectWithValue(e);
-      }
-    }
-  );
+  //       console.log(res);
+  //       thunkApi.dispatch(filmsReducer.setFilms(res.results));
+  //     } catch (e) {
+  //       return thunkApi.rejectWithValue(e);
+  //     }
+  //   }
+  // );
+
+  // useEffect(() => {
+  //   dispatch(fetchFilms({}));
+  // }, []);
 
   useEffect(() => {
-    dispatch(fetchFilms({}));
-  }, []);
+    dispatch(getFilms());
+  }, [dispatch]);
 
-  if (films.length === 0) {
-    return <Spiner classes={classes.spiner} />;
+  if (isLoading) {
+    return <Spiner />;
+  }
+
+  if (error) {
+    return <p>Something went wrong!</p>;
   }
 
   return (
@@ -54,6 +60,7 @@ const TeamsFilms = () => {
         {films.map((film: any, index: any) => {
           return (
             <Card
+              key={index}
               className={classes.card}
               hoverable
               cover={

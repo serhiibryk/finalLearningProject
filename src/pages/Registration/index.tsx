@@ -8,29 +8,6 @@ import { userDataReducer } from "../../store/userData/reducer";
 
 import useStyles from "./style";
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-
 const Registration: React.FC = () => {
   const classes = useStyles();
   const [formAntd] = Form.useForm();
@@ -66,15 +43,10 @@ const Registration: React.FC = () => {
   return (
     <div className={classes.registerContainer}>
       <Form
-        {...formItemLayout}
         className={classes.registerForm}
         form={formAntd}
         name="register"
         onFinish={onFinish}
-        initialValues={{
-          residence: ["zhejiang", "hangzhou", "xihu"],
-          prefix: "86",
-        }}
         scrollToFirstError
       >
         <Form.Item
@@ -147,7 +119,7 @@ const Registration: React.FC = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             Register
           </Button>

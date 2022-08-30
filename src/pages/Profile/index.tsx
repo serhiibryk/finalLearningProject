@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useJwt } from "react-jwt";
 import { Card, Skeleton } from "antd";
+import moment from "moment";
 
 import { localStoreService } from "../../utils";
 
@@ -14,10 +15,6 @@ const Profile = () => {
   const classes = useStyles();
   const decodedData = useJwt(token);
 
-  const returnToken = () => {
-    return token;
-  };
-
   useEffect(() => {
     setTimeout(() => {
       setDecoded(decodedData.decodedToken as DecodedData);
@@ -30,7 +27,7 @@ const Profile = () => {
         {decoded ? (
           <div>
             <p>Token:</p>
-            <p className={classes.textP}>{returnToken()}</p>
+            <p className={classes.textP}>{token}</p>
             <p>Decode:</p>
             <ul>
               <li>{decoded.firstName}</li>
@@ -45,6 +42,7 @@ const Profile = () => {
               <li>{decoded.iat}</li>
               <li>{decoded.sub}</li>
             </ul>
+            <p>{moment().format("MMMM Do YYYY, h:mm:ss a")}</p>
           </div>
         ) : (
           <Skeleton active />
