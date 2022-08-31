@@ -4,13 +4,15 @@ const useStyles = createUseStyles({
   root: {
     "& .ant-menu": {
       display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
     "& .ant-menu-item": {
-      height: "87%",
+      // height: "100%",
     },
     "& .ant-menu-item-selected": {
       backgroundColor: "black !important",
-      height: "87%",
+      // height: "87%",
     },
 
     "& .ant-menu-dark.ant-menu-vertical>.ant-menu-item:hover": {
@@ -19,17 +21,32 @@ const useStyles = createUseStyles({
   },
 
   menu: {
-    "@media screen and (max-width: 935px)": {
+    "@media screen and (max-width: 1125px)": {
       display: "none !important",
     },
     "& .ant-menu-item:last-child": {
       marginLeft: "auto",
     },
   },
+  buttons: {
+    marginLeft: "auto",
+    display: "flex",
+    justifyContent: "row",
+  },
+
+  buttonSwitch: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+    border: "none",
+    color: "white",
+    width: "64px",
+    height: "64px",
+    fontSize: "25px",
+  },
 
   overlay: {
-    // width: "200px",
-
     "& .ant-dropdown-menu": {
       backgroundColor: "black",
     },
@@ -37,7 +54,6 @@ const useStyles = createUseStyles({
     "& .ant-dropdown-menu-item": {
       width: "250px",
       color: "grey",
-      // backgroundColor: "black",
     },
   },
 
@@ -46,7 +62,7 @@ const useStyles = createUseStyles({
     backgroundColor: "black",
     width: "64px",
 
-    "@media screen and (max-width: 935px)": {
+    "@media screen and (max-width: 1125px)": {
       display: "block",
     },
   },
@@ -132,7 +148,7 @@ const useStyles = createUseStyles({
     borderColor: "transparent",
     marginLeft: "auto",
     margin: "0 30px",
-    "@media screen and (max-width: 935px)": {
+    "@media screen and (max-width: 1125px)": {
       display: "block",
     },
   },

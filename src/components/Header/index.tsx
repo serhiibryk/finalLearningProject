@@ -2,8 +2,9 @@ import { useMemo, useState } from "react";
 import { Button, Layout, Menu, Modal } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 
-import { routerList } from "../../utils";
+import { routerListFunc } from "../../utils";
 import { useAppSelector } from "../../store/hooks/redux";
 
 import useStyles from "./style";
@@ -11,10 +12,21 @@ import { MenuOutlined } from "@ant-design/icons";
 
 const { Header: HeaderAnt } = Layout;
 
+interface ILngs {
+  en: { nativeName: string };
+  ua: { nativeName: string };
+}
+
+const lngs: ILngs = {
+  en: { nativeName: "ENG" },
+  ua: { nativeName: "UA" },
+};
+
 const Header = () => {
   const push = useNavigate();
   const classes = useStyles();
   const location = useLocation();
+  const { t, i18n } = useTranslation();
   const { token } = useAppSelector((state) => state.user);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -34,7 +46,7 @@ const Header = () => {
   };
 
   const activeList = useMemo(() => {
-    return routerList.map((item) => {
+    return routerListFunc(t).map((item) => {
       if (location.pathname === "/" && item.key === "/") return item.key;
       if (item.key !== "/" && location.pathname.includes(item.key))
         return item.key;
@@ -80,6 +92,7 @@ const Header = () => {
               alt="Logo"
             />
           </div>
+
           {/* <Dropdown
             overlay={menu}
             className={classes.dropmenu}
@@ -90,6 +103,7 @@ const Header = () => {
               <Space className={classes.menuDropText}>MENU</Space>
             </Typography.Link>
           </Dropdown> */}
+
           <Button
             className={classes.modalShowButton}
             type="primary"
@@ -97,6 +111,7 @@ const Header = () => {
           >
             <MenuOutlined className={classes.menuOutlined} />
           </Button>
+
           <Modal
             afterClose={() => handleChangeView(false)}
             className={classes.modal}
@@ -108,7 +123,7 @@ const Header = () => {
             wrapClassName={classes.wrap}
           >
             <div>
-              {routerList.map((item, index) => {
+              {routerListFunc(t).map((item, index) => {
                 if (token && item.key === "/login") {
                   return (
                     <p
@@ -116,7 +131,7 @@ const Header = () => {
                       className={classes.modalText}
                       onClick={handleClickLogin}
                     >
-                      Log out
+                      {t("menuLogOut")}
                     </p>
                   );
                 }
@@ -147,11 +162,11 @@ const Header = () => {
               push(path.key);
             }}
             items={[
-              ...routerList.map((item) => {
+              ...routerListFunc(t).map((item) => {
                 if (token && item.key === "/login") {
                   return {
                     key: "/login",
-                    label: "Log out",
+                    label: t("menuLogOut"),
                   };
                 }
                 if (item.privat === true && !token) {
@@ -164,6 +179,20 @@ const Header = () => {
               }),
             ]}
           />
+          <div className={classes.buttons}>
+            {Object.keys(lngs).map((lng) => (
+              <Button
+                className={classes.buttonSwitch}
+                key={lng}
+                style={{
+                  fontWeight: i18n.resolvedLanguage === lng ? "900" : "lighter",
+                }}
+                onClick={() => i18n.changeLanguage(lng)}
+              >
+                {(lngs as any)[lng].nativeName}
+              </Button>
+            ))}
+          </div>
         </div>
       </HeaderAnt>
     </div>

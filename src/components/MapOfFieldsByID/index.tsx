@@ -1,11 +1,7 @@
 import { Divider, Tag } from "antd";
-import React from "react";
+import React, { FC } from "react";
 
-const MapFieldsByID: React.FunctionComponent<IMapFields> = ({
-  lable,
-  list,
-  title,
-}) => {
+const MapFieldsByID: FC<IMapFields> = ({ lable, list, title }) => {
   return list ? (
     <>
       <Divider orientation="left">{lable}:</Divider>

@@ -1,50 +1,58 @@
-export const routerList = [
-  {
-    key: "/",
-    label: "Main",
-    privat: true,
-  },
-  {
-    key: "/people",
-    label: "People",
-    privat: true,
-  },
-  {
-    key: "/films",
-    label: "Films",
-    privat: true,
-  },
-  {
-    key: "/planets",
-    label: "Planets",
-    privat: true,
-  },
-  {
-    key: "/species",
-    label: "Species",
-    privat: true,
-  },
-  {
-    key: "/starships",
-    label: "Starships",
-    privat: true,
-  },
-  {
-    key: "/vehicles",
-    label: "Vehicles",
-    privat: true,
-  },
-  {
-    key: "/profile",
-    label: "Profile",
-    privat: true,
-  },
-  {
-    key: "/login",
-    label: "Log in",
-    privat: false,
-  },
-];
+interface IRouterListFunc {
+  key: string;
+  label: string;
+  privat: boolean;
+}
+
+export const routerListFunc = (t: (a: string) => string): IRouterListFunc[] => {
+  return [
+    {
+      key: "/",
+      label: t("menuMain"),
+      privat: true,
+    },
+    {
+      key: "/people",
+      label: t("menuPeople"),
+      privat: true,
+    },
+    {
+      key: "/films",
+      label: t("menuFilms"),
+      privat: true,
+    },
+    {
+      key: "/planets",
+      label: t("menuPlanets"),
+      privat: true,
+    },
+    {
+      key: "/species",
+      label: t("menuSpecies"),
+      privat: true,
+    },
+    {
+      key: "/starships",
+      label: t("menuStarships"),
+      privat: true,
+    },
+    {
+      key: "/vehicles",
+      label: t("menuVehicles"),
+      privat: true,
+    },
+    {
+      key: "/profile",
+      label: t("menuProfile"),
+      privat: true,
+    },
+    {
+      key: "/login",
+      label: t("menuLogIn"),
+      privat: false,
+    },
+  ];
+};
 
 export const imgMainList = [
   {
