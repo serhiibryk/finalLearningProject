@@ -80,7 +80,7 @@ const TeamsSpecies = () => {
         <Droppable droppableId={'droppable'}>
           {(provided) => (
             <div className={classes.content} {...provided.droppableProps} ref={provided.innerRef}>
-              {nameSpecies.map((speccy: any, index: any) => (
+              {nameSpecies.map((speccy: Species, index: number) => (
                 <Draggable key={index} draggableId={String(index++)} index={index}>
                   {(provided) => (
                     <div
@@ -95,8 +95,8 @@ const TeamsSpecies = () => {
                         cover={
                           <img
                             className={classes.img}
-                            key={imgSpeciesList[index].imgLink}
-                            src={imgSpeciesList[index].imgLink}
+                            // key={imgSpeciesList[index].imgLink}
+                            src={imgSpeciesList[1].imgLink}
                             alt={'Speccy wallpaper'}
                           />
                         }

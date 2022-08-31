@@ -65,8 +65,8 @@ const TeamsVehicles = () => {
             cover={
               <img
                 className={classes.img}
-                key={imgVehiclesList[index].imgLink}
-                src={imgVehiclesList[index].imgLink}
+                // key={imgVehiclesList[index].imgLink}
+                src={imgVehiclesList[1].imgLink}
                 alt={'Vehicle wallpaper'}
               />
             }

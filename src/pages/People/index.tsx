@@ -60,7 +60,7 @@ const TeamsPeoples: FC = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {namePeople.map((people: any, index: any) => {
+        {namePeople.map((people: People, index: number) => {
           return (
             <Card
               key={index}

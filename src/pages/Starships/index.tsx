@@ -68,8 +68,8 @@ const TeamsStarships = () => {
               cover={
                 <img
                   className={classes.img}
-                  key={imgStarshipsList[index].imgLink}
-                  src={imgStarshipsList[index].imgLink}
+                  // key={imgStarshipsList[index].imgLink}
+                  src={imgStarshipsList[1].imgLink}
                   alt={'Starship wallpaper'}
                 />
               }
