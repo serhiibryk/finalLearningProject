@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card } from "antd";
+import { useTranslation } from "react-i18next";
 
 import CardRow from "../../components/CardRow";
 import Spiner from "../../components/Spiner";
@@ -21,6 +22,8 @@ const PeopleByID = () => {
   const [speciesList, setSpeciesList] = useState<Species[] | null>(null);
   const [starshipsList, setStarshipsList] = useState<Vehicles[] | null>(null);
   const [vehiclesList, setVehiclesList] = useState<Vehicles[] | null>(null);
+
+  const { t, i18n } = useTranslation();
 
   const location = useLocation();
 
@@ -116,17 +119,17 @@ const PeopleByID = () => {
   return (
     <div className={classes.peopleByIDContainer}>
       <Card className={classes.card} hoverable>
-        <CardRow title={peoplesList.name} lable="Name of people:" />
-        <CardRow title={peoplesList.birth_year} lable="Birth-year of people:" />
-        <CardRow title={peoplesList.gender} lable="Gender:" />
-        <CardRow title={peoplesList.created} lable="Created:" />
-        <CardRow title={peoplesList.edited} lable="Edited:" />
-        <CardRow title={peoplesList.eye_color} lable="Eye color:" />
-        <CardRow title={peoplesList.hair_color} lable="Hair_color:" />
-        <CardRow title={peoplesList.height} lable="Height:" />
-        <CardRow title={planetsList.name} lable="Homeworld:" />
-        <CardRow title={peoplesList.mass} lable="Mass:" />
-        <CardRow title={peoplesList.skin_color} lable="Skin_color:" />
+        <CardRow title={peoplesList.name} lable={t("nameOfPeople")} />
+        <CardRow title={peoplesList.birth_year} lable={t("birthDayOfPeople")} />
+        <CardRow title={peoplesList.gender} lable={t("gender")} />
+        <CardRow title={peoplesList.created} lable={t("created")} />
+        <CardRow title={peoplesList.edited} lable={t("edited")} />
+        <CardRow title={peoplesList.eye_color} lable={t("eye")} />
+        <CardRow title={peoplesList.hair_color} lable={t("hair")} />
+        <CardRow title={peoplesList.height} lable={t("height")} />
+        <CardRow title={planetsList.name} lable={t("homeworld")} />
+        <CardRow title={peoplesList.mass} lable={t("mass")} />
+        <CardRow title={peoplesList.skin_color} lable={t("skin")} />
         <MapFieldsByID list={filmsList} title={"title"} lable={"Films"} />
         <MapFieldsByID list={speciesList} title={"name"} lable={"Species"} />
         <MapFieldsByID

@@ -9,10 +9,12 @@ import { localStoreService } from "../../utils";
 
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import useStyles from "./style";
+import { useTranslation } from "react-i18next";
 
 const Login: React.FC = () => {
   const classes = useStyles();
   const push = useNavigate();
+  const { t } = useTranslation();
 
   const { data } = useAppSelector((state: any) => state.userData);
   const dispatch = useAppDispatch();
@@ -63,7 +65,7 @@ const Login: React.FC = () => {
           <Input
             className={classes.input}
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
+            placeholder={t("email")}
           />
         </Form.Item>
         <Form.Item
@@ -74,7 +76,7 @@ const Login: React.FC = () => {
             className={classes.input}
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder={t("password")}
           />
         </Form.Item>
         <Form.Item>
@@ -83,11 +85,11 @@ const Login: React.FC = () => {
             htmlType="submit"
             className="login-form-button"
           >
-            Log in
+            {t("menuLogIn")}
           </Button>{" "}
-          Or{" "}
+          <span>{t("or")}</span>{" "}
           <a href="/registration" onClick={() => push("/registration")}>
-            Register now!
+            {t("registerLink")}
           </a>
         </Form.Item>
       </Form>

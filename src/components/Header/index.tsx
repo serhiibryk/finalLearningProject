@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 
-import { routerList } from "../../utils";
+import { routerListFunc } from "../../utils";
 import { useAppSelector } from "../../store/hooks/redux";
 
 import useStyles from "./style";
@@ -46,7 +46,7 @@ const Header = () => {
   };
 
   const activeList = useMemo(() => {
-    return routerList.map((item) => {
+    return routerListFunc(t).map((item) => {
       if (location.pathname === "/" && item.key === "/") return item.key;
       if (item.key !== "/" && location.pathname.includes(item.key))
         return item.key;
@@ -123,7 +123,7 @@ const Header = () => {
             wrapClassName={classes.wrap}
           >
             <div>
-              {routerList.map((item, index) => {
+              {routerListFunc(t).map((item, index) => {
                 if (token && item.key === "/login") {
                   return (
                     <p
@@ -131,7 +131,7 @@ const Header = () => {
                       className={classes.modalText}
                       onClick={handleClickLogin}
                     >
-                      {t("logOut")}
+                      {t("menuLogOut")}
                     </p>
                   );
                 }
@@ -162,11 +162,11 @@ const Header = () => {
               push(path.key);
             }}
             items={[
-              ...routerList.map((item) => {
+              ...routerListFunc(t).map((item) => {
                 if (token && item.key === "/login") {
                   return {
                     key: "/login",
-                    label: t("logOut"),
+                    label: t("menuLogOut"),
                   };
                 }
                 if (item.privat === true && !token) {

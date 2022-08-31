@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from "react";
 import { debounce } from "lodash";
 import { Input } from "antd";
+import { useTranslation } from "react-i18next";
 
 import { useAppSelector } from "../../store/hooks/redux";
 
@@ -14,6 +15,8 @@ interface ISearch {
 }
 
 const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
+  const { t } = useTranslation();
+
   const stateCategory = useAppSelector((state: any) => state[category])[
     category
   ];
@@ -39,7 +42,7 @@ const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
     <Input
       className={classes.search}
       onChange={handleSearch}
-      placeholder="input to search"
+      placeholder={t("search")}
       prefix={<SearchOutlined />}
     />
   );

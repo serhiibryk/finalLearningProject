@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
   },
 
   menu: {
-    "@media screen and (max-width: 935px)": {
+    "@media screen and (max-width: 1125px)": {
       display: "none !important",
     },
     "& .ant-menu-item:last-child": {
@@ -47,8 +47,6 @@ const useStyles = createUseStyles({
   },
 
   overlay: {
-    // width: "200px",
-
     "& .ant-dropdown-menu": {
       backgroundColor: "black",
     },
@@ -56,7 +54,6 @@ const useStyles = createUseStyles({
     "& .ant-dropdown-menu-item": {
       width: "250px",
       color: "grey",
-      // backgroundColor: "black",
     },
   },
 
@@ -65,7 +62,7 @@ const useStyles = createUseStyles({
     backgroundColor: "black",
     width: "64px",
 
-    "@media screen and (max-width: 935px)": {
+    "@media screen and (max-width: 1125px)": {
       display: "block",
     },
   },
@@ -151,7 +148,7 @@ const useStyles = createUseStyles({
     borderColor: "transparent",
     marginLeft: "auto",
     margin: "0 30px",
-    "@media screen and (max-width: 935px)": {
+    "@media screen and (max-width: 1125px)": {
       display: "block",
     },
   },

@@ -9,7 +9,7 @@ const { Footer: FooterAnt } = Layout;
 const Footer = () => {
   const classes = useStyles();
   const date = format(new Date(), "yyyy-MM-dd");
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <FooterAnt className={classes.textAlign}>
       <div>
