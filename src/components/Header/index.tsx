@@ -52,7 +52,7 @@ const Header = () => {
         return item.key;
       return "";
     });
-  }, [location.pathname]);
+  }, [location.pathname, t]);
   // const menu = (
   //   <Menu
   //     selectable

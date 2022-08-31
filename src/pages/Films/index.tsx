@@ -26,7 +26,7 @@ const TeamsFilms = () => {
 
   // const fetchFilms = createAsyncThunk(
   //   "films/films",
-  //   async (data: any, thunkApi) => {
+  //   async (data, thunkApi) => {
   //     try {
   //       const res = await filmsService.getFilms();
 
@@ -57,7 +57,7 @@ const TeamsFilms = () => {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        {films.map((film: any, index: any) => {
+        {films.map((film: Films, index: number) => {
           return (
             <Card
               key={index}

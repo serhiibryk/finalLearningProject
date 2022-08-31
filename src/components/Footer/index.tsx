@@ -10,7 +10,6 @@ const Footer = () => {
   const classes = useStyles();
   const date = format(new Date(), "yyyy-MM-dd");
   const { t } = useTranslation();
-  console.log("loshara");
   return (
     <FooterAnt className={classes.textAlign}>
       <div>
