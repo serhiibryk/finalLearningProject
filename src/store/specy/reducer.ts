@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getSpecy } from './actions';
 
-type IState = {
+interface IState {
   specy: Species[];
   error: string;
   isLoading: boolean;
   count: number;
-};
+}
 
 export const initialState: IState = {
   specy: [],

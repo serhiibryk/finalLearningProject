@@ -2,7 +2,7 @@ import { api } from '.';
 
 class CommonService {
   async getCommon(): Promise<Common> {
-    const res = await api.get(`/`);
+    const res = await api.get('/');
     return res.data;
   }
 }

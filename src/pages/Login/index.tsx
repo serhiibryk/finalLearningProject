@@ -33,7 +33,7 @@ const Login: React.FC = () => {
   const onFinish = (values: any) => {
     const checkUser = data.find((same: any) => same.email === values.email);
     if (checkUser && checkUser.password === values.password) {
-      const { token } = jwtService.getJwt(checkUser);
+      const { token } = jwtService.getJwt();
       localStoreService.set('user', token);
       dispatch(userReducer.setUser(token));
       push('/');

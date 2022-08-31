@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getPeoples } from './actions';
 
-type IState = {
+interface IState {
   isLoading: boolean;
   error: string;
   people: People[];
   count: number;
-};
+}
 
 export const initialState: IState = {
   isLoading: false,

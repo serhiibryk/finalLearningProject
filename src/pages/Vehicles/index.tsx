@@ -21,7 +21,7 @@ const TeamsVehicles = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const currentPage = Number(location.search.split('=')[1] || 1);
+  const currentPage = Number(location.search.split('=')[1] ?? 1);
 
   useEffect(() => {
     dispatch(getVehicles(currentPage));

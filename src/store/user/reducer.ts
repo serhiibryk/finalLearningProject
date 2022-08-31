@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { localStoreService } from '../../utils';
 
-type IState = {
+interface IState {
   token: string;
-};
+}
 
 export const initialState: IState = {
   token: localStoreService.get('user'),

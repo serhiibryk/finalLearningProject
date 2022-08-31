@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type IState = {
+interface IState {
   stateForScroll: Planets[];
-};
+}
 
 export const initialState: IState = {
   stateForScroll: [],

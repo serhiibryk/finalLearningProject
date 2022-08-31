@@ -281,7 +281,7 @@ export const imgVehiclesList = [
 
 export const localStoreService = {
   get: (key: string, initValue: string = 'null') => {
-    const res = JSON.parse(localStorage.getItem(key) || initValue);
+    const res = JSON.parse(localStorage.getItem(key) ?? initValue);
 
     return res;
   },

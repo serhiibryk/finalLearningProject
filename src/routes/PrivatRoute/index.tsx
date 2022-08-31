@@ -8,7 +8,7 @@ interface IPrivateRoute {
 
 const PrivatRoute: FC<IPrivateRoute> = ({ children, auth }) => {
   if (!auth) {
-    return <Navigate to="/login" />;
+    return <Navigate to={'/login'} />;
   }
   return children as ReactElement<any>;
 };

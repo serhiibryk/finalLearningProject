@@ -25,6 +25,7 @@ module.exports = {
   },
   rules: {
     "@typescript-eslint/member-delimiter-style": 0,
+    "import/order": 0,
     "@typescript-eslint/semi": 0,
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-unused-vars': 'off',
@@ -46,24 +47,10 @@ module.exports = {
         json5: 'never',
       },
     ],
-    'import/order': [
-      'error',
-      {
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: false,
-        },
-      },
-    ],
+    '@typescript-eslint/no-floating-promises': 0,
+    '@typescript-eslint/lines-between-class-members': 0,
+    '@typescript-eslint/space-before-function-paren': 0,
+    'import/order': 0,
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/explicit-function-return-type': 0,

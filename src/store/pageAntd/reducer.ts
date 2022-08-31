@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type IState = {
+interface IState {
   page: number;
-};
+}
 
 export const initialState: IState = {
   page: 1,

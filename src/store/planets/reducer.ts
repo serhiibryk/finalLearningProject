@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getPlanets } from './actions';
 
-type IState = {
+interface IState {
   planets: Planets[];
   error: string;
   isLoading: boolean;
   count: number;
-};
+}
 
 export const initialState: IState = {
   planets: [],

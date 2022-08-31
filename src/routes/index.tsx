@@ -18,7 +18,7 @@ const Route = () => {
             <RouterDOM
               key={path}
               path={path}
-              element={privat ? <PrivatRoute auth={token} children={component} /> : component}
+              element={privat ? <PrivatRoute auth={token}>{component}</PrivatRoute> : component}
             />
           );
         })}

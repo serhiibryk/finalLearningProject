@@ -55,10 +55,10 @@ const StarshipByID = () => {
   return (
     <div className={classes.vehicleByIDContainer}>
       <Card className={classes.card} hoverable>
-        <CardRow title={vehiclesList.name} lable="Name of vehicle:" />
-        <CardRow title={vehiclesList.cargo_capacity} lable="Cargo capacity:" />
-        <CardRow title={vehiclesList.consumables} lable="Consumables:" />
-        <CardRow title={vehiclesList.cost_in_credits} lable="Cost in credits:" />
+        <CardRow title={vehiclesList.name} lable={'Name of vehicle:'} />
+        <CardRow title={vehiclesList.cargo_capacity} lable={'Cargo capacity:'} />
+        <CardRow title={vehiclesList.consumables} lable={'Consumables:'} />
+        <CardRow title={vehiclesList.cost_in_credits} lable={'Cost in credits:'} />
         <CardRow title={vehiclesList.created} lable="Created:" />
         <CardRow title={vehiclesList.crew} lable="Crew:" />
         <CardRow title={vehiclesList.edited} lable="Edited:" />

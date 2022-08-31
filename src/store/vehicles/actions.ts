@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { vehiclesService } from '../../services/vehicles';
 
 export const getVehicles = createAsyncThunk('vehicles/getVehicles', async (page: number, thunkApi) => {

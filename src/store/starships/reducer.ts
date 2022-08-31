@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { getStarships } from './actions';
 
-type IState = {
+interface IState {
   starships: Vehicles[];
   error: string;
   isLoading: boolean;
   count: number;
-};
+}
 
 export const initialState: IState = {
   starships: [],
