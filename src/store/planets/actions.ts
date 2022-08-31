@@ -6,8 +6,10 @@ export const getPlanets = createAsyncThunk('planets/getPlanets', async (page: nu
   try {
     const { results, count } = await planetsService.getPlanets(page);
     return { planets: results, count };
-  } catch (e: any) {
-    return thunkApi.rejectWithValue(e.code);
+  } catch (e) {
+    let message = 'Unknown Error';
+    if (e instanceof Error) message = e.message;
+    return thunkApi.rejectWithValue(message);
   }
 });
 
@@ -18,7 +20,9 @@ export const getNextPlanets = createAsyncThunk('planets/getNextPlanets', async (
     const state: any = thunkApi.getState();
     thunkApi.dispatch(infiniteScrollReducer.setForScroll(state.stateForScroll.stateForScroll.concat(results)));
     return { planets: results, count };
-  } catch (e: any) {
-    return thunkApi.rejectWithValue(e.code);
+  } catch (e) {
+    let message = 'Unknown Error';
+    if (e instanceof Error) message = e.message;
+    return thunkApi.rejectWithValue(message);
   }
 });

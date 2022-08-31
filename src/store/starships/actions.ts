@@ -5,7 +5,9 @@ export const getStarships = createAsyncThunk('starships/getStarships', async (pa
   try {
     const { results, count } = await starshipsService.getStarships(page);
     return { starships: results, count };
-  } catch (e: any) {
-    return thunkApi.rejectWithValue(e.code);
+  } catch (e) {
+    let message = 'Unknown Error';
+    if (e instanceof Error) message = e.message;
+    return thunkApi.rejectWithValue(message);
   }
 });

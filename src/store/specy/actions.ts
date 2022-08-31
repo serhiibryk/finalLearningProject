@@ -5,7 +5,9 @@ export const getSpecy = createAsyncThunk('specy/getSpecy', async (page: number, 
   try {
     const { results, count } = await speciesService.getSpecies(page);
     return { specy: results, count };
-  } catch (e: any) {
-    return thunkApi.rejectWithValue(e.code);
+  } catch (e) {
+    let message = 'Unknown Error';
+    if (e instanceof Error) message = e.message;
+    return thunkApi.rejectWithValue(message);
   }
 });

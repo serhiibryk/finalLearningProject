@@ -6,7 +6,9 @@ export const getVehicles = createAsyncThunk('vehicles/getVehicles', async (page:
   try {
     const { results, count } = await vehiclesService.getVehicles(page);
     return { vehicles: results, count };
-  } catch (e: any) {
-    return thunkApi.rejectWithValue(e.code);
+  } catch (e) {
+    let message = 'Unknown Error';
+    if (e instanceof Error) message = e.message;
+    return thunkApi.rejectWithValue(message);
   }
 });

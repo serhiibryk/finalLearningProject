@@ -5,7 +5,9 @@ export const getPeoples = createAsyncThunk('people/getPeoples', async (page: num
   try {
     const { results, count } = await peopleService.getPeople(page);
     return { people: results, count };
-  } catch (e: any) {
-    return thunkApi.rejectWithValue(e.code);
+  } catch (e) {
+    let message = 'Unknown Error';
+    if (e instanceof Error) message = e.message;
+    return thunkApi.rejectWithValue(message);
   }
 });

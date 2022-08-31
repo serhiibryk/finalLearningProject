@@ -119,7 +119,7 @@ const TeamsPlanets = () => {
           hasMore={checked && hasMore()}
           loader={<h4>Loading...</h4>}
         >
-          {switcher.map((planet: any, index: any) => {
+          {switcher.map((planet: Planets, index: number) => {
             return (
               <Card
                 key={index}

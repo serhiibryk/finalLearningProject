@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, FormEvent, useEffect } from 'react';
 import { debounce } from 'lodash';
 import { Input } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -26,8 +26,8 @@ const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
     setSearchState(filter);
   }, 1000);
 
-  const handleSearch = (e: any) => {
-    debouncedSearchPagination(e.target.value);
+  const handleSearch = (e: FormEvent<HTMLInputElement>) => {
+    debouncedSearchPagination(e.currentTarget.value);
   };
 
   useEffect(() => {
@@ -35,7 +35,12 @@ const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
   }, [stateCategory, setSearchState]);
 
   return (
-    <Input className={classes.search} onChange={handleSearch} placeholder={t('search')} prefix={<SearchOutlined />} />
+    <Input
+      className={classes.search}
+      onChange={(e) => handleSearch(e)}
+      placeholder={t('search')}
+      prefix={<SearchOutlined />}
+    />
   );
 };
 
