@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Button, Layout, Menu, Modal } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
@@ -86,9 +86,9 @@ const Header = () => {
           <div className={classes.logo}>
             <img
               className={classes.imgLogo}
-              src="https://cdn.beahero.gg/2019/06/star-wars-logo_k6qf-620x349.jpg"
+              src={'https://cdn.beahero.gg/2019/06/star-wars-logo_k6qf-620x349.jpg'}
               onClick={() => push('/')}
-              alt="Logo"
+              alt={'Logo'}
             />
           </div>
 
@@ -103,14 +103,14 @@ const Header = () => {
             </Typography.Link>
           </Dropdown> */}
 
-          <Button className={classes.modalShowButton} type="primary" onClick={() => handleChangeView(true)}>
+          <Button className={classes.modalShowButton} type={'primary'} onClick={() => handleChangeView(true)}>
             <MenuOutlined className={classes.menuOutlined} />
           </Button>
 
           <Modal
             afterClose={() => handleChangeView(false)}
             className={classes.modal}
-            title="MENU"
+            title={'MENU'}
             footer={null}
             visible={isModalVisible}
             onCancel={() => handleChangeView(false)}
@@ -127,7 +127,7 @@ const Header = () => {
                   );
                 }
 
-                if (item.privat === true && !token) {
+                if (item.privat && !token) {
                   return null;
                 }
                 return (
@@ -139,7 +139,7 @@ const Header = () => {
             </div>
           </Modal>
           <Menu
-            theme="dark"
+            theme={'dark'}
             className={classNames({ [classes.changedLog]: !token }, classes.menu)}
             selectedKeys={activeList}
             onClick={(path) => {
@@ -153,7 +153,7 @@ const Header = () => {
                     label: t('menuLogOut'),
                   };
                 }
-                if (item.privat === true && !token) {
+                if (item.privat && !token) {
                   return null;
                 }
                 return {
@@ -171,7 +171,7 @@ const Header = () => {
                 style={{
                   fontWeight: i18n.resolvedLanguage === lng ? '900' : 'lighter',
                 }}
-                onClick={() => i18n.changeLanguage(lng)}
+                onClick={async () => await i18n.changeLanguage(lng)}
               >
                 {(lngs as any)[lng].nativeName}
               </Button>

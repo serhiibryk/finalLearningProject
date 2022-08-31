@@ -57,7 +57,7 @@ const TeamsVehicles = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {nameVehicles.map((vehicle: any, index: any) => (
+        {nameVehicles.map((vehicle: Vehicles, index: number) => (
           <Card
             key={index}
             className={classes.card}
@@ -67,7 +67,7 @@ const TeamsVehicles = () => {
                 className={classes.img}
                 key={imgVehiclesList[index].imgLink}
                 src={imgVehiclesList[index].imgLink}
-                alt="Vehicle wallpaper"
+                alt={'Vehicle wallpaper'}
               />
             }
             onClick={() => push(`/vehicles/${vehicle.url.split('/')[5]}`)}

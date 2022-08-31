@@ -24,6 +24,13 @@ module.exports = {
     project: ["tsconfig.json"]
   },
   rules: {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
+    "multiline-ternary": 0,
     "@typescript-eslint/member-delimiter-style": 0,
     "import/order": 0,
     "@typescript-eslint/semi": 0,
@@ -47,6 +54,7 @@ module.exports = {
         json5: 'never',
       },
     ],
+    '@typescript-eslint/strict-boolean-expressions': 0,
     '@typescript-eslint/no-floating-promises': 0,
     '@typescript-eslint/lines-between-class-members': 0,
     '@typescript-eslint/space-before-function-paren': 0,

@@ -17,9 +17,9 @@ export const initialState: IState = {
 
 export const planetsSlice = createSlice({
   name: 'planets',
-  initialState: initialState,
+  initialState,
   reducers: {
-    setPlanets: (state: any, action: PayloadAction<any>) => {
+    setPlanets: (state: IState, action: PayloadAction<Planets[]>) => {
       state.planets = action.payload;
     },
   },

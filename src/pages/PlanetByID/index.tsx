@@ -56,17 +56,17 @@ const PlanetByID = () => {
   return (
     <div className={classes.planetByIDContainer}>
       <Card className={classes.card} hoverable>
-        <CardRow title={planetsList.name} lable="Name of palnet:" />
-        <CardRow title={planetsList.climate} lable="Climate of planet:" />
-        <CardRow title={planetsList.created} lable="Created:" />
-        <CardRow title={planetsList.diameter} lable="Diameter:" />
-        <CardRow title={planetsList.edited} lable="Edited:" />
-        <CardRow title={planetsList.gravity} lable="Gravity:" />
-        <CardRow title={planetsList.orbital_period} lable="Orbital period:" />
-        <CardRow title={planetsList.population} lable="Population:" />
-        <CardRow title={planetsList.rotation_period} lable="Rotation period:" />
-        <CardRow title={planetsList.surface_water} lable="Surface water:" />
-        <CardRow title={planetsList.terrain} lable="Terrain:" />
+        <CardRow title={planetsList.name} lable={'Name of palnet:'} />
+        <CardRow title={planetsList.climate} lable={'Climate of planet:'} />
+        <CardRow title={planetsList.created} lable={'Created:'} />
+        <CardRow title={planetsList.diameter} lable={'Diameter:'} />
+        <CardRow title={planetsList.edited} lable={'Edited:'} />
+        <CardRow title={planetsList.gravity} lable={'Gravity:'} />
+        <CardRow title={planetsList.orbital_period} lable={'Orbital period:'} />
+        <CardRow title={planetsList.population} lable={'Population:'} />
+        <CardRow title={planetsList.rotation_period} lable={'Rotation period:'} />
+        <CardRow title={planetsList.surface_water} lable={'Surface water:'} />
+        <CardRow title={planetsList.terrain} lable={'Terrain:'} />
         <MapFieldsByID list={filmsList} title={'title'} lable={'Films'} />
         <MapFieldsByID list={peopleList} title={'name'} lable={'Residents'} />
       </Card>

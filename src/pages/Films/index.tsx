@@ -68,7 +68,7 @@ const TeamsFilms = () => {
                   className={classes.img}
                   key={imgFilmsList[index].imgLink}
                   src={imgFilmsList[index].imgLink}
-                  alt="film wallpaper"
+                  alt={'film wallpaper'}
                 />
               }
               onClick={() => push(`/film/${film.url.split('/')[5]}`)}

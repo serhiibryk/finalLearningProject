@@ -65,20 +65,20 @@ const SpeccyByID = () => {
   return (
     <div className={classes.speccyByIDContainer}>
       <Card className={classes.card} hoverable>
-        <CardRow title={speciesList.name} lable="Name:" />
-        <CardRow title={speciesList.classification} lable="Classification:" />
-        <CardRow title={speciesList.average_height} lable="Average height:" />
-        <CardRow title={speciesList.average_lifespan} lable="Average lifespan:" />
-        <CardRow title={speciesList.classification} lable="Classification:" />
-        <CardRow title={speciesList.created} lable="Created:" />
-        <CardRow title={speciesList.designation} lable="Designation:" />
-        <CardRow title={speciesList.edited} lable="Edited:" />
-        <CardRow title={speciesList.eye_colors} lable="Eye colors:" />
-        <CardRow title={speciesList.hair_colors} lable="Hair colors:" />
-        <CardRow title={speciesList.language} lable="Language:" />
+        <CardRow title={speciesList.name} lable={'Name:'} />
+        <CardRow title={speciesList.classification} lable={'Classification:'} />
+        <CardRow title={speciesList.average_height} lable={'Average height:'} />
+        <CardRow title={speciesList.average_lifespan} lable={'Average lifespan:'} />
+        <CardRow title={speciesList.classification} lable={'Classification:'} />
+        <CardRow title={speciesList.created} lable={'Created:'} />
+        <CardRow title={speciesList.designation} lable={'Designation:'} />
+        <CardRow title={speciesList.edited} lable={'Edited:'} />
+        <CardRow title={speciesList.eye_colors} lable={'Eye colors:'} />
+        <CardRow title={speciesList.hair_colors} lable={'Hair colors:'} />
+        <CardRow title={speciesList.language} lable={'Language:'} />
         {planetsList?.name && (
           <>
-            <CardRow title={planetsList.name} lable="Homeworld:" />
+            <CardRow title={planetsList.name} lable={'Homeworld:'} />
           </>
         )}
         <MapFieldsByID list={filmsList} title={'title'} lable={'Films'} />

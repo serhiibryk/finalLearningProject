@@ -1,3 +1,4 @@
+import React from 'react';
 import { Layout } from 'antd';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';

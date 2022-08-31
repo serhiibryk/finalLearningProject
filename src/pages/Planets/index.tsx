@@ -95,7 +95,7 @@ const TeamsPlanets = () => {
           <div>
             <Search category={'planets'} name={'name'} setSearchState={setSwitcher} />
           </div>
-          {checked === false ? (
+          {!checked ? (
             <div className={classes.pagination}>
               {planets.length && (
                 <PaginationCategory
@@ -130,7 +130,7 @@ const TeamsPlanets = () => {
                     className={classes.img}
                     // key={imgPlanetsList.imgLink}
                     src={imgPlanetsList[1].imgLink}
-                    alt="Planet wallpaper"
+                    alt={'Planet wallpaper'}
                   />
                 }
                 onClick={() => push(`/planets/${planet.url.split('/')[5]}`)}

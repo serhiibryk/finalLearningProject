@@ -10,9 +10,9 @@ export const initialState: IState = {
 
 export const infiniteScrollSlice = createSlice({
   name: 'infiniteSctroll',
-  initialState: initialState,
+  initialState,
   reducers: {
-    setForScroll: (state: any, action: PayloadAction<any>) => {
+    setForScroll: (state: IState, action: PayloadAction<Planets[]>) => {
       state.stateForScroll = action.payload;
     },
   },

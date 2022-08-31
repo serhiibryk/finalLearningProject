@@ -41,7 +41,7 @@ const TeamsSpecies = () => {
     return <p>Something went wrong!</p>;
   }
 
-  //dnd
+  // dnd
   const reorder = (list: any, startIndex: any, endIndex: any) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -77,11 +77,11 @@ const TeamsSpecies = () => {
             )}
           </div>
         </div>
-        <Droppable droppableId="droppable">
+        <Droppable droppableId={'droppable'}>
           {(provided) => (
             <div className={classes.content} {...provided.droppableProps} ref={provided.innerRef}>
               {nameSpecies.map((speccy: any, index: any) => (
-                <Draggable key={index} draggableId={String(index + 1)} index={index}>
+                <Draggable key={index} draggableId={String(index++)} index={index}>
                   {(provided) => (
                     <div
                       className={classes.items}
@@ -97,7 +97,7 @@ const TeamsSpecies = () => {
                             className={classes.img}
                             key={imgSpeciesList[index].imgLink}
                             src={imgSpeciesList[index].imgLink}
-                            alt="Speccy wallpaper"
+                            alt={'Speccy wallpaper'}
                           />
                         }
                         onClick={() => push(`/species/${speccy.url.split('/')[5]}`)}

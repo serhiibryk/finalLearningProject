@@ -19,7 +19,7 @@ export const specySlice = createSlice({
   name: 'specy',
   initialState,
   reducers: {
-    setSpecies: (state: any, action: PayloadAction<any>) => {
+    setSpecies: (state: IState, action: PayloadAction<Species[]>) => {
       state.specy = action.payload;
     },
   },

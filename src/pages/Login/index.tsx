@@ -43,9 +43,9 @@ const Login: React.FC = () => {
   };
   return (
     <div className={classes.root}>
-      <Form className={classes.LoginForm} name="normal_email" initialValues={{ remember: true }} onFinish={onFinish}>
+      <Form className={classes.LoginForm} name={'normal_email'} initialValues={{ remember: true }} onFinish={onFinish}>
         <Form.Item
-          name="email"
+          name={'email'}
           rules={[
             {
               type: 'email',
@@ -59,24 +59,24 @@ const Login: React.FC = () => {
         >
           <Input
             className={classes.input}
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<UserOutlined className={'site-form-item-icon'} />}
             placeholder={t('email')}
           />
         </Form.Item>
-        <Form.Item name="password" rules={[{ required: true, message: 'Please input your Password!' }]}>
+        <Form.Item name={'password'} rules={[{ required: true, message: 'Please input your Password!' }]}>
           <Input
             className={classes.input}
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
+            prefix={<LockOutlined className={'site-form-item-icon'} />}
+            type={'password'}
             placeholder={t('password')}
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type={'primary'} htmlType={'submit'} className={'login-form-button'}>
             {t('menuLogIn')}
           </Button>{' '}
           <span>{t('or')}</span>{' '}
-          <a href="/registration" onClick={() => push('/registration')}>
+          <a href={'/registration'} onClick={() => push('/registration')}>
             {t('registerLink')}
           </a>
         </Form.Item>

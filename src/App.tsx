@@ -18,7 +18,7 @@ function App() {
       <Layout>
         <BrowserRouter>
           <Header />
-          <Content className="content">
+          <Content className={'content'}>
             <Route />
           </Content>
           <Footer />

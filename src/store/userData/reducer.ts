@@ -18,9 +18,9 @@ export const initialState: UserList = {
 
 export const userDataSlice = createSlice({
   name: 'userData',
-  initialState: initialState,
+  initialState,
   reducers: {
-    set: (state: any, action: PayloadAction<string[]>) => {
+    set: (state: UserList, action: PayloadAction<User[]>) => {
       state.data = action.payload;
     },
   },

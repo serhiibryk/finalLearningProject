@@ -12,7 +12,7 @@ import { peopleService } from '../../services/people';
 import useStyles from './style';
 
 const StarshipByID = () => {
-  const [starshipsList, setStarshipsList] = useState<Vehicles | null>(null);
+  const [starshipsList, setStarshipsList] = useState<Starships | null>(null);
   const [filmsList, setFilmsList] = useState<Films[] | null>(null);
   const [peopleList, setPeopleList] = useState<People[] | null>(null);
 
@@ -20,7 +20,7 @@ const StarshipByID = () => {
   const location = useLocation();
 
   const fetchStarshipByID = async (id: number) => {
-    starshipsService.getStarshipByID(id).then((data) => {
+    starshipsService.getStarshipByID(id).then((data: any) => {
       setStarshipsList(data);
     });
   };
@@ -55,21 +55,21 @@ const StarshipByID = () => {
   return (
     <div className={classes.starshipByIDContainer}>
       <Card className={classes.card} hoverable>
-        <CardRow title={starshipsList.name} lable="Name of starship:" />
-        <CardRow title={starshipsList.MGLT} lable="MGLT:" />
-        <CardRow title={starshipsList.cargo_capacity} lable="Cargo_capacity:" />
-        <CardRow title={starshipsList.consumables} lable="Consumables:" />
-        <CardRow title={starshipsList.cost_in_credits} lable="Cost in credits:" />
-        <CardRow title={starshipsList.created} lable="Created:" />
-        <CardRow title={starshipsList.crew} lable="Crew:" />
-        <CardRow title={starshipsList.edited} lable="Edited:" />
-        <CardRow title={starshipsList.hyperdrive_rating} lable="Hyperdrive rating:" />
-        <CardRow title={starshipsList.length} lable="Length:" />
-        <CardRow title={starshipsList.manufacturer} lable="Manufacturer:" />
-        <CardRow title={starshipsList.max_atmosphering_speed} lable="Max atmosphering speed:" />
-        <CardRow title={starshipsList.model} lable="Model:" />
-        <CardRow title={starshipsList.passengers} lable="Passengers:" />
-        <CardRow title={starshipsList.starship_class} lable="Starship class:" />
+        <CardRow title={starshipsList.name} lable={'Name of starship:'} />
+        <CardRow title={starshipsList.MGLT} lable={'MGLT:'} />
+        <CardRow title={starshipsList.cargo_capacity} lable={'Cargo_capacity:'} />
+        <CardRow title={starshipsList.consumables} lable={'Consumables:'} />
+        <CardRow title={starshipsList.cost_in_credits} lable={'Cost in credits:'} />
+        <CardRow title={starshipsList.created} lable={'Created:'} />
+        <CardRow title={starshipsList.crew} lable={'Crew:'} />
+        <CardRow title={starshipsList.edited} lable={'Edited:'} />
+        <CardRow title={starshipsList.hyperdrive_rating} lable={'Hyperdrive rating:'} />
+        <CardRow title={starshipsList.length} lable={'Length:'} />
+        <CardRow title={starshipsList.manufacturer} lable={'Manufacturer:'} />
+        <CardRow title={starshipsList.max_atmosphering_speed} lable={'Max atmosphering speed:'} />
+        <CardRow title={starshipsList.model} lable={'Model:'} />
+        <CardRow title={starshipsList.passengers} lable={'Passengers:'} />
+        <CardRow title={starshipsList.starship_class} lable={'Starship class:'} />
         <MapFieldsByID list={filmsList} title={'title'} lable={'Films'} />
         <MapFieldsByID list={peopleList} title={'name'} lable={'Pilots'} />
       </Card>

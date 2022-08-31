@@ -71,7 +71,7 @@ const TeamsPeoples: FC = () => {
                   className={classes.img}
                   key={imgPeopleList[index].imgLink}
                   src={imgPeopleList[index].imgLink}
-                  alt="People wallpaper"
+                  alt={'People wallpaper'}
                 />
               }
               onClick={() => push(`/people/${people.url.split('/')[5]}`)}

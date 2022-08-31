@@ -10,9 +10,9 @@ export const initialState: IState = {
 
 export const pageSlice = createSlice({
   name: 'page',
-  initialState: initialState,
+  initialState,
   reducers: {
-    setPage: (state: any, action: PayloadAction<any>) => {
+    setPage: (state: IState, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
   },

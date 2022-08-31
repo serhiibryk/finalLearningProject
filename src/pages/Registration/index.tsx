@@ -39,10 +39,10 @@ const Registration: React.FC = () => {
   };
   return (
     <div className={classes.registerContainer}>
-      <Form className={classes.registerForm} form={formAntd} name="register" onFinish={onFinish} scrollToFirstError>
+      <Form className={classes.registerForm} form={formAntd} name={'register'} onFinish={onFinish} scrollToFirstError>
         <Form.Item
-          name="email"
-          label="E-mail"
+          name={'email'}
+          label={'E-mail'}
           rules={[
             {
               type: 'email',
@@ -54,12 +54,12 @@ const Registration: React.FC = () => {
             },
           ]}
         >
-          <Input value="email" />
+          <Input value={'email'} />
         </Form.Item>
 
         <Form.Item
-          name="password"
-          label="Password"
+          name={'password'}
+          label={'Password'}
           rules={[
             {
               required: true,
@@ -72,8 +72,8 @@ const Registration: React.FC = () => {
         </Form.Item>
 
         <Form.Item
-          name="confirm"
-          label="Confirm Password::"
+          name={'confirm'}
+          label={'Confirm Password:'}
           dependencies={['password']}
           hasFeedback
           rules={[
@@ -82,11 +82,11 @@ const Registration: React.FC = () => {
               message: 'Please confirm your password!',
             },
             ({ getFieldValue }) => ({
-              validator(_, value) {
+              async validator(_, value) {
                 if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
+                  return await Promise.resolve();
                 }
-                return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                return await Promise.reject(new Error('The two passwords that you entered do not match!'));
               },
             }),
           ]}
@@ -95,9 +95,9 @@ const Registration: React.FC = () => {
         </Form.Item>
 
         <Form.Item
-          name="nickname"
-          label="Nickname"
-          tooltip="What do you want others to call you?"
+          name={'nickname'}
+          label={'Nickname'}
+          tooltip={'What do you want others to call you?'}
           rules={[
             {
               required: true,
@@ -109,7 +109,7 @@ const Registration: React.FC = () => {
           <Input />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type={'primary'} htmlType={'submit'}>
             Register
           </Button>
         </Form.Item>

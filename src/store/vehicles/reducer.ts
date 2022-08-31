@@ -20,7 +20,7 @@ export const vehiclesSlice = createSlice({
   name: 'vehicles',
   initialState,
   reducers: {
-    setVehicles: (state: any, action: PayloadAction<any>) => {
+    setVehicles: (state: IState, action: PayloadAction<Vehicles[]>) => {
       state.vehicles = action.payload;
     },
   },

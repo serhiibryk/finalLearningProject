@@ -49,7 +49,7 @@ const Main = () => {
               className={classes.img}
               key={imgMainList[index].imgLink}
               src={imgMainList[index].imgLink}
-              alt="Category wallpaper"
+              alt={'Category wallpaper'}
             />
           }
           onClick={() => push(`/${item[0]}`)}

@@ -19,7 +19,7 @@ export const peopleSlice = createSlice({
   name: 'people',
   initialState,
   reducers: {
-    setPeople: (state: any, action: PayloadAction<any>) => {
+    setPeople: (state: IState, action: PayloadAction<People[]>) => {
       state.people = action.payload;
     },
   },

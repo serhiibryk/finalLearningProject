@@ -74,20 +74,21 @@ const FilmByID = () => {
     speciesList === null ||
     starshipsList === null ||
     vehiclesList === null
-  )
+  ) {
     return <Spiner />;
+  }
 
   return (
     <div className={classes.root}>
       <div className={classes.filmByIDContainer}>
         <Card className={classes.card} hoverable>
-          <CardRow title={filmsList.title} lable="Title of the film:" />
-          <CardRow title={filmsList.director} lable="Director:" />
-          <CardRow title={filmsList.producer} lable="Producer:" />
-          <CardRow title={filmsList.edited} lable="Edited:" />
-          <CardRow title={filmsList.episode_id} lable="Episode_id:" />
-          <CardRow title={filmsList.release_date} lable="Release_date:" />
-          <Divider orientation="left">Opening_crawl:</Divider>
+          <CardRow title={filmsList.title} lable={'Title of the film:'} />
+          <CardRow title={filmsList.director} lable={'Director:'} />
+          <CardRow title={filmsList.producer} lable={'Producer:'} />
+          <CardRow title={filmsList.edited} lable={'Edited:'} />
+          <CardRow title={filmsList.episode_id} lable={'Episode_id:'} />
+          <CardRow title={filmsList.release_date} lable={'Release_date:'} />
+          <Divider orientation={'left'}>Opening_crawl:</Divider>
           <p className={classes.textP}>{filmsList.opening_crawl}</p>
           <MapFieldsByID list={planetsList} title={'name'} lable={'Planets'} />
           <MapFieldsByID list={speciesList} title={'name'} lable={'Species'} />

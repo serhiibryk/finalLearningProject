@@ -59,15 +59,15 @@ const StarshipByID = () => {
         <CardRow title={vehiclesList.cargo_capacity} lable={'Cargo capacity:'} />
         <CardRow title={vehiclesList.consumables} lable={'Consumables:'} />
         <CardRow title={vehiclesList.cost_in_credits} lable={'Cost in credits:'} />
-        <CardRow title={vehiclesList.created} lable="Created:" />
-        <CardRow title={vehiclesList.crew} lable="Crew:" />
-        <CardRow title={vehiclesList.edited} lable="Edited:" />
-        <CardRow title={vehiclesList.length} lable="Length:" />
-        <CardRow title={vehiclesList.manufacturer} lable="Manufacturer:" />
-        <CardRow title={vehiclesList.max_atmosphering_speed} lable="Max atmosphering speed:" />
-        <CardRow title={vehiclesList.model} lable="Model:" />
-        <CardRow title={vehiclesList.passengers} lable="Passengers:" />
-        <CardRow title={vehiclesList.vehicle_class} lable="Vehicle class:" />
+        <CardRow title={vehiclesList.created} lable={'Created:'} />
+        <CardRow title={vehiclesList.crew} lable={'Crew:'} />
+        <CardRow title={vehiclesList.edited} lable={'Edited:'} />
+        <CardRow title={vehiclesList.length} lable={'Length:'} />
+        <CardRow title={vehiclesList.manufacturer} lable={'Manufacturer:'} />
+        <CardRow title={vehiclesList.max_atmosphering_speed} lable={'Max atmosphering speed:'} />
+        <CardRow title={vehiclesList.model} lable={'Model:'} />
+        <CardRow title={vehiclesList.passengers} lable={'Passengers:'} />
+        <CardRow title={vehiclesList.vehicle_class} lable={'Vehicle class:'} />
         <MapFieldsByID list={filmsList} title={'title'} lable={'Films'} />
         <MapFieldsByID list={peopleList} title={'name'} lable={'Pilots'} />
       </Card>
