@@ -1,12 +1,7 @@
 module.exports = {
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
-    'prettier',
-    'prettier/@typescript-eslint',
+    'plugin:react/recommended',
+    'standard-with-typescript'
   ],
   globals: {
     beforeAll: true,
@@ -26,8 +21,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
+    project: ["tsconfig.json"]
   },
   rules: {
+    "@typescript-eslint/member-delimiter-style": 0,
+    "@typescript-eslint/semi": 0,
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-unused-vars': 'off',
     camelcase: 0,
@@ -84,4 +82,4 @@ module.exports = {
       },
     },
   },
-};
+}

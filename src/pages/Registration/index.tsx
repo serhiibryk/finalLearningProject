@@ -1,12 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, notification } from "antd";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Form, Input, notification } from 'antd';
 
-import { localStoreService } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { userDataReducer } from "../../store/userData/reducer";
+import { localStoreService } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import { userDataReducer } from '../../store/userData/reducer';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const Registration: React.FC = () => {
   const classes = useStyles();
@@ -29,37 +29,28 @@ const Registration: React.FC = () => {
     const checkEmail = res.find((same: any) => same.email === values.email);
 
     if (checkEmail) {
-      openNotification(
-        "Error",
-        "Such a login already exists in the system. Enter, please, another login."
-      );
+      openNotification('Error', 'Such a login already exists in the system. Enter, please, another login.');
     } else {
       res.push(values);
-      localStoreService.set("userData", res);
+      localStoreService.set('userData', res);
       dispatch(userDataReducer.set(res));
-      push("/login");
+      push('/login');
     }
   };
   return (
     <div className={classes.registerContainer}>
-      <Form
-        className={classes.registerForm}
-        form={formAntd}
-        name="register"
-        onFinish={onFinish}
-        scrollToFirstError
-      >
+      <Form className={classes.registerForm} form={formAntd} name="register" onFinish={onFinish} scrollToFirstError>
         <Form.Item
           name="email"
           label="E-mail"
           rules={[
             {
-              type: "email",
-              message: "The input is not valid E-mail!",
+              type: 'email',
+              message: 'The input is not valid E-mail!',
             },
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: 'Please input your E-mail!',
             },
           ]}
         >
@@ -72,7 +63,7 @@ const Registration: React.FC = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: 'Please input your password!',
             },
           ]}
           hasFeedback
@@ -83,21 +74,19 @@ const Registration: React.FC = () => {
         <Form.Item
           name="confirm"
           label="Confirm Password::"
-          dependencies={["password"]}
+          dependencies={['password']}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Please confirm your password!",
+              message: 'Please confirm your password!',
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
+                if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject(
-                  new Error("The two passwords that you entered do not match!")
-                );
+                return Promise.reject(new Error('The two passwords that you entered do not match!'));
               },
             }),
           ]}
@@ -112,7 +101,7 @@ const Registration: React.FC = () => {
           rules={[
             {
               required: true,
-              message: "Please input your nickname!",
+              message: 'Please input your nickname!',
               whitespace: true,
             },
           ]}

@@ -1,4 +1,4 @@
-import { api } from ".";
+import { api } from '.';
 
 class FilmsService {
   async getFilms(): Promise<DataFromAPI<Films[]>> {

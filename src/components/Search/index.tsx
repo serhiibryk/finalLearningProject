@@ -1,12 +1,12 @@
-import React, { FC, useEffect } from "react";
-import { debounce } from "lodash";
-import { Input } from "antd";
-import { useTranslation } from "react-i18next";
+import React, { FC, useEffect } from 'react';
+import { debounce } from 'lodash';
+import { Input } from 'antd';
+import { useTranslation } from 'react-i18next';
 
-import { useAppSelector } from "../../store/hooks/redux";
+import { useAppSelector } from '../../store/hooks/redux';
 
-import SearchOutlined from "@ant-design/icons/SearchOutlined";
-import useStyles from "./style";
+import SearchOutlined from '@ant-design/icons/SearchOutlined';
+import useStyles from './style';
 
 interface ISearch {
   category: string;
@@ -17,16 +17,12 @@ interface ISearch {
 const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
   const { t } = useTranslation();
 
-  const stateCategory = useAppSelector((state: any) => state[category])[
-    category
-  ];
+  const stateCategory = useAppSelector((state: any) => state[category])[category];
 
   const classes = useStyles();
 
   const debouncedSearchPagination = debounce((value) => {
-    const filter = (stateCategory || []).filter((item: any) =>
-      item[name].toLowerCase().includes(value.toLowerCase())
-    );
+    const filter = (stateCategory || []).filter((item: any) => item[name].toLowerCase().includes(value.toLowerCase()));
     setSearchState(filter);
   }, 1000);
 
@@ -39,12 +35,7 @@ const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
   }, [stateCategory, setSearchState]);
 
   return (
-    <Input
-      className={classes.search}
-      onChange={handleSearch}
-      placeholder={t("search")}
-      prefix={<SearchOutlined />}
-    />
+    <Input className={classes.search} onChange={handleSearch} placeholder={t('search')} prefix={<SearchOutlined />} />
   );
 };
 

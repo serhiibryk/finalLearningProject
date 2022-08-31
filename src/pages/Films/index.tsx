@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Card } from 'antd';
 
-import Spiner from "../../components/Spiner";
-import { imgFilmsList } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { getFilms } from "../../store/films/actions";
+import Spiner from '../../components/Spiner';
+import { imgFilmsList } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import { getFilms } from '../../store/films/actions';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const { Meta } = Card;
 
@@ -71,7 +71,7 @@ const TeamsFilms = () => {
                   alt="film wallpaper"
                 />
               }
-              onClick={() => push(`/film/${film.url.split("/")[5]}`)}
+              onClick={() => push(`/film/${film.url.split('/')[5]}`)}
             >
               <Meta title={film.title} />
             </Card>

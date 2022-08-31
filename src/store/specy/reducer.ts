@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getSpecy } from "./actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getSpecy } from './actions';
 
 type IState = {
   specy: Species[];
@@ -10,13 +10,13 @@ type IState = {
 
 export const initialState: IState = {
   specy: [],
-  error: "",
+  error: '',
   isLoading: false,
   count: 0,
 };
 
 export const specySlice = createSlice({
-  name: "specy",
+  name: 'specy',
   initialState,
   reducers: {
     setSpecies: (state: any, action: PayloadAction<any>) => {
@@ -27,10 +27,7 @@ export const specySlice = createSlice({
     [getSpecy.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getSpecy.fulfilled.type]: (
-      state,
-      action: PayloadAction<GetSpecyAction>
-    ) => {
+    [getSpecy.fulfilled.type]: (state, action: PayloadAction<GetSpecyAction>) => {
       state.specy = action.payload.specy;
       state.count = action.payload.count;
       state.isLoading = false;

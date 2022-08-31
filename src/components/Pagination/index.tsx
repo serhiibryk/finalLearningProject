@@ -1,12 +1,7 @@
-import React from "react";
-import { Pagination } from "antd";
+import React from 'react';
+import { Pagination } from 'antd';
 
-const PaginationCategory: React.FunctionComponent<IPagination> = ({
-  defaultCurrent,
-  total,
-  current,
-  onChange,
-}) => {
+const PaginationCategory: React.FunctionComponent<IPagination> = ({ defaultCurrent, total, current, onChange }) => {
   return (
     <Pagination
       showSizeChanger={false}

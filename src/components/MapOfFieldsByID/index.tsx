@@ -1,5 +1,5 @@
-import { Divider, Tag } from "antd";
-import React, { FC } from "react";
+import { Divider, Tag } from 'antd';
+import React, { FC } from 'react';
 
 const MapFieldsByID: FC<IMapFields> = ({ lable, list, title }) => {
   return list ? (

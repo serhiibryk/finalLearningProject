@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getFilms } from "./actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getFilms } from './actions';
 
 interface IState {
   films: Films[];
@@ -10,11 +10,11 @@ interface IState {
 export const initialState: IState = {
   films: [],
   isLoading: false,
-  error: "",
+  error: '',
 };
 
 export const filmsSlice = createSlice({
-  name: "films",
+  name: 'films',
   initialState,
   reducers: {
     setFilms: (state: any, action: PayloadAction<Films[]>) => {

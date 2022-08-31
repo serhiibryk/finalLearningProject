@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useJwt } from "react-jwt";
-import { Card, Skeleton } from "antd";
-import moment from "moment";
+import React, { useEffect, useState } from 'react';
+import { useJwt } from 'react-jwt';
+import { Card, Skeleton } from 'antd';
+import moment from 'moment';
 
-import { localStoreService } from "../../utils";
+import { localStoreService } from '../../utils';
 
-import useStyles from "./style";
+import useStyles from './style';
 
-const token = localStoreService.get("user");
+const token = localStoreService.get('user');
 
 const Profile = () => {
   const [decoded, setDecoded] = useState<DecodedData | null>(null);
@@ -42,7 +42,7 @@ const Profile = () => {
               <li>{decoded.iat}</li>
               <li>{decoded.sub}</li>
             </ul>
-            <p>{moment().format("MMMM Do YYYY, h:mm:ss a")}</p>
+            <p>{moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
           </div>
         ) : (
           <Skeleton active />

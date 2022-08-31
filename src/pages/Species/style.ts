@@ -1,73 +1,73 @@
-import { createUseStyles } from "react-jss";
+import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   root: {},
   card: {
     // margin: "10px 5px 5px 5px",
-    margin: "10px 0 0 18px",
-    width: "100%",
-    minHeight: "70px",
-    minWidth: "140px",
+    margin: '10px 0 0 18px',
+    width: '100%',
+    minHeight: '70px',
+    minWidth: '140px',
   },
 
   content: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "felx-start",
-    columnGap: "10px",
-    rowGap: "5px",
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'felx-start',
+    columnGap: '10px',
+    rowGap: '5px',
 
-    "& .ant-card-cover": {
-      display: "flex",
-      width: "100%",
-      height: "250px",
+    '& .ant-card-cover': {
+      display: 'flex',
+      width: '100%',
+      height: '250px',
     },
   },
   items: {
-    width: "32%",
+    width: '32%',
     // 999px
-    "@media (max-width: 899px)": {
-      width: "48%",
+    '@media (max-width: 899px)': {
+      width: '48%',
     },
     // 535px
-    "@media (max-width: 649px)": {
-      width: "99%",
+    '@media (max-width: 649px)': {
+      width: '99%',
     },
   },
   img: {
-    objectFit: "cover",
+    objectFit: 'cover',
   },
   pagination: {
-    display: "flex",
-    justifyContent: "space-around",
-    marginTop: "15px",
+    display: 'flex',
+    justifyContent: 'space-around',
+    marginTop: '15px',
 
-    "@media (max-width: 1149px)": {
-      margin: "1em 0 0 1.5em",
-      justifyContent: "flex-start",
+    '@media (max-width: 1149px)': {
+      margin: '1em 0 0 1.5em',
+      justifyContent: 'flex-start',
     },
   },
   search: {
-    display: "flex",
-    justifyContent: "space-around",
-    margin: "0 3em 0 1.5em",
-    marginTop: "15px",
+    display: 'flex',
+    justifyContent: 'space-around',
+    margin: '0 3em 0 1.5em',
+    marginTop: '15px',
   },
   topOfPage: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
 
-    "@media (max-width: 1149px)": {
-      flexDirection: "column",
+    '@media (max-width: 1149px)': {
+      flexDirection: 'column',
     },
   },
   text: {
-    marginTop: "0.45em",
-    fontStyle: "italic",
-    fontSize: "23px",
-    fontWeight: "lighter",
-    marginLeft: "15px",
+    marginTop: '0.45em',
+    fontStyle: 'italic',
+    fontSize: '23px',
+    fontWeight: 'lighter',
+    marginLeft: '15px',
   },
 });
 

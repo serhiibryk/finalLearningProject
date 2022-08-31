@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type IState = {
   page: number;
@@ -9,7 +9,7 @@ export const initialState: IState = {
 };
 
 export const pageSlice = createSlice({
-  name: "page",
+  name: 'page',
   initialState: initialState,
   reducers: {
     setPage: (state: any, action: PayloadAction<any>) => {

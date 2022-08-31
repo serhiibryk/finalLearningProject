@@ -1,5 +1,5 @@
-import React from "react";
-import { Divider, Card } from "antd";
+import React from 'react';
+import { Divider, Card } from 'antd';
 
 const { Meta } = Card;
 

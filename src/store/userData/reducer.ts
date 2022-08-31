@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { localStoreService } from "../../utils";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { localStoreService } from '../../utils';
 
 interface UserList {
   data: User[];
@@ -13,11 +13,11 @@ interface User {
 }
 
 export const initialState: UserList = {
-  data: localStoreService.get("userData", "[]"),
+  data: localStoreService.get('userData', '[]'),
 };
 
 export const userDataSlice = createSlice({
-  name: "userData",
+  name: 'userData',
   initialState: initialState,
   reducers: {
     set: (state: any, action: PayloadAction<string[]>) => {

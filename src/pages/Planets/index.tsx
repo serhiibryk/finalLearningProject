@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Card, Switch } from "antd";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Card, Switch } from 'antd';
 
-import Spiner from "../../components/Spiner";
-import { imgPlanetsList, mainError } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import Search from "../../components/Search";
-import PaginationCategory from "../../components/Pagination";
-import { getNextPlanets, getPlanets } from "../../store/planets/actions";
+import Spiner from '../../components/Spiner';
+import { imgPlanetsList, mainError } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import Search from '../../components/Search';
+import PaginationCategory from '../../components/Pagination';
+import { getNextPlanets, getPlanets } from '../../store/planets/actions';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const { Meta } = Card;
 
 const TeamsPlanets = () => {
-  const { planets, count, isLoading, error } = useAppSelector(
-    (state) => state.planets
-  );
-  const { stateForScroll } = useAppSelector(
-    (state: any) => state.stateForScroll
-  );
+  const { planets, count, isLoading, error } = useAppSelector((state) => state.planets);
+  const { stateForScroll } = useAppSelector((state: any) => state.stateForScroll);
   const [numberPage, setNumberPage] = useState(2);
   const [switcher, setSwitcher] = useState<any>([]);
   const [checked, setChecked] = useState(false);
@@ -30,10 +26,7 @@ const TeamsPlanets = () => {
   const push = useNavigate();
   const location = useLocation();
 
-  const currentPage =
-    location.search.split("=")[1] === undefined
-      ? 1
-      : Number(location.search.split("=")[1]);
+  const currentPage = location.search.split('=')[1] === undefined ? 1 : Number(location.search.split('=')[1]);
 
   useEffect(() => {
     dispatch(getPlanets(currentPage));
@@ -93,24 +86,14 @@ const TeamsPlanets = () => {
     <div className={classes.root}>
       <div className={classes.topOfPage}>
         <div className={classes.textAndSwitch}>
-          <span className={classes.text}>
-            You can switch between pagination and infinitescroll
-          </span>
+          <span className={classes.text}>You can switch between pagination and infinitescroll</span>
           <div>
-            <Switch
-              className={classes.switch}
-              checked={checked}
-              onChange={checkForScroll}
-            />
+            <Switch className={classes.switch} checked={checked} onChange={checkForScroll} />
           </div>
         </div>
         <div className={classes.searchAndPagination}>
           <div>
-            <Search
-              category={"planets"}
-              name={"name"}
-              setSearchState={setSwitcher}
-            />
+            <Search category={'planets'} name={'name'} setSearchState={setSwitcher} />
           </div>
           {checked === false ? (
             <div className={classes.pagination}>
@@ -150,7 +133,7 @@ const TeamsPlanets = () => {
                     alt="Planet wallpaper"
                   />
                 }
-                onClick={() => push(`/planets/${planet.url.split("/")[5]}`)}
+                onClick={() => push(`/planets/${planet.url.split('/')[5]}`)}
               >
                 <Meta title={planet.name} />
               </Card>

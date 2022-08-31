@@ -1,5 +1,5 @@
-import React, { FC, ReactElement } from "react";
-import { Navigate } from "react-router-dom";
+import React, { FC, ReactElement } from 'react';
+import { Navigate } from 'react-router-dom';
 
 interface IPrivateRoute {
   children: React.ReactNode;

@@ -1,9 +1,9 @@
-import { createUseStyles } from "react-jss";
+import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   root: {},
   textAlign: {
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
 

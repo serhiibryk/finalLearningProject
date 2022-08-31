@@ -1,4 +1,4 @@
-import { api } from ".";
+import { api } from '.';
 
 class CommonService {
   async getCommon(): Promise<Common> {

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getPeoples } from "./actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getPeoples } from './actions';
 
 type IState = {
   isLoading: boolean;
@@ -10,13 +10,13 @@ type IState = {
 
 export const initialState: IState = {
   isLoading: false,
-  error: "",
+  error: '',
   people: [],
   count: 0,
 };
 
 export const peopleSlice = createSlice({
-  name: "people",
+  name: 'people',
   initialState,
   reducers: {
     setPeople: (state: any, action: PayloadAction<any>) => {
@@ -27,10 +27,7 @@ export const peopleSlice = createSlice({
     [getPeoples.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getPeoples.fulfilled.type]: (
-      state,
-      action: PayloadAction<GetPeopleAction>
-    ) => {
+    [getPeoples.fulfilled.type]: (state, action: PayloadAction<GetPeopleAction>) => {
       state.people = action.payload.people;
       state.count = action.payload.count;
       state.isLoading = false;

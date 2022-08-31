@@ -22,17 +22,17 @@
 
 // export default StoreContextProvider;
 
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import user from "./user/reducer";
-import userData from "./userData/reducer";
-import films from "./films/reducer";
-import people from "./people/reducer";
-import planets from "./planets/reducer";
-import specy from "./specy/reducer";
-import starships from "./starships/reducer";
-import vehicles from "./vehicles/reducer";
-import page from "./pageAntd/reducer";
-import stateForScroll from "./infiniteScroll/reducer";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import user from './user/reducer';
+import userData from './userData/reducer';
+import films from './films/reducer';
+import people from './people/reducer';
+import planets from './planets/reducer';
+import specy from './specy/reducer';
+import starships from './starships/reducer';
+import vehicles from './vehicles/reducer';
+import page from './pageAntd/reducer';
+import stateForScroll from './infiniteScroll/reducer';
 
 const rootReducer = combineReducers({
   user,
@@ -56,4 +56,4 @@ export const setupStore = () => {
 
 export type AppStore = ReturnType<typeof setupStore>;
 export type RootState = ReturnType<typeof rootReducer>;
-export type AppDispatch = AppStore["dispatch"];
+export type AppDispatch = AppStore['dispatch'];
