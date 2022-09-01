@@ -34,6 +34,29 @@ const useStyles = createUseStyles({
   text: {
     width: '400px',
   },
+  graphics: {},
+  graphicsOneTwo: {
+    width: '48%',
+    display: 'flex',
+    flexWrap: 'row',
+  },
+  graphicsThreeFour: {
+    width: '48%',
+    display: 'flex',
+    flexWrap: 'row',
+  },
+  buttonsModal: {
+    width: '100%',
+  },
+  buttonAntModal: {
+    backgroundColor: 'grey',
+    width: '49%',
+  },
+  buttonReactModal: {
+    backgroundColor: 'grey',
+    width: '49%',
+  },
+  modalAnt: {},
 });
 
 export default useStyles;

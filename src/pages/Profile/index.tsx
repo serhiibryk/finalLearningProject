@@ -1,19 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { useJwt } from 'react-jwt';
-import { Card, Skeleton } from 'antd';
+import { Button, Card, Modal, Skeleton } from 'antd';
 import moment from 'moment';
 
 import { localStoreService } from '../../utils';
+import Graphic1 from '../../components/Graphics/1';
+import Graphic2 from '../../components/Graphics/2';
 
 import useStyles from './style';
+import Graphic3 from '../../components/Graphics/3';
+import Graphic4 from '../../components/Graphics/4';
 
 const token = localStoreService.get('user');
 
 const Profile = () => {
   const [decoded, setDecoded] = useState<DecodedData | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const classes = useStyles();
   const decodedData = useJwt(token);
+
+  const handleChangeView = (value: boolean) => {
+    setIsModalVisible(value);
+  };
+
+  // const handleClickLogin = () => {
+  //   // push('/login');
+  //   handleChangeView(false);
+  // };
+
+  // const handleClick = () => {
+  //   // push(item);
+  //   handleChangeView(false);
+  // };
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,6 +66,36 @@ const Profile = () => {
         ) : (
           <Skeleton active />
         )}
+        <div className={classes.graphics}>
+          <div className={classes.graphicsOneTwo}>
+            <Graphic1 />
+            <Graphic2 />
+          </div>
+          <div className={classes.graphicsThreeFour}>
+            <Graphic3 />
+            <Graphic4 />
+          </div>
+        </div>
+        <br />
+        <br />
+        <div className={classes.buttonsModal}>
+          <Button className={classes.buttonAntModal} type={'primary'} onClick={() => handleChangeView(true)}>
+            Modal-Ant
+          </Button>
+          <Modal
+            afterClose={() => handleChangeView(false)}
+            className={classes.modalAnt}
+            title={'Graphic dlia tebia blyat'}
+            footer={null}
+            visible={isModalVisible}
+            onCancel={() => handleChangeView(false)}
+            width={'100%'}
+            // wrapClassName={classes.wrap}
+          >
+            <Graphic1 />
+          </Modal>
+          <Button className={classes.buttonReactModal}>Modal-React</Button>
+        </div>
       </Card>
     </div>
   );
