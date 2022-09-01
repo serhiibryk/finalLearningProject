@@ -235,7 +235,7 @@ declare interface IStateStarships {
 }
 
 declare interface IStateUser {
-  token: string;
+  token: string | null;
 }
 
 declare interface IStateUserData {

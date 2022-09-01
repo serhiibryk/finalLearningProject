@@ -17,8 +17,12 @@ export const getNextPlanets = createAsyncThunk('planets/getNextPlanets', async (
   try {
     const { results, count } = await planetsService.getPlanets(id);
     thunkApi.getState();
-    const state: any = thunkApi.getState();
-    thunkApi.dispatch(infiniteScrollReducer.setForScroll(state.stateForScroll.stateForScroll.concat(results)));
+    const state = thunkApi.getState();
+    thunkApi.dispatch(
+      infiniteScrollReducer.setForScroll(
+        ((state as IStateForScroll).stateForScroll as unknown as IStateForScroll).stateForScroll.concat(results)
+      )
+    );
     return { planets: results, count };
   } catch (e) {
     let message = 'Unknown Error';

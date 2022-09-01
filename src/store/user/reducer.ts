@@ -9,7 +9,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state: IStateUser, action: PayloadAction<any>) => {
+    setUser: (state: IStateUser, action: PayloadAction<string | null>) => {
       state.token = action.payload;
     },
   },
