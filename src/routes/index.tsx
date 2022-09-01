@@ -4,12 +4,15 @@ import { Route as RouterDOM, Routes } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks/redux';
 import PrivatRoute from './PrivatRoute';
 import { routes } from './routes';
+import useStyles from './style';
 
 const Route = () => {
   const { token } = useAppSelector((state: any) => state.user);
 
+  const classes = useStyles();
+
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 75px' }}>
+    <div className={classes.root}>
       <Routes>
         {routes.map((item) => {
           const { component, privat, path } = item;

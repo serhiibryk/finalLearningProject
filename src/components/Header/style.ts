@@ -89,6 +89,7 @@ const useStyles = createUseStyles({
     cursor: 'pointer',
   },
   imgLogo: {
+    width: '128px',
     height: '64px',
     minHeight: '64px',
     maxHeight: '64px',
