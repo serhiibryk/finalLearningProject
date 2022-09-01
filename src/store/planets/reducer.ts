@@ -1,25 +1,18 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getPlanets } from "./actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getPlanets } from './actions';
 
-type IState = {
-  planets: Planets[];
-  error: string;
-  isLoading: boolean;
-  count: number;
-};
-
-export const initialState: IState = {
+export const initialState: IStatePlanets = {
   planets: [],
-  error: "",
+  error: '',
   isLoading: false,
   count: 0,
 };
 
 export const planetsSlice = createSlice({
-  name: "planets",
-  initialState: initialState,
+  name: 'planets',
+  initialState,
   reducers: {
-    setPlanets: (state: any, action: PayloadAction<any>) => {
+    setPlanets: (state: IStatePlanets, action: PayloadAction<Planets[]>) => {
       state.planets = action.payload;
     },
   },
@@ -27,10 +20,7 @@ export const planetsSlice = createSlice({
     [getPlanets.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getPlanets.fulfilled.type]: (
-      state,
-      action: PayloadAction<GetPlanetsAction>
-    ) => {
+    [getPlanets.fulfilled.type]: (state, action: PayloadAction<GetPlanetsAction>) => {
       state.planets = action.payload.planets;
       state.count = action.payload.count;
       state.isLoading = false;

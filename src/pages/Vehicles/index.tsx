@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import { Card } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import Spiner from "../../components/Spiner";
-import PaginationCategory from "../../components/Pagination";
-import { imgVehiclesList } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import Search from "../../components/Search";
-import { getVehicles } from "../../store/vehicles/actions";
+import Spiner from '../../components/Spiner';
+import PaginationCategory from '../../components/Pagination';
+import { imgVehiclesList } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import Search from '../../components/Search';
+import { getVehicles } from '../../store/vehicles/actions';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const { Meta } = Card;
 
 const TeamsVehicles = () => {
-  const { vehicles, count, isLoading, error } = useAppSelector(
-    (state) => state.vehicles
-  );
+  const { vehicles, count, isLoading, error } = useAppSelector((state) => state.vehicles);
   const [nameVehicles, setNameVehicles] = useState([]);
   const location = useLocation();
   const dispatch = useAppDispatch();
   const classes = useStyles();
   const push = useNavigate();
 
-  const currentPage = Number(location.search.split("=")[1] || 1);
+  const currentPage = Number(location.search.split('=')[1] ?? 1);
 
   useEffect(() => {
     dispatch(getVehicles(currentPage));
@@ -45,11 +43,7 @@ const TeamsVehicles = () => {
     <div className={classes.root}>
       <div className={classes.topOfPage}>
         <div>
-          <Search
-            category={"vehicles"}
-            name={"name"}
-            setSearchState={setNameVehicles}
-          />
+          <Search category={'vehicles'} name={'name'} setSearchState={setNameVehicles} />
         </div>
         <div className={classes.pagination}>
           {vehicles && (
@@ -63,7 +57,7 @@ const TeamsVehicles = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {nameVehicles.map((vehicle: any, index: any) => (
+        {nameVehicles.map((vehicle: Vehicles, index: number) => (
           <Card
             key={index}
             className={classes.card}
@@ -71,12 +65,12 @@ const TeamsVehicles = () => {
             cover={
               <img
                 className={classes.img}
-                key={imgVehiclesList[index].imgLink}
-                src={imgVehiclesList[index].imgLink}
-                alt="Vehicle wallpaper"
+                // key={imgVehiclesList[index].imgLink}
+                src={imgVehiclesList[1].imgLink}
+                alt={'Vehicle wallpaper'}
               />
             }
-            onClick={() => push(`/vehicles/${vehicle.url.split("/")[5]}`)}
+            onClick={() => push(`/vehicles/${vehicle.url.split('/')[5]}`)}
           >
             <Meta title={vehicle.name} />
           </Card>

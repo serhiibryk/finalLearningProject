@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Card } from 'antd';
 
-import Spiner from "../../components/Spiner";
-import PaginationCategory from "../../components/Pagination";
-import { imgStarshipsList } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import Search from "../../components/Search";
-import { getStarships } from "../../store/starships/actions";
+import Spiner from '../../components/Spiner';
+import PaginationCategory from '../../components/Pagination';
+import { imgStarshipsList } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import Search from '../../components/Search';
+import { getStarships } from '../../store/starships/actions';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const { Meta } = Card;
 
 const TeamsStarships = () => {
-  const { starships, count, isLoading, error } = useAppSelector(
-    (state) => state.starships
-  );
+  const { starships, count, isLoading, error } = useAppSelector((state) => state.starships);
 
   const [nameStarships, setNameStarships] = useState([]);
 
@@ -25,7 +23,7 @@ const TeamsStarships = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const currentPage = Number(location.search.split("=")[1] || 1);
+  const currentPage = Number(location.search.split('=')[1] || 1);
 
   useEffect(() => {
     dispatch(getStarships(currentPage));
@@ -47,11 +45,7 @@ const TeamsStarships = () => {
     <div className={classes.root}>
       <div className={classes.topOfPage}>
         <div>
-          <Search
-            category={"starships"}
-            name={"name"}
-            setSearchState={setNameStarships}
-          />
+          <Search category={'starships'} name={'name'} setSearchState={setNameStarships} />
         </div>
         <div className={classes.pagination}>
           {starships && (
@@ -65,7 +59,7 @@ const TeamsStarships = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {nameStarships.map((starship: any, index: number) => {
+        {nameStarships.map((starship: Starships, index: number) => {
           return (
             <Card
               key={index}
@@ -74,12 +68,12 @@ const TeamsStarships = () => {
               cover={
                 <img
                   className={classes.img}
-                  key={imgStarshipsList[index].imgLink}
-                  src={imgStarshipsList[index].imgLink}
-                  alt="Starship wallpaper"
+                  // key={imgStarshipsList[index].imgLink}
+                  src={imgStarshipsList[1].imgLink}
+                  alt={'Starship wallpaper'}
                 />
               }
-              onClick={() => push(`/starships/${starship.url.split("/")[5]}`)}
+              onClick={() => push(`/starships/${starship.url.split('/')[5]}`)}
             >
               <Meta title={starship.name} />
             </Card>

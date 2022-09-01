@@ -1,4 +1,4 @@
-import { api } from ".";
+import { api } from '.';
 
 class PlanetsService {
   async getPlanets(id: number): Promise<DataFromAPI<Planets[]>> {

@@ -1,19 +1,15 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { localStoreService } from "../../utils";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { localStoreService } from '../../utils';
 
-type IState = {
-  token: string;
-};
-
-export const initialState: IState = {
-  token: localStoreService.get("user"),
+export const initialState: IStateUser = {
+  token: localStoreService.get('user'),
 };
 
 export const userSlice = createSlice({
-  name: "user",
-  initialState: initialState,
+  name: 'user',
+  initialState,
   reducers: {
-    setUser: (state: any, action: PayloadAction<string | null>) => {
+    setUser: (state: IStateUser, action: PayloadAction<string | null>) => {
       state.token = action.payload;
     },
   },

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Card } from "antd";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Card } from 'antd';
 
-import CardRow from "../../components/CardRow";
-import Spiner from "../../components/Spiner";
-import MapFieldsByID from "../../components/MapOfFieldsByID";
-import { filmsService } from "../../services/films";
-import { peopleService } from "../../services/people";
-import { planetsService } from "../../services/planets";
-import { speciesService } from "../../services/species";
+import CardRow from '../../components/CardRow';
+import Spiner from '../../components/Spiner';
+import MapFieldsByID from '../../components/MapOfFieldsByID';
+import { filmsService } from '../../services/films';
+import { peopleService } from '../../services/people';
+import { planetsService } from '../../services/planets';
+import { speciesService } from '../../services/species';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const SpeccyByID = () => {
   const [speciesList, setSpeciesList] = useState<Species | null>(null);
@@ -28,7 +28,7 @@ const SpeccyByID = () => {
   };
 
   useEffect(() => {
-    const id = location.pathname.split("/")[2];
+    const id = location.pathname.split('/')[2];
 
     fetchSpeccyByID(Number(id));
   }, [location.pathname]);
@@ -36,35 +36,23 @@ const SpeccyByID = () => {
   useEffect(() => {
     if (speciesList) {
       (async () => {
-        const idsFilms = speciesList.films.map(
-          (speccy) => speccy.split("/")[5]
-        );
+        const idsFilms = speciesList.films.map((speccy) => speccy.split('/')[5]);
         const films = await Promise.all(
-          idsFilms.map(
-            async (id) =>
-              await filmsService.getFilmByID(Number(id)).then((data) => data)
-          )
+          idsFilms.map(async (id) => await filmsService.getFilmByID(Number(id)).then((data) => data))
         );
 
         setFilmsList(films);
 
-        const idsPlanets = speciesList.homeworld?.split("/")[5];
+        const idsPlanets = speciesList.homeworld?.split('/')[5];
         if (idsPlanets) {
-          const planets = await planetsService
-            .getPlanetByID(Number(idsPlanets))
-            .then((data) => data);
+          const planets = await planetsService.getPlanetByID(Number(idsPlanets)).then((data) => data);
 
           setPlanetsList(planets);
         }
 
-        const idsPeople = speciesList.people.map(
-          (people) => people.split("/")[5]
-        );
+        const idsPeople = speciesList.people.map((people) => people.split('/')[5]);
         const people = await Promise.all(
-          idsPeople.map(
-            async (id) =>
-              await peopleService.getPeopleByID(Number(id)).then((data) => data)
-          )
+          idsPeople.map(async (id) => await peopleService.getPeopleByID(Number(id)).then((data) => data))
         );
 
         setPeopleList(people);
@@ -72,33 +60,29 @@ const SpeccyByID = () => {
     }
   }, [speciesList]);
 
-  if (speciesList === null || filmsList === null || peopleList === null)
-    return <Spiner />;
+  if (speciesList === null || filmsList === null || peopleList === null) return <Spiner />;
 
   return (
     <div className={classes.speccyByIDContainer}>
       <Card className={classes.card} hoverable>
-        <CardRow title={speciesList.name} lable="Name:" />
-        <CardRow title={speciesList.classification} lable="Classification:" />
-        <CardRow title={speciesList.average_height} lable="Average height:" />
-        <CardRow
-          title={speciesList.average_lifespan}
-          lable="Average lifespan:"
-        />
-        <CardRow title={speciesList.classification} lable="Classification:" />
-        <CardRow title={speciesList.created} lable="Created:" />
-        <CardRow title={speciesList.designation} lable="Designation:" />
-        <CardRow title={speciesList.edited} lable="Edited:" />
-        <CardRow title={speciesList.eye_colors} lable="Eye colors:" />
-        <CardRow title={speciesList.hair_colors} lable="Hair colors:" />
-        <CardRow title={speciesList.language} lable="Language:" />
+        <CardRow title={speciesList.name} lable={'Name:'} />
+        <CardRow title={speciesList.classification} lable={'Classification:'} />
+        <CardRow title={speciesList.average_height} lable={'Average height:'} />
+        <CardRow title={speciesList.average_lifespan} lable={'Average lifespan:'} />
+        <CardRow title={speciesList.classification} lable={'Classification:'} />
+        <CardRow title={speciesList.created} lable={'Created:'} />
+        <CardRow title={speciesList.designation} lable={'Designation:'} />
+        <CardRow title={speciesList.edited} lable={'Edited:'} />
+        <CardRow title={speciesList.eye_colors} lable={'Eye colors:'} />
+        <CardRow title={speciesList.hair_colors} lable={'Hair colors:'} />
+        <CardRow title={speciesList.language} lable={'Language:'} />
         {planetsList?.name && (
           <>
-            <CardRow title={planetsList.name} lable="Homeworld:" />
+            <CardRow title={planetsList.name} lable={'Homeworld:'} />
           </>
         )}
-        <MapFieldsByID list={filmsList} title={"title"} lable={"Films"} />
-        <MapFieldsByID list={peopleList} title={"name"} lable={"People"} />
+        <MapFieldsByID list={filmsList} title={'title'} lable={'Films'} />
+        <MapFieldsByID list={peopleList} title={'name'} lable={'People'} />
       </Card>
     </div>
   );

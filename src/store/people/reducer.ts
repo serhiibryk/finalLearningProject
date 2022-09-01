@@ -1,25 +1,18 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getPeoples } from "./actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getPeoples } from './actions';
 
-type IState = {
-  isLoading: boolean;
-  error: string;
-  people: People[];
-  count: number;
-};
-
-export const initialState: IState = {
+export const initialState: IStatePeople = {
   isLoading: false,
-  error: "",
+  error: '',
   people: [],
   count: 0,
 };
 
 export const peopleSlice = createSlice({
-  name: "people",
+  name: 'people',
   initialState,
   reducers: {
-    setPeople: (state: any, action: PayloadAction<any>) => {
+    setPeople: (state: IStatePeople, action: PayloadAction<People[]>) => {
       state.people = action.payload;
     },
   },
@@ -27,10 +20,7 @@ export const peopleSlice = createSlice({
     [getPeoples.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getPeoples.fulfilled.type]: (
-      state,
-      action: PayloadAction<GetPeopleAction>
-    ) => {
+    [getPeoples.fulfilled.type]: (state, action: PayloadAction<GetPeopleAction>) => {
       state.people = action.payload.people;
       state.count = action.payload.count;
       state.isLoading = false;

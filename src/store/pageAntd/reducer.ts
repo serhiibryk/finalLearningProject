@@ -1,18 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type IState = {
-  page: number;
-};
-
-export const initialState: IState = {
+export const initialState: IStatePage = {
   page: 1,
 };
 
 export const pageSlice = createSlice({
-  name: "page",
-  initialState: initialState,
+  name: 'page',
+  initialState,
   reducers: {
-    setPage: (state: any, action: PayloadAction<any>) => {
+    setPage: (state: IStatePage, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
   },

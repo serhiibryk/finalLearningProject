@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Card } from 'antd';
 
-import Spiner from "../../components/Spiner";
-import { commonService } from "../../services/common";
-import { imgMainList } from "../../utils";
+import Spiner from '../../components/Spiner';
+import { commonService } from '../../services/common';
+import { imgMainList } from '../../utils';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const { Meta } = Card;
 
 const Main = () => {
   const [mainList, setMainList] = useState<Common>({
-    films: "",
-    people: "",
-    planets: "",
-    species: "",
-    starships: "",
-    vehicles: "",
+    films: '',
+    people: '',
+    planets: '',
+    species: '',
+    starships: '',
+    vehicles: '',
   });
 
   const push = useNavigate();
@@ -33,7 +33,7 @@ const Main = () => {
     fetchCommon();
   }, []);
 
-  if (mainList.films === "") {
+  if (mainList.films === '') {
     return <Spiner />;
   }
 
@@ -49,7 +49,7 @@ const Main = () => {
               className={classes.img}
               key={imgMainList[index].imgLink}
               src={imgMainList[index].imgLink}
-              alt="Category wallpaper"
+              alt={'Category wallpaper'}
             />
           }
           onClick={() => push(`/${item[0]}`)}

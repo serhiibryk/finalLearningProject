@@ -1,22 +1,20 @@
-import React, { FC, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import React, { FC, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Card } from 'antd';
 
-import Spiner from "../../components/Spiner";
-import PaginationCategory from "../../components/Pagination";
-import { imgPeopleList } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import Search from "../../components/Search";
+import Spiner from '../../components/Spiner';
+import PaginationCategory from '../../components/Pagination';
+import { imgPeopleList } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import Search from '../../components/Search';
 
-import useStyles from "./style";
-import { getPeoples } from "../../store/people/actions";
+import useStyles from './style';
+import { getPeoples } from '../../store/people/actions';
 
 const { Meta } = Card;
 
 const TeamsPeoples: FC = () => {
-  const { people, count, isLoading, error } = useAppSelector(
-    (state) => state.people
-  );
+  const { people, count, isLoading, error } = useAppSelector((state) => state.people);
   // const [isLoading, setLoading] = useState(false);
   // const [maxCount, setMaxCount] = useState(0);
   const [namePeople, setNamePeople] = useState([]);
@@ -26,7 +24,7 @@ const TeamsPeoples: FC = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const currentPage = Number(location.search.split("=")[1] || 1);
+  const currentPage = Number(location.search.split('=')[1] || 1);
 
   useEffect(() => {
     dispatch(getPeoples(currentPage));
@@ -48,11 +46,7 @@ const TeamsPeoples: FC = () => {
     <div className={classes.root}>
       <div className={classes.topOfPage}>
         <div>
-          <Search
-            category={"people"}
-            name={"name"}
-            setSearchState={setNamePeople}
-          />
+          <Search category={'people'} name={'name'} setSearchState={setNamePeople} />
         </div>
         <div className={classes.pagination}>
           {people && (
@@ -66,7 +60,7 @@ const TeamsPeoples: FC = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {namePeople.map((people: any, index: any) => {
+        {namePeople.map((people: People, index: number) => {
           return (
             <Card
               key={index}
@@ -77,10 +71,10 @@ const TeamsPeoples: FC = () => {
                   className={classes.img}
                   key={imgPeopleList[index].imgLink}
                   src={imgPeopleList[index].imgLink}
-                  alt="People wallpaper"
+                  alt={'People wallpaper'}
                 />
               }
-              onClick={() => push(`/people/${people.url.split("/")[5]}`)}
+              onClick={() => push(`/people/${people.url.split('/')[5]}`)}
             >
               <Meta title={people.name} />
             </Card>

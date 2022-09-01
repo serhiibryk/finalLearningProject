@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Card } from 'antd';
 
-import Spiner from "../../components/Spiner";
-import PaginationCategory from "../../components/Pagination";
-import { imgSpeciesList } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import Search from "../../components/Search";
-import { getSpecy } from "../../store/specy/actions";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import Spiner from '../../components/Spiner';
+import PaginationCategory from '../../components/Pagination';
+import { imgSpeciesList } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import Search from '../../components/Search';
+import { getSpecy } from '../../store/specy/actions';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const { Meta } = Card;
 
 const TeamsSpecies = () => {
-  const { specy, count, isLoading, error } = useAppSelector(
-    (state) => state.specy
-  );
+  const { specy, count, isLoading, error } = useAppSelector((state) => state.specy);
   const [nameSpecies, setNameSpecies] = useState<any>([]);
 
   const dispatch = useAppDispatch();
@@ -25,7 +23,7 @@ const TeamsSpecies = () => {
   const classes = useStyles();
   const push = useNavigate();
 
-  const currentPage = Number(location.search.split("=")[1] || 1);
+  const currentPage = Number(location.search.split('=')[1] || 1);
 
   useEffect(() => {
     dispatch(getSpecy(currentPage));
@@ -43,8 +41,8 @@ const TeamsSpecies = () => {
     return <p>Something went wrong!</p>;
   }
 
-  //dnd
-  const reorder = (list: any, startIndex: any, endIndex: any) => {
+  // dnd
+  const reorder = (list: string[], startIndex: number, endIndex: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -52,28 +50,20 @@ const TeamsSpecies = () => {
     return result;
   };
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return;
     }
-    setNameSpecies(
-      reorder(nameSpecies, result.source.index, result.destination.index)
-    );
+    setNameSpecies(reorder(nameSpecies, result.source.index, result.destination.index));
   };
 
   return (
     <div className={classes.root}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={classes.topOfPage}>
-          <span className={classes.text}>
-            You can drag elements on this page
-          </span>
+          <span className={classes.text}>You can drag elements on this page</span>
           <div>
-            <Search
-              category={"specy"}
-              name={"name"}
-              setSearchState={setNameSpecies}
-            />
+            <Search category={'specy'} name={'name'} setSearchState={setNameSpecies} />
           </div>
 
           <div className={classes.pagination}>
@@ -87,19 +77,11 @@ const TeamsSpecies = () => {
             )}
           </div>
         </div>
-        <Droppable droppableId="droppable">
+        <Droppable droppableId={'droppable'}>
           {(provided) => (
-            <div
-              className={classes.content}
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {nameSpecies.map((speccy: any, index: any) => (
-                <Draggable
-                  key={index}
-                  draggableId={String(index + 1)}
-                  index={index}
-                >
+            <div className={classes.content} {...provided.droppableProps} ref={provided.innerRef}>
+              {nameSpecies.map((speccy: Species, index: number) => (
+                <Draggable key={index} draggableId={String(index + 1)} index={index}>
                   {(provided) => (
                     <div
                       className={classes.items}
@@ -113,14 +95,12 @@ const TeamsSpecies = () => {
                         cover={
                           <img
                             className={classes.img}
-                            key={imgSpeciesList[index].imgLink}
-                            src={imgSpeciesList[index].imgLink}
-                            alt="Speccy wallpaper"
+                            // key={imgSpeciesList[index].imgLink}
+                            src={imgSpeciesList[1].imgLink}
+                            alt={'Speccy wallpaper'}
                           />
                         }
-                        onClick={() =>
-                          push(`/species/${speccy.url.split("/")[5]}`)
-                        }
+                        onClick={() => push(`/species/${speccy.url.split('/')[5]}`)}
                       >
                         <Meta title={speccy.name} />
                       </Card>

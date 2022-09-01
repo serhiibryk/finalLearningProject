@@ -1,25 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getVehicles } from "./actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type IState = {
-  vehicles: Vehicles[];
-  error: string;
-  isLoading: boolean;
-  count: number;
-};
+import { getVehicles } from './actions';
 
-export const initialState: IState = {
+export const initialState: IStateVehicles = {
   vehicles: [],
-  error: "",
+  error: '',
   isLoading: false,
   count: 0,
 };
 
 export const vehiclesSlice = createSlice({
-  name: "vehicles",
+  name: 'vehicles',
   initialState,
   reducers: {
-    setVehicles: (state: any, action: PayloadAction<any>) => {
+    setVehicles: (state: IStateVehicles, action: PayloadAction<Vehicles[]>) => {
       state.vehicles = action.payload;
     },
   },
@@ -27,10 +21,7 @@ export const vehiclesSlice = createSlice({
     [getVehicles.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getVehicles.fulfilled.type]: (
-      state,
-      action: PayloadAction<GetVehiclesAction>
-    ) => {
+    [getVehicles.fulfilled.type]: (state, action: PayloadAction<GetVehiclesAction>) => {
       state.vehicles = action.payload.vehicles;
       state.count = action.payload.count;
       state.isLoading = false;

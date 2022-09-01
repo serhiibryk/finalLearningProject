@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Card } from "antd";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Card } from 'antd';
 
-import Spiner from "../../components/Spiner";
-import { imgFilmsList } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { getFilms } from "../../store/films/actions";
+import Spiner from '../../components/Spiner';
+import { imgFilmsList } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import { getFilms } from '../../store/films/actions';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const { Meta } = Card;
 
@@ -26,7 +26,7 @@ const TeamsFilms = () => {
 
   // const fetchFilms = createAsyncThunk(
   //   "films/films",
-  //   async (data: any, thunkApi) => {
+  //   async (data, thunkApi) => {
   //     try {
   //       const res = await filmsService.getFilms();
 
@@ -57,7 +57,7 @@ const TeamsFilms = () => {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        {films.map((film: any, index: any) => {
+        {films.map((film: Films, index: number) => {
           return (
             <Card
               key={index}
@@ -68,10 +68,10 @@ const TeamsFilms = () => {
                   className={classes.img}
                   key={imgFilmsList[index].imgLink}
                   src={imgFilmsList[index].imgLink}
-                  alt="film wallpaper"
+                  alt={'film wallpaper'}
                 />
               }
-              onClick={() => push(`/film/${film.url.split("/")[5]}`)}
+              onClick={() => push(`/film/${film.url.split('/')[5]}`)}
             >
               <Meta title={film.title} />
             </Card>

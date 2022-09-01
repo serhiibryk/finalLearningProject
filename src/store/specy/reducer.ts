@@ -1,25 +1,18 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getSpecy } from "./actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getSpecy } from './actions';
 
-type IState = {
-  specy: Species[];
-  error: string;
-  isLoading: boolean;
-  count: number;
-};
-
-export const initialState: IState = {
+export const initialState: IStateSpecy = {
   specy: [],
-  error: "",
+  error: '',
   isLoading: false,
   count: 0,
 };
 
 export const specySlice = createSlice({
-  name: "specy",
+  name: 'specy',
   initialState,
   reducers: {
-    setSpecies: (state: any, action: PayloadAction<any>) => {
+    setSpecies: (state: IStateSpecy, action: PayloadAction<Species[]>) => {
       state.specy = action.payload;
     },
   },
@@ -27,10 +20,7 @@ export const specySlice = createSlice({
     [getSpecy.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getSpecy.fulfilled.type]: (
-      state,
-      action: PayloadAction<GetSpecyAction>
-    ) => {
+    [getSpecy.fulfilled.type]: (state, action: PayloadAction<GetSpecyAction>) => {
       state.specy = action.payload.specy;
       state.count = action.payload.count;
       state.isLoading = false;

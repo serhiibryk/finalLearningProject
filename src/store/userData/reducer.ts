@@ -1,9 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { localStoreService } from "../../utils";
-
-interface UserList {
-  data: User[];
-}
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { localStoreService } from '../../utils';
 
 interface User {
   confirm: string;
@@ -12,15 +8,15 @@ interface User {
   password: string;
 }
 
-export const initialState: UserList = {
-  data: localStoreService.get("userData", "[]"),
+export const initialState: IStateUserData = {
+  data: localStoreService.get('userData', '[]'),
 };
 
 export const userDataSlice = createSlice({
-  name: "userData",
-  initialState: initialState,
+  name: 'userData',
+  initialState,
   reducers: {
-    set: (state: any, action: PayloadAction<string[]>) => {
+    set: (state: IStateUserData, action: PayloadAction<User[]>) => {
       state.data = action.payload;
     },
   },

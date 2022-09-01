@@ -1,18 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, notification } from "antd";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Form, Input, notification } from 'antd';
 
-import { localStoreService } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../store/hooks/redux";
-import { userDataReducer } from "../../store/userData/reducer";
+import { localStoreService } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
+import { userDataReducer } from '../../store/userData/reducer';
 
-import useStyles from "./style";
+import useStyles from './style';
 
 const Registration: React.FC = () => {
   const classes = useStyles();
   const [formAntd] = Form.useForm();
 
-  const { data } = useAppSelector((state: any) => state.userData);
+  const { data } = useAppSelector<any>((state) => state.userData);
   const dispatch = useAppDispatch();
   const push = useNavigate();
 
@@ -23,56 +23,47 @@ const Registration: React.FC = () => {
     });
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: IValueRegister) => {
     const res = [...data];
 
-    const checkEmail = res.find((same: any) => same.email === values.email);
+    const checkEmail = res.find((same) => same.email === values.email);
 
     if (checkEmail) {
-      openNotification(
-        "Error",
-        "Such a login already exists in the system. Enter, please, another login."
-      );
+      openNotification('Error', 'Such a login already exists in the system. Enter, please, another login.');
     } else {
       res.push(values);
-      localStoreService.set("userData", res);
+      localStoreService.set('userData', res);
       dispatch(userDataReducer.set(res));
-      push("/login");
+      push('/login');
     }
   };
   return (
     <div className={classes.registerContainer}>
-      <Form
-        className={classes.registerForm}
-        form={formAntd}
-        name="register"
-        onFinish={onFinish}
-        scrollToFirstError
-      >
+      <Form className={classes.registerForm} form={formAntd} name={'register'} onFinish={onFinish} scrollToFirstError>
         <Form.Item
-          name="email"
-          label="E-mail"
+          name={'email'}
+          label={'E-mail'}
           rules={[
             {
-              type: "email",
-              message: "The input is not valid E-mail!",
+              type: 'email',
+              message: 'The input is not valid E-mail!',
             },
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: 'Please input your E-mail!',
             },
           ]}
         >
-          <Input value="email" />
+          <Input value={'email'} />
         </Form.Item>
 
         <Form.Item
-          name="password"
-          label="Password"
+          name={'password'}
+          label={'Password'}
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: 'Please input your password!',
             },
           ]}
           hasFeedback
@@ -81,23 +72,21 @@ const Registration: React.FC = () => {
         </Form.Item>
 
         <Form.Item
-          name="confirm"
-          label="Confirm Password::"
-          dependencies={["password"]}
+          name={'confirm'}
+          label={'Confirm Password:'}
+          dependencies={['password']}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Please confirm your password!",
+              message: 'Please confirm your password!',
             },
             ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
+              async validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return await Promise.resolve();
                 }
-                return Promise.reject(
-                  new Error("The two passwords that you entered do not match!")
-                );
+                return await Promise.reject(new Error('The two passwords that you entered do not match!'));
               },
             }),
           ]}
@@ -106,13 +95,13 @@ const Registration: React.FC = () => {
         </Form.Item>
 
         <Form.Item
-          name="nickname"
-          label="Nickname"
-          tooltip="What do you want others to call you?"
+          name={'nickname'}
+          label={'Nickname'}
+          tooltip={'What do you want others to call you?'}
           rules={[
             {
               required: true,
-              message: "Please input your nickname!",
+              message: 'Please input your nickname!',
               whitespace: true,
             },
           ]}
@@ -120,7 +109,7 @@ const Registration: React.FC = () => {
           <Input />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type={'primary'} htmlType={'submit'}>
             Register
           </Button>
         </Form.Item>
