@@ -262,16 +262,22 @@ declare interface IMainState {
   userData: IStateUserData;
 }
 
-declare interface IResultForDragSource {
-  index: number;
-  droppableId: string;
+declare interface IValueRegister {
+  confirm: string;
+  email: string;
+  nickname: string;
+  password: string;
 }
-declare interface IResultForDrag {
-  combine: boolean;
-  destination: boolean;
-  draggableId: string;
-  mode: string;
-  reason: string;
-  source: IResultForDragSource;
-  type: string;
+declare interface IValueLogin {
+  email: string;
+  password: string;
 }
+// declare interface IResultForDrag {
+//   combine: boolean;
+//   destination: boolean;
+//   draggableId: string;
+//   mode: string;
+//   reason: string;
+//   source: IResultForDragSource;
+//   type: string;
+// }

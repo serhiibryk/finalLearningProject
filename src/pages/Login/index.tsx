@@ -31,8 +31,8 @@ const Login: React.FC = () => {
     dispatch(userReducer.setUser(null));
   }, [dispatch]);
 
-  const onFinish = (values: any) => {
-    const checkUser = data.find((same: any) => same.email === values.email);
+  const onFinish = (values: IValueLogin) => {
+    const checkUser = data.find((same) => same.email === values.email);
     if (checkUser && checkUser.password === values.password) {
       const { token } = jwtService.getJwt();
       localStoreService.set('user', token);

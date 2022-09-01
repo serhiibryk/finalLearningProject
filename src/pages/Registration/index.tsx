@@ -12,7 +12,7 @@ const Registration: React.FC = () => {
   const classes = useStyles();
   const [formAntd] = Form.useForm();
 
-  const { data } = useAppSelector((state: any) => state.userData);
+  const { data } = useAppSelector<any>((state) => state.userData);
   const dispatch = useAppDispatch();
   const push = useNavigate();
 
@@ -23,7 +23,7 @@ const Registration: React.FC = () => {
     });
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: IValueRegister) => {
     const res = [...data];
 
     const checkEmail = res.find((same) => same.email === values.email);
