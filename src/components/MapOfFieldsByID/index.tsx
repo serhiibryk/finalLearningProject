@@ -6,9 +6,9 @@ const MapFieldsByID: FC<IMapFields> = ({ lable, list, title }) => {
     <>
       <Divider orientation={'left'}>{lable}:</Divider>
       <div>
-        {list.map((id, index) => (
+        {list.map((item, index) => (
           <Tag key={index} color={'geekblue'}>
-            {id[title]}
+            {item[title as keyof object]}
           </Tag>
         ))}
       </div>

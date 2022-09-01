@@ -2,14 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getStarships } from './actions';
 
-interface IState {
-  starships: Starships[];
-  error: string;
-  isLoading: boolean;
-  count: number;
-}
-
-export const initialState: IState = {
+export const initialState: IStateStarships = {
   starships: [],
   error: '',
   isLoading: false,
@@ -20,7 +13,7 @@ export const starshipsSlice = createSlice({
   name: 'starships',
   initialState,
   reducers: {
-    setStarships: (state: IState, action: PayloadAction<Starships[]>) => {
+    setStarships: (state: IStateStarships, action: PayloadAction<Starships[]>) => {
       state.starships = action.payload;
     },
   },

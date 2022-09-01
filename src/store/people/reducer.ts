@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getPeoples } from './actions';
 
-interface IState {
-  isLoading: boolean;
-  error: string;
-  people: People[];
-  count: number;
-}
-
-export const initialState: IState = {
+export const initialState: IStatePeople = {
   isLoading: false,
   error: '',
   people: [],
@@ -19,7 +12,7 @@ export const peopleSlice = createSlice({
   name: 'people',
   initialState,
   reducers: {
-    setPeople: (state: IState, action: PayloadAction<People[]>) => {
+    setPeople: (state: IStatePeople, action: PayloadAction<People[]>) => {
       state.people = action.payload;
     },
   },

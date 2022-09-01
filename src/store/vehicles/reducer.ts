@@ -2,14 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getVehicles } from './actions';
 
-interface IState {
-  vehicles: Vehicles[];
-  error: string;
-  isLoading: boolean;
-  count: number;
-}
-
-export const initialState: IState = {
+export const initialState: IStateVehicles = {
   vehicles: [],
   error: '',
   isLoading: false,
@@ -20,7 +13,7 @@ export const vehiclesSlice = createSlice({
   name: 'vehicles',
   initialState,
   reducers: {
-    setVehicles: (state: IState, action: PayloadAction<Vehicles[]>) => {
+    setVehicles: (state: IStateVehicles, action: PayloadAction<Vehicles[]>) => {
       state.vehicles = action.payload;
     },
   },

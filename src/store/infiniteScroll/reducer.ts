@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface IState {
-  stateForScroll: Planets[];
-}
-
-export const initialState: IState = {
+export const initialState: IStateForScroll = {
   stateForScroll: [],
 };
 
@@ -12,7 +8,7 @@ export const infiniteScrollSlice = createSlice({
   name: 'infiniteSctroll',
   initialState,
   reducers: {
-    setForScroll: (state: IState, action: PayloadAction<Planets[]>) => {
+    setForScroll: (state: IStateForScroll, action: PayloadAction<Planets[]>) => {
       state.stateForScroll = action.payload;
     },
   },

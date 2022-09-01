@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getSpecy } from './actions';
 
-interface IState {
-  specy: Species[];
-  error: string;
-  isLoading: boolean;
-  count: number;
-}
-
-export const initialState: IState = {
+export const initialState: IStateSpecy = {
   specy: [],
   error: '',
   isLoading: false,
@@ -19,7 +12,7 @@ export const specySlice = createSlice({
   name: 'specy',
   initialState,
   reducers: {
-    setSpecies: (state: IState, action: PayloadAction<Species[]>) => {
+    setSpecies: (state: IStateSpecy, action: PayloadAction<Species[]>) => {
       state.specy = action.payload;
     },
   },

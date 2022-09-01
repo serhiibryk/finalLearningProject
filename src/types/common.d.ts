@@ -134,7 +134,7 @@ declare interface ICardRow {
 }
 
 declare interface IMapFields {
-  list: any[];
+  list: Object[];
   title: string;
   lable: string;
 }
@@ -183,4 +183,95 @@ declare interface GetVehiclesAction {
 declare interface GetPlanetsAction {
   planets: Planets[];
   count: number;
+}
+
+declare interface User {
+  confirm: string;
+  email: string;
+  nickname: string;
+  password: string;
+}
+
+declare interface IStateFilms {
+  films: Films[];
+  isLoading: boolean;
+  error: string;
+}
+
+declare interface IStateForScroll {
+  stateForScroll: Planets[];
+}
+
+declare interface IStatePage {
+  page: number;
+}
+
+declare interface IStatePeople {
+  isLoading: boolean;
+  error: string;
+  people: People[];
+  count: number;
+}
+
+declare interface IStatePlanets {
+  planets: Planets[];
+  error: string;
+  isLoading: boolean;
+  count: number;
+}
+
+declare interface IStateSpecy {
+  specy: Species[];
+  error: string;
+  isLoading: boolean;
+  count: number;
+}
+
+declare interface IStateStarships {
+  starships: Starships[];
+  error: string;
+  isLoading: boolean;
+  count: number;
+}
+
+declare interface IStateUser {
+  token: string;
+}
+
+declare interface IStateUserData {
+  data: User[];
+}
+
+declare interface IStateVehicles {
+  vehicles: Vehicles[];
+  error: string;
+  isLoading: boolean;
+  count: number;
+}
+declare interface IMainState {
+  IStateUserData: User[];
+  IStateFilms: Films[];
+  IStateForScroll: Planets[];
+  IStatePage: number;
+  IStatePeople: People[];
+  IStatePlanets: Planets[];
+  IStateSpecy: Species[];
+  IStateStarships: Starships[];
+  IStateVehicles: Vehicles[];
+  IStateUser: string;
+  userData: IStateUserData;
+}
+
+declare interface IResultForDragSource {
+  index: number;
+  droppableId: string;
+}
+declare interface IResultForDrag {
+  combine: boolean;
+  destination: boolean;
+  draggableId: string;
+  mode: string;
+  reason: string;
+  source: IResultForDragSource;
+  type: string;
 }

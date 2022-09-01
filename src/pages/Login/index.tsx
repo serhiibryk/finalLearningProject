@@ -16,8 +16,9 @@ const Login: React.FC = () => {
   const push = useNavigate();
   const { t } = useTranslation();
 
-  const { data } = useAppSelector((state: any) => state.userData);
+  const { data } = useAppSelector<IStateUserData>((state) => state.userData);
   const dispatch = useAppDispatch();
+
   const openNotification = (message: string, description: string) => {
     notification.open({
       message,

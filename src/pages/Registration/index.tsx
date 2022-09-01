@@ -26,7 +26,7 @@ const Registration: React.FC = () => {
   const onFinish = (values: any) => {
     const res = [...data];
 
-    const checkEmail = res.find((same: any) => same.email === values.email);
+    const checkEmail = res.find((same) => same.email === values.email);
 
     if (checkEmail) {
       openNotification('Error', 'Such a login already exists in the system. Enter, please, another login.');

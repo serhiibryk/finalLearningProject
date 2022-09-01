@@ -8,7 +8,7 @@ import { imgSpeciesList } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import Search from '../../components/Search';
 import { getSpecy } from '../../store/specy/actions';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
 import useStyles from './style';
 
@@ -42,7 +42,7 @@ const TeamsSpecies = () => {
   }
 
   // dnd
-  const reorder = (list: any, startIndex: number, endIndex: number) => {
+  const reorder = (list: string[], startIndex: number, endIndex: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -50,7 +50,7 @@ const TeamsSpecies = () => {
     return result;
   };
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return;
     }
@@ -81,7 +81,7 @@ const TeamsSpecies = () => {
           {(provided) => (
             <div className={classes.content} {...provided.droppableProps} ref={provided.innerRef}>
               {nameSpecies.map((speccy: Species, index: number) => (
-                <Draggable key={index} draggableId={String(index++)} index={index}>
+                <Draggable key={index} draggableId={String(index + 1)} index={index}>
                   {(provided) => (
                     <div
                       className={classes.items}

@@ -16,7 +16,7 @@ const { Meta } = Card;
 
 const TeamsPlanets = () => {
   const { planets, count, isLoading, error } = useAppSelector((state) => state.planets);
-  const { stateForScroll } = useAppSelector((state: any) => state.stateForScroll);
+  const { stateForScroll } = useAppSelector((state) => state.stateForScroll);
   const [numberPage, setNumberPage] = useState(2);
   const [switcher, setSwitcher] = useState<any>([]);
   const [checked, setChecked] = useState(false);
