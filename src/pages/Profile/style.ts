@@ -73,6 +73,7 @@ const useStyles = createUseStyles({
   },
   graphicThree: {
     width: '48%',
+    // backgroundColor: 'black',
   },
   graphicFour: {
     width: '48%',

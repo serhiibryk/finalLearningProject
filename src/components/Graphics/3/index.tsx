@@ -15,14 +15,58 @@ import { Line } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend);
 
 export const options = {
-  responsive: true,
+  animationEnabled: true,
+  options: {
+    animations: {
+      tension: {
+        duration: 1000,
+        easing: 'linear',
+        from: 1,
+        to: 0,
+        loop: true,
+      },
+    },
+  },
+  scales: {
+    y: {
+      min: 0,
+      max: 100,
+      grid: {
+        borderDash: [50, 10],
+      },
+    },
+    x: {
+      grid: {
+        display: false,
+      },
+    },
+  },
+
   plugins: {
     legend: {
-      position: 'top' as const,
+      position: 'bottom' as const,
     },
     title: {
       display: true,
+      text: 'Chart.js',
+      position: 'bottom' as const,
     },
+    tooltip: {
+      external: () => alert('1'),
+      callbacks: {
+        label: () => 'lox',
+      },
+      events: 'click',
+    },
+  },
+  axisY: {
+    title: 'Bounce Rate',
+    suffix: '%',
+  },
+  axisX: {
+    title: 'Week of Year',
+    prefix: 'W',
+    interval: 2,
   },
 };
 
@@ -34,7 +78,7 @@ export const data = {
       data: [65, 59, 90, 81, 56, 55, 40],
       fill: true,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgb(255, 99, 132)',
+      borderColor: 'blue',
       pointBackgroundColor: 'rgb(255, 99, 132)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
@@ -45,7 +89,7 @@ export const data = {
       data: [28, 48, 40, 19, 96, 27, 100],
       fill: true,
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-      borderColor: 'rgb(54, 162, 235)',
+      borderColor: 'violet',
       pointBackgroundColor: 'rgb(54, 162, 235)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
