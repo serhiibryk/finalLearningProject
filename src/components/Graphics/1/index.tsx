@@ -12,7 +12,6 @@ import {
 } from 'chart.js';
 import { Chart, getDatasetAtEvent, getElementAtEvent, getElementsAtEvent } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
-// import useStyles from './style';
 
 ChartJS.register(LinearScale, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip);
 
@@ -32,7 +31,7 @@ export const data = {
     {
       type: 'line' as const,
       label: 'Dataset 1',
-      borderColor: 'blue',
+      borderColor: 'grey',
       borderWidth: 2,
       fill: false,
       data: labels.map(() => faker.datatype.number({ min: -10, max: 10 })),
@@ -40,7 +39,7 @@ export const data = {
     {
       type: 'bar' as const,
       label: 'Dataset 2',
-      backgroundColor: 'grey',
+      backgroundColor: 'blue',
       data: labels.map(() => faker.datatype.number({ min: -10, max: 10 })),
       borderColor: 'pinc',
       borderWidth: 2,
@@ -55,8 +54,6 @@ export const data = {
 };
 
 const Graphic1 = () => {
-  // const classes = useStyles();
-
   const printDatasetAtEvent = (dataset: InteractionItem[]) => {
     if (!dataset.length) return;
 

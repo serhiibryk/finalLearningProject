@@ -1,99 +1,50 @@
-import React, { MouseEvent, useRef } from 'react';
-import type { InteractionItem } from 'chart.js';
-import {
-  Chart as ChartJS,
-  LinearScale,
-  CategoryScale,
-  BarElement,
-  PointElement,
-  LineElement,
-  Legend,
-  Tooltip,
-} from 'chart.js';
-import { Chart, getDatasetAtEvent, getElementAtEvent, getElementsAtEvent } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
-// import useStyles from './style';
+import React from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart, ArcElement } from 'chart.js';
 
-ChartJS.register(LinearScale, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip);
+Chart.register(ArcElement);
 
-export const options = {
-  scales: {
-    y: {
-      beginAtZero: true,
+export const data = {
+  labels: ['Pickup', 'Delivery', 'Ship to Home'],
+  datasets: [
+    {
+      data: [2, 3, 5],
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      hoverBackgroundColor: ['red', '#36A2EB', '#FFCE56'],
+      borderWidth: 1,
+    },
+  ],
+  text: '25%',
+};
+
+const options1 = {
+  responsive: true,
+  cutoutPercentage: 85,
+  maintainAspectRatio: false,
+  legend: {
+    display: true,
+    position: 'bottom',
+    usePointStyle: 'true',
+    labels: {
+      fontSize: 12,
+      padding: 25,
+      fontColor: 'pink',
+      fontFamily: 'kanit light',
     },
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      type: 'line' as const,
-      label: 'Dataset 1',
-      borderColor: 'blue',
-      borderWidth: 2,
-      fill: false,
-      data: labels.map(() => faker.datatype.number({ min: -10, max: 10 })),
-    },
-    {
-      type: 'bar' as const,
-      label: 'Dataset 2',
-      backgroundColor: 'grey',
-      data: labels.map(() => faker.datatype.number({ min: -10, max: 10 })),
-      borderColor: 'pinc',
-      borderWidth: 2,
-    },
-    {
-      type: 'bar' as const,
-      label: 'Dataset 3',
-      backgroundColor: 'black',
-      data: labels.map(() => faker.datatype.number({ min: -10, max: 10 })),
-    },
-  ],
-};
-
 const Graphic4 = () => {
-  // const classes = useStyles();
-
-  const printDatasetAtEvent = (dataset: InteractionItem[]) => {
-    if (!dataset.length) return;
-
-    const datasetIndex = dataset[0].datasetIndex;
-
-    console.log(data.datasets[datasetIndex].label);
-  };
-
-  const printElementAtEvent = (element: InteractionItem[]) => {
-    if (!element.length) return;
-
-    const { datasetIndex, index } = element[0];
-
-    console.log(data.labels[index], data.datasets[datasetIndex].data[index]);
-  };
-
-  const printElementsAtEvent = (elements: InteractionItem[]) => {
-    if (!elements.length) return;
-
-    console.log(elements.length);
-  };
-
-  const chartRef = useRef<ChartJS>(null);
-
-  const onClick = (event: MouseEvent<HTMLCanvasElement>) => {
-    const { current: chart } = chartRef;
-
-    if (!chart) {
-      return;
-    }
-
-    printDatasetAtEvent(getDatasetAtEvent(chart, event));
-    printElementAtEvent(getElementAtEvent(chart, event));
-    printElementsAtEvent(getElementsAtEvent(chart, event));
-  };
-
-  return <Chart ref={chartRef} type={'bar'} onClick={onClick} options={options} data={data} />;
+  return (
+    <>
+      <Doughnut
+        data={data}
+        options={options1}
+        height={250}
+        // width={800}
+      />
+    </>
+  );
 };
 
 export default Graphic4;

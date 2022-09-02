@@ -7,43 +7,41 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Filler,
   Legend,
+  TimeScale,
+  RadialLinearScale,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+import { Radar } from 'react-chartjs-2';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  TimeScale,
+  Title,
+  Tooltip,
+  Legend,
+  RadialLinearScale
+);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      //
-    },
-  },
-};
-
-const labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-export const data = {
-  labels,
+const radarData = {
+  labels: ['Finger Strength', 'Power', 'Endurance', 'Stability', 'Flexability'],
   datasets: [
     {
-      fill: true,
-      label: 'Dataset',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
-      borderColor: 'blue',
-      backgroundColor: 'grey',
+      label: 'March',
+      backgroundColor: 'rgba(34, 202, 236, .2)',
+      borderColor: 'rgba(34, 202, 236, 1)',
+      pointBackgroundColor: 'rgba(34, 202, 236, 1)',
+      poingBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(34, 202, 236, 1)',
+      data: [13, 10, 12, 6, 5],
     },
   ],
 };
 
 const Graphic2 = () => {
-  return <Line options={options} data={data} />;
+  return <Radar data={radarData} />;
 };
 export default Graphic2;

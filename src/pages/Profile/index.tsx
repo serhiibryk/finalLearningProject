@@ -6,16 +6,19 @@ import moment from 'moment';
 import { localStoreService } from '../../utils';
 import Graphic1 from '../../components/Graphics/1';
 import Graphic2 from '../../components/Graphics/2';
-
-import useStyles from './style';
 import Graphic3 from '../../components/Graphics/3';
 import Graphic4 from '../../components/Graphics/4';
+
+import useStyles from './style';
+import useToggle from '../../store/hooks/useToggle';
+import MyModal from '../../components/MyModal';
 
 const token = localStoreService.get('user');
 
 const Profile = () => {
   const [decoded, setDecoded] = useState<DecodedData | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalOpen, onModalOpen, onModalClose] = useToggle();
 
   const classes = useStyles();
   const decodedData = useJwt(token);
@@ -23,16 +26,6 @@ const Profile = () => {
   const handleChangeView = (value: boolean) => {
     setIsModalVisible(value);
   };
-
-  // const handleClickLogin = () => {
-  //   // push('/login');
-  //   handleChangeView(false);
-  // };
-
-  // const handleClick = () => {
-  //   // push(item);
-  //   handleChangeView(false);
-  // };
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,6 +36,47 @@ const Profile = () => {
   return (
     <div className={classes.root}>
       <Card className={classes.card} hoverable>
+        <div className={classes.graphics}>
+          <div className={classes.graphicsOneTwo}>
+            <div className={classes.graphicOne}>
+              <Graphic1 />
+            </div>
+            <div className={classes.graphicTwo}>
+              <Graphic2 />
+            </div>
+          </div>
+          <div className={classes.graphicsThreeFour}>
+            <div className={classes.graphicThree}>
+              <Graphic3 />
+            </div>
+            <div className={classes.graphicFour}>
+              <Graphic4 />
+            </div>
+          </div>
+        </div>
+        <br />
+        <div className={classes.buttonsModal}>
+          <Button className={classes.buttonAntModal} type={'primary'} onClick={() => handleChangeView(true)}>
+            Modal-Ant
+          </Button>
+          <Modal
+            afterClose={() => handleChangeView(false)}
+            className={classes.modalAnt}
+            title={'Graphic dlia tebia blyat'}
+            footer={null}
+            visible={isModalVisible}
+            onCancel={() => handleChangeView(false)}
+            width={'100%'}
+          >
+            <Graphic1 />
+          </Modal>
+          <Button className={classes.buttonReactModal} onClick={onModalOpen}>
+            Modal-React
+          </Button>
+          {isModalOpen && <MyModal onClose={onModalClose} />}
+        </div>
+        <br />
+        <br />
         {decoded ? (
           <div>
             <p>Token:</p>
@@ -66,36 +100,6 @@ const Profile = () => {
         ) : (
           <Skeleton active />
         )}
-        <div className={classes.graphics}>
-          <div className={classes.graphicsOneTwo}>
-            <Graphic1 />
-            <Graphic2 />
-          </div>
-          <div className={classes.graphicsThreeFour}>
-            <Graphic3 />
-            <Graphic4 />
-          </div>
-        </div>
-        <br />
-        <br />
-        <div className={classes.buttonsModal}>
-          <Button className={classes.buttonAntModal} type={'primary'} onClick={() => handleChangeView(true)}>
-            Modal-Ant
-          </Button>
-          <Modal
-            afterClose={() => handleChangeView(false)}
-            className={classes.modalAnt}
-            title={'Graphic dlia tebia blyat'}
-            footer={null}
-            visible={isModalVisible}
-            onCancel={() => handleChangeView(false)}
-            width={'100%'}
-            // wrapClassName={classes.wrap}
-          >
-            <Graphic1 />
-          </Modal>
-          <Button className={classes.buttonReactModal}>Modal-React</Button>
-        </div>
       </Card>
     </div>
   );

@@ -5,7 +5,6 @@ const useStyles = createUseStyles({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  graphicOne: {},
 });
 
 export default useStyles;

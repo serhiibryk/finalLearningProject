@@ -36,12 +36,12 @@ const useStyles = createUseStyles({
   },
   graphics: {},
   graphicsOneTwo: {
-    width: '48%',
+    // width: '48%',
     display: 'flex',
     flexWrap: 'row',
   },
   graphicsThreeFour: {
-    width: '48%',
+    // width: '48%',
     display: 'flex',
     flexWrap: 'row',
   },
@@ -56,7 +56,27 @@ const useStyles = createUseStyles({
     backgroundColor: 'grey',
     width: '49%',
   },
-  modalAnt: {},
+  modalAnt: {
+    width: '100%',
+    // height: '100%',
+    top: '0px',
+    maxWidth: 'none',
+    paddingBottom: '0px',
+    height: '100vh',
+  },
+  graphicOne: {
+    width: '48%',
+  },
+  graphicTwo: {
+    width: '36%',
+    // height: '  %',
+  },
+  graphicThree: {
+    width: '48%',
+  },
+  graphicFour: {
+    width: '48%',
+  },
 });
 
 export default useStyles;
