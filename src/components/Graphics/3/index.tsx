@@ -29,15 +29,16 @@ export const options = {
   },
   scales: {
     y: {
-      min: 0,
-      max: 100,
-      grid: {
-        borderDash: [50, 10],
-      },
+      // min: 0,
+      // max: 100,
+      // grid: {
+      //   borderDash: [50, 10],
+      // },
+      display: false,
     },
     x: {
       grid: {
-        display: false,
+        // display: false,
       },
     },
   },
@@ -54,7 +55,7 @@ export const options = {
     tooltip: {
       external: () => alert('1'),
       callbacks: {
-        label: () => 'lox',
+        label: () => 'lol',
       },
       events: 'click',
     },
@@ -77,8 +78,11 @@ export const data = {
       label: 'My First Dataset',
       data: [65, 59, 90, 81, 56, 55, 40],
       fill: true,
+      tension: 0.4,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      pointRadius: 7,
       borderColor: 'blue',
+      borderDash: [2],
       pointBackgroundColor: 'rgb(255, 99, 132)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
@@ -88,6 +92,7 @@ export const data = {
       label: 'My Second Dataset',
       data: [28, 48, 40, 19, 96, 27, 100],
       fill: true,
+      tension: 0.4,
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
       borderColor: 'violet',
       pointBackgroundColor: 'rgb(54, 162, 235)',

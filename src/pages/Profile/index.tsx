@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useJwt } from 'react-jwt';
-import { Button, Card, Modal, Skeleton } from 'antd';
+import { Button, Card, Skeleton } from 'antd';
 import moment from 'moment';
 
 import { localStoreService } from '../../utils';
@@ -11,7 +11,8 @@ import Graphic4 from '../../components/Graphics/4';
 
 import useStyles from './style';
 import useToggle from '../../store/hooks/useToggle';
-import MyModal from '../../components/MyModal';
+import MyModal from '../../components/MyReactModal';
+import ModalANT from '../../components/ModalANT';
 
 const token = localStoreService.get('user');
 
@@ -59,17 +60,15 @@ const Profile = () => {
           <Button className={classes.buttonAntModal} type={'primary'} onClick={() => handleChangeView(true)}>
             Modal-Ant
           </Button>
-          <Modal
-            afterClose={() => handleChangeView(false)}
-            className={classes.modalAnt}
+          <ModalANT
             title={'Graphic dlia tebia blyat'}
             footer={null}
-            visible={isModalVisible}
+            afterClose={() => handleChangeView(false)}
             onCancel={() => handleChangeView(false)}
-            width={'100%'}
+            visible={isModalVisible}
           >
             <Graphic1 />
-          </Modal>
+          </ModalANT>
           <Button className={classes.buttonReactModal} onClick={onModalOpen}>
             Modal-React
           </Button>

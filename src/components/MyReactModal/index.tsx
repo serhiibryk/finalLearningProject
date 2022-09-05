@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Graphic3 from '../Graphics/3';
-import ModalComponent from '../Modal';
+import ModalComponent from '../ModalPortal';
 
 interface IMyModal {
   onClose: any;

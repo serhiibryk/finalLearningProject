@@ -32,6 +32,7 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.34.2",
     "react-i18next": "^11.18.5",
     "react-infinite-scroll-component": "^6.1.0",
     "react-jss": "^10.9.1",

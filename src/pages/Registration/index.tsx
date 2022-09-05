@@ -37,6 +37,7 @@ const Registration: React.FC = () => {
       push('/login');
     }
   };
+
   return (
     <div className={classes.registerContainer}>
       <Form className={classes.registerForm} form={formAntd} name={'register'} onFinish={onFinish} scrollToFirstError>
