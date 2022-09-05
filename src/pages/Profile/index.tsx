@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useJwt } from 'react-jwt';
-import { Card, Skeleton } from 'antd';
+import { Button, Card, Skeleton } from 'antd';
 import moment from 'moment';
 
 import { localStoreService } from '../../utils';
+import Graphic1 from '../../components/Graphics/1';
+import Graphic2 from '../../components/Graphics/2';
+import Graphic3 from '../../components/Graphics/3';
+import Graphic4 from '../../components/Graphics/4';
 
 import useStyles from './style';
+import useToggle from '../../store/hooks/useToggle';
+import MyModal from '../../components/MyReactModal';
+import ModalANT from '../../components/ModalANT';
 
 const token = localStoreService.get('user');
 
 const Profile = () => {
   const [decoded, setDecoded] = useState<DecodedData | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalOpen, onModalOpen, onModalClose] = useToggle();
 
   const classes = useStyles();
   const decodedData = useJwt(token);
+
+  const handleChangeView = (value: boolean) => {
+    setIsModalVisible(value);
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,6 +37,45 @@ const Profile = () => {
   return (
     <div className={classes.root}>
       <Card className={classes.card} hoverable>
+        <div className={classes.graphics}>
+          <div className={classes.graphicsOneTwo}>
+            <div className={classes.graphicOne}>
+              <Graphic1 />
+            </div>
+            <div className={classes.graphicTwo}>
+              <Graphic2 />
+            </div>
+          </div>
+          <div className={classes.graphicsThreeFour}>
+            <div className={classes.graphicThree}>
+              <Graphic3 />
+            </div>
+            <div className={classes.graphicFour}>
+              <Graphic4 />
+            </div>
+          </div>
+        </div>
+        <br />
+        <div className={classes.buttonsModal}>
+          <Button className={classes.buttonAntModal} type={'primary'} onClick={() => handleChangeView(true)}>
+            Modal-Ant
+          </Button>
+          <ModalANT
+            title={'Graphic dlia tebia blyat'}
+            footer={null}
+            afterClose={() => handleChangeView(false)}
+            onCancel={() => handleChangeView(false)}
+            visible={isModalVisible}
+          >
+            <Graphic1 />
+          </ModalANT>
+          <Button className={classes.buttonReactModal} onClick={onModalOpen}>
+            Modal-React
+          </Button>
+          {isModalOpen && <MyModal onClose={onModalClose} />}
+        </div>
+        <br />
+        <br />
         {decoded ? (
           <div>
             <p>Token:</p>
