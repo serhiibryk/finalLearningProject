@@ -10,13 +10,6 @@ import InputComponent from '../../components/Input';
 
 import useStyles from './style';
 
-// interface IFormInput {
-//   nickName: string;
-//   password: string;
-//   confirm_password: string;
-//   email: string;
-// }
-
 const Registration: React.FC = () => {
   const classes = useStyles();
 
@@ -59,7 +52,7 @@ const Registration: React.FC = () => {
     <div className={classes.registerContainer}>
       <form className={classes.mainForm} onSubmit={handleSubmit(onSubmit as any)}>
         <InputComponent
-          attribute={register('email', {
+          rules={register('email', {
             required: true,
             maxLength: 20,
           })}
@@ -69,7 +62,7 @@ const Registration: React.FC = () => {
           {errors.email && <p className={classes.errorText}>The input is not valid E-mail!</p>}
         </InputComponent>
         <InputComponent
-          attribute={register('password', {
+          rules={register('password', {
             required: true,
             minLength: {
               value: 8,
@@ -82,7 +75,7 @@ const Registration: React.FC = () => {
           {errors.password && <p className={classes.errorText}>Password must have at least 8 characters</p>}
         </InputComponent>
         <InputComponent
-          attribute={register('confirm_password', {
+          rules={register('confirm_password', {
             required: true,
 
             validate: (val: string) => {
@@ -94,12 +87,10 @@ const Registration: React.FC = () => {
           title={'Confirm password'}
           placeholder={'Repeat password'}
         >
-          {errors.confirm_password && (
-            <p className={classes.errorText}>The two passwords that you entered do not match!</p>
-          )}
+          {errors.confirm_password && <p className={classes.errorText}>These two passwords do not match!</p>}
         </InputComponent>
         <InputComponent
-          attribute={register('nickName', {
+          rules={register('nickName', {
             required: true,
             maxLength: 20,
           })}

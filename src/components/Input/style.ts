@@ -3,6 +3,9 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
   root: {
     marginBottom: 25,
+    // '& .label': {
+    //   display: 'none',
+    // },
   },
   title: {
     position: 'relative',
@@ -15,16 +18,24 @@ const useStyles = createUseStyles({
   },
   inputGroup: {
     position: 'relative',
-    '& .inputLabel:focus  + .label': {
+
+    '& .inputLabel:focus + .label': {
+      display: 'block',
       top: '-21px',
     },
+    '& .show': {
+      display: 'none',
+    },
   },
-  inputLabel: {
+  inputLabelMain: {
     color: '#A9A9A9',
     position: 'absolute',
+    // display: 'none',
     top: 12,
     marginLeft: 5,
+    display: 'block',
   },
+
   inputHelper: {},
   input: {
     fontSize: '16px',

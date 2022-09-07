@@ -1,17 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 import classNames from 'classnames';
 
 import useStyles from './style';
+import { values } from 'lodash';
 
 interface IInput {
   title: string;
-  attribute: any;
+  rules: any;
   placeholder: string;
   children: any;
 }
 
-const InputComponent: FC<IInput> = ({ title, attribute, children, placeholder }) => {
+const InputComponent: FC<IInput> = ({ title, rules, children, placeholder }) => {
   const classes = useStyles();
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value);
+  };
 
   return (
     <div className={classes.root}>
@@ -19,11 +25,13 @@ const InputComponent: FC<IInput> = ({ title, attribute, children, placeholder })
         <div className={classes.inputGroup}>
           <input
             id={'input'}
+            value={inputValue}
             className={classNames('inputLabel', classes.input)}
-            {...attribute}
+            {...rules}
+            onChange={handleChange}
             // placeholder={placeholder}
           />
-          <label className={classNames(classes.inputLabel, 'label')} htmlFor={'input'}>
+          <label className={classNames({ show: inputValue }, classes.inputLabelMain, 'label')} htmlFor={'input'}>
             {title}
           </label>
           {children}
