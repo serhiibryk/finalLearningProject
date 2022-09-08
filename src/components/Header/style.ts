@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
   },
 
   menu: {
-    '@media screen and (max-width: 1125px)': {
+    '@media screen and (max-width: 1180px)': {
       display: 'none !important',
     },
     '& .ant-menu-item:last-child': {
@@ -63,7 +63,7 @@ const useStyles = createUseStyles({
     backgroundColor: 'black',
     width: '64px',
 
-    '@media screen and (max-width: 1125px)': {
+    '@media screen and (max-width: 1180px)': {
       display: 'block',
     },
   },
@@ -153,15 +153,23 @@ const useStyles = createUseStyles({
     borderColor: 'transparent',
     marginLeft: 'auto',
     margin: '0 30px',
-    '@media screen and (max-width: 1125px)': {
+    '@media screen and (max-width: 1180px)': {
       display: 'block',
     },
   },
   menuOutlined: {
     fontSize: '32px',
   },
-  wrap: {
-    // backgroundColor: "black",
+  wrap: {},
+  switcherText: {
+    position: 'relative',
+    top: '20px',
+  },
+  blackSwitcherText: {
+    color: 'black',
+  },
+  whiteSwitcherText: {
+    color: 'white',
   },
 });
 

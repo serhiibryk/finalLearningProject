@@ -4,7 +4,6 @@ import { Button, Card, Skeleton } from 'antd';
 import moment from 'moment';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay } from 'swiper';
-import classNames from 'classnames';
 
 import { imgFilmsList, localStoreService } from '../../utils';
 import Graphic1 from '../../components/Graphics/1';

@@ -192,7 +192,7 @@ declare interface User {
   password: string;
 }
 
-declare interface IStateFilms {
+declare interface IStateDarkMode {
   films: Films[];
   isLoading: boolean;
   error: string;

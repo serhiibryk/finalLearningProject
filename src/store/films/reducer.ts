@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getFilms } from './actions';
 
-export const initialState: IStateFilms = {
+export const initialState: IStateDarkMode = {
   films: [],
   isLoading: false,
   error: '',
@@ -11,7 +11,7 @@ export const filmsSlice = createSlice({
   name: 'films',
   initialState,
   reducers: {
-    setFilms: (state: IStateFilms, action: PayloadAction<Films[]>) => {
+    setFilms: (state: IStateDarkMode, action: PayloadAction<Films[]>) => {
       state.films = action.payload;
     },
   },
