@@ -36,12 +36,10 @@ const useStyles = createUseStyles({
   },
   graphics: {},
   graphicsOneTwo: {
-    // width: '48%',
     display: 'flex',
     flexWrap: 'row',
   },
   graphicsThreeFour: {
-    // width: '48%',
     display: 'flex',
     flexWrap: 'row',
   },
@@ -58,7 +56,6 @@ const useStyles = createUseStyles({
   },
   modalAnt: {
     width: '100%',
-    // height: '100%',
     top: '0px',
     maxWidth: 'none',
     paddingBottom: '0px',
@@ -69,14 +66,48 @@ const useStyles = createUseStyles({
   },
   graphicTwo: {
     width: '36%',
-    // height: '  %',
   },
   graphicThree: {
     width: '48%',
-    // backgroundColor: 'black',
   },
   graphicFour: {
     width: '48%',
+  },
+  containerBox: {},
+  smallContainer: {
+    margin: '0 auto',
+    width: '600px',
+  },
+  box: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: 'red',
+    width: '600px',
+    height: '450px',
+  },
+  // buttons: {
+  //   display: 'flex',
+  //   justifyContent: 'space-between',
+  // },
+  // arrowLeft: {
+  //   display: 'flex',
+  //   width: '70px',
+  //   height: '30px',
+  // },
+  // arrowRight: {
+  //   display: 'flex',
+  //   width: '70px',
+  //   height: '30px',
+  // },
+  img: {
+    border: 'none',
+    borderColor: 'grey',
+    width: '600px',
+    objectFit: 'cover',
+    // minWidth: '300px',
+    // minHeight: '300px',
+    // maxWidth: '600px',
+    // maxHeight: '600px',
   },
 });
 

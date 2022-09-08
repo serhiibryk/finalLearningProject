@@ -2,17 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useJwt } from 'react-jwt';
 import { Button, Card, Skeleton } from 'antd';
 import moment from 'moment';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay } from 'swiper';
+import classNames from 'classnames';
 
-import { localStoreService } from '../../utils';
+import { imgFilmsList, localStoreService } from '../../utils';
 import Graphic1 from '../../components/Graphics/1';
 import Graphic2 from '../../components/Graphics/2';
 import Graphic3 from '../../components/Graphics/3';
 import Graphic4 from '../../components/Graphics/4';
-
-import useStyles from './style';
 import useToggle from '../../store/hooks/useToggle';
 import MyModal from '../../components/MyReactModal';
 import ModalANT from '../../components/ModalANT';
+
+import useStyles from './style';
+import 'swiper/swiper.min.css';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay]);
 
 const token = localStoreService.get('user');
 
@@ -99,14 +105,43 @@ const Profile = () => {
         ) : (
           <Skeleton active />
         )}
+        <div className={classes.containerBox}>
+          <div className={classes.smallContainer}>
+            <Swiper
+              slidesPerView={'auto'}
+              slidesPerGroup={1}
+              spaceBetween={5}
+              // effect={'fade'}
+              // loopFillGroupWithBlank={true}
+              autoplay={{
+                delay: 3000,
+              }}
+              // breakpoints={{
+              //   486: { slidesPerView: 'auto', slidesPerGroup: 1 },
+              //   325: {
+              //     centeredSlides: true,
+              //     slidesPerView: 'auto',
+              //     slidesPerGroup: 1,
+              //     allowTouchMove: true,
+              //   },
+              // }}
+              // watchOverflow={true}
+              speed={400}
+              // pagination={{ clickable: true, dynamicBullets: true }}
+            >
+              {imgFilmsList.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className={classes.box}>
+                    <img className={classes.img} src={item.imgLink}></img>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
       </Card>
     </div>
   );
 };
 
 export default Profile;
-
-// 4 рандомн графіка
-// 2 кнопки
-// (1 ант модальне окно + рендер графік в ньому)
-// ( 2 реакт кріейт портал + рендер графіку в ньому)

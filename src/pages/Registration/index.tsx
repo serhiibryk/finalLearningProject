@@ -1,16 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Form, Input, notification } from 'antd';
+import { useForm } from 'react-hook-form';
+import { notification } from 'antd';
 
-import { localStoreService } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import { userDataReducer } from '../../store/userData/reducer';
+import { localStoreService } from '../../utils';
+import InputComponent from '../../components/Input';
 
 import useStyles from './style';
 
 const Registration: React.FC = () => {
   const classes = useStyles();
-  const [formAntd] = Form.useForm();
 
   const { data } = useAppSelector<any>((state) => state.userData);
   const dispatch = useAppDispatch();
@@ -23,7 +24,16 @@ const Registration: React.FC = () => {
     });
   };
 
-  const onFinish = (values: IValueRegister) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (values: IValueRegister) => {
+    console.log(values);
+
     const res = [...data];
 
     const checkEmail = res.find((same) => same.email === values.email);
@@ -40,81 +50,62 @@ const Registration: React.FC = () => {
 
   return (
     <div className={classes.registerContainer}>
-      <Form className={classes.registerForm} form={formAntd} name={'register'} onFinish={onFinish} scrollToFirstError>
-        <Form.Item
-          name={'email'}
-          label={'E-mail'}
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
+      <form className={classes.mainForm} onSubmit={handleSubmit(onSubmit as any)}>
+        <InputComponent
+          rules={register('email', {
+            required: true,
+            maxLength: 20,
+          })}
+          title={'Email'}
+          placeholder={'Email'}
         >
-          <Input value={'email'} />
-        </Form.Item>
+          {errors.email && <p className={classes.errorText}>The input is not valid E-mail!</p>}
+        </InputComponent>
+        <InputComponent
+          rules={register('password', {
+            required: true,
+            minLength: {
+              value: 8,
+              message: 'Password must have at least 8 characters',
+            },
+          })}
+          title={'Password'}
+          placeholder={'Password'}
+        >
+          {errors.password && <p className={classes.errorText}>Password must have at least 8 characters</p>}
+        </InputComponent>
+        <InputComponent
+          rules={register('confirm_password', {
+            required: true,
 
-        <Form.Item
-          name={'password'}
-          label={'Password'}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
+            validate: (val: string) => {
+              if (watch('password') !== val) {
+                return 'Your passwords do no match';
+              }
             },
-          ]}
-          hasFeedback
+          })}
+          title={'Confirm password'}
+          placeholder={'Repeat password'}
         >
-          <Input.Password />
-        </Form.Item>
+          {errors.confirm_password && <p className={classes.errorText}>These two passwords do not match!</p>}
+        </InputComponent>
+        <InputComponent
+          rules={register('nickName', {
+            required: true,
+            maxLength: 20,
+          })}
+          title={'Nick Name'}
+          placeholder={'Nickname'}
+        >
+          {errors.nickName && <p className={classes.errorText}>Please input your nickname!</p>}
+        </InputComponent>
 
-        <Form.Item
-          name={'confirm'}
-          label={'Confirm Password:'}
-          dependencies={['password']}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: 'Please confirm your password!',
-            },
-            ({ getFieldValue }) => ({
-              async validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return await Promise.resolve();
-                }
-                return await Promise.reject(new Error('The two passwords that you entered do not match!'));
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          name={'nickname'}
-          label={'Nickname'}
-          tooltip={'What do you want others to call you?'}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your nickname!',
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item>
-          <Button type={'primary'} htmlType={'submit'}>
+        <div className={classes.emailInput}>
+          <button className={classes.registerButton} type={'submit'}>
             Register
-          </Button>
-        </Form.Item>
-      </Form>
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

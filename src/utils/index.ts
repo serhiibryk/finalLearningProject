@@ -294,3 +294,14 @@ export const localStoreService = {
 };
 
 export const mainError = 'Something went wrong!';
+
+// const pallet = () => {
+//   if (darkMode) {
+//     return {
+//       dark: '#000',
+//     };
+//   }
+//   return {
+//     dark: '#fff',
+//   };
+// };
