@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
       top: '-21px',
     },
     '& .show': {
-      display: 'none',
+      top: '-21px',
     },
   },
   inputLabelMain: {

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Layout, Menu, Modal } from 'antd';
+import { Button, Layout, Menu, Modal, Switch } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
@@ -29,6 +29,7 @@ const Header = () => {
   const { t, i18n } = useTranslation();
   const { token } = useAppSelector((state) => state.user);
 
+  const [darkMode, setDarkMode] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleChangeView = (value: boolean) => {
@@ -164,6 +165,7 @@ const Header = () => {
             ]}
           />
           <div className={classes.buttons}>
+            {/* <Switch >Switch to {}</Switch> */}
             {Object.keys(lngs).map((lng) => (
               <Button
                 className={classes.buttonSwitch}

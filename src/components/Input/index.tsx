@@ -2,7 +2,6 @@ import React, { FC, FormEvent, useState } from 'react';
 import classNames from 'classnames';
 
 import useStyles from './style';
-import { values } from 'lodash';
 
 interface IInput {
   title: string;
