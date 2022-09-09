@@ -3,9 +3,6 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
   root: {
     marginBottom: 25,
-    // '& .label': {
-    //   display: 'none',
-    // },
   },
   title: {
     position: 'relative',

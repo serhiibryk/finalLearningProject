@@ -113,23 +113,10 @@ const Profile = () => {
               slidesPerView={'auto'}
               slidesPerGroup={1}
               spaceBetween={5}
-              // effect={'fade'}
-              // loopFillGroupWithBlank={true}
               autoplay={{
                 delay: 3000,
               }}
-              // breakpoints={{
-              //   486: { slidesPerView: 'auto', slidesPerGroup: 1 },
-              //   325: {
-              //     centeredSlides: true,
-              //     slidesPerView: 'auto',
-              //     slidesPerGroup: 1,
-              //     allowTouchMove: true,
-              //   },
-              // }}
-              // watchOverflow={true}
               speed={400}
-              // pagination={{ clickable: true, dynamicBullets: true }}
             >
               {imgFilmsList.map((item, index) => (
                 <SwiperSlide key={index}>

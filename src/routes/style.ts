@@ -6,11 +6,8 @@ const useStyles = createUseStyles({
     maxWidth: '1450px',
     margin: '0 auto',
     padding: '0 32px 0 60px',
-    backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGround,
 
-    '& .ant-layout-content content': {
-      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGround,
-    },
+    backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGround,
   },
 });
 

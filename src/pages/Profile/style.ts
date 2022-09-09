@@ -20,6 +20,7 @@ const useStyles = createUseStyles({
       fontStyle: 'italic',
       fontSize: '23px',
       fontWeight: 'lighter',
+      color: (isDarkMode: boolean) => pallet(isDarkMode).color,
     },
   },
   textP: {
@@ -29,6 +30,7 @@ const useStyles = createUseStyles({
     whiteSpace: 'nowrap',
     overflowX: 'hidden',
     textOverflow: 'ellipsis',
+    color: (isDarkMode: boolean) => pallet(isDarkMode).color,
   },
   spiner: {
     marginTop: '100px',
@@ -66,6 +68,7 @@ const useStyles = createUseStyles({
     paddingBottom: '0px',
     height: '100vh',
   },
+
   graphicOne: {
     width: '48%',
   },
