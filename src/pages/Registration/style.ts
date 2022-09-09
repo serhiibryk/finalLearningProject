@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss';
+import { pallet } from '../../utils';
 
 const useStyles = createUseStyles({
   mainForm: {
@@ -17,7 +18,7 @@ const useStyles = createUseStyles({
     borderBottom: '0rem solid ',
     borderStyle: 'solid',
     borderWidth: '2px',
-    color: 'initial',
+    color: (isDarkMode: boolean) => pallet(isDarkMode).color,
     display: 'inline-block',
     textAlign: 'start',
     margin: '1em 0 0 0 ',
@@ -26,7 +27,7 @@ const useStyles = createUseStyles({
     fontSize: '15px',
     whiteSpace: 'nowrap',
     overflowX: 'hidden',
-    backgroundColor: 'white',
+    backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
   },
   input: {
     '& .input:focus': {},

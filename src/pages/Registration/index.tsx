@@ -11,7 +11,9 @@ import InputComponent from '../../components/Input';
 import useStyles from './style';
 
 const Registration: React.FC = () => {
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
 
   const { data } = useAppSelector<any>((state) => state.userData);
   const dispatch = useAppDispatch();
