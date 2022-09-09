@@ -295,13 +295,19 @@ export const localStoreService = {
 
 export const mainError = 'Something went wrong!';
 
-interface Ipallet {
-  isDarkMode: boolean;
-}
-
-export const pallet = ({ isDarkMode }: Ipallet) => {
+export const pallet = (isDarkMode: boolean) => {
   if (isDarkMode) {
-    return 'black';
+    return {
+      dark: 'black',
+      color: 'white',
+      backGround: '#313442',
+      backGroundHeader: 'rgb(0 22 40)',
+    };
   }
-  return 'white';
+  return {
+    dark: 'white',
+    color: 'black',
+    backGround: '#e2e2e2',
+    backGroundHeader: '#8aa1b9',
+  };
 };

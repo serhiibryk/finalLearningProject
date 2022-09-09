@@ -8,8 +8,9 @@ import useStyles from './style';
 
 const Route = () => {
   const { token } = useAppSelector((state: any) => state.user);
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
 
-  const classes = useStyles();
+  const classes = useStyles(isDarkMode as boolean);
 
   return (
     <div className={classes.root}>

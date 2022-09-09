@@ -54,6 +54,7 @@ module.exports = {
         json5: 'never',
       },
     ],
+    '@typescript-eslint/no-unnecessary-type-assertion': 0,
     '@typescript-eslint/strict-boolean-expressions': 0,
     '@typescript-eslint/no-floating-promises': 0,
     '@typescript-eslint/lines-between-class-members': 0,

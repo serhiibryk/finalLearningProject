@@ -1,13 +1,19 @@
 import { createUseStyles } from 'react-jss';
+import { pallet } from '../../utils';
 
 const useStyles = createUseStyles({
   root: {},
   card: {
-    // margin: "10px 5px 5px 5px",
     margin: '10px 0 0 18px',
     width: '100%',
+    border: 'none',
     minHeight: '70px',
     minWidth: '140px',
+    backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
+
+    '& .ant-card-meta-title': {
+      color: (isDarkMode: boolean) => pallet(isDarkMode).color,
+    },
   },
 
   content: {

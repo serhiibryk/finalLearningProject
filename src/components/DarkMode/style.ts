@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
     right: '20px',
 
     '&.ant-switch': {
-      backgroundColor: (isDarkMode: boolean) => pallet({ isDarkMode }),
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
       backgroundImage: 'none',
       '& .ant-switch-handle::before': {
         height: '100%',

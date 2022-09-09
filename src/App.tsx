@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
-
-import './App.css';
 import Route from './routes';
 import { setupStore } from './store';
+
+import './App.css';
 
 const { Content } = Layout;
 

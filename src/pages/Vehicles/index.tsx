@@ -10,6 +10,7 @@ import Search from '../../components/Search';
 import { getVehicles } from '../../store/vehicles/actions';
 
 import useStyles from './style';
+import CardComponent from '../../components/Card';
 
 const { Meta } = Card;
 
@@ -58,22 +59,13 @@ const TeamsVehicles = () => {
       </div>
       <div className={classes.content}>
         {nameVehicles.map((vehicle: Vehicles, index: number) => (
-          <Card
+          <CardComponent
             key={index}
-            className={classes.card}
-            hoverable
-            cover={
-              <img
-                className={classes.img}
-                // key={imgVehiclesList[index].imgLink}
-                src={imgVehiclesList[1].imgLink}
-                alt={'Vehicle wallpaper'}
-              />
-            }
-            onClick={() => push(`/vehicles/${vehicle.url.split('/')[5]}`)}
-          >
-            <Meta title={vehicle.name} />
-          </Card>
+            path={`/vehicles/${vehicle.url.split('/')[5]}`}
+            title={vehicle.name}
+            img={imgVehiclesList[1].imgLink}
+            imgSrc={imgVehiclesList[1].imgLink}
+          />
         ))}
       </div>
     </div>

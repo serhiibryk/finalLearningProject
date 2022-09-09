@@ -10,15 +10,15 @@ const Switch = () => {
   const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
   const dispatch = useAppDispatch();
 
-  const classes = useStyles(isDarkMode as any);
+  const classes = useStyles(isDarkMode as boolean);
 
-  const handleChange = (e: boolean) => {
+  const handleChange = () => {
     dispatch(darkModeReducer.setIsDarkMode(!isDarkMode));
   };
 
   console.log(isDarkMode);
 
-  return <Switcher className={classes.root} checked={isDarkMode} onChange={(e) => handleChange(e)} />;
+  return <Switcher className={classes.root} checked={isDarkMode} onChange={handleChange} />;
 };
 
 export default Switch;

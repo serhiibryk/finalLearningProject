@@ -1,31 +1,41 @@
 import { createUseStyles } from 'react-jss';
+import { pallet } from '../../utils';
 
 const useStyles = createUseStyles({
   root: {
+    '& .ant-layout-header': {
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGroundHeader,
+    },
+
+    '& .ant-menu .ant-menu-item.ant-menu-item-selected': {
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGround,
+    },
+
     '& .ant-menu': {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGroundHeader,
+
+      '& .ant-menu-title-content': {
+        color: (isDarkMode: boolean) => pallet(isDarkMode).color,
+      },
     },
     '& .ant-menu-item': {
-      // height: "100%",
-    },
-    '& .ant-menu-item-selected': {
-      backgroundColor: 'black !important',
-      // height: "87%",
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGroundHeader,
     },
 
     '& .ant-menu-dark.ant-menu-vertical>.ant-menu-item:hover': {
-      backgroundColor: 'black !important',
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
     },
   },
-
   menu: {
     '@media screen and (max-width: 1180px)': {
       display: 'none !important',
     },
     '& .ant-menu-item:last-child': {
       marginLeft: 'auto',
+      top: '-2px',
     },
   },
   buttons: {
@@ -33,20 +43,18 @@ const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'row',
   },
-
   buttonSwitch: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
     borderColor: 'grey',
     border: '0.1px solid;',
-    color: 'white',
     width: '64px',
     height: '64px',
     fontSize: '25px',
+    backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
+    color: (isDarkMode: boolean) => pallet(isDarkMode).color,
   },
-
   overlay: {
     '& .ant-dropdown-menu': {
       backgroundColor: 'black',
@@ -57,28 +65,24 @@ const useStyles = createUseStyles({
       color: 'grey',
     },
   },
-
   dropmenu: {
     display: 'none',
-    backgroundColor: 'black',
     width: '64px',
+    backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGround,
 
     '@media screen and (max-width: 1180px)': {
       display: 'block',
     },
   },
-
   menuDropText: {
-    color: 'white',
     display: 'flex',
     justifyContent: 'center',
+    color: (isDarkMode: boolean) => pallet(isDarkMode).color,
   },
-
   changedLog: {
     display: 'flex',
     justifyContent: 'flex-end',
   },
-
   menuWithLogo: {
     display: 'flex',
   },
@@ -97,15 +101,15 @@ const useStyles = createUseStyles({
     borderRadius: '2px',
     color: 'grey',
   },
-  logout: {
-    display: 'flex',
-    justifyContent: 'center',
-    borderColor: 'black',
-    backgroundColor: 'black',
-    color: 'white',
-    position: 'static',
-    margin: '1em',
-  },
+  // logout: {
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   borderColor: 'black',
+  //   backgroundColor: 'black',
+  //   color: 'white',
+  //   position: 'static',
+  //   margin: '1em',
+  // },
 
   modal: {
     cursor: 'pointer',
@@ -120,28 +124,28 @@ const useStyles = createUseStyles({
 
     '& .ant-modal-content': {
       height: '100vh',
-      backgroundColor: 'black',
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGround,
     },
 
     '& .ant-modal-header': {
-      backgroundColor: 'black',
+      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).backGround,
     },
 
     '& .ant-modal-title': {
       display: 'flex',
       justifyContent: 'center',
-      color: 'white',
+      color: (isDarkMode: boolean) => pallet(isDarkMode).color,
     },
 
     '& .ant-modal-close-x': {
-      color: 'white',
+      color: (isDarkMode: boolean) => pallet(isDarkMode).color,
     },
   },
 
   modalText: {
     display: 'flex',
     justifyContent: 'center',
-    color: 'white',
+    color: (isDarkMode: boolean) => pallet(isDarkMode).color,
   },
 
   modalShowButton: {
@@ -153,6 +157,7 @@ const useStyles = createUseStyles({
     borderColor: 'transparent',
     marginLeft: 'auto',
     margin: '0 30px',
+
     '@media screen and (max-width: 1180px)': {
       display: 'block',
     },

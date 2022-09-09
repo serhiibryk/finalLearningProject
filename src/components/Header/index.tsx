@@ -29,7 +29,9 @@ const Header = () => {
   const { t, i18n } = useTranslation();
   const { token } = useAppSelector((state) => state.user);
 
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
