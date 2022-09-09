@@ -8,6 +8,7 @@ import MapFieldsByID from '../../components/MapOfFieldsByID';
 import { filmsService } from '../../services/films';
 import { peopleService } from '../../services/people';
 import { vehiclesService } from '../../services/vehicles';
+import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 
@@ -16,7 +17,9 @@ const StarshipByID = () => {
   const [filmsList, setFilmsList] = useState<Films[] | null>(null);
   const [peopleList, setPeopleList] = useState<People[] | null>(null);
 
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
   const location = useLocation();
 
   const fetchVehicleByID = async (id: number) => {

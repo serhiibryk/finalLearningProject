@@ -13,6 +13,7 @@ import Graphic4 from '../../components/Graphics/4';
 import useToggle from '../../store/hooks/useToggle';
 import MyModal from '../../components/MyReactModal';
 import ModalANT from '../../components/ModalANT';
+import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 import 'swiper/swiper.min.css';
@@ -26,7 +27,9 @@ const Profile = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalOpen, onModalOpen, onModalClose] = useToggle();
 
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
   const decodedData = useJwt(token);
 
   const handleChangeView = (value: boolean) => {

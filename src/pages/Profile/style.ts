@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss';
+import { pallet } from '../../utils';
 
 const useStyles = createUseStyles({
   root: {
@@ -10,6 +11,10 @@ const useStyles = createUseStyles({
     margin: '15px',
     width: '100%',
     maxWidth: '98%',
+    border: 'none',
+    backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
+    color: (isDarkMode: boolean) => pallet(isDarkMode).color,
+
     '& .ant-card-meta-title': {
       padding: '0 0 0 40px',
       fontStyle: 'italic',

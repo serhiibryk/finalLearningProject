@@ -1,4 +1,3 @@
-import { Card } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -8,11 +7,9 @@ import { imgVehiclesList } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import Search from '../../components/Search';
 import { getVehicles } from '../../store/vehicles/actions';
-
-import useStyles from './style';
 import CardComponent from '../../components/Card';
 
-const { Meta } = Card;
+import useStyles from './style';
 
 const TeamsVehicles = () => {
   const { vehicles, count, isLoading, error } = useAppSelector((state) => state.vehicles);

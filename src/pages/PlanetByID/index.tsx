@@ -8,6 +8,7 @@ import MapFieldsByID from '../../components/MapOfFieldsByID';
 import { filmsService } from '../../services/films';
 import { peopleService } from '../../services/people';
 import { planetsService } from '../../services/planets';
+import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 
@@ -17,7 +18,10 @@ const PlanetByID = () => {
   const [peopleList, setPeopleList] = useState<People[] | null>(null);
 
   const location = useLocation();
-  const classes = useStyles();
+
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
 
   const fetchPlanetByID = async (id: number) => {
     planetsService.getPlanetByID(id).then((data) => {
