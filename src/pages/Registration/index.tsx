@@ -34,8 +34,6 @@ const Registration: React.FC = () => {
   } = useForm();
 
   const onSubmit = (values: IValueRegister) => {
-    console.log(values);
-
     const res = [...data];
 
     const checkEmail = res.find((same) => same.email === values.email);

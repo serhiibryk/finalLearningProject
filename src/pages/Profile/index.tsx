@@ -17,6 +17,8 @@ import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 import 'swiper/swiper.min.css';
+import HexGridDemo from '../../components/Hexagongrid/grid';
+import HexagonClear from '../../components/HexagonClear';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay]);
 
@@ -128,7 +130,12 @@ const Profile = () => {
             </Swiper>
           </div>
         </div>
+        <br />
+        <div>
+          <HexGridDemo />
+        </div>
       </Card>
+      <HexagonClear />
     </div>
   );
 };

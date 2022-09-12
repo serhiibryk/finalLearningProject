@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Spiner from '../../components/Spiner';
 import { imgFilmsList } from '../../utils';
@@ -14,7 +13,6 @@ const TeamsFilms = () => {
   const { films, isLoading, error } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const classes = useStyles();
-  const push = useNavigate();
 
   // const fetchFilms = async () => {
   //   filmsService.getFilms().then((data) => {

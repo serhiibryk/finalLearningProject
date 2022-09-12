@@ -1,7 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 import Footer from './components/Footer';
 import Header from './components/Header';

@@ -16,8 +16,6 @@ const Switch = () => {
     dispatch(darkModeReducer.setIsDarkMode(!isDarkMode));
   };
 
-  console.log(isDarkMode);
-
   return <Switcher className={classes.root} checked={isDarkMode} onChange={handleChange} />;
 };
 

@@ -54,6 +54,8 @@ module.exports = {
         json5: 'never',
       },
     ],
+    '@typescript-eslint/restrict-plus-operands': 0,
+    '@typescript-eslint/restrict-template-expressions': 0,
     '@typescript-eslint/no-unnecessary-type-assertion': 0,
     '@typescript-eslint/strict-boolean-expressions': 0,
     '@typescript-eslint/no-floating-promises': 0,

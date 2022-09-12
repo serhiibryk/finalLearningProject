@@ -11,6 +11,8 @@ declare interface PageData {
   nextId: number;
 }
 
+declare module 'react-hexagon';
+
 declare interface Films {
   characters: string[];
   created: string;

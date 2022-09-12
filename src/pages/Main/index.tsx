@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Spiner from '../../components/Spiner';
 import { commonService } from '../../services/common';
@@ -19,7 +18,6 @@ const Main = () => {
     vehicles: '',
   });
 
-  const push = useNavigate();
   const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
 
   const classes = useStyles(isDarkMode as boolean);
