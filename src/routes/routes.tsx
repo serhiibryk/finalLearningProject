@@ -15,6 +15,7 @@ import TeamsStarships from '../pages/Starships';
 import VehicleByID from '../pages/VehicleByID';
 import TeamsVehicles from '../pages/Vehicles';
 import Profile from '../pages/Profile';
+import Hexagon from '../pages/Hexagon';
 
 export interface IRoutes {
   path: string;
@@ -39,4 +40,5 @@ export const routes: IRoutes[] = [
   { path: '/vehicles', component: <TeamsVehicles />, privat: true },
   { path: '/vehicles/:id', component: <VehicleByID />, privat: true },
   { path: '/profile', component: <Profile />, privat: true },
+  { path: '/hexagon', component: <Hexagon />, privat: true },
 ];
