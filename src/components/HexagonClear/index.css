@@ -8,11 +8,11 @@
 }
 
 .hex.A div {
-  background: rgb(185, 35, 185);
+  background: black;
 }
 
 .hex.B div {
-  background: rgb(15, 190, 190);
+  background: grey;
 }
 
 .hex:hover div {

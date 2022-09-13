@@ -6,7 +6,7 @@ import './index.css';
 // };
 
 const Hex = (props: any) => {
-  const { A, B, side = '', ...divProps } = props;
+  const { A, B, content, side = '', ...divProps } = props;
 
   return (
     <div
@@ -35,8 +35,13 @@ const Hex = (props: any) => {
           left: 0,
           right: 0,
           transform: 'rotate(90deg)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <div style={{ rotate: '-90deg' }}>{content}</div>
+      </div>
       <div
         style={{
           borderTop: '1px solid #000',
@@ -75,12 +80,36 @@ const Hex = (props: any) => {
 const createBoard = () => {
   const rosLengthList = [18, 17, 18, 17, 18, 17, 18, 17, 18, 17, 18];
 
-  return rosLengthList.map((length) => new Array(length).fill(0));
+  return rosLengthList.map((length, rowIndex) =>
+    new Array(length).fill({}).map((column, index) => {
+      if (index === 15 && rowIndex === 2) {
+        return {
+          title: 'Test',
+          isOpen: false,
+          clickable: true,
+          lavel: 1,
+          position: index,
+          icon: <></>,
+        };
+      }
+
+      return {
+        title: '',
+        isOpen: false,
+        clickable: false,
+        lavel: 0,
+        position: index,
+        icon: <></>,
+      };
+    })
+  );
 };
+
 const put = (board: any, rowIndex: number, cellIndex: number, side: string) => {
   const newBoard = board.map((row: any) => [...row]);
   newBoard[rowIndex][cellIndex] = side;
   console.log(newBoard);
+  console.log(newBoard.indexOf('A'));
   return newBoard;
 };
 
@@ -124,16 +153,16 @@ const HexagonClear = () => {
               key={rowIndex}
               //  className={classes.board}
               style={{
-                marginTop: '-11.3px',
+                marginTop: '-9.5px',
                 display: 'flex',
                 justifyContent: 'center',
               }}
             >
-              {row.map((side: any, cellIndex: number) => (
+              {row.map((cell: any, cellIndex: number) => (
                 <Hex
                   className={'hex'}
                   key={cellIndex}
-                  side={side}
+                  side={cell.position}
                   style={{ height: `${r}px`, width: `${r}px` }}
                   onClick={() =>
                     setState({
@@ -141,6 +170,7 @@ const HexagonClear = () => {
                       payload: { rowIndex, cellIndex },
                     })
                   }
+                  content={<span>{cell.title}</span>}
                 />
               ))}
             </div>
