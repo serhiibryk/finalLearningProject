@@ -7,14 +7,6 @@
   cursor: pointer;
 }
 
-.hex.A div {
-  background: black;
-}
-
-.hex.B div {
-  background: grey;
-}
-
 .hex:hover div {
   border-color: rgb(235, 235, 96) !important;
 }

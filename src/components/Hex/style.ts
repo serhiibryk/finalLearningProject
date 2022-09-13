@@ -15,11 +15,6 @@ const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'center',
   },
-  hex: {
-    // background: '#ede',
-    height: '110px',
-    width: '100px',
-  },
 });
 
 export default useStyles;

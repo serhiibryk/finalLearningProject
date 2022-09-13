@@ -274,12 +274,20 @@ declare interface IValueLogin {
   email: string;
   password: string;
 }
-// declare interface IResultForDrag {
-//   combine: boolean;
-//   destination: boolean;
-//   draggableId: string;
-//   mode: string;
-//   reason: string;
-//   source: IResultForDragSource;
-//   type: string;
-// }
+
+declare interface HexCell {
+  title: string;
+  isOpen: boolean;
+  clickable: boolean;
+  level: number;
+  backgroundColor: string;
+  icon: ReactNode;
+}
+
+declare interface HexProps {
+  content: ReactNode;
+  cell: HexCell;
+  size: number;
+  className: string;
+  onClick: () => void;
+}
