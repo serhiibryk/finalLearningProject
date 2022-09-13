@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useAppSelector } from '../../store/hooks/redux';
 import Portal from '../Portal';
 import useStyles from './style';
 
@@ -8,7 +9,9 @@ interface IModaleComponent {
 }
 
 const ModalComponent: FC<IModaleComponent> = ({ onClose, children }) => {
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
   return (
     <Portal id={'portal'}>
       <div className={classes.root} onClick={onClose}>

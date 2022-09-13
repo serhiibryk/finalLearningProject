@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Layout, Menu, Modal, Switch } from 'antd';
+import { Button, Layout, Menu, Modal } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 import { MenuOutlined } from '@ant-design/icons';
+import Switch from '../DarkMode';
 
 const { Header: HeaderAnt } = Layout;
 
@@ -24,12 +25,14 @@ const lngs: ILngs = {
 
 const Header = () => {
   const push = useNavigate();
-  const classes = useStyles();
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const { token } = useAppSelector((state) => state.user);
 
-  const [darkMode, setDarkMode] = useState(false);
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleChangeView = (value: boolean) => {
@@ -165,7 +168,11 @@ const Header = () => {
             ]}
           />
           <div className={classes.buttons}>
-            {/* <Switch >Switch to {}</Switch> */}
+            <Switch />
+            {/* <p className={classes.switcherText}>
+              <span className={classes.blackSwitcherText}>Black</span>
+              <span className={classes.whiteSwitcherText}>White</span>
+            </p> */}
             {Object.keys(lngs).map((lng) => (
               <Button
                 className={classes.buttonSwitch}

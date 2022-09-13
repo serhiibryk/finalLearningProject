@@ -16,10 +16,11 @@ interface ISearch {
 
 const Search: FC<ISearch> = ({ category, name, setSearchState }) => {
   const { t } = useTranslation();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
 
   const stateCategory = useAppSelector((state: any) => state[category])[category];
 
-  const classes = useStyles();
+  const classes = useStyles(isDarkMode as boolean);
 
   const debouncedSearchPagination = debounce((value) => {
     const filter = (stateCategory || []).filter((item: any) => item[name].toLowerCase().includes(value.toLowerCase()));

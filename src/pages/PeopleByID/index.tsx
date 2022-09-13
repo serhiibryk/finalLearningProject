@@ -12,6 +12,7 @@ import { planetsService } from '../../services/planets';
 import { speciesService } from '../../services/species';
 import { starshipsService } from '../../services/starships';
 import { vehiclesService } from '../../services/vehicles';
+import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 
@@ -27,7 +28,9 @@ const PeopleByID = () => {
 
   const location = useLocation();
 
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
 
   const fetchPeopleByID = async (id: number) => {
     peopleService.getPeopleByID(id).then((data) => {

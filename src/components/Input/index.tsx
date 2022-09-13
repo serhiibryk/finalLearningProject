@@ -1,6 +1,8 @@
 import React, { FC, FormEvent, useState } from 'react';
 import classNames from 'classnames';
 
+import { useAppSelector } from '../../store/hooks/redux';
+
 import useStyles from './style';
 
 interface IInput {
@@ -11,7 +13,9 @@ interface IInput {
 }
 
 const InputComponent: FC<IInput> = ({ title, rules, children, placeholder }) => {
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {

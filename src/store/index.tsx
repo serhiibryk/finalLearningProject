@@ -33,6 +33,7 @@ import starships from './starships/reducer';
 import vehicles from './vehicles/reducer';
 import page from './pageAntd/reducer';
 import stateForScroll from './infiniteScroll/reducer';
+import isDarkMode from './darkMode/reducer';
 
 const rootReducer = combineReducers({
   user,
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
   vehicles,
   page,
   stateForScroll,
+  isDarkMode,
 });
 
 export const setupStore = () => {

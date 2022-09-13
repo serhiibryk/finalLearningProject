@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Card } from 'antd';
 
 import Spiner from '../../components/Spiner';
 import PaginationCategory from '../../components/Pagination';
@@ -8,10 +7,9 @@ import { imgStarshipsList } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import Search from '../../components/Search';
 import { getStarships } from '../../store/starships/actions';
+import CardComponent from '../../components/Card';
 
 import useStyles from './style';
-
-const { Meta } = Card;
 
 const TeamsStarships = () => {
   const { starships, count, isLoading, error } = useAppSelector((state) => state.starships);
@@ -59,26 +57,15 @@ const TeamsStarships = () => {
         </div>
       </div>
       <div className={classes.content}>
-        {nameStarships.map((starship: Starships, index: number) => {
-          return (
-            <Card
-              key={index}
-              className={classes.card}
-              hoverable
-              cover={
-                <img
-                  className={classes.img}
-                  // key={imgStarshipsList[index].imgLink}
-                  src={imgStarshipsList[1].imgLink}
-                  alt={'Starship wallpaper'}
-                />
-              }
-              onClick={() => push(`/starships/${starship.url.split('/')[5]}`)}
-            >
-              <Meta title={starship.name} />
-            </Card>
-          );
-        })}
+        {nameStarships.map((starship: Starships, index: number) => (
+          <CardComponent
+            key={index}
+            path={`/starships/${starship.url.split('/')[5]}`}
+            title={starship.name}
+            img={imgStarshipsList[1].imgLink}
+            imgSrc={imgStarshipsList[1].imgLink}
+          />
+        ))}
       </div>
     </div>
   );

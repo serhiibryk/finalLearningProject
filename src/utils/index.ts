@@ -295,13 +295,19 @@ export const localStoreService = {
 
 export const mainError = 'Something went wrong!';
 
-// const pallet = () => {
-//   if (darkMode) {
-//     return {
-//       dark: '#000',
-//     };
-//   }
-//   return {
-//     dark: '#fff',
-//   };
-// };
+export const pallet = (isDarkMode: boolean) => {
+  if (isDarkMode) {
+    return {
+      dark: 'black',
+      color: 'white',
+      backGround: '#313442',
+      backGroundHeader: 'rgb(0 22 40)',
+    };
+  }
+  return {
+    dark: 'white',
+    color: 'black',
+    backGround: '#e2e2e2',
+    backGroundHeader: '#8aa1b9',
+  };
+};

@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Form, Input, notification } from 'antd';
+import { notification } from 'antd';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { jwtService } from '../../services/jwt';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import { userReducer } from '../../store/user/reducer';
 import { localStoreService } from '../../utils';
+import InputComponent from '../../components/Input';
 
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import useStyles from './style';
-import { useTranslation } from 'react-i18next';
 
 const Login: React.FC = () => {
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
   const push = useNavigate();
   const { t } = useTranslation();
 
@@ -31,7 +34,13 @@ const Login: React.FC = () => {
     dispatch(userReducer.setUser(null));
   }, [dispatch]);
 
-  const onFinish = (values: IValueLogin) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (values: IValueLogin) => {
     const checkUser = data.find((same) => same.email === values.email);
     if (checkUser && checkUser.password === values.password) {
       const { token } = jwtService.getJwt();
@@ -44,44 +53,41 @@ const Login: React.FC = () => {
   };
   return (
     <div className={classes.root}>
-      <Form className={classes.LoginForm} name={'normal_email'} initialValues={{ remember: true }} onFinish={onFinish}>
-        <Form.Item
-          name={'email'}
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
+      <form className={classes.LoginForm} onSubmit={handleSubmit(onSubmit as any)}>
+        <InputComponent
+          rules={register('email', {
+            required: true,
+            maxLength: 20,
+          })}
+          title={'Email'}
+          placeholder={t('email')}
         >
-          <Input
-            className={classes.input}
-            prefix={<UserOutlined className={'site-form-item-icon'} />}
-            placeholder={t('email')}
-          />
-        </Form.Item>
-        <Form.Item name={'password'} rules={[{ required: true, message: 'Please input your Password!' }]}>
-          <Input
-            className={classes.input}
-            prefix={<LockOutlined className={'site-form-item-icon'} />}
-            type={'password'}
-            placeholder={t('password')}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button type={'primary'} htmlType={'submit'} className={'login-form-button'}>
-            {t('menuLogIn')}
-          </Button>{' '}
+          {errors.email && <p className={classes.errorText}>The input is not valid E-mail!</p>}
+        </InputComponent>
+        <InputComponent
+          rules={register('password', {
+            required: true,
+            minLength: {
+              value: 1,
+              message: 'Password must have at least 8 characters',
+            },
+          })}
+          title={'Password'}
+          placeholder={t('password')}
+        >
+          {errors.password && <p className={classes.errorText}>Password must have at least 8 characters</p>}
+        </InputComponent>
+
+        <div className={classes.loginButtonContainer}>
+          <button className={classes.loginButton} type={'submit'}>
+            Login
+          </button>{' '}
           <span>{t('or')}</span>{' '}
-          <a href={'/registration'} onClick={() => push('/registration')}>
+          <a className={classes.registerNowLink} href={'/registration'} onClick={() => push('/registration')}>
             {t('registerLink')}
           </a>
-        </Form.Item>
-      </Form>
+        </div>
+      </form>
     </div>
   );
 };

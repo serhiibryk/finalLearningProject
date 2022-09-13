@@ -9,6 +9,7 @@ import { filmsService } from '../../services/films';
 import { peopleService } from '../../services/people';
 import { planetsService } from '../../services/planets';
 import { speciesService } from '../../services/species';
+import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 
@@ -19,7 +20,9 @@ const SpeccyByID = () => {
   const [peopleList, setPeopleList] = useState<People[] | null>(null);
 
   const location = useLocation();
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
 
   const fetchSpeccyByID = async (id: number) => {
     speciesService.getSpeccyByID(id).then((data) => {

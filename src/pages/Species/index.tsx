@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Card } from 'antd';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
 import Spiner from '../../components/Spiner';
 import PaginationCategory from '../../components/Pagination';
@@ -8,7 +9,6 @@ import { imgSpeciesList } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import Search from '../../components/Search';
 import { getSpecy } from '../../store/specy/actions';
-import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
 import useStyles from './style';
 
@@ -16,11 +16,13 @@ const { Meta } = Card;
 
 const TeamsSpecies = () => {
   const { specy, count, isLoading, error } = useAppSelector((state) => state.specy);
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
   const [nameSpecies, setNameSpecies] = useState<any>([]);
 
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const classes = useStyles();
+
+  const classes = useStyles(isDarkMode as boolean);
   const push = useNavigate();
 
   const currentPage = Number(location.search.split('=')[1] || 1);
@@ -92,14 +94,7 @@ const TeamsSpecies = () => {
                       <Card
                         className={classes.card}
                         hoverable
-                        cover={
-                          <img
-                            className={classes.img}
-                            // key={imgSpeciesList[index].imgLink}
-                            src={imgSpeciesList[1].imgLink}
-                            alt={'Speccy wallpaper'}
-                          />
-                        }
+                        cover={<img className={classes.img} src={imgSpeciesList[1].imgLink} alt={'Speccy wallpaper'} />}
                         onClick={() => push(`/species/${speccy.url.split('/')[5]}`)}
                       >
                         <Meta title={speccy.name} />

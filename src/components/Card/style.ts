@@ -3,20 +3,27 @@ import { pallet } from '../../utils';
 
 const useStyles = createUseStyles({
   root: {},
-  search: {
-    width: '350px',
+  card: {
     border: 'none',
-    display: 'flex',
-    justifyContent: 'space-around',
-    margin: '0 3em 0 1.5em',
-    marginTop: '15px',
+    width: '32%',
+    minWidth: '140px',
+    margin: '10px 5px 5px 5px',
     backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
-    color: (isDarkMode: boolean) => pallet(isDarkMode).color,
 
-    '& .ant-input': {
-      backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
+    '& .ant-card-meta-title': {
       color: (isDarkMode: boolean) => pallet(isDarkMode).color,
     },
+
+    '@media (max-width: 899px)': {
+      width: '48%',
+    },
+
+    '@media (max-width: 649px)': {
+      width: '100%',
+    },
+  },
+  img: {
+    objectFit: 'cover',
   },
 });
 

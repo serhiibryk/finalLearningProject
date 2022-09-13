@@ -3,25 +3,13 @@ import { pallet } from '../../utils';
 
 const useStyles = createUseStyles({
   root: {},
-
-  modalAnt: {
-    width: '100%',
-    maxWidth: 'none',
-    paddingBottom: '0px',
-    height: '100vh',
-
-    '& .ant-modal-body': {
+  pagination: {
+    '& .ant-pagination-item-link': {
       backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
       color: (isDarkMode: boolean) => pallet(isDarkMode).color,
     },
-    '& .ant-modal-header': {
+    '& .ant-pagination-item a': {
       backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,
-      color: (isDarkMode: boolean) => pallet(isDarkMode).color,
-    },
-    '& .ant-modal-title': {
-      color: (isDarkMode: boolean) => pallet(isDarkMode).color,
-    },
-    '& .ant-modal-close-x': {
       color: (isDarkMode: boolean) => pallet(isDarkMode).color,
     },
   },

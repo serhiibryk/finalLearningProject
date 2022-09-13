@@ -11,6 +11,8 @@ declare interface PageData {
   nextId: number;
 }
 
+declare module 'react-hexagon';
+
 declare interface Films {
   characters: string[];
   created: string;
@@ -192,7 +194,7 @@ declare interface User {
   password: string;
 }
 
-declare interface IStateFilms {
+declare interface IStateDarkMode {
   films: Films[];
   isLoading: boolean;
   error: string;

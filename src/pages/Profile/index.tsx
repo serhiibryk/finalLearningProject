@@ -4,7 +4,6 @@ import { Button, Card, Skeleton } from 'antd';
 import moment from 'moment';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay } from 'swiper';
-import classNames from 'classnames';
 
 import { imgFilmsList, localStoreService } from '../../utils';
 import Graphic1 from '../../components/Graphics/1';
@@ -14,9 +13,12 @@ import Graphic4 from '../../components/Graphics/4';
 import useToggle from '../../store/hooks/useToggle';
 import MyModal from '../../components/MyReactModal';
 import ModalANT from '../../components/ModalANT';
+import { useAppSelector } from '../../store/hooks/redux';
 
 import useStyles from './style';
 import 'swiper/swiper.min.css';
+import HexGridDemo from '../../components/Hexagongrid/grid';
+import HexagonClear from '../../components/HexagonClear';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay]);
 
@@ -27,7 +29,9 @@ const Profile = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalOpen, onModalOpen, onModalClose] = useToggle();
 
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
   const decodedData = useJwt(token);
 
   const handleChangeView = (value: boolean) => {
@@ -111,23 +115,10 @@ const Profile = () => {
               slidesPerView={'auto'}
               slidesPerGroup={1}
               spaceBetween={5}
-              // effect={'fade'}
-              // loopFillGroupWithBlank={true}
               autoplay={{
                 delay: 3000,
               }}
-              // breakpoints={{
-              //   486: { slidesPerView: 'auto', slidesPerGroup: 1 },
-              //   325: {
-              //     centeredSlides: true,
-              //     slidesPerView: 'auto',
-              //     slidesPerGroup: 1,
-              //     allowTouchMove: true,
-              //   },
-              // }}
-              // watchOverflow={true}
               speed={400}
-              // pagination={{ clickable: true, dynamicBullets: true }}
             >
               {imgFilmsList.map((item, index) => (
                 <SwiperSlide key={index}>
@@ -139,7 +130,12 @@ const Profile = () => {
             </Swiper>
           </div>
         </div>
+        <br />
+        <div>
+          <HexGridDemo />
+        </div>
       </Card>
+      <HexagonClear />
     </div>
   );
 };

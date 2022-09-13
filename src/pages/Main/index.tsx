@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Card } from 'antd';
 
 import Spiner from '../../components/Spiner';
 import { commonService } from '../../services/common';
 import { imgMainList } from '../../utils';
+import { useAppSelector } from '../../store/hooks/redux';
+import CardComponent from '../../components/Card';
 
 import useStyles from './style';
-
-const { Meta } = Card;
 
 const Main = () => {
   const [mainList, setMainList] = useState<Common>({
@@ -20,8 +18,9 @@ const Main = () => {
     vehicles: '',
   });
 
-  const push = useNavigate();
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
 
   const fetchCommon = async () => {
     commonService.getCommon().then((data) => {
@@ -40,22 +39,13 @@ const Main = () => {
   return (
     <div className={classes.root}>
       {Object.entries(mainList).map((item, index) => (
-        <Card
+        <CardComponent
           key={index}
-          hoverable
-          className={classes.card}
-          cover={
-            <img
-              className={classes.img}
-              key={imgMainList[index].imgLink}
-              src={imgMainList[index].imgLink}
-              alt={'Category wallpaper'}
-            />
-          }
-          onClick={() => push(`/${item[0]}`)}
-        >
-          <Meta title={item[0].toUpperCase()} />
-        </Card>
+          path={`/${item[0]}`}
+          title={item[0].toUpperCase()}
+          img={imgMainList[index].imgLink}
+          imgSrc={imgMainList[index].imgLink}
+        />
       ))}
     </div>
   );

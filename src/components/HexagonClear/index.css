@@ -1,0 +1,24 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.hex {
+  cursor: pointer;
+}
+
+.hex.A div {
+  background: rgb(185, 35, 185);
+}
+
+.hex.B div {
+  background: rgb(15, 190, 190);
+}
+
+.hex:hover div {
+  border-color: rgb(235, 235, 96) !important;
+}
+
+.hex:active div {
+  border-color: #faf !important;
+}

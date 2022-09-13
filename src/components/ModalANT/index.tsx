@@ -1,6 +1,8 @@
 import { Modal } from 'antd';
 import React, { FC } from 'react';
 
+import { useAppSelector } from '../../store/hooks/redux';
+
 import useStyles from './style';
 
 interface IModalAnt {
@@ -13,7 +15,9 @@ interface IModalAnt {
 }
 
 const ModalANT: FC<IModalAnt> = ({ title, footer, afterClose, onCancel, visible, children }) => {
-  const classes = useStyles();
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
+
+  const classes = useStyles(isDarkMode as boolean);
 
   return (
     <Modal

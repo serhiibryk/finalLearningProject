@@ -1,27 +1,27 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Card } from 'antd';
 
 import Spiner from '../../components/Spiner';
 import PaginationCategory from '../../components/Pagination';
 import { imgPeopleList } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import Search from '../../components/Search';
+import { getPeoples } from '../../store/people/actions';
+import CardComponent from '../../components/Card';
 
 import useStyles from './style';
-import { getPeoples } from '../../store/people/actions';
-
-const { Meta } = Card;
 
 const TeamsPeoples: FC = () => {
   const { people, count, isLoading, error } = useAppSelector((state) => state.people);
+  const { isDarkMode } = useAppSelector((state) => state.isDarkMode);
   // const [isLoading, setLoading] = useState(false);
   // const [maxCount, setMaxCount] = useState(0);
   const [namePeople, setNamePeople] = useState([]);
 
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const classes = useStyles();
+
+  const classes = useStyles(isDarkMode as boolean);
   const push = useNavigate();
 
   const currentPage = Number(location.search.split('=')[1] || 1);
@@ -62,22 +62,13 @@ const TeamsPeoples: FC = () => {
       <div className={classes.content}>
         {namePeople.map((people: People, index: number) => {
           return (
-            <Card
+            <CardComponent
               key={index}
-              className={classes.card}
-              hoverable
-              cover={
-                <img
-                  className={classes.img}
-                  key={imgPeopleList[index].imgLink}
-                  src={imgPeopleList[index].imgLink}
-                  alt={'People wallpaper'}
-                />
-              }
-              onClick={() => push(`/people/${people.url.split('/')[5]}`)}
-            >
-              <Meta title={people.name} />
-            </Card>
+              path={`/people/${people.url.split('/')[5]}`}
+              title={people.name}
+              img={imgPeopleList[index].imgLink}
+              imgSrc={imgPeopleList[index].imgLink}
+            />
           );
         })}
       </div>

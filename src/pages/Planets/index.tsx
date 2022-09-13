@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Card, Switch } from 'antd';
+import { Switch } from 'antd';
 
 import Spiner from '../../components/Spiner';
 import { imgPlanetsList, mainError } from '../../utils';
@@ -9,10 +9,9 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import Search from '../../components/Search';
 import PaginationCategory from '../../components/Pagination';
 import { getNextPlanets, getPlanets } from '../../store/planets/actions';
+import CardComponent from '../../components/Card';
 
 import useStyles from './style';
-
-const { Meta } = Card;
 
 const TeamsPlanets = () => {
   const { planets, count, isLoading, error } = useAppSelector((state) => state.planets);
@@ -119,26 +118,15 @@ const TeamsPlanets = () => {
           hasMore={checked && hasMore()}
           loader={<h4>Loading...</h4>}
         >
-          {switcher.map((planet: Planets, index: number) => {
-            return (
-              <Card
-                key={index}
-                className={classes.card}
-                hoverable
-                cover={
-                  <img
-                    className={classes.img}
-                    // key={imgPlanetsList.imgLink}
-                    src={imgPlanetsList[1].imgLink}
-                    alt={'Planet wallpaper'}
-                  />
-                }
-                onClick={() => push(`/planets/${planet.url.split('/')[5]}`)}
-              >
-                <Meta title={planet.name} />
-              </Card>
-            );
-          })}
+          {switcher.map((planet: Planets, index: number) => (
+            <CardComponent
+              key={index}
+              path={`/planets/${planet.url.split('/')[5]}`}
+              title={planet.name}
+              img={imgPlanetsList[1].imgLink}
+              imgSrc={imgPlanetsList[1].imgLink}
+            />
+          ))}
         </InfiniteScroll>
       </div>
     </div>
