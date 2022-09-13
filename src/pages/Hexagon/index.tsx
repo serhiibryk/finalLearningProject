@@ -1,9 +1,14 @@
 import React from 'react';
+
 import HexagonClear from '../../components/HexagonClear';
 
+import useStyles from './style';
+
 const Hexagon = () => {
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.root}>
       <HexagonClear />
     </div>
   );
