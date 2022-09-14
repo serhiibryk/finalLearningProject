@@ -32,13 +32,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+11', '0+12', '1+12', '2+13', '3+12'].includes(activeCase):
             return {
-              title: 'Text1',
+              title: 'Automating the adminustrating tasks',
               isOpen: false,
               clickable: true,
               level: 2,
               icon: <></>,
               interactiveCases: [],
-              backgroundColor: '#321312',
+              backgroundColor: '#4991ff',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -49,13 +49,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+13'].includes(activeCase):
             return {
-              title: '',
+              title: 'Medical treatment recommendation',
               isOpen: false,
               clickable: false,
               interactiveCases: [],
               level: 1,
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -95,7 +95,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
               level: 1,
               interactiveCases: [],
               icon: <></>,
-              backgroundColor: '#321312',
+              backgroundColor: '#4991ff',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -105,13 +105,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+11', '0+12', '1+12', '2+13', '3+12'].includes(activeCase):
             return {
-              title: 'Text2',
+              title: 'Hospital Patient Managment',
               isOpen: false,
               clickable: true,
               interactiveCases: [],
               level: 2,
               icon: <></>,
-              backgroundColor: '#321312',
+              backgroundColor: '#4991ff',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -121,13 +121,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+13'].includes(activeCase):
             return {
-              title: '',
+              title: 'Al-powered wearables',
               isOpen: false,
               clickable: false,
               level: 1,
               interactiveCases: [],
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -137,13 +137,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+13'].includes(activeCase):
             return {
-              title: '',
+              title: 'Image analysis for medical diagnostics',
               isOpen: false,
               clickable: false,
               level: 1,
               interactiveCases: [],
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -160,7 +160,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       {
-        title: 'Test',
+        title: 'Entertaiment and Media',
         isOpen: false,
         clickable: true,
         level: 1,
@@ -173,7 +173,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       {
-        title: 'Test1',
+        title: 'Healthcare',
         isOpen: false,
         clickable: true,
         level: 1,
@@ -191,7 +191,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
               level: 1,
               interactiveCases: [],
               icon: <></>,
-              backgroundColor: '#321312',
+              backgroundColor: '#4991ff',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -201,13 +201,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+11', '0+12', '1+12', '2+13', '3+12'].includes(activeCase):
             return {
-              title: 'Text3',
+              title: 'Personalized Medications and Care',
               isOpen: false,
               clickable: true,
               interactiveCases: [],
               level: 2,
               icon: <></>,
-              backgroundColor: '#321312',
+              backgroundColor: '#4991ff',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -217,13 +217,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+13'].includes(activeCase):
             return {
-              title: '',
+              title: 'Early diagnosis',
               isOpen: false,
               clickable: false,
               level: 1,
               interactiveCases: [],
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -233,13 +233,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+13'].includes(activeCase):
             return {
-              title: '',
+              title: 'Assisted or Automated Diagnosis',
               isOpen: false,
               clickable: false,
               interactiveCases: [],
               level: 1,
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -257,7 +257,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       {
-        title: 'Test',
+        title: 'Education',
         isOpen: false,
         clickable: true,
         level: 1,
@@ -267,7 +267,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       },
       { ...DEFAULT_CELL },
       {
-        title: 'Test',
+        title: 'Automobile',
         isOpen: false,
         clickable: true,
         interactiveCases: [],
@@ -286,7 +286,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
               interactiveCases: [],
               level: 1,
               icon: <></>,
-              backgroundColor: '#321312',
+              backgroundColor: '#4991ff',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -296,13 +296,23 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+11', '0+12', '1+12', '2+13', '3+12'].includes(activeCase):
             return {
-              title: 'Text4',
+              title: 'Drug Discovery',
+              isOpen: false,
+              clickable: false,
+              interactiveCases: [],
+              level: 2,
+              icon: <></>,
+              backgroundColor: '#4991ff',
+            };
+          case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
+            return {
+              title: '1',
               isOpen: false,
               clickable: true,
               interactiveCases: [],
               level: 2,
               icon: <></>,
-              backgroundColor: '#321312',
+              backgroundColor: '#4991ff',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -312,13 +322,23 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+13'].includes(activeCase):
             return {
-              title: '',
+              title: 'Intelligent robots in surgery',
               isOpen: false,
               interactiveCases: [],
               clickable: false,
               level: 1,
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
+            };
+          case ['5+13'].includes(activeCase):
+            return {
+              title: '2',
+              isOpen: false,
+              interactiveCases: [],
+              clickable: false,
+              level: 1,
+              icon: <></>,
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -328,13 +348,13 @@ const generateBoard = (activeCase: string): HexCell[][] => {
         switch (true) {
           case ['2+13'].includes(activeCase):
             return {
-              title: '',
+              title: 'Predicting illness and  patient outcome',
               isOpen: false,
               interactiveCases: [],
               clickable: false,
               level: 1,
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -344,8 +364,6 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
     ],
     [
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
@@ -360,15 +378,57 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       (() => {
         switch (true) {
+          case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
+            return {
+              title: '',
+              isOpen: false,
+              clickable: true,
+              interactiveCases: [],
+              level: 1,
+              icon: <></>,
+              backgroundColor: '#4991ff',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
+      (() => {
+        switch (true) {
+          case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
+            return {
+              title: '0',
+              isOpen: false,
+              clickable: false,
+              interactiveCases: [],
+              level: 2,
+              icon: <></>,
+              backgroundColor: '#4991ff',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
+      (() => {
+        switch (true) {
           case ['2+13'].includes(activeCase):
             return {
               interactiveCases: [],
-              title: '',
+              title: 'Patient Data Analytics',
               isOpen: false,
               clickable: false,
               level: 1,
               icon: <></>,
-              backgroundColor: '#787887',
+              backgroundColor: '#2278fa',
+            };
+          case ['5+13'].includes(activeCase):
+            return {
+              interactiveCases: [],
+              title: '2',
+              isOpen: false,
+              clickable: false,
+              level: 1,
+              icon: <></>,
+              backgroundColor: '#2278fa',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -385,7 +445,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       {
-        title: 'Test',
+        title: 'Retail',
         isOpen: false,
         interactiveCases: [],
         clickable: true,
@@ -399,17 +459,62 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       {
-        title: 'Test',
-        interactiveCases: [],
+        title: 'Telecommunication',
+        interactiveCases: ['3+12', '4+13', '5+13', '6+13'],
         isOpen: false,
         clickable: true,
         level: 1,
         icon: <></>,
         backgroundColor: '#234532',
       },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
+      (() => {
+        switch (true) {
+          case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
+            return {
+              title: '',
+              isOpen: false,
+              clickable: false,
+              level: 1,
+              interactiveCases: [],
+              icon: <></>,
+              backgroundColor: '#4991ff',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
+      (() => {
+        switch (true) {
+          case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
+            return {
+              title: '2',
+              isOpen: false,
+              clickable: true,
+              interactiveCases: [],
+              level: 2,
+              icon: <></>,
+              backgroundColor: '#4991ff',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
+      (() => {
+        switch (true) {
+          case ['5+13'].includes(activeCase):
+            return {
+              title: '2',
+              isOpen: false,
+              clickable: false,
+              level: 1,
+              interactiveCases: [],
+              icon: <></>,
+              backgroundColor: '#2278fa',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
     ],
@@ -426,6 +531,122 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
+      (() => {
+        switch (true) {
+          case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
+            return {
+              title: '',
+              isOpen: false,
+              clickable: false,
+              interactiveCases: [],
+              level: 1,
+              icon: <></>,
+              backgroundColor: '#4991ff',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
+      (() => {
+        switch (true) {
+          case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
+            return {
+              title: '0',
+              isOpen: false,
+              clickable: false,
+              interactiveCases: [],
+              level: 2,
+              icon: <></>,
+              backgroundColor: '#4991ff',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
+      (() => {
+        switch (true) {
+          case ['5+13'].includes(activeCase):
+            return {
+              title: '2',
+              isOpen: false,
+              clickable: false,
+              level: 1,
+              interactiveCases: [],
+              icon: <></>,
+              backgroundColor: '#2278fa',
+            };
+          default:
+            return { ...DEFAULT_CELL };
+        }
+      })(),
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+    ],
+    [
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      {
+        title: 'Isurance',
+        interactiveCases: [],
+        isOpen: false,
+        clickable: true,
+        level: 1,
+        icon: <></>,
+        backgroundColor: '#234532',
+      },
+      { ...DEFAULT_CELL },
+      {
+        interactiveCases: [],
+        title: 'Manufactures and Factories',
+        isOpen: false,
+        clickable: true,
+        level: 1,
+        icon: <></>,
+        backgroundColor: '#234532',
+      },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+    ],
+    [
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      {
+        title: 'Public Sector',
+        interactiveCases: [],
+        isOpen: false,
+        clickable: true,
+        level: 1,
+        icon: <></>,
+        backgroundColor: '#234532',
+      },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      { ...DEFAULT_CELL },
+      {
+        title: 'Defence and Military',
+        isOpen: false,
+        clickable: true,
+        level: 1,
+        interactiveCases: [],
+        icon: <></>,
+        backgroundColor: '#234532',
+      },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
@@ -442,78 +663,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       {
-        title: 'Test',
-        interactiveCases: [],
-        isOpen: false,
-        clickable: true,
-        level: 1,
-        icon: <></>,
-        backgroundColor: '#234532',
-      },
-      { ...DEFAULT_CELL },
-      {
-        interactiveCases: [],
-        title: 'Test',
-        isOpen: false,
-        clickable: true,
-        level: 1,
-        icon: <></>,
-        backgroundColor: '#234532',
-      },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-    ],
-    [
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      {
-        title: 'Test',
-        interactiveCases: [],
-        isOpen: false,
-        clickable: true,
-        level: 1,
-        icon: <></>,
-        backgroundColor: '#234532',
-      },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      {
-        title: 'Test',
-        isOpen: false,
-        clickable: true,
-        level: 1,
-        interactiveCases: [],
-        icon: <></>,
-        backgroundColor: '#234532',
-      },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-    ],
-    [
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      { ...DEFAULT_CELL },
-      {
-        title: 'Test',
+        title: 'Construction',
         isOpen: false,
         clickable: true,
         level: 1,
@@ -523,7 +673,7 @@ const generateBoard = (activeCase: string): HexCell[][] => {
       },
       { ...DEFAULT_CELL },
       {
-        title: 'Test',
+        title: 'Agriculture',
         isOpen: false,
         clickable: true,
         interactiveCases: [],

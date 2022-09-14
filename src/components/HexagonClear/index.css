@@ -8,7 +8,7 @@
 }
 
 .hex:hover div {
-  border-color: rgb(235, 235, 96) !important;
+  border-color: black !important;
 }
 
 .hex:active div {
