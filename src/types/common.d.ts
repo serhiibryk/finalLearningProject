@@ -276,24 +276,27 @@ declare interface IValueLogin {
 }
 
 declare interface HexCell {
-  title: string;
-  isOpen: boolean;
+  title?: string;
   clickable: boolean;
   level: number;
   parent: string;
-  backgroundColor: string;
+  backgroundColor?: string;
+  border?: {
+    borderTop?: string;
+    borderBottom?: string;
+    borderRight?: string;
+    borderLeft?: string;
+  };
   interactiveCases: string[];
-  icon: ReactNode;
-  color: string;
+  icon?: ReactNode;
+  color?: string;
 }
 
 declare interface HexProps {
   content: ReactNode;
   cell: HexCell;
-  size: number;
   level: number;
-  className: string;
-  activeCase: string;
+  className?: string;
   isActive: boolean;
   onClick: () => void;
 }
