@@ -6,9 +6,7 @@ const useStyles = createUseStyles({
     fontFamily: 'sans-serif',
     textAlign: 'center',
 
-    '& .hex:hover': {
-      borderColor: 'red !important',
-    },
+    '& .hex:hover': {},
   },
   board: {
     marginTop: '-14px',

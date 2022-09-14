@@ -6,11 +6,12 @@
 .hex {
   cursor: pointer;
   font-size: 10px;
+  line-height: 10px;
 }
 
-.hex:hover div {
+/* .hex:hover div {
   border-color: black !important;
-}
+} */
 
 /* .hex:active div {
   border-color: red !important;

@@ -3,8 +3,8 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
   root: {
     '& .inner-block': {
-      borderTop: '1px solid #e3e3e8',
-      borderBottom: '1px solid #e3e3e8',
+      borderTop: '0.9px solid #e3e3e8',
+      borderBottom: '0.9px solid #e3e3e8',
     },
 
     '&.level1': {
@@ -20,8 +20,8 @@ const useStyles = createUseStyles({
         zIndex: '11 !important',
 
         '& .inner-block': {
-          borderTop: '1px solid blue',
-          borderBottom: '1px solid blue',
+          borderTop: '1px solid #4991ff',
+          borderBottom: '1px solid #4991ff',
         },
       },
     },
@@ -32,8 +32,8 @@ const useStyles = createUseStyles({
         // borderBottom: '1px solid blue',
 
         '& .inner-block': {
-          borderTop: '2px solid blue',
-          borderBottom: '2px solid blue',
+          borderTop: '2px solid #2278fa',
+          borderBottom: '2px solid #2278fa',
         },
       },
     },
