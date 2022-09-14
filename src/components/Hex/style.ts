@@ -2,19 +2,33 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   root: {
-    marginTop: '35px',
-    fontFamily: 'sans-serif',
-    textAlign: 'center',
+    '& .inner-block': {
+      borderTop: '1px solid #000',
+      borderBottom: '1px solid #000',
+    },
 
-    '& .hex:hover': {
-      borderColor: '#bb9 !important',
+    '&.level1': {
+      zIndex: '10',
+
+      '&.isActive': {
+        transform: 'scale(1.5)',
+        zIndex: '11 !important',
+      },
+    },
+
+    '&.level2': {
+      '&.isActive': {
+        borderTop: '1px solid red',
+        borderBottom: '1px solid red',
+
+        '& .inner-block': {
+          borderTop: '1px solid red',
+          borderBottom: '1px solid red',
+        },
+      },
     },
   },
-  board: {
-    marginTop: '-14px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
+  board: {},
 });
 
 export default useStyles;

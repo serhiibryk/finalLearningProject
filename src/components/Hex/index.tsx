@@ -1,17 +1,17 @@
+import classNames from 'classnames';
 import React, { FC } from 'react';
 
-// import useStyles from './style';
+import useStyles from './style';
 
-const Hex: FC<HexProps> = ({ content, cell, size, onClick }) => {
-  // const classes = useStyles();
+const Hex: FC<HexProps> = ({ content, cell, size, level, isActive, onClick }) => {
+  const classes = useStyles();
   const bgColor = cell.backgroundColor || '#FFF';
 
   return (
     <div
-      className={'hex'}
+      className={classNames(classes.root, 'hex', { level1: level === 1, level2: level === 2, isActive })}
       onClick={onClick}
       style={{
-        // border: '1px solid #000',
         height: `${size}px`,
         width: `${size}px`,
         boxSizing: 'border-box',
@@ -20,9 +20,8 @@ const Hex: FC<HexProps> = ({ content, cell, size, onClick }) => {
       }}
     >
       <div
+        className={'inner-block'}
         style={{
-          borderTop: '1px solid #000',
-          borderBottom: '1px solid #000',
           boxSizing: 'border-box',
           width: 70 / Math.sqrt(3) + 'px',
           height: '100%',
@@ -42,9 +41,8 @@ const Hex: FC<HexProps> = ({ content, cell, size, onClick }) => {
         <div style={{ rotate: '-90deg', position: 'relative', zIndex: 1 }}>{content}</div>
       </div>
       <div
+        className={'inner-block'}
         style={{
-          borderTop: '1px solid #000',
-          borderBottom: '1px solid #000',
           boxSizing: 'border-box',
           width: 70 / Math.sqrt(3) + 'px',
           height: '100%',
@@ -59,9 +57,8 @@ const Hex: FC<HexProps> = ({ content, cell, size, onClick }) => {
         }}
       />
       <div
+        className={'inner-block'}
         style={{
-          borderTop: '1px solid #000',
-          borderBottom: '1px solid #000',
           boxSizing: 'border-box',
           width: 70 / Math.sqrt(3) + 'px',
           height: '100%',

@@ -281,6 +281,7 @@ declare interface HexCell {
   clickable: boolean;
   level: number;
   backgroundColor: string;
+  interactiveCases: string[];
   icon: ReactNode;
 }
 
@@ -288,6 +289,9 @@ declare interface HexProps {
   content: ReactNode;
   cell: HexCell;
   size: number;
+  level: number;
   className: string;
+  activeCase: string;
+  isActive: boolean;
   onClick: () => void;
 }
