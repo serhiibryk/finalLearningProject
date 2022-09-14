@@ -280,6 +280,7 @@ declare interface HexCell {
   isOpen: boolean;
   clickable: boolean;
   level: number;
+  parent: string;
   backgroundColor: string;
   interactiveCases: string[];
   icon: ReactNode;
