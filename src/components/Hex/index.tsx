@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import React, { FC } from 'react';
+import classNames from 'classnames';
 
 import useStyles from './style';
 
@@ -25,6 +25,7 @@ const Hex: FC<HexProps> = ({ content, cell, size, level, isActive, onClick }) =>
           boxSizing: 'border-box',
           width: 70 / Math.sqrt(3) + 'px',
           height: '100%',
+          borderColor: '#e3e3e8',
           margin: '0 auto',
           position: 'absolute',
           top: 0,
@@ -44,6 +45,7 @@ const Hex: FC<HexProps> = ({ content, cell, size, level, isActive, onClick }) =>
         className={'inner-block'}
         style={{
           boxSizing: 'border-box',
+          borderColor: '#e3e3e8',
           width: 70 / Math.sqrt(3) + 'px',
           height: '100%',
           margin: '0 auto',
@@ -60,6 +62,7 @@ const Hex: FC<HexProps> = ({ content, cell, size, level, isActive, onClick }) =>
         className={'inner-block'}
         style={{
           boxSizing: 'border-box',
+          borderColor: '#e3e3e8',
           width: 70 / Math.sqrt(3) + 'px',
           height: '100%',
           margin: '0 auto',

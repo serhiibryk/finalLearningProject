@@ -5,6 +5,7 @@
 
 .hex {
   cursor: pointer;
+  font-size: 10px;
 }
 
 .hex:hover div {
@@ -12,5 +13,5 @@
 }
 
 .hex:active div {
-  border-color: #faf !important;
+  border-color: green !important;
 }
