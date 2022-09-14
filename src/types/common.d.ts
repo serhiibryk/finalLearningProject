@@ -284,6 +284,7 @@ declare interface HexCell {
   backgroundColor: string;
   interactiveCases: string[];
   icon: ReactNode;
+  color: string;
 }
 
 declare interface HexProps {

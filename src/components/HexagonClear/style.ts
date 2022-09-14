@@ -7,7 +7,7 @@ const useStyles = createUseStyles({
     textAlign: 'center',
 
     '& .hex:hover': {
-      // borderColor: 'grey !important',
+      borderColor: 'red !important',
     },
   },
   board: {
@@ -16,7 +16,6 @@ const useStyles = createUseStyles({
     justifyContent: 'center',
   },
   hex: {
-    // background: 'red',
     height: '110px',
     width: '100px',
   },

@@ -4,6 +4,7 @@ import Hex from '../Hex';
 
 import useStyles from './style';
 import './index.css';
+
 const DEFAULT_CELL: HexCell = {
   title: '',
   parent: '',
@@ -13,6 +14,7 @@ const DEFAULT_CELL: HexCell = {
   icon: <></>,
   interactiveCases: [],
   backgroundColor: '',
+  color: '',
 };
 const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
   return [
@@ -35,12 +37,13 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
             return {
               title: 'Automating the adminustrating tasks',
               isOpen: false,
-              clickable: true,
+              clickable: false,
               level: 2,
               parent: '2+11',
               icon: <></>,
               interactiveCases: [],
               backgroundColor: '#4991ff',
+              color: 'white !important',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -55,10 +58,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               interactiveCases: [],
-              level: 1,
+              level: 0,
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -86,6 +90,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         parent: '2+11',
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
@@ -97,10 +102,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               parent: '2+11',
-              level: 1,
+              level: 0,
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#4991ff',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -112,12 +118,13 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
             return {
               title: 'Hospital Patient Managment',
               isOpen: false,
-              clickable: true,
+              clickable: false,
               interactiveCases: [],
               level: 2,
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#4991ff',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -131,10 +138,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               parent: '2+11',
-              level: 1,
+              level: 0,
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -147,11 +155,12 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               title: 'Image analysis for medical diagnostics',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '2+11',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -176,6 +185,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         parent: '',
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
@@ -190,6 +200,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         parent: '2+11',
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       (() => {
         switch (true) {
@@ -198,22 +209,24 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               title: '',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               interactiveCases: [],
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#4991ff',
+              color: 'black',
             };
           case ['3+12'].includes(activeCase) && parent === '5+11':
             return {
               title: '1',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               interactiveCases: [],
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#b9936c',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -231,17 +244,19 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#4991ff',
+              color: 'black',
             };
           case ['3+12'].includes(activeCase) && parent === '5+11':
             return {
               title: '1',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               interactiveCases: [],
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#b9936c',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -254,11 +269,12 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               title: 'Early diagnosis',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               interactiveCases: [],
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -272,10 +288,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               interactiveCases: [],
-              level: 1,
+              level: 0,
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -301,6 +318,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         interactiveCases: [],
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       {
@@ -312,6 +330,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         level: 1,
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       (() => {
@@ -322,10 +341,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               interactiveCases: [],
-              level: 1,
+              level: 0,
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#4991ff',
+              color: 'black',
             };
           case ['3+12'].includes(activeCase) && parent === '5+11':
             return {
@@ -333,10 +353,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               interactiveCases: [],
-              level: 1,
+              level: 0,
               parent: '3+12',
               icon: <></>,
               backgroundColor: '#b9936c',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -354,6 +375,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               parent: '2+11',
               icon: <></>,
               backgroundColor: '#4991ff',
+              color: 'black',
             };
           case ['5+11', '3+12', '4+13', '5+13', '6+13'].includes(activeCase):
             return {
@@ -365,6 +387,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               level: 2,
               icon: <></>,
               backgroundColor: '#dac292',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -379,9 +402,10 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               parent: '2+11',
               interactiveCases: [],
               clickable: false,
-              level: 1,
+              level: 0,
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           case ['5+13'].includes(activeCase):
             return {
@@ -390,9 +414,10 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               interactiveCases: [],
               parent: '5+11',
               clickable: false,
-              level: 1,
+              level: 0,
               icon: <></>,
               backgroundColor: '#3e4444',
+              color: 'black',
             };
           case ['3+12'].includes(activeCase) && parent === '5+11':
             return {
@@ -401,9 +426,10 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               interactiveCases: [],
               parent: '5+11',
               clickable: false,
-              level: 1,
+              level: 0,
               icon: <></>,
               backgroundColor: '#b9936c',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -418,9 +444,10 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               interactiveCases: [],
               clickable: false,
-              level: 1,
+              level: 0,
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -448,12 +475,13 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
             return {
               title: '',
               isOpen: false,
-              clickable: true,
+              clickable: false,
               interactiveCases: [],
-              level: 1,
+              level: 0,
               parent: '5+11',
               icon: <></>,
               backgroundColor: '#dac292',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -471,6 +499,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               level: 2,
               icon: <></>,
               backgroundColor: '#dac292',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -485,9 +514,10 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               parent: '2+11',
               clickable: false,
-              level: 1,
+              level: 0,
               icon: <></>,
               backgroundColor: '#2278fa',
+              color: 'black',
             };
           case ['5+13'].includes(activeCase):
             return {
@@ -495,10 +525,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               title: '2',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               icon: <></>,
               parent: '5+11',
               backgroundColor: '#3e4444',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -523,6 +554,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         level: 1,
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
@@ -538,6 +570,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         parent: '',
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       (() => {
         switch (true) {
@@ -546,11 +579,12 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               title: '',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '5+11',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#dac292',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -568,6 +602,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               level: 2,
               icon: <></>,
               backgroundColor: '#dac292',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -580,11 +615,12 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               title: '2',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               interactiveCases: [],
               parent: '5+11',
               icon: <></>,
               backgroundColor: '#3e4444',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -614,10 +650,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               interactiveCases: [],
-              level: 1,
+              level: 0,
               parent: '5+11',
               icon: <></>,
               backgroundColor: '#dac292',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -631,10 +668,11 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               isOpen: false,
               clickable: false,
               interactiveCases: [],
-              level: 2,
+              level: 0,
               parent: '5+11',
               icon: <></>,
               backgroundColor: '#dac292',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -647,11 +685,12 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               title: '2',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               interactiveCases: [],
               parent: '5+11',
               icon: <></>,
               backgroundColor: '#3e4444',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -678,30 +717,33 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         level: 1,
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       {
         interactiveCases: ['7+11', '8+11', '9+9', '9+10'],
         title: 'Manufactures and Factories',
-        parent: '',
+        parent: '7+9',
         isOpen: false,
         clickable: true,
         level: 1,
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       (() => {
         switch (true) {
-          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase):
+          case ['7+9', '7+11', '9+10'].includes(activeCase):
             return {
               title: '',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '7+9',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#fa6f1e',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -709,9 +751,9 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
       })(),
       (() => {
         switch (true) {
-          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase):
+          case ['7+9', '7+11', '9+10'].includes(activeCase):
             return {
-              title: '0',
+              title: 'Supply chain managment',
               isOpen: false,
               clickable: false,
               parent: '7+9',
@@ -719,6 +761,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               level: 2,
               icon: <></>,
               backgroundColor: '#fa6f1e',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -746,21 +789,23 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         parent: '',
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       { ...DEFAULT_CELL },
       (() => {
         switch (true) {
-          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase):
+          case ['7+9', '7+11', '9+10'].includes(activeCase):
             return {
               title: '',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '7+9',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#fa6f1e',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -768,16 +813,17 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
       })(),
       (() => {
         switch (true) {
-          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase):
+          case ['7+9', '7+11', '9+10'].includes(activeCase):
             return {
               title: '',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '7+9',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#fa6f1e',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -785,27 +831,29 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
       })(),
       (() => {
         switch (true) {
-          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase):
+          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase) && parent === '7+9':
             return {
-              title: '0',
+              title: 'Predictive Maintanance',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '7+9',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#fa6f1e',
+              color: 'black',
             };
           default:
             return {
               title: 'Defence and Military',
               isOpen: false,
               clickable: true,
-              parent: '',
+              parent: '8+11',
               level: 1,
               interactiveCases: [],
               icon: <></>,
               backgroundColor: 'white',
+              color: 'black',
             };
         }
       })(),
@@ -833,20 +881,22 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
         parent: '',
         icon: <></>,
         backgroundColor: 'white',
+        color: 'black',
       },
       { ...DEFAULT_CELL },
       (() => {
         switch (true) {
-          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase):
+          case ['7+9', '7+11', '9+10'].includes(activeCase):
             return {
-              title: '0',
+              title: 'Inventory managment',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '7+9',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#fa6f1e',
+              color: 'black',
             };
           default:
             return {
@@ -858,6 +908,7 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
               level: 1,
               icon: <></>,
               backgroundColor: 'white',
+              color: 'black',
             };
         }
       })(),
@@ -873,16 +924,17 @@ const generateBoard = (activeCase: string, parent: string): HexCell[][] => {
       // },
       (() => {
         switch (true) {
-          case ['7+9', '7+11', '8+11', '9+9', '9+10'].includes(activeCase):
+          case ['7+9', '7+11', '9+10'].includes(activeCase):
             return {
-              title: '0',
+              title: 'Robotic process automation',
               isOpen: false,
               clickable: false,
-              level: 1,
+              level: 0,
               parent: '7+9',
               interactiveCases: [],
               icon: <></>,
               backgroundColor: '#fa6f1e',
+              color: 'black',
             };
           default:
             return { ...DEFAULT_CELL };
@@ -941,6 +993,7 @@ const HexagonClear = () => {
       })
     );
   };
+  console.log(activeCase);
 
   return (
     <div

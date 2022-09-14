@@ -12,6 +12,6 @@
   border-color: black !important;
 }
 
-.hex:active div {
-  border-color: green !important;
-}
+/* .hex:active div {
+  border-color: red !important;
+} */
