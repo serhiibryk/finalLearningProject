@@ -311,3 +311,45 @@ export const pallet = (isDarkMode: boolean) => {
     backGroundHeader: '#8aa1b9',
   };
 };
+
+export const mockData = {
+  success: true,
+  data: {
+    responsibleSignatureBase64: null,
+    id: 1,
+    yarpaIdentifier: '3992',
+    company: 'גבעול תל אביב',
+    city: 'תל אביב',
+    address: 'הירקון 288, תל אביב',
+    groupId: 1,
+    phoneNumber: '+38(555)555-55-55',
+    responsiblePharmacist: 'יארה סלאמה',
+    responsiblePhoneNumber: '+678',
+    responsiblePharmacistName: 'יארה',
+    responsiblePharmacistSurname: 'סלאמה',
+    responsibleLicense: '3134906',
+    logoUrl:
+      'https://files-bucket-puff-production.s3.eu-west-1.amazonaws.com/pharmacy-photos/Givol_Tel_Aviv_300x300.png',
+    isPublished: true,
+    showIndex: 0,
+    notes:
+      'ראשון\n09:00 – 21:00\nשני\n09:00 – 21:00\nשלישי\n09:00 – 21:00\nרביעי\n09:00 – 21:00\nחמישי\n09:00 – 21:00\nשישי\n09:00 – 15:00\nשבת\n18:30 – 23:00',
+    geolocation:
+      'https://maps.google.com/maps?q=%D7%94%D7%99%D7%A8%D7%A7%D7%95%D7%9F%20288,%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&t=&z=13&ie=UTF8&iwloc=&output=embed',
+    productsAvailable: 542,
+    isFastDeliveryAvailable: false,
+    socialMedia: [
+      {
+        link: 'https://www.facebook.com/givol.pharmacy',
+        serviceName: 'facebook',
+        logoUrl: 'https://files-bucket-puff-production.s3.eu-west-1.amazonaws.com/pharmacy-photos/facebook.png',
+      },
+      {
+        link: 'https://www.instagram.com/givol.pharmacy/',
+        serviceName: 'instagram',
+        logoUrl: 'https://files-bucket-puff-production.s3.eu-west-1.amazonaws.com/pharmacy-photos/instagram.png',
+      },
+    ],
+    availability: [],
+  },
+};

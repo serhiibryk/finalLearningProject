@@ -300,3 +300,11 @@ declare interface HexProps {
   isActive: boolean;
   onClick: () => void;
 }
+declare interface ITestForm {}
+
+declare interface DataType {
+  key: string;
+  title: string;
+  dataIndex: string;
+  render?: (_: any, carsData: any, index: number) => any;
+}

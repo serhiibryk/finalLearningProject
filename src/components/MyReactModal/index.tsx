@@ -9,7 +9,7 @@ interface IMyModal {
 const MyModal: FC<IMyModal> = ({ onClose }) => {
   return (
     <ModalComponent onClose={onClose}>
-      <p>Graphic dlia tebia blyat</p>
+      <p>Test</p>
       <Graphic3 />
     </ModalComponent>
   );

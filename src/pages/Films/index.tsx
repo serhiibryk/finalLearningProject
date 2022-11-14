@@ -13,6 +13,7 @@ const TeamsFilms = () => {
   const { films, isLoading, error } = useAppSelector((state) => state.films);
   const dispatch = useAppDispatch();
   const classes = useStyles();
+  console.log(films);
 
   // const fetchFilms = async () => {
   //   filmsService.getFilms().then((data) => {

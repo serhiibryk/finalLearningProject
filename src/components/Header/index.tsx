@@ -169,10 +169,6 @@ const Header = () => {
           />
           <div className={classes.buttons}>
             <Switch />
-            {/* <p className={classes.switcherText}>
-              <span className={classes.blackSwitcherText}>Black</span>
-              <span className={classes.whiteSwitcherText}>White</span>
-            </p> */}
             {Object.keys(lngs).map((lng) => (
               <Button
                 className={classes.buttonSwitch}

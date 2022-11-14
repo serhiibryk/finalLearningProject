@@ -14,11 +14,13 @@ import useToggle from '../../store/hooks/useToggle';
 import MyModal from '../../components/MyReactModal';
 import ModalANT from '../../components/ModalANT';
 import { useAppSelector } from '../../store/hooks/redux';
+import HexGridDemo from '../../components/Hexagongrid/grid';
+import HexagonClear from '../../components/HexagonClear';
 
 import useStyles from './style';
 import 'swiper/swiper.min.css';
-import HexGridDemo from '../../components/Hexagongrid/grid';
-import HexagonClear from '../../components/HexagonClear';
+import TestForm from '../../components/TestForm';
+import TestTable from '../../components/TestTable';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade, Autoplay]);
 
@@ -71,19 +73,27 @@ const Profile = () => {
             Modal-Ant
           </Button>
           <ModalANT
-            title={'Graphic dlia tebia blyat'}
+            title={'test'}
             footer={null}
             afterClose={() => handleChangeView(false)}
             onCancel={() => handleChangeView(false)}
             visible={isModalVisible}
           >
-            <Graphic1 />
+            <TestForm />
           </ModalANT>
+
           <Button className={classes.buttonReactModal} onClick={onModalOpen}>
             Modal-React
           </Button>
           {isModalOpen && <MyModal onClose={onModalClose} />}
+          <br />
+          <br />
+          <br />
+          <hr />
+          <TestTable />
+          <hr />
         </div>
+        <br />
         <br />
         <br />
         {decoded ? (
@@ -133,9 +143,10 @@ const Profile = () => {
         <br />
         <div>
           <HexGridDemo />
+          <HexagonClear />
         </div>
+        <div></div>
       </Card>
-      <HexagonClear />
     </div>
   );
 };

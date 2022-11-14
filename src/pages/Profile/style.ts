@@ -10,6 +10,7 @@ const useStyles = createUseStyles({
     marginTop: '15px',
     margin: '15px',
     width: '100%',
+    minHeight: '100%',
     maxWidth: '98%',
     border: 'none',
     backgroundColor: (isDarkMode: boolean) => pallet(isDarkMode).dark,

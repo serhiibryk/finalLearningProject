@@ -37,6 +37,7 @@
     "react-hook-form": "^7.34.2",
     "react-i18next": "^11.18.5",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-input-mask": "^2.0.4",
     "react-jss": "^10.9.1",
     "react-jwt": "^1.1.6",
     "react-redux": "^8.0.2",
@@ -83,6 +84,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
     "@types/react-beautiful-dnd": "^13.1.2",
+    "@types/react-input-mask": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",

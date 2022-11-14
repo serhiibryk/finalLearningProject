@@ -68,6 +68,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 1,
     'import/prefer-default-export': 'off',
     'no-nested-ternary': 'off',
+    'standard/no-callback-literal': 0,
+    'prefer-regex-literals': 0,
   },
   settings: {
     'import/resolver': {
